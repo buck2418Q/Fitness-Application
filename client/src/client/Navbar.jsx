@@ -1,7 +1,10 @@
 // import React from 'react'
+import { Link } from 'react-router-dom'
+import Button from '../components/Button';
 import logo from './../assets/logos/logo.png'
 
 function navbar() {
+    const handleClick = () => alert('hey Groot!');
     return (
 
 
@@ -10,14 +13,20 @@ function navbar() {
                 <img src={logo} alt="logo" />
             </div>
             <div className='navbar'>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Trainers</a>
-                <a href="#">Review</a>
-                <a href="#">Plans</a>
+
+                <Link to="about">About</Link>
+                <Link to="trainers">Trainers</Link>
+                <Link to="review">Review</Link>
+                <Link to="plans">Plans</Link>
             </div>
             <div >
-                <button>Join Now</button>
+                {/* <button>Join Now</button> */}
+                <Button
+                    text="Join Now"
+                    onClick={handleClick}
+                    type="primary"
+                    size="medium"
+                />
             </div>
         </nav>
 
