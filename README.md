@@ -1,14 +1,14 @@
 Project setup
 
 FRONTEND
-cd clientFitness
+cd client
 npm install
 npm run dev
 
 BACKEND
-cd serverFitness
+cd server
 npm install
 npm install express (if express is not installed)
 node server.js
-
+    
 
