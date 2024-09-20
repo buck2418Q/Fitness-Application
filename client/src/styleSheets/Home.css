@@ -2,6 +2,13 @@
 
 }
 
-.test{
-    justify-content: space-around;
+/* .heading {
+    font-size: 64px;
+    font-weight: 900;
+} */
+
+.sub-heading {
+    font-size: 64px;
+        font-weight: 900;
 }
+
