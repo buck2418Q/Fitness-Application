@@ -3,39 +3,17 @@
   --light-color: #ffffff;
   --primary-color: #109340;
   --font-size: 16px;
+  --primary-btn: linear-gradient(198deg, rgba(16, 147, 64, 1) 0%, rgba(22, 182, 80, 1) 50%, rgba(16, 147, 64, 1) 100%);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  margin: 0;
+  padding: 0;
 }
 
 html {
   height: 100%;
 }
-
-body {
-  min-height: 100%;
-}
-
-
-
-nav {
-  margin: 1rem;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.navbar a {
-  color: var(--dark-color);
-  text-decoration: none;
-  margin: 0 20px;
-}
-

@@ -1,4 +1,6 @@
 .btn {
+    position: relative;
+    /* Added this for proper positioning of the after pseudo-element */
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -6,11 +8,44 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
+
 }
 
+
 .btn-primary {
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
+    background: var(--primary-btn);
     color: white;
+
+    &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        background-color: #16b650;
+        border-radius: 5px;
+        box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.5),
+            7px 7px 20px 0 rgba(0, 0, 0, 0.1),
+            4px 4px 5px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        color: #fff;
+    }
+
+    &:hover:after {
+        left: 0;
+        width: 100%;
+    }
+
+    &:active {
+        top: 2px;
+    }
 }
 
 .btn-secondary {

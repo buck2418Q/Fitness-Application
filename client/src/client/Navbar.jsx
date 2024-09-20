@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 import Button from '../components/Button';
 import logo from './../assets/logos/logo.png'
+import '../styleSheets/navbar.css'
 
 function navbar() {
     const handleClick = () => alert('hey Groot!');
@@ -14,6 +15,7 @@ function navbar() {
             </div>
             <div className='navbar'>
 
+                <Link to="home">Home</Link>
                 <Link to="about">About</Link>
                 <Link to="trainers">Trainers</Link>
                 <Link to="review">Review</Link>
@@ -27,6 +29,7 @@ function navbar() {
                     type="primary"
                     size="medium"
                 />
+
             </div>
         </nav>
 
