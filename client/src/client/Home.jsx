@@ -11,7 +11,7 @@ import trainer2 from '../assets/images/trainer-2.png'
 import trainer3 from '../assets/images/trainer-3.png'
 import coach1 from '../assets/images/coach1.avif'
 import coach2 from '../assets/images/coach2.jpg'
-import Button from '../components/Button.jsx'
+import ButtonUi from '../components/Button.jsx'
 import check from '../assets/icons/check.png'
 import React, { Suspense, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -71,7 +71,7 @@ function Home() {
   return (
     <div>
       <Suspense fallback={<div>
-        <Loader></Loader>
+        <Loader />
       </div>}>
 
 
@@ -270,7 +270,7 @@ function Home() {
 
 
         {/* Coaches */}
-        <section className='w-full h-full border-solid  px-24 py-20 flex '>
+        <section className='w-full h-full border-solid px-24 py-20 flex '>
           <div className="flex flex-col sm:flex-row w-full sm:w-8/12 lg:w-5/12">
             <div className="mx-0 sm:mx-4 w-1/2 overflow-hidden sm:w-1/2 mt-4 sm:mt-0 transition-all duration-300 ease-in-out hover:w-full h-96 rounded-3xl	">
               <LazyLoadImage
@@ -293,7 +293,7 @@ function Home() {
             <h2 className='text-6xl font-extrabold'>Coaches</h2>
             <p className='text-xl my-6 mx-2 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
             <div className='absolute bottom-0 mb-4 shadow-2xl '>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -305,7 +305,7 @@ function Home() {
 
 
         {/* join today  */}
-        <section className='py-24 px-20 bg-cover h-auto '>
+        <section className='py-24 px-20 bg-cover h-auto'>
           <div className='flex justify-between items-center'>
             <div>
               <p className='text-xl  mx-2 c-text-gray'>Pricing Plan</p>
@@ -330,11 +330,11 @@ function Home() {
           </div>
 
           {/* monthy packs */}
-          <div className={`${isMonth ? 'text-left grid grid-cols-3 gap-32 my-12 px-20 box-border' : 'hidden'}`}>
+          <div className={`${isMonth ? 'text-left grid grid-cols-3 grow gap-16 my-12 px-20 box-border' : 'hidden'}`}>
             {/* card 1*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5  w-full transition duration-300 ease-in-out">
               <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$05 <span className="text-sm font-bold">/Month</span></h2>
+              <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
               <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
               <ul className='c-text-gray mt-8 mb-12'>
@@ -344,7 +344,7 @@ function Home() {
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
               </ul>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -353,9 +353,9 @@ function Home() {
             </div>
 
             {/* card 2*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5">
+            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 w-full ">
               <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$05 <span className="text-sm font-bold">/Month</span></h2>
+              <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
               <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
               <ul className='c-text-gray mt-8 mb-12'>
@@ -365,7 +365,7 @@ function Home() {
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
               </ul>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -374,9 +374,9 @@ function Home() {
             </div>
 
             {/* card 3*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5">
+            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 w-full ">
               <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$05 <span className="text-sm font-bold">/Month</span></h2>
+              <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
               <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
               <ul className='c-text-gray mt-8 mb-12'>
@@ -386,7 +386,7 @@ function Home() {
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
               </ul>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -403,9 +403,9 @@ function Home() {
           {/* yearky packs */}
           <div className={`${isMonth ? 'hidden' : 'text-left grid grid-cols-3 gap-32 my-12 px-20 box-border '}`}>
             {/* card 1*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 hover:c-bg-black transition duration-300 ease-in-out">
+            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 ">
               <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$05 <span className="text-sm font-bold">/Year</span></h2>
+              <h2 className='text-4xl font-extrabold'>$99.9<span className="text-sm font-bold">/Year</span></h2>
               <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
               <ul className='c-text-gray mt-8 mb-12'>
@@ -414,8 +414,10 @@ function Home() {
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
+                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
+                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
               </ul>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -424,9 +426,9 @@ function Home() {
             </div>
 
             {/* card 2*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5">
+            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 ">
               <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$05 <span className="text-sm font-bold">/Year</span></h2>
+              <h2 className='text-4xl font-extrabold'>$99.9<span className="text-sm font-bold">/Year</span></h2>
               <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
               <ul className='c-text-gray mt-8 mb-12'>
@@ -435,8 +437,10 @@ function Home() {
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
+                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
+                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
               </ul>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -445,9 +449,9 @@ function Home() {
             </div>
 
             {/* card 3*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5">
+            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 ">
               <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$05 <span className="text-sm font-bold">/Year</span></h2>
+              <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
               <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
               <ul className='c-text-gray mt-8 mb-12'>
@@ -456,8 +460,10 @@ function Home() {
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
                 <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
+                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
+                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
               </ul>
-              <Button
+              <ButtonUi
                 text="Join Now"
                 onClick={handleClick}
                 type="secondary"
@@ -474,9 +480,8 @@ function Home() {
         </section>
 
 
-
         {/* review  */}
-        <section className='py-24 px-20 bg-cover h-auto '>
+        <section className='py-24 px-20 bg-cover h-auto'>
           <div className='flex justify-between items-center'>
             <div>
               <p className='text-xl  mx-2 c-text-gray'>Reviews</p>
@@ -559,13 +564,6 @@ function Home() {
 
 
 
-
-
-
-
-
-
-
         {/* call us today */}
         <section className='text-center py-24 px-[24%] bg-callbanner bg-cover bg-center h-auto c-text-white'>
           <p className='text-3xl font-semibold'>Call us Today</p>
@@ -574,14 +572,7 @@ function Home() {
         </section>
 
 
-        <section className='m-20'>
-
-
-
-
-
-
-        </section>
+        <section className='m-20'>       </section>
 
 
       </Suspense>

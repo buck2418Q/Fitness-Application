@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 // import React from 'react'
 import { Link } from 'react-router-dom'
 // import Button from '../components/Button';
-const Button = React.lazy(() => import('../components/Button'))
+const ButtonUi = React.lazy(() => import('../components/Button'))
 import logo from './../assets/logos/logo.png'
 import '../styleSheets/navbar.css'
 function Navbar() {
@@ -24,8 +24,7 @@ function Navbar() {
                 </div>
                 <div >
                     <Suspense fallback={<div>Loading...</div>}>
-                        {/* <button>Join Now</button> */}
-                        <Button
+                        <ButtonUi
                             text="Join Now"
                             onClick={handleClick}
                             type="primary"

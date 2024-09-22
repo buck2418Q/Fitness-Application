@@ -20,19 +20,22 @@ function Button({ text, onClick, type = 'primary', size = 'medium', icon, isLoad
     };
 
     return (
-        <button className={getButtonClass()} onClick={onClick} disabled={isLoading}>
+        <button className={getButtonClass()}
+            onClick={onClick}
+            disabled={isLoading}>
             {isLoading ? 'Loading...' : (
                 <>
                     {icon && <span className="btn-icon">{icon}</span>}
                     {text}
                 </>
             )}
+
         </button>
     );
 }
 
 Button.propTypes = {
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     onClick: PropTypes.func,
     type: PropTypes.oneOf(['primary', 'secondary', 'outline']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
