@@ -40,11 +40,13 @@ Button.propTypes = {
     isLoading: PropTypes.bool
 };
 
-Button.defaultProps = {
-    onClick: () => { },
-    type: 'primary',
-    size: 'medium',
-    isLoading: false
-};
+// i have commented this because this gives error "Button: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.", its better to to work straight 
+
+// Button.defaultProps = {
+//     onClick: () => { },
+//     type: 'primary',
+//     size: 'medium',
+//     isLoading: false
+// };
 
 export default Button;

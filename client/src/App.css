@@ -26,17 +26,25 @@ html {
 .c-text-black {
   color: var(--dark-color);
 }
-.c-text-white{
+.c-border-black {
+  border: 1px solid var(--dark-color);
+}
+.c-text-white {
   color: var(--light-color);
 }
+
 .c-text-primary {
   color: var(--primary-color);
 }
 
 .c-bg-black {
   background: var(--dark-color);
+  /* background-color: var(--dark-color); */
 }
 
+.test{
+background-color: black;
+}
 .c-bg-white {
   background: var(--light-color);
 }
@@ -44,4 +52,5 @@ html {
 .c-bg-primary {
   background: var(--primary-color);
 }
+
 
