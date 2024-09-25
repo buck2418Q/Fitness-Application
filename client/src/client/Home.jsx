@@ -20,7 +20,7 @@ import review1 from '../assets/images/review1.jpg'
 import review2 from '../assets/images/review2.jpg'
 import review3 from '../assets/images/review3.jpg'
 import review4 from '../assets/images/review4.jpg'
-
+import bannerModel from '../assets/images/bannerModel.png'
 
 
 function Home() {
@@ -74,8 +74,38 @@ function Home() {
         <Loader />
       </div>}>
 
+        {/* banner  */}
+        <section className='banner flex flex-col md:flex-row w-full h-screen border-solid px-8 md:px-24 relative top-0'>
+          <div className="w-full md:w-1/2 pr-7 flex flex-col gap-8 justify-center">
+            <h1 className='text-4xl md:text-8xl font-bold'>Elevate Your WorkOut</h1>
+            <p className="text-lg md:text-2xl"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div className='flex flex-col md:flex-row'>
+              <span className='mb-4 md:mb-0 md:mr-8'><ButtonUi
+                text="Get Started"
+                onClick={handleClick}
+                type="secondary"
+                size="medium"
+              /></span>
+              <span className='text-center font-normal py-2 px-4 rounded-xl hover:rounded-xl hover:bg-black hover:text-white transition ease-in-out duration-300'><button className='text-center'>Play Video</button></span>
+            </div>
+            <div className='flex justify-start gap-4 md:gap-8'>
+              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>FB</span>
+              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>IN</span>
+              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>LI</span>
+              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>XX</span>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 mt-8 md:mt-0">
+            <div className='bg-black absolute h-1/4 md:h-full w-full md:w-1/4 right-0'></div>
+            <div className='bannerImage absolute bottom-0 right-0'>
+              <img src={bannerModel} alt="" className='mr-10' />
+            </div>
+          </div>
+        </section>
 
-        <section className=" w-full flex justify-around c-bg-black c-text-white my-8 py-8">
+        
+        
+        <section className=" w-full flex justify-around c-bg-black c-text-white py-8">
           <div className="card">
             <h4 className='text-4xl font-extrabold mb-4'>
               500+
@@ -560,8 +590,6 @@ function Home() {
           </div>
 
         </section>
-
-
 
 
         {/* call us today */}
