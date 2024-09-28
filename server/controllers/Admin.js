@@ -28,7 +28,7 @@ export const CreateAdmin = async (req, res) => {
 
 export const UpdateAdmin = async (req, res) => {
     try {
-        const adminData = await AdminModel.findByIdAndUpdate({ _id: req.body._id },
+        const adminData = await AdminModel.findByIdAndUpdate({ _id: req.body.id },
             {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,

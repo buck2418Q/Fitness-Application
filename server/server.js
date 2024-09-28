@@ -3,9 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "./controllers/Admin.js";
-import { CreateUser, GetUsers } from "./controllers/User.js";
-
-
+import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser } from "./controllers/User.js";
+import { GetTrainers } from "./controllers/Trainer.js";
 
 dotenv.config();
 
@@ -15,19 +14,30 @@ app.use(express.json());
 
 const port = process.env.PORT || 30000;
 const dbUrl = process.env.DB_URL;
-// const appName = "/fitness360";
-// app.use(appName, express.Router());
+const appName = "/fitness360";
+const router = express.Router();
 
+// Use the router for your routes
+app.use(appName, router);
+
+// Update all routes to use the router instead of app
 // all admins 
-app.get("/admin", GetAdmin);
-app.post("/admin", CreateAdmin);
-app.put("/admin", UpdateAdmin);
-app.delete("/admin", DeleteAdmin);
-app.get("/findadminbyid", FindAdminById)
+router.get("/admin", GetAdmin);
+router.post("/admin", CreateAdmin);
+router.put("/admin", UpdateAdmin);
+router.delete("/admin", DeleteAdmin);
+router.get("/findadminbyid", FindAdminById)
 
 //user
-app.get("/user", GetUsers);
-app.post("/user", CreateUser);
+router.get("/user", GetUsers);
+router.post("/user", CreateUser);
+router.put("/user", UpdateUser);
+router.delete("/user", DeleteUser);
+router.get("/finduserbyid", FindUserById);
+
+//trainers
+router.get("/trainers", GetTrainers);
+
 
 mongoose.connect(dbUrl).then((d) => {
     app.listen(port, () => {
