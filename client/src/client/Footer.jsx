@@ -4,13 +4,6 @@ function Footer() {
       <div className="flex flex-col md:flex-row py-4 px-4 justify-between items-start">
         {/* Map section */}
         <div className="w-full md:w-5/12 overflow-hidden h-0 pb-[56.25%] md:pb-[20%] relative rounded-xl bg-green-500 mb-4 md:mb-0 z-0 ">
-          ` <iframe
-            className="border-0 h-full w-full absolute rounded-xl z-0 "
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.40033770883!2d76.81928331145258!3d30.701965024493106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fecca1d6c0001%3A0xe4953728a502a8e2!2sChandigarh%20Junction%20railway%20station!5e1!3m2!1sen!2sin!4v1726998920263!5m2!1sen!2sin"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>`
         </div>
 
         {/* Content section */}

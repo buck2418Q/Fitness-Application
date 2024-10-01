@@ -69,7 +69,7 @@ function Home() {
 
 
   return (
-    <div>
+    <>
       <Suspense fallback={<div>
         <Loader />
       </div>}>
@@ -103,8 +103,8 @@ function Home() {
           </div>
         </section>
 
-        
-        
+
+
         <section className=" w-full flex justify-around c-bg-black c-text-white py-8">
           <div className="card">
             <h4 className='text-4xl font-extrabold mb-4'>
@@ -604,8 +604,7 @@ function Home() {
 
 
       </Suspense>
-
-    </div>
+    </>
   )
 }
 
