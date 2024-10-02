@@ -13,7 +13,11 @@ const Signup = React.lazy(() => import('./authentication/Signup'));
 const HomePage = React.lazy(() => import('./client/HomePage'));
 const Layout = React.lazy(() => import('./user/navigation/Layout'));
 const Dashboard = React.lazy(() => import('./user/pages/Dashboard'))
-const UserPlans = React.lazy(() => import('./user/pages/Plans'))
+const UserPlans = React.lazy(() => import('./user/pages/Plans'));
+const AdminDashboard = React.lazy(() => import('./admin/pages/Dashboard'));
+const AdminPlans = React.lazy(() => import('./admin/pages/Plans'));
+const AdminLayout = React.lazy(() => import('./admin/navigation/Layout'));
+const AdminUsers = React.lazy(() => import('./admin/pages/Users'))
 
 function AppRoutes() {
     const routesList = [
@@ -29,12 +33,26 @@ function AppRoutes() {
                 { path: "signup", element: <Signup /> },
             ]
         },
+
+        // user routes 
         {
             path: "groot", element: <Layout />, children: [
+                { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "plans", element: <UserPlans /> }
             ]
         },
+
+        // admin routes
+        {
+            path: "admin", element: <AdminLayout />, children: [
+                { path: "", element: <Navigate to="dashboard" /> },
+                { path: "dashboard", element: <AdminDashboard /> },
+                { path: "Plans", element: <AdminPlans /> },
+                { path: "user", element: <AdminUsers /> }
+            ]
+        },
+
         {
             path: 'loader', element: <Loader />
         }

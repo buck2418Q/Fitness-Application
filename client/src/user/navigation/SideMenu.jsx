@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { menuData } from './data';
+import { RoutesData } from './RoutesData';
 
 const SideMenu = () => {
     const [openMenu, setOpenMenu] = useState(null);
@@ -30,7 +30,7 @@ const SideMenu = () => {
                 </button>
             </div>
             <ul className={`transition-all duration-200 ease-in-out ${collapsed ? 'ml-4' : ''}`}>
-                {menuData.map((menu, index) => (
+                {RoutesData.map((menu, index) => (
                     <li
                         key={index}
                         onMouseEnter={() => handleMouseEnter(index)}
