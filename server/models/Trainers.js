@@ -53,17 +53,23 @@ const TrainerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pricingDetails: [
-        {
-            pricingDetails: {
-                type: String,
-                required: true
-            }, pricingDetails: {
-                type: String,
-                required: true
-            },
-        }
-    ],
+    pricingDetails: {
+        type: String,
+        required: true
+    }
+
+
+    // pricingDetails: [
+    //     {
+    //         pricingDetails: {
+    //             type: String,
+    //             required: true
+    //         }, pricingDetails: {
+    //             type: String,
+    //             required: true
+    //         },
+    //     }
+    // ],
 
 })
 

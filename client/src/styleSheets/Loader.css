@@ -1,11 +1,12 @@
 .loader-container {
     height: 100vh;
-    background-color: #00000079;
+    background-color: #00000027;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin: 0;
+    /* transition: all ease-in-out 10s; */
 }
 
 .spinner-box {
@@ -28,21 +29,21 @@
 .blue-orbit {
     width: 165px;
     height: 165px;
-    border: 1px solid #00aaffa5;
+    border: 6px solid #00aaffa5;
     animation: spin3D 3s linear .2s infinite;
 }
 
 .green-orbit {
     width: 120px;
     height: 120px;
-    border: 1px solid #00ff6aa5;
+    border: 6px solid #00ff6aa5;
     animation: spin3D 2s linear 0s infinite;
 }
 
 .red-orbit {
     width: 90px;
     height: 90px;
-    border: 1px solid #000000a5;
+    border: 2px solid #000000a5;
     animation: spin3D 1s linear 0s infinite;
 }
 

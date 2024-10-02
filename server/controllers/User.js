@@ -1,6 +1,5 @@
 import UserModel from '../models/User.js';
 
-
 export const GetUsers = async (req, res) => {
     try {
         const userData = await UserModel.find();
@@ -13,6 +12,7 @@ export const GetUsers = async (req, res) => {
         });
     }
 }
+
 
 export const CreateUser = async (req, res) => {
     try {
@@ -94,6 +94,7 @@ export const UpdateUser = async (req, res) => {
     }
 }
 
+
 export const DeleteUser = async (req, res) => {
     try {
         const userData = await UserModel.deleteOne({ _id: req.body.id });
@@ -107,6 +108,7 @@ export const DeleteUser = async (req, res) => {
         res.status(500).send({ error: error.message });
     }
 }
+
 
 export const FindUserById = async (req, res) => {
     try {
