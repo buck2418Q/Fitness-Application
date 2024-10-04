@@ -59,74 +59,63 @@ use sm:, md:, and lg: responsive classes to adjust the text sizes, padding, and 
 
 ------------------------------- User Object -----------------------------------
 {
-  "_id": ObjectId(),
-  "firstName": "Alice",
-  "lastName": "Smith",
-  "email": "user@example.com",
-  "password": "hashed_password",
-  "profilePicture": "image_url",
-  "age": 25,
-  "gender": "female",
-  "height": 170,
-  "weight": 65,
-  "fitnessGoals": "weight loss",
-  "location": {
-    "city": "Los Angeles",
-    "postalCode": "90001"
-  },
-  "workoutHistory": [
-    {
-      "workoutId": ObjectId(),
-      "workoutName": "Yoga",
-      "caloriesBurned": 300,
-      "date": ISODate()
-    }
-  ],
-  "goalProgress": {
-    "currentWeight": 63,
-    "targetWeight": 60
-  },
-  "bookedSessions": [
-    {
-      "sessionId": ObjectId(),
-      "partnerId": ObjectId(),
-      "status": "confirmed",
-      "date": ISODate()
-    }
-  ],
-  "paymentMethod": "PayPal",
-  "paymentHistory": [
-    {
-      "paymentId": ObjectId(),
-      "amount": 30,
-      "paymentMethod": "PayPal",
-      "transactionDate": ISODate(),
-      "status": "completed"
-    }
-  ],
-  "subscriptionType": "free",
-  "userNotifications": [
-    {
-      "notificationId": ObjectId(),
-      "title": "Workout Reminder",
-      "message": "You have a workout tomorrow at 10:00 AM",
-      "isRead": false,
-      "createdAt": ISODate()
-    }
-  ]
+"\_id": ObjectId(),
+"firstName": "Alice",
+"lastName": "Smith",
+"email": "user@example.com",
+"password": "hashed_password",
+"profilePicture": "image_url",
+"age": 25,
+"gender": "female",
+"height": 170,
+"weight": 65,
+"fitnessGoals": "weight loss",
+"location": {
+"city": "Los Angeles",
+"postalCode": "90001"
+},
+"workoutHistory": [
+{
+"workoutId": ObjectId(),
+"workoutName": "Yoga",
+"caloriesBurned": 300,
+"date": ISODate()
+}
+],
+"goalProgress": {
+"currentWeight": 63,
+"targetWeight": 60
+},
+"bookedSessions": [
+{
+"sessionId": ObjectId(),
+"partnerId": ObjectId(),
+"status": "confirmed",
+"date": ISODate()
+}
+],
+"paymentMethod": "PayPal",
+"paymentHistory": [
+{
+"paymentId": ObjectId(),
+"amount": 30,
+"paymentMethod": "PayPal",
+"transactionDate": ISODate(),
+"status": "completed"
+}
+],
+"subscriptionType": "free",
+"userNotifications": [
+{
+"notificationId": ObjectId(),
+"title": "Workout Reminder",
+"message": "You have a workout tomorrow at 10:00 AM",
+"isRead": false,
+"createdAt": ISODate()
+}
+]
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+Table used AG Grid
 
 // test

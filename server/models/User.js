@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     height: { type: Number, required: true },
     weight: { type: Number, required: true },
     fitnessGoals: { type: String, required: true },
-    adddress: { type: String, required: true }
+    address: { type: String, required: true }
 
     // location: {
     //     city: { type: String, required: true },

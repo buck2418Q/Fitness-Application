@@ -24,6 +24,7 @@ function Signup() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#00000033]">
+    
       <div className="bg-white p-8 rounded-3xl shadow-lg w-full md:w-8/12 lg:w-5/12 h-full">
         <h2 className="text-3xl font-bold mb-4">Join Us Now</h2>
         <hr />

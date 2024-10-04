@@ -36,7 +36,7 @@ export const CreateUser = async (req, res) => {
 export const UpdateUser = async (req, res) => {
     try {
         const userData = await UserModel.findByIdAndUpdate({
-            _id: req.body.id
+            _id: req.body._id
         }, {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -48,42 +48,44 @@ export const UpdateUser = async (req, res) => {
             height: req.body.height,
             weight: req.body.weight,
             fitnessGoals: req.body.fitnessGoals,
-            location: {
-                city: req.body.location.city,
-                postalCode: req.body.location.postalCode
-            },
-            workoutHistory: req.body.workoutHistory.map((workout) => ({
-                workoutId: workout.workoutId,
-                workoutName: workout.workoutName,
-                caloriesBurned: workout.caloriesBurned,
-                date: workout.date
-            })),
-            goalProgress: {
-                currentWeight: req.body.goalProgress.currentWeight,
-                targetWeight: req.body.goalProgress.targetWeight
-            },
-            bookedSessions: req.body.bookedSessions.map((session) => ({
-                sessionId: session.sessionId,
-                partnerId: session.partnerId,
-                status: session.status,
-                date: session.date
-            })),
-            paymentMethod: req.body.paymentMethod,
-            paymentHistory: req.body.paymentHistory.map((payment) => ({
-                paymentId: payment.paymentId,
-                amount: payment.amount,
-                paymentMethod: payment.paymentMethod,
-                transactionDate: payment.transactionDate,
-                status: payment.status
-            })),
-            subscriptionType: req.body.subscriptionType,
-            userNotifications: req.body.userNotifications.map((notification) => ({
-                notificationId: notification.notificationId,
-                title: notification.title,
-                message: notification.message,
-                isRead: notification.isRead,
-                createdAt: notification.createdAt
-            }))
+            address: req.body.address
+
+            // location: {
+            //     city: req.body.location.city,
+            //     postalCode: req.body.location.postalCode
+            // },
+            // workoutHistory: req.body.workoutHistory.map((workout) => ({
+            //     workoutId: workout.workoutId,
+            //     workoutName: workout.workoutName,
+            //     caloriesBurned: workout.caloriesBurned,
+            //     date: workout.date
+            // })),
+            // goalProgress: {
+            //     currentWeight: req.body.goalProgress.currentWeight,
+            //     targetWeight: req.body.goalProgress.targetWeight
+            // },
+            // bookedSessions: req.body.bookedSessions.map((session) => ({
+            //     sessionId: session.sessionId,
+            //     partnerId: session.partnerId,
+            //     status: session.status,
+            //     date: session.date
+            // })),
+            // paymentMethod: req.body.paymentMethod,
+            // paymentHistory: req.body.paymentHistory.map((payment) => ({
+            //     paymentId: payment.paymentId,
+            //     amount: payment.amount,
+            //     paymentMethod: payment.paymentMethod,
+            //     transactionDate: payment.transactionDate,
+            //     status: payment.status
+            // })),
+            // subscriptionType: req.body.subscriptionType,
+            // userNotifications: req.body.userNotifications.map((notification) => ({
+            //     notificationId: notification.notificationId,
+            //     title: notification.title,
+            //     message: notification.message,
+            //     isRead: notification.isRead,
+            //     createdAt: notification.createdAt
+            // }))
 
         }
         );

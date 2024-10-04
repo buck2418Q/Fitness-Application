@@ -1,6 +1,8 @@
 .loader-container {
-    height: 100vh;
-    background-color: #00000027;
+    height: 100svh;
+    width: 100svw;
+    background-color: #0000004f;
+    /* background: radial-gradient(circle, rgba(0, 0, 0, 0.603) 100%, rgba(255, 255, 255, 0.322) 0%); */
     display: flex;
     justify-content: center;
     align-items: center;

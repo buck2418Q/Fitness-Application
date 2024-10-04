@@ -1,12 +1,41 @@
 import axios from 'axios';
-
-const API_BASE_URL = "http://localhost:8080/fitness360";
+import { GetUsers, Users } from './apiEndPoint/EnpPoint';
 
 export const getAllUsers = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/user`);
+        const response = await axios.get(GetUsers.getAllUsers());
         return response.data.userData;
     } catch (error) {
         throw new Error("Unable to access API!", error);
     }
 };
+
+export const CreateUser = async (formData) => {
+    try {
+        const response = await axios.post(Users, formData);
+        return response.data;
+    } catch (error) {
+        throw new Error("Unable to access API!", error);
+    }
+}
+
+export const DeleteUser = async (id) => {
+    try {
+        const response = await axios.delete(Users, {
+            data: { id }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error("Unable to access API", error);
+    }
+}
+
+
+export const UpdateUser = async (formData) => {
+    try {
+        const response = await axios.put(Users, formData);
+        return response.data;
+    } catch (error) {
+        throw new Error("Unable to access API", error);
+    }
+}
