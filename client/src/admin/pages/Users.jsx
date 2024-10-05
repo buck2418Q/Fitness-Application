@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { useEffect, useState } from "react";
-import { CreateUser, DeleteUser, getAllUsers, UpdateUser } from '../../services/userService';
+import { CreateUser, DeleteUser, getAllUsers, UpdateUser } from '../../services/adminService/userService';
 import Loader from '../../components/Loader'
 import MyForm from '../../components/Form';
 import { AgGridReact } from 'ag-grid-react';
@@ -58,7 +58,6 @@ function Users() {
     useEffect(() => {
         fetchAllUsers();
     }, []);
-
 
     const handleEdit = (rowData) => {
         setEditData(rowData);
@@ -149,9 +148,9 @@ function Users() {
         { label: 'Age', name: 'age', type: 'number', required: true },
         {
             label: 'Gender', name: 'gender', type: 'radio', required: true, options: [
-                { value: 'male', label: 'Male' },
-                { value: 'female', label: 'Female' },
-                { value: 'other', label: 'Other' }
+                { value: 'Male', label: 'Male' },
+                { value: 'Female', label: 'Female' },
+                { value: 'Other', label: 'Other' }
             ]
         },
         { label: 'Height (cm)', name: 'height', type: 'number', required: true },
@@ -187,15 +186,12 @@ function Users() {
 
     return (
         <>
-            <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "tt" : "hidden"}`}>
+            <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
                 <Loader />
             </div>
-            <div>
-                <Toaster className="z-40" richColors position="top-center" />
-                <button onClick={() => toast.success('My first toast')}>
-                    Give me a toast
-                </button>
-            </div>
+            <Toaster className="z-40" richColors position="top-center" />
+
+
 
             <div className="flex justify-between h-10 mb-8">
                 <h2 className="text-2xl">Application Users List</h2>

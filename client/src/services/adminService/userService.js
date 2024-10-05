@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GetUsers, Users } from './apiEndPoint/EnpPoint';
+import { GetUsers, Users } from '../apiEndPoint/EnpPoint';
 
 export const getAllUsers = async () => {
     try {

@@ -119,3 +119,10 @@ use sm:, md:, and lg: responsive classes to adjust the text sizes, padding, and 
 Table used AG Grid
 
 // test
+
+Routes ---------------
+users:
+http://localhost:8080/fitness360/user
+
+trainers:
+http://localhost:8080/fitness360/trainer

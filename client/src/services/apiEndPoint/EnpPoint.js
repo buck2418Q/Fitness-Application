@@ -7,3 +7,6 @@ export const GetUsers = {
 
 
 export const Users = `${BASE_URL}user`;
+
+
+export const Trainers = `${BASE_URL}trainer`;

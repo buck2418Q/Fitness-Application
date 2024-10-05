@@ -35,10 +35,10 @@ router.delete("/user", DeleteUser);
 router.get("/finduserbyid", FindUserById);
 
 //trainers
-router.get("/trainers", GetTrainers);
-router.post("/trainers", CreateTrainer);
-router.put("/trainers", UpdateTrainer);
-router.delete("/trainers", DeleteTrainer);
+router.get("/trainer", GetTrainers);
+router.post("/trainer", CreateTrainer);
+router.put("/trainer", UpdateTrainer);
+router.delete("/trainer", DeleteTrainer);
 router.get("/findtrainerbyid", FindTrainerById);
 
 

@@ -11,6 +11,11 @@ export const RoutesData = [
         path: "/admin/user",
     },
     {
+        title: "Trainer",
+        icon: "🧘‍♀️",
+        path: "/admin/trainer",
+    },
+    {
         title: "Plans",
         icon: "🤝",
         path: "/admin/plans",

@@ -18,6 +18,7 @@ const AdminDashboard = React.lazy(() => import('./admin/pages/Dashboard'));
 const AdminPlans = React.lazy(() => import('./admin/pages/Plans'));
 const AdminLayout = React.lazy(() => import('./admin/navigation/Layout'));
 const AdminUsers = React.lazy(() => import('./admin/pages/Users'))
+const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
 
 function AppRoutes() {
     const routesList = [
@@ -49,7 +50,8 @@ function AppRoutes() {
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <AdminDashboard /> },
                 { path: "Plans", element: <AdminPlans /> },
-                { path: "user", element: <AdminUsers /> }
+                { path: "user", element: <AdminUsers /> },
+                { path: "trainer", element: <AdminTrainers /> }
             ]
         },
 

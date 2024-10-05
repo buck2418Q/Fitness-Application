@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutesData } from './AdminRoutesData';
+import logo from '../../assets/logos/logo.png'
 
 const SideMenu = () => {
     const [openMenu, setOpenMenu] = useState(null);
@@ -21,9 +22,11 @@ const SideMenu = () => {
     return (
         <div className={`h-full bg-gray-800 text-white ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
             <div className='flex justify-between items-center'>
-                <h1 className="text-2xl mb-4">Admin</h1>
+                <h1 className="text-2xl mb-4">
+                    <img src={logo} alt="logo"/>
+                </h1>
                 <button
-                    className="text-white py-4 pr-4"
+                    className={`text-white py-4 ${collapsed === true ? 'pr-0' : ' pr-4 '}`}
                     onClick={toggleCollapse}
                 >
                     {collapsed ? '▶' : '◀'}
