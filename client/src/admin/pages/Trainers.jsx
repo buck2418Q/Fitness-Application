@@ -53,7 +53,7 @@ function Trainers() {
             cellRenderer: (params) => (
                 <select className="bg-transparent">
                     {params.value.map((servicesOffered, index) => (
-                        <option key={index} value={servicesOffered}>
+                        <option disabled selected key={index} value={servicesOffered}>
                             {servicesOffered}
                         </option>
                     ))}
