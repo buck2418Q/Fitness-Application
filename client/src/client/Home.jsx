@@ -1,4 +1,4 @@
-import '../styleSheets/home.css'
+import '../styleSheets/Home.css'
 import workoutImage1 from '../assets/images/home-img-1.png'
 import workoutImage2 from '../assets/images/home-img-2.png'
 import workoutImage3 from '../assets/images/home-img-3.png'
