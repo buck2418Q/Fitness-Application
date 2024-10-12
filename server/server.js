@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT || 30000;
+const port = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
 const appName = "/fitness360";
 const router = express.Router();
