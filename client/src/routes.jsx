@@ -30,7 +30,6 @@ function AppRoutes() {
                 { path: "trainers", element: <Trainers /> },
                 { path: "review", element: <Review /> },
                 { path: "plans", element: <Plans /> },
-                { path: "login", element: <Login /> },
                 { path: "signup", element: <Signup /> },
             ]
         },
@@ -54,6 +53,7 @@ function AppRoutes() {
                 { path: "trainer", element: <AdminTrainers /> }
             ]
         },
+        { path: "login", element: <Login /> },
 
         {
             path: 'loader', element: <Loader />

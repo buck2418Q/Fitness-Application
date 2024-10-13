@@ -1,6 +1,11 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
+
+const { nextui } = require("@nextui-org/react");
+
 export default {
   content: [
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -21,6 +26,7 @@ export default {
       }
     },
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [nextui()],
 }
 
