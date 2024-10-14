@@ -164,6 +164,7 @@ function Users() {
         try {
             setLoading(true);
             const result = await CreateUser(formData);
+            console.log('result :  ', result)
             toast.success('User Created Successfully')
         } catch (error) {
             console.error("Error creating user:", error);

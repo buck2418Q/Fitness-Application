@@ -1,11 +1,13 @@
 import UserModel from '../models/User.js';
+import { getUsers } from '../services/UserService.js';
+import { createResponse } from '../utils/response.js';
+
+
 
 export const GetUsers = async (req, res) => {
     try {
-        const userData = await UserModel.find();
-        res.status(200).send({
-            userData
-        })
+        const userData = await getUsers();
+        res.status(200).send({ userData });
     } catch (e) {
         res.status(404).send({
             error: e?.message
@@ -15,11 +17,14 @@ export const GetUsers = async (req, res) => {
 
 
 export const CreateUser = async (req, res) => {
+    debugger
     try {
         const userData = await UserModel.create(req.body);
-        if (userData) res.status(201).send({
-            message: "Usre Created"
-        });
+        // if (userData) res.status(201).send({
+        //     message: "Usre Created"
+        if (userData) {
+            res.status(201).json(createResponse(201, "User Created ", " "))
+        }
         else {
             res.status(404).send({
                 message: "Unable to create"

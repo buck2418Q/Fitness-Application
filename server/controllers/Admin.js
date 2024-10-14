@@ -1,19 +1,16 @@
 import AdminModel from "../models/Admin.js";
+import { getAdmins } from "../services/AdminService.js";
+
 
 
 export const GetAdmin = async (req, res) => {
     try {
-        const adminData = await AdminModel.find();
-        res.status(200).send({
-            adminData
-        });
+        const adminData = await getAdmins();
+        res.status(200).send({ adminData });
     } catch (e) {
-        res.status(404).send({
-            error: e?.message
-        });
+        res.status(404).send({ error: e?.message });
     }
 };
-
 
 export const CreateAdmin = async (req, res) => {
     try {

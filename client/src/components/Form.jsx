@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
+import { Input } from "@nextui-org/input";
 
 const Form = ({ fields, onSubmit, initialValues }) => {
     const [formData, setFormData] = useState(initialValues || {});
@@ -27,13 +28,14 @@ const Form = ({ fields, onSubmit, initialValues }) => {
             <div className='grid grid-cols-2 gap-4'>
                 {fields.map((field) => (
                     <div key={field.name} className='flex justify-between w-full'>
-                        <label htmlFor={field.name} className='w-3/12'>{field.label}</label>
+                        {/* <label htmlFor={field.name} className='w-3/12'>{field.label}</label> */}
                         {field.type === 'radio' ? (
                             <div className='w-9/12 '>
-                                <div className='flex justify-between'>
+                                <div className='flex justify-evenly w-ful'>
+                                    <label htmlFor={field.name} className='w-12/12'>{field.label}</label>
                                     {field.options.map(option => (
-                                        <label key={option.value} className='mr-4'>
-                                            <input
+                                        <label key={option.value} className='w-full mx-4'>
+                                            <Input
                                                 type="radio"
                                                 name={field.name}
                                                 value={option.value}
@@ -48,7 +50,7 @@ const Form = ({ fields, onSubmit, initialValues }) => {
                                 </div>
                             </div>
                         ) : field.type === 'checkbox' ? (
-                            <input
+                            <Input
                                 id={field.name}
                                 type="checkbox"
                                 name={field.name}
@@ -57,14 +59,15 @@ const Form = ({ fields, onSubmit, initialValues }) => {
                                 className='w-9/12 p-2 mb-4'
                             />
                         ) : (
-                            <input
+                            <Input
+                                label={field.label}
                                 id={field.name}
                                 type={field.type}
                                 name={field.name}
                                 value={formData[field.name] || ''}
                                 onChange={handleChange}
                                 required={field.required}
-                                className='w-9/12 p-2 mb-4 border rounded-xl'
+                                className='w-full mb-4 border rounded-xl'
                             />
                         )}
                     </div>
