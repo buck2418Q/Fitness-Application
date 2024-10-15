@@ -165,10 +165,15 @@ function Users() {
             setLoading(true);
             const result = await CreateUser(formData);
             console.log('result :  ', result)
-            toast.success('User Created Successfully')
+            if (result.statusCode === 201) toast.success(result.message);
+            if (result.statusCode === 400) toast.error(result.message);
+            if (result.statusCode === 404) toast.error(result.message);
+            else {
+                toast.error("result")
+            }
         } catch (error) {
             console.error("Error creating user:", error);
-            toast.error('Unable to Create user')
+            toast.error('Unable to Create user ')
         } finally {
             resetForm();
             setOpenForm(false);

@@ -20,20 +20,19 @@ export const CreateUser = async (req, res) => {
     debugger
     try {
         const userData = await UserModel.create(req.body);
-        // if (userData) res.status(201).send({
-        //     message: "Usre Created"
+        console.log("test :   ", userData)
         if (userData) {
             res.status(201).json(createResponse(201, "User Created ", " "))
         }
         else {
-            res.status(404).send({
-                message: "Unable to create"
-            });
+            res.status(200).json(createResponse(201, "Unable to create user", " "))
         }
     } catch (e) {
         res.status(404).send({
             error: e?.message
         });
+        // res.status(200).json(createResponse(400, e.message.errorResponse.email, " "))
+
     }
 }
 
