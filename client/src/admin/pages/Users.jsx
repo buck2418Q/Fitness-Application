@@ -14,6 +14,8 @@ function Users() {
     const [openForm, setOpenForm] = useState(false);
     const [rowData, setRowData] = useState([]);
     const [editData, setEditData] = useState(null);
+    const [deletePopUp, setDeletePopUp] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null); // To keep track of which user to delete
 
     const [colDefs, setColDefs] = useState([
         { field: "firstName", headerName: "First Name" },
@@ -82,33 +84,21 @@ function Users() {
     };
 
     const handleDelete = async (rowData) => {
-        const id = rowData._id;
+        setSelectedUser(rowData._id);
+        setDeletePopUp(true);
+    };
 
-        toast.custom((t) => (
-            <div className="bg-white p-3 rounded-lg w-full shadow-2xl">
-                <p>Do you want to delete this user?</p>
-                <div className="mt-2 flex justify-around w-full">
-                    <button
-                        className="bg-red-500 text-white px-2 py-1 rounded mr-2 w-2/5"
-                        onClick={async () => {
-                            await deleteUser(id);
-                            t.dismiss();
-                        }}
-                    >
-                        Yes
-                    </button>
-                    <button
-                        className="bg-gray-300 px-2 py-1 rounded w-2/5"
-                        onClick={() => {
-                            toast.info('User not deleted');
-                            t.dismiss();
-                        }}
-                    >
-                        No
-                    </button>
-                </div>
-            </div>
-        ));
+    const confirmDelete = async () => {
+        if (selectedUser) {
+            await deleteUser(selectedUser);
+            setDeletePopUp(false);
+            setSelectedUser(null);
+        }
+    };
+
+    const cancelDelete = () => {
+        setDeletePopUp(false);
+        toast.info('User not deleted');
     };
 
     const deleteUser = async (id) => {
@@ -192,10 +182,33 @@ function Users() {
 
     return (
         <>
+            {/* delete pop-up */}
+            {deletePopUp && (
+                <div className="flex  justify-center z-30 absolute inset-0 h-24 top-6">
+                    <div className="bg-white p-3 rounded-lg shadow-2xl">
+                        <p>Do you want to delete this user?</p>
+                        <div className="mt-2 flex justify-around w-full">
+                            <button
+                                className="bg-red-500 text-white px-2 py-1 rounded mr-2 w-2/5"
+                                onClick={confirmDelete}
+                            >
+                                Yes
+                            </button>
+                            <button
+                                className="bg-gray-300 px-2 py-1 rounded w-2/5"
+                                onClick={cancelDelete}
+                            >
+                                No
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
                 <Loader />
             </div>
-            <Toaster className="z-40" richColors position="top-center" />
+            <Toaster className="z-40" richColors position="top-right" />
 
 
 
