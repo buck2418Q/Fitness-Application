@@ -38,7 +38,7 @@ const TrainerSchema = new mongoose.Schema({
         required: true
     },
     certifications: {
-        type: Array,
+        type: String,
         required: true
     },
     profilePicture: {
@@ -46,7 +46,7 @@ const TrainerSchema = new mongoose.Schema({
         required: true
     },
     servicesOffered: {
-        type: Array,
+        type: String,
         required: true
     },
     totalClients: {

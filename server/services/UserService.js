@@ -6,9 +6,8 @@ export const getUsers = async () => {
     return await UserModel.find();
 }
 
-
 export const createUser = async (userData) => {
-    const isEmailExists = await findUserByEmail(userData.email);
+    const isEmailExists = await getUserByEmail(userData.email);
     // if (!userData.email || !userData.password) {
     //     return createResponse(404, "Email and password are required", "");
     // }
@@ -16,7 +15,7 @@ export const createUser = async (userData) => {
         return createResponse(400, "Email Exists", null);
     } else {
         try {
-            const hashedPassword = await passwordHash(userData.email);
+            const hashedPassword = await passwordHash(userData.password);
             userData.password = hashedPassword;
             const newUser = await UserModel.create(userData);
             if (newUser) {
@@ -30,45 +29,73 @@ export const createUser = async (userData) => {
     }
 };
 
-
-
-
 export const deleteUser = async (id) => {
-    const isUserExists = await findUserById(id);
+    const isUserExists = await getUserById(id);
     if (!isUserExists) {
         return createResponse(404, "User does not exist", null);
     } else {
         try {
             const user = await UserModel.deleteOne({ _id: id });
-            if (user.deletedCount === 1) {
-                return createResponse(200, "User Deleted", null);
-            } else {
-                return createResponse(404, "User not deleted", null);
-            }
+            if (user.deletedCount === 1) return createResponse(200, "User Deleted", null);
+            else return createResponse(404, "User not deleted", null);
         } catch (error) {
             throw new Error(error.message || "DB error");
         }
     }
 };
 
-
-
+export const updateUser = async (req) => { //kk
+    const isUserExist = await getUserById(req.body.id)
+    if (!isUserExist) {
+        return createResponse(404, "User does not exist", null);
+    }
+    else {
+        try {
+            const user = await UserModel.findByIdAndUpdate({ _id: req.body._id }, {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password,
+                profilePicture: req.body.profilePicture,
+                age: req.body.age,
+                gender: req.body.gender,
+                height: req.body.height,
+                weight: req.body.weight,
+                fitnessGoals: req.body.fitnessGoals,
+                address: req.body.address
+            });
+            if (user) return createResponse(200, "user Created", null);
+            else return createResponse(400, "user not created", null);
+        } catch (error) {
+            throw new Error(error.message || "DB Error")
+        }
+    }
+}
 
 export const findUserById = async (id) => {
-    debugger
+    const isUserExists = await getUserById(id);
+    if (!isUserExists) {
+        return createResponse(404, "User does not exist", null);
+    }
+    else {
+        try {
+            const user = await UserModel.find({ _id: id });
+            return user
+        } catch (error) {
+            throw new Error(error.message || "DB Error")
+        }
+    }
+}
+
+
+
+
+export const getUserById = async (id) => {
     const userExists = await UserModel.find({ _id: id });
     return userExists ? true : false;
 };
 
-
-
-
-
-
-
-
-
-export const findUserByEmail = async (email) => {
+export const getUserByEmail = async (email) => {
     const users = await UserModel.find({ email });
     return users.length > 0 ? true : false;
 };

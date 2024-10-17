@@ -1,6 +1,5 @@
-import UserModel from '../models/User.js';
-import { createUser, deleteUser, getUsers } from '../services/UserService.js';
-import { createResponse } from '../utils/utilityFunctions.js';
+import { createUser, deleteUser, findUserById, getUsers, updateUser } from '../services/UserService.js';
+
 
 
 
@@ -15,7 +14,6 @@ export const GetUsers = async (req, res) => {
     }
 }
 
-
 export const CreateUser = async (req, res) => {
     try {
         const userData = await createUser(req.body);
@@ -27,34 +25,14 @@ export const CreateUser = async (req, res) => {
     }
 }
 
-
 export const UpdateUser = async (req, res) => {
     try {
-        const userData = await UserModel.findByIdAndUpdate({
-            _id: req.body._id
-        }, {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password,
-            profilePicture: req.body.profilePicture,
-            age: req.body.age,
-            gender: req.body.gender,
-            height: req.body.height,
-            weight: req.body.weight,
-            fitnessGoals: req.body.fitnessGoals,
-            address: req.body.address
-
-        }
-        );
-        if (userData) res.status(200).send({ message: "User Updated" });
-        else res.status(400).send({ message: "unable to update data" });
+        const userData = await updateUser(req);
+        return res.status(userData.statusCode).send(userData);
     } catch (e) {
-        res.status(404).send({ eror: e?.message });
+        res.status(404).send({ error: e?.message });
     }
 }
-
-
 
 export const DeleteUser = async (req, res) => {
     try {
@@ -65,14 +43,14 @@ export const DeleteUser = async (req, res) => {
     }
 };
 
-
-
-
 export const FindUserById = async (req, res) => {
     try {
-        const userData = await UserModel.find({ _id: req.body.id });
-        res.status(200).send({ userData });
+        const userData = await findUserById(req.body.id); // Use req.params.
+        if (!userData) {
+            return res.status(404).send({ error: "User does not exist" });
+        }
+        res.status(200).send(userData);
     } catch (e) {
-        res.status(404).send({ error: e?.message });
+        res.status(500).send({ error: e.message || "Internal Server Error" }); // Change to 500 for internal errors
     }
-}
+};
