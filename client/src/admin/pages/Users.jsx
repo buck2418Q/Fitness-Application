@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-
 import { useEffect, useState } from "react";
 import { CreateUser, DeleteUser, getAllUsers, UpdateUser } from '../../services/adminService/userService';
 import Loader from '../../components/Loader'
 import MyForm from '../../components/Form';
 import { AgGridReact } from 'ag-grid-react';
+import { Toaster, toast } from 'sonner'
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { Toaster, toast } from 'sonner'
+
 
 function Users() {
     const [loading, setLoading] = useState(false);
@@ -50,6 +50,7 @@ function Users() {
         fitnessGoals: '',
         address: ''
     };
+
     const [formData, setFormData] = useState(initialFormData);
 
     const resetForm = () => {
@@ -114,7 +115,6 @@ function Users() {
             setLoading(false);
         }
     };
-
 
     const fetchAllUsers = async () => {
         try {
@@ -226,6 +226,8 @@ function Users() {
                 <MyForm fields={fields} onSubmit={editData ? handleUpdateUser : handleSubmit} initialValues={formData} />
             </div>
 
+            
+            
             <div className="ag-theme-quartz h-[80%]"            >
                 <AgGridReact
                     rowData={rowData}

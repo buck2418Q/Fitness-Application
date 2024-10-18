@@ -25,33 +25,6 @@ export const CreateTrainer = async (req, res) => {
 }
 
 
-
-// export const UpdateTrainer = async (req, res) => {
-//     try {
-//         const TrainerData = await TrainerModel.findByIdAndUpdate({ _id: req.body.id },
-//             {
-//                 firstName: req.body.firstName,
-//                 lastName: req.body.lastName,
-//                 email: req.body.email,
-//                 password: req.body.password,
-//                 serviceType: req.body.serviceType,
-//                 location: req.body.location,
-//                 city: req.body.city,
-//                 contactNumber: req.body.contactNumber,
-//                 bio: req.body.bio,
-//                 certifications: req.body.certifications,
-//                 profilePicture: req.body.profilePicture,
-//                 servicesOffered: req.body.servicesOffered,
-//                 totalClients: req.body.totalClients,
-//             }
-//         );
-//         if (TrainerData) res.status(200).send({ message: "trainer Updated" });
-//         else res.status(400).send({ message: "unable to update data" })
-//     } catch (e) {
-//         res.status(404).send({ eror: e?.message });
-//     }
-// }
-
 export const UpdateTrainer = async (req, res) => {
     try {
         const trainerData = await updateTrainer(req)

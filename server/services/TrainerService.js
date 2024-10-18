@@ -81,6 +81,7 @@ export const getTrainerById = async (id) => {
     return trainerExists ? true : false;
 }
 
+
 export const getTrainerByEmail = async (email) => {
     const trainer = await TrainerModel.find({ email })
     return trainer.length > 0 ? true : false;
