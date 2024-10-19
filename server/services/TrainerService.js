@@ -6,6 +6,7 @@ export const getTrainers = async () => {
 }
 
 export const createTrainer = async (trainerData) => {
+    debugger;
     const isEmailExists = await getTrainerByEmail(trainerData.email);
     if (isEmailExists) {
         return createResponse(400, "Email Exist", null)
@@ -16,13 +17,14 @@ export const createTrainer = async (trainerData) => {
             trainerData.password = hashedPassword;
             const newTrainer = await TrainerModel.create(trainerData);
             if (newTrainer) {
-                return createResponse(200, "Trainer Created", null)
+                return createResponse(201, "Trainer Created", null)
             }
             else {
                 return createResponse(400, "Unable to create Trainer", null)
             }
         } catch (error) {
-            throw new Error(error.message || "DB error")
+            // throw new Error(error.message || "DB error")
+            return createResponse(400, "DB error", null)
         }
     }
 }

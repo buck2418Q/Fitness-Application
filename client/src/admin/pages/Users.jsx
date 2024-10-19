@@ -158,9 +158,6 @@ function Users() {
             if (result.statusCode === 201) toast.success(result.message);
             if (result.statusCode === 400) toast.error(result.message);
             if (result.statusCode === 404) toast.error(result.message);
-            else {
-                toast.error("result")
-            }
         } catch (error) {
             console.error("Error creating user:", error);
             toast.error('Unable to Create user ')
@@ -210,8 +207,6 @@ function Users() {
             </div>
             <Toaster className="z-40" richColors position="top-right" />
 
-
-
             <div className="flex justify-between h-10 mb-8">
                 <h2 className="text-2xl">Application Users List</h2>
                 <button type="submit" className={`transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black ${openForm === true ? 'hidden' : ''}`} onClick={toggleOpenForm}>Add User</button>
@@ -226,8 +221,8 @@ function Users() {
                 <MyForm fields={fields} onSubmit={editData ? handleUpdateUser : handleSubmit} initialValues={formData} />
             </div>
 
-            
-            
+
+
             <div className="ag-theme-quartz h-[80%]"            >
                 <AgGridReact
                     rowData={rowData}

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
-import { getAllTrainers } from "../../services/adminService/TrainerService";
+import { createTrainer, getAllTrainers } from "../../services/adminService/TrainerService";
 import { AgGridReact } from "ag-grid-react";
 import { toast, Toaster } from "sonner";
 import MyForm from '../../components/Form'
@@ -90,7 +90,17 @@ function Trainers() {
         firstName: '',
         lastName: '',
         email: '',
-
+        password: '',
+        serviceType: '',
+        location: '',
+        city: '',
+        contactNumber: '',
+        bio: '',
+        certifications: '',
+        profilePicture: '',
+        servicesOffered: '',
+        totalClients: '',
+        pricingDetails: ''
     };
 
     const [formData, setFormData] = useState(initialFormData);
@@ -108,7 +118,6 @@ function Trainers() {
         try {
             setLoading(true)
             const result = await getAllTrainers();
-            // console.log("result", result)
             setRowData(result)
         } catch (error) {
             console.log('erro ', error)
@@ -129,8 +138,23 @@ function Trainers() {
         setEditData(null);
     };
 
-    const handleSubmit = async () => {
-
+    const handleSubmit = async (formData) => {
+        try {
+            setLoading(true);
+            const result = await createTrainer(formData);
+            console.log("result data :  ", result);
+            if (result.data.statusCode === 201) toast.success(result.data.message);
+            if (result.data.statusCode === 400) toast.error(result.data.message);
+            if (result.data.statusCode === 404) toast.error(result.data.message);
+        } catch (error) {
+            // console.error("Error creating Trainer:", error);
+            toast.error('Unable to Create Trainer')
+        } finally {
+            resetForm();
+            setOpenForm(false);
+            setLoading(false);
+            GetAllTrainers();
+        }
     }
 
     const handleUpdateTrainer = async (formData) => {
@@ -142,7 +166,7 @@ function Trainers() {
                 <Loader />
             </div>
 
-            <Toaster className="z-40" richColors position="top-center" />
+            <Toaster className="z-40" richColors position="top-right" />
 
 
 

@@ -104,78 +104,51 @@ function Home() {
         </section>
 
 
-
-        <section className=" w-full flex justify-around c-bg-black c-text-white py-8">
-          <div className="card">
-            <h4 className='text-4xl font-extrabold mb-4'>
-              500+
-            </h4>
-
-            <div className="card-details">
-              Happy Members
-            </div>
-            <div className="card-details">
-              Our Community is growing fast
-            </div>
-
+        {/* black banner section */}
+        <section className="w-full flex flex-wrap justify-around c-bg-black c-text-white py-8">
+          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
+            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">500+</h4>
+            <p className="card-details">Happy Members</p>
+            <p className="card-details">Our Community is growing fast</p>
           </div>
-          <div className="card">
-            <h4 className='text-4xl font-extrabold mb-4'>
-              5+
-            </h4>
 
-            <div className="card-details">
-              Years Experience
-            </div>
-            <div className="card-details">
-              Experience in various Workouts
-            </div>
-
+          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
+            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">5+</h4>
+            <p className="card-details">Years Experience</p>
+            <p className="card-details">Experience in various Workouts</p>
           </div>
-          <div className="card">
-            <h4 className='text-4xl font-extrabold mb-4'>
-              13+
-            </h4>
 
-            <div className="card-details">
-              Certified Trainers
-            </div>
-            <div className="card-details">
-              Guiance at every step
-            </div>
-
+          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
+            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">13+</h4>
+            <p className="card-details">Certified Trainers</p>
+            <p className="card-details">Guidance at every step</p>
           </div>
-          <div className="card">
-            <h4 className='text-4xl font-extrabold mb-4'>
-              90%
-            </h4>
 
-            <div className="card-details">
-              Customer Satisfaction
-            </div>
-            <div className="card-details">
-              We ensure your progress satisfaction
-            </div>
-
+          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
+            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">90%</h4>
+            <p className="card-details">Customer Satisfaction</p>
+            <p className="card-details">We ensure your progress satisfaction</p>
           </div>
         </section>
 
 
         {/* why choose us  */}
-        <section className='w-full h-full border-solid text-center px-24 py-20'>
-          <h2 className='text-6xl font-black'>Why Choose Us</h2>
-          <p className='text-2xl m-10 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20'>
+          <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Why Choose Us</h2>
+          <p className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 c-text-gray'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
 
-          <div className="flex items-center">
-            <div className="text-left grid grid-cols-2 gap-8 m-0 p-0 box-border w-8/12">
+          <div className="flex flex-col lg:flex-row items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 m-0 p-0 box-border w-full lg:w-8/12">
 
-              {/* card 1  */}
-              <div className="m-4 flex pr-8">
+              {/* card 1 */}
+              <div className="m-4 flex">
                 <div className='mx-4 my-2 p-2 rounded-full c-bg-black h-fit'>
-                  <img src={glove} alt="" className=' w-12 aspect-square' />
+                  <img src={glove} alt="" className='w-12 aspect-square' />
                 </div>
                 <div className="h-fit">
-                  <h6 className='text-3xl font-bold mb-2'>
+                  <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                     Trainer Qualifications
                   </h6>
                   <div className="c-text-gray">
@@ -184,13 +157,13 @@ function Home() {
                 </div>
               </div>
 
-              {/* card 2  */}
-              <div className="m-4 flex pr-8">
+              {/* card 2 */}
+              <div className="m-4 flex">
                 <div className='mx-4 my-2 p-2 rounded-full c-bg-black h-fit'>
-                  <img src={dubbel} alt="" className=' w-12 aspect-square' />
+                  <img src={dubbel} alt="" className='w-12 aspect-square' />
                 </div>
                 <div className="h-fit">
-                  <h6 className='text-3xl font-bold mb-2'>
+                  <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                     Facility Amenities
                   </h6>
                   <div className="c-text-gray">
@@ -199,13 +172,13 @@ function Home() {
                 </div>
               </div>
 
-              {/* card 3  */}
-              <div className="m-4 flex pr-8">
+              {/* card 3 */}
+              <div className="m-4 flex">
                 <div className='mx-4 my-2 p-2 rounded-full c-bg-black h-fit'>
-                  <img src={moneyBag} alt="" className=' w-12 aspect-square' />
+                  <img src={moneyBag} alt="" className='w-12 aspect-square' />
                 </div>
                 <div className="h-fit">
-                  <h6 className='text-3xl font-bold mb-2'>
+                  <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                     Membership Cost
                   </h6>
                   <div className="c-text-gray">
@@ -214,13 +187,13 @@ function Home() {
                 </div>
               </div>
 
-              {/* card 4  */}
-              <div className="m-4 flex pr-8">
+              {/* card 4 */}
+              <div className="m-4 flex">
                 <div className='mx-4 my-2 p-2 rounded-full c-bg-black h-fit'>
-                  <img src={time} alt="" className=' w-12 aspect-square ' />
+                  <img src={time} alt="" className='w-12 aspect-square ' />
                 </div>
                 <div className="h-fit">
-                  <h6 className='text-3xl font-bold mb-2'>
+                  <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                     Operating Hours
                   </h6>
                   <div className="c-text-gray">
@@ -230,7 +203,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="w-full sm:w-8/12 lg:w-4/12">
+            <div className="w-full lg:w-4/12 flex flex-col">
               <div className="m-4 flex flex-col sm:flex-row">
                 <div className="mx-0 sm:mx-4 w-full sm:w-1/2">
                   <LazyLoadImage src={workoutImage1} alt="Workout Image 1" className="my-6 mb-4 sm:mb-0" />
@@ -241,54 +214,56 @@ function Home() {
                 </div>
               </div>
             </div>
-
           </div>
         </section>
+
 
 
         {/* Meet Our Trainers  */}
-        <section className='w-full h-full border-solid text-center px-24 py-20'>
-          <h2 className='text-6xl font-black'>Meet Our Trainers </h2>
-          <p className='text-2xl m-10 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        <section className='w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20'>
+          <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Meet Our Trainers</h2>
+          <p className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
 
-          <div className="text-left grid grid-cols-3 gap-32 my-20 p-0 box-border w-8/12r ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-32 my-10 lg:my-20 p-0 box-border">
 
-            <div className='relative flex items-center content-center m-auto overflow-hidden  w-5/6 rounded-[32px] '>
+            <div className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
               <LazyLoadImage
                 src={trainer1}
                 alt="Trainer"
-                className="object-cover transition duration-300 ease-in-out transform hover:scale-65 hover:blur-sm  w-full"
+                className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
               />
-              <div className="absolute inset-0 flex flex-col items-left p-8 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
-                <h6 className='text-3xl font-bold mb-2 text-white'>Name</h6>
+              <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
+                <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>Name</h6>
                 <div className="c-text-white text-left">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                 </div>
               </div>
             </div>
 
-            <div className='relative flex items-center content-center m-auto overflow-hidden  w-5/6 rounded-[32px] '>
+            <div className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
               <LazyLoadImage
                 src={trainer2}
                 alt="Trainer"
-                className="object-cover transition duration-300 ease-in-out transform hover:scale-65 hover:blur-sm  w-full"
+                className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
               />
-              <div className="absolute inset-0 flex flex-col items-left p-8 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
-                <h6 className='text-3xl font-bold mb-2 text-white'>Name</h6>
+              <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
+                <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>Name</h6>
                 <div className="c-text-white text-left">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                 </div>
               </div>
             </div>
 
-            <div className='relative flex items-center content-center m-auto overflow-hidden  w-5/6 rounded-[32px] '>
+            <div className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
               <LazyLoadImage
                 src={trainer3}
                 alt="Trainer"
-                className="object-cover transition duration-300 ease-in-out transform hover:scale-65 hover:blur-sm  w-full"
+                className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
               />
-              <div className="absolute inset-0 flex flex-col items-left p-8 rounded-[32px]  bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
-                <h6 className='text-3xl font-bold mb-2 text-white'>Name</h6>
+              <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
+                <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>Name</h6>
                 <div className="c-text-white text-left">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
                 </div>
@@ -297,6 +272,7 @@ function Home() {
 
           </div>
         </section>
+
 
 
         {/* Coaches */}
@@ -335,15 +311,13 @@ function Home() {
 
 
         {/* join today  */}
-        <section className='py-24 px-20 bg-cover h-auto'>
-          <div className='flex justify-between items-center'>
+        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto'>
+          <div className='flex flex-col md:flex-row justify-between items-center'>
             <div>
-              <p className='text-xl  mx-2 c-text-gray'>Pricing Plan</p>
-              <h2 className='text-6xl my-2 font-extrabold'>Join Today</h2>
+              <p className='text-xl mx-2 c-text-gray'>Pricing Plan</p>
+              <h2 className='text-4xl md:text-6xl my-2 font-extrabold'>Join Today</h2>
             </div>
             <div>
-
-
               <div className="relative w-36 h-[36px] mt-[-20px] mx-auto overflow-hidden drop-shadow-xl bg-white rounded-xl cursor-pointer" onClick={monthYearToggle}>
                 <div className="absolute inset-0 flex items-center justify-start z-20 transition-all duration-300 ease-linear ">
                   <span className={isMonth === true ? 'absolute left-2  z-10 transition-all duration-300 ease-linear m-2 text-white' : 'absolute left-2  z-10 transition-all duration-300 ease-linear m-2'}>Month</span>
@@ -352,162 +326,48 @@ function Home() {
                   <div className={`${isMonth ? 'absolute left-0 top-1 w-20 h-[28px] bg-black rounded-xl transition-all duration-300 ease-linear' : 'absolute left-[76px] top-1 w-16 h-[28px] bg-black rounded-xl transition-all duration-300 ease-linear  '}`}></div>
                 </div>
               </div>
-
-
-
-
             </div>
           </div>
 
-          {/* monthy packs */}
-          <div className={`${isMonth ? 'text-left grid grid-cols-3 grow gap-16 my-12 px-20 box-border' : 'hidden'}`}>
-            {/* card 1*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5  w-full transition duration-300 ease-in-out">
-              <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
-              <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-
-              <ul className='c-text-gray mt-8 mb-12'>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-              </ul>
-              <ButtonUi
-                text="Join Now"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              />
-            </div>
-
-            {/* card 2*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 w-full ">
-              <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
-              <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-
-              <ul className='c-text-gray mt-8 mb-12'>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-              </ul>
-              <ButtonUi
-                text="Join Now"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              />
-            </div>
-
-            {/* card 3*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 w-full ">
-              <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
-              <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-
-              <ul className='c-text-gray mt-8 mb-12'>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-              </ul>
-              <ButtonUi
-                text="Join Now"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              />
-            </div>
-
-
-
-
-
+          {/* Monthly Packs */}
+          <div className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
+            {Array(3).fill().map((_, index) => (
+              <div key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+                <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
+                <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
+                <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <ul className='c-text-gray mt-8 mb-12'>
+                  {Array(5).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
+                    <li key={i} className='flex items-center my-2'>
+                      <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
+                    </li>
+                  ))}
+                </ul>
+                <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
+              </div>
+            ))}
           </div>
 
-          {/* yearky packs */}
-          <div className={`${isMonth ? 'hidden' : 'text-left grid grid-cols-3 gap-32 my-12 px-20 box-border '}`}>
-            {/* card 1*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 ">
-              <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$99.9<span className="text-sm font-bold">/Year</span></h2>
-              <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-
-              <ul className='c-text-gray mt-8 mb-12'>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-              </ul>
-              <ButtonUi
-                text="Join Now"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              />
-            </div>
-
-            {/* card 2*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 ">
-              <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$99.9<span className="text-sm font-bold">/Year</span></h2>
-              <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-
-              <ul className='c-text-gray mt-8 mb-12'>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-              </ul>
-              <ButtonUi
-                text="Join Now"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              />
-            </div>
-
-            {/* card 3*/}
-            <div className="text-left flex flex-col content-between box-border relative border rounded-2xl my-4 py-4 px-5 ">
-              <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-              <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
-              <p className='text-m mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-
-              <ul className='c-text-gray mt-8 mb-12'>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-                <li className='flex items-center my-2'><img src={check} alt="check cion" className=' mr-2 w-4 h-4' /> Lorem ipsum dolor sit amet,</li>
-              </ul>
-              <ButtonUi
-                text="Join Now"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              />
-            </div>
-
-
-
-
-
+          {/* Yearly Packs */}
+          <div className={`${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'}`}>
+            {Array(3).fill().map((_, index) => (
+              <div key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+                <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
+                <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
+                <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <ul className='c-text-gray mt-8 mb-12'>
+                  {Array(7).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
+                    <li key={i} className='flex items-center my-2'>
+                      <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
+                    </li>
+                  ))}
+                </ul>
+                <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
+              </div>
+            ))}
           </div>
-
         </section>
+
 
 
         {/* review  */}
@@ -593,11 +453,12 @@ function Home() {
 
 
         {/* call us today */}
-        <section className='text-center py-24 px-[24%] bg-callbanner bg-cover bg-center h-auto c-text-white'>
-          <p className='text-3xl font-semibold'>Call us Today</p>
-          <h4 className='text-6xl font-bold my-8'>+91 - 1010101010</h4>
-          <p className='text-xl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+        <section className='text-center py-12 px-4 md:px-12 lg:px-24 bg-callbanner bg-cover bg-center h-auto text-white'>
+          <p className='text-2xl md:text-3xl font-semibold'>Call us Today</p>
+          <h4 className='text-4xl md:text-5xl lg:text-6xl font-bold my-4 md:my-6'>+91 - 1010101010</h4>
+          <p className='text-lg md:text-xl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
         </section>
+
 
 
         <section className='m-20'>       </section>
