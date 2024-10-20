@@ -11,11 +11,22 @@ export const getAllTrainers = async () => {
 }
 
 
-export const createTrainer = async (formData) => {
+export const CreateTrainer = async (formData) => {
     try {
         const response = await axios.post(Trainers, formData);
         return response;
     } catch (error) {
         throw new Error("unable to access API", error)
+    }
+}
+
+export const DeleteTrainer = async (id) => {
+    try {
+        const response = await axios.delete(Trainers, {
+            data: { id }
+        })
+        return response.data
+    } catch (error) {
+        throw new Error("Unable to access API", error);
     }
 }

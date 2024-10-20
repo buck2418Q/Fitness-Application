@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
-import { createTrainer, getAllTrainers } from "../../services/adminService/TrainerService";
+import { CreateTrainer, DeleteTrainer, getAllTrainers } from "../../services/adminService/TrainerService";
 import { AgGridReact } from "ag-grid-react";
 import { toast, Toaster } from "sonner";
 import MyForm from '../../components/Form'
@@ -15,6 +15,8 @@ function Trainers() {
     const [loading, setLoading] = useState(false);
     const [rowData, setRowData] = useState([]);
     const [editData, setEditData] = useState(null);
+    const [selectedTrainer, setselectedTrainer] = useState(null);
+    const [deletePopUp, setDeletePopUp] = useState(false);
     const [colDefs, setColDefs] = useState([
         { field: "firstName", headerName: "First Name" },
         { field: "lastName", headerName: "Last Name" },
@@ -110,8 +112,38 @@ function Trainers() {
         alert('edit')
     }
 
-    const handleDelete = () => {
-        alert('delete')
+    const handleDelete = (rowData) => {
+        setselectedTrainer(rowData._id);
+        setDeletePopUp(true);
+    }
+
+    const cancelDelete = () => {
+        setDeletePopUp(false);
+        toast.info("User not deleted")
+    }
+
+    const confirmDelete = async () => {
+        if (selectedTrainer) {
+            await deleteTrianer(selectedTrainer);
+            setDeletePopUp(false);
+            selectedTrainer(null)
+        }
+    }
+
+    const deleteTrianer = async (id) => {
+        try {
+            setLoading(true);
+            const result = await DeleteTrainer(id);
+            console.log('hhhhhhhhhh', result)
+            toast.success("Trainer Delete Successfully")
+            getAllTrainers();
+
+        } catch (error) {
+            console.error("Error deleting trainer:", error);
+            toast.error('Unable to delete trainer');
+        } finally {
+            setLoading(false);
+        }
     }
 
     const GetAllTrainers = async () => {
@@ -141,13 +173,13 @@ function Trainers() {
     const handleSubmit = async (formData) => {
         try {
             setLoading(true);
-            const result = await createTrainer(formData);
+            const result = await CreateTrainer(formData);
             console.log("result data :  ", result);
             if (result.data.statusCode === 201) toast.success(result.data.message);
             if (result.data.statusCode === 400) toast.error(result.data.message);
             if (result.data.statusCode === 404) toast.error(result.data.message);
         } catch (error) {
-            // console.error("Error creating Trainer:", error);
+            console.error("Error creating Trainer:", error);
             toast.error('Unable to Create Trainer')
         } finally {
             resetForm();
@@ -162,6 +194,29 @@ function Trainers() {
     }
     return (
         <>
+            {deletePopUp && (
+                <div className="flex  justify-center z-30 absolute inset-0 h-24 top-6">
+                    <div className="bg-white p-3 rounded-lg shadow-2xl">
+                        <p>Do you want to delete this user?</p>
+                        <div className="mt-2 flex justify-around w-full">
+                            <button
+                                className="bg-red-500 text-white px-2 py-1 rounded mr-2 w-2/5"
+                                onClick={confirmDelete}
+                            >
+                                Yes
+                            </button>
+                            <button
+                                className="bg-gray-300 px-2 py-1 rounded w-2/5"
+                                onClick={cancelDelete}
+                            >
+                                No
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
                 <Loader />
             </div>

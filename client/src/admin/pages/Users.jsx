@@ -15,8 +15,7 @@ function Users() {
     const [rowData, setRowData] = useState([]);
     const [editData, setEditData] = useState(null);
     const [deletePopUp, setDeletePopUp] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null); // To keep track of which user to delete
-
+    const [selectedUser, setSelectedUser] = useState(null); // user id
     const [colDefs, setColDefs] = useState([
         { field: "firstName", headerName: "First Name" },
         { field: "lastName", headerName: "Last Name" },
