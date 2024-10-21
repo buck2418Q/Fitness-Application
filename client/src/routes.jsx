@@ -19,9 +19,13 @@ const AdminPlans = React.lazy(() => import('./admin/pages/Plans'));
 const AdminLayout = React.lazy(() => import('./admin/navigation/Layout'));
 const AdminUsers = React.lazy(() => import('./admin/pages/Users'))
 const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
+const PageNotFound = React.lazy(() => import('./components/PageNotFound'))
 
 function AppRoutes() {
     const routesList = [
+        {
+            path: "*", element: <PageNotFound />
+        },
         {
             path: "/", element: <HomePage />, children: [
                 { path: "", element: <Navigate to="home" /> },
@@ -33,6 +37,7 @@ function AppRoutes() {
                 { path: "signup", element: <Signup /> },
             ]
         },
+
 
         // user routes 
         {
