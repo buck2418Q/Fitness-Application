@@ -21,7 +21,7 @@ export const RoutesData = [
         path: "/admin/plans",
         children: [
             { title: "Yoga Plans", path: "/admin/plans", icon: "🤝", },
-            { title: "XYZ Plans", path: "/admin/plans", icon: "🤝", },
+            { title: "XYZ Plans", path: "/admin/dashboard", icon: "🙌", },
         ],
     },
     {
