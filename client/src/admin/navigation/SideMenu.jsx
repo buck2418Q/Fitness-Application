@@ -17,11 +17,16 @@ const SideMenu = () => {
     };
 
     return (
-        <div className={`h-full  border border-r-gray-200 text-black ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
+        <div className={`h-full  border border-r-gray-100 text-black ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
             <div className='flex justify-between items-center'>
-                <h1 className="text-2xl mb-4">
-                    <img src={logo} alt="logo" />
-                </h1>
+                <h2 className="flex mb-4 mt-2 items-center justify-center ">
+                    <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
+                    {/* {!collapsed &&
+                        <span className='text-lg font-black'>
+                            Fitness360
+                        </span>
+                    } */}
+                </h2>
                 <button
                     className={`text-white py-4 ${collapsed ? 'pr-0' : 'pr-4'}`}
                     onClick={toggleCollapse}

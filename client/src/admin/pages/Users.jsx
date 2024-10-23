@@ -206,8 +206,8 @@ function Users() {
             </div>
             <Toaster className="z-40" richColors position="top-right" />
 
-            <div className="flex justify-between h-10 mb-8">
-                <h2 className="text-2xl">Application Users List</h2>
+            <div className="flex justify-between items-center mb-8">
+                <h2 className="text-xl">Application Users List</h2>
                 <button type="submit" className={`transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black ${openForm === true ? 'hidden' : ''}`} onClick={toggleOpenForm}>Add User</button>
             </div>
 
