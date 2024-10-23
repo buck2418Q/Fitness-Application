@@ -5,6 +5,7 @@ import express from "express";
 import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "./controllers/Admin.js";
 import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser } from "./controllers/User.js";
 import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, UpdateTrainer } from "./controllers/Trainer.js";
+import { Login } from "./controllers/Login.js";
 
 dotenv.config();
 
@@ -41,6 +42,10 @@ router.put("/trainer", UpdateTrainer);
 router.delete("/trainer", DeleteTrainer);
 router.get("/findtrainerbyid", FindTrainerById);
 
+
+
+//login
+router.post("/login", Login);
 
 mongoose.connect(dbUrl).then((d) => {
     app.listen(port, () => {

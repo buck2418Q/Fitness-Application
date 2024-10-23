@@ -1,12 +1,12 @@
 import { bellIcon, userIcon } from '../../components/icons'
 
 const TopMenu = () => {
-
+    const userName = sessionStorage.getItem('userName')
     return (
 
         <div className=" h-16 flex items-center justify-between px-8 pt-2 m-2">
             <h3 className="text-2xl font-bold">
-                Welcome userName
+                Welcome {userName}
             </h3>
             <div className="flex gap-6 items-center">
 

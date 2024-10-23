@@ -34,7 +34,7 @@ function AppRoutes() {
                 { path: "trainers", element: <Trainers /> },
                 { path: "review", element: <Review /> },
                 { path: "plans", element: <Plans /> },
-                { path: "signup", element: <Signup /> },
+                // { path: "signup", element: <Signup /> },
             ]
         },
 
@@ -59,6 +59,8 @@ function AppRoutes() {
             ]
         },
         { path: "login", element: <Login /> },
+        { path: "signup", element: <Signup /> },
+
 
         {
             path: 'loader', element: <Loader />

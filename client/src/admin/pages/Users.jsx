@@ -150,6 +150,7 @@ function Users() {
 
 
     const handleSubmit = async (formData) => {
+        console.log(formData)
         try {
             setLoading(true);
             const result = await CreateUser(formData);

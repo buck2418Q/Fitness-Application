@@ -10,3 +10,4 @@ export const Users = `${BASE_URL}user`;
 
 
 export const Trainers = `${BASE_URL}trainer`;
+export const Login = `${BASE_URL}login`;

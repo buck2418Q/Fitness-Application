@@ -9,7 +9,7 @@ function Navbar() {
 
     const navigate = useNavigate();
     const joinNowClick = () => {
-        navigate('/signup')
+        navigate('/login')
     }
 
     const toggleMenu = () => {
@@ -36,7 +36,7 @@ function Navbar() {
                 <div className="hidden md:block">
                     <Suspense fallback={<div>Loading...</div>}>
                         <ButtonUi
-                            text="Join Now"
+                            text="Sign in"
                             onClick={joinNowClick}
                             type="primary"
                             size="medium"
