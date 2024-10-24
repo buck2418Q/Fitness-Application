@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './authentication/ProtectedRoute';
 
 // Lazy loaded components
 const Home = React.lazy(() => import('./client/Home'));
@@ -55,7 +56,8 @@ function AppRoutes() {
                 { path: "dashboard", element: <AdminDashboard /> },
                 { path: "Plans", element: <AdminPlans /> },
                 { path: "user", element: <AdminUsers /> },
-                { path: "trainer", element: <AdminTrainers /> }
+                { path: "trainer", element: <ProtectedRoute component={AdminTrainers} /> }
+
             ]
         },
         { path: "login", element: <Login /> },
