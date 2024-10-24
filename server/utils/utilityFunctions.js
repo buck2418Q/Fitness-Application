@@ -8,10 +8,10 @@ export const passwordHash = (password) => {
 }
 
 
-export const createResponse = (statusCode, message, toke = null) => {
+export const createResponse = (statusCode, message, token = null) => {
     return {
         statusCode,
         message,
-        toke: toke || null
+        token: token || null
     }
 }

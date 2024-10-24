@@ -1,9 +1,16 @@
 import axios from "axios";
 import { Trainers } from "../apiEndPoint/EnpPoint";
 
+
+
 export const getAllTrainers = async () => {
+    const token = sessionStorage.getItem('token');
     try {
-        const response = await axios.get(Trainers);
+        const response = await axios.get(Trainers, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data.trainerData
     } catch (error) {
         throw new Error("Unable to access API!", error);

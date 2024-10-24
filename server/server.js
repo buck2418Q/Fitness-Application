@@ -6,6 +6,7 @@ import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "
 import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser } from "./controllers/User.js";
 import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, UpdateTrainer } from "./controllers/Trainer.js";
 import { Login } from "./controllers/Login.js";
+import { verifyToken } from "./middleWare/MiddleWare.js";
 
 dotenv.config();
 
@@ -36,7 +37,7 @@ router.delete("/user", DeleteUser);
 router.get("/finduserbyid", FindUserById);
 
 //trainers
-router.get("/trainer", GetTrainers);
+router.get("/trainer", verifyToken, GetTrainers);
 router.post("/trainer", CreateTrainer);
 router.put("/trainer", UpdateTrainer);
 router.delete("/trainer", DeleteTrainer);

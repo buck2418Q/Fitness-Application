@@ -42,6 +42,7 @@ function Login() {
           toast.success(result.message);
           navigate('/admin');
           sessionStorage.setItem('userName', formData.email)
+          sessionStorage.setItem('token', result.token)
         }
         if (result.statusCode === 211) toast.error(result.message);
       } catch (error) {
