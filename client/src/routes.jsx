@@ -21,6 +21,8 @@ const AdminLayout = React.lazy(() => import('./admin/navigation/Layout'));
 const AdminUsers = React.lazy(() => import('./admin/pages/Users'))
 const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
 const PageNotFound = React.lazy(() => import('./components/PageNotFound'))
+const Test = React.lazy(() => import('./components/Test'))
+const Profile = React.lazy(() => import('./components/Profile'))
 
 function AppRoutes() {
     const routesList = [
@@ -62,11 +64,9 @@ function AppRoutes() {
         },
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
-
-
-        {
-            path: 'loader', element: <Loader />
-        }
+        { path: 'loader', element: <Loader /> },
+        { path: 'test', element: <Test /> },
+        { path: 'profile', element: <Profile /> }
     ];
 
     return (

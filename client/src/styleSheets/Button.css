@@ -19,6 +19,7 @@
     /* background-color: var(--primary-color); */
     background: var(--primary-btn);
     color: white;
+    overflow: hidden;
 
     &:after {
         position: absolute;
@@ -53,7 +54,7 @@
 .btn-secondary {
     background-color: var(--dark-color);
     color: var(--light-color);
-
+overflow: hidden;
 
     &:after {
         position: absolute;
