@@ -13,7 +13,7 @@ import coach1 from '../assets/images/coach1.avif'
 import coach2 from '../assets/images/coach2.jpg'
 import ButtonUi from '../components/Button.jsx'
 import check from '../assets/icons/check.png'
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 const Loader = React.lazy(() => import('../components/Button'))
 import review1 from '../assets/images/review1.jpg'
@@ -21,10 +21,31 @@ import review2 from '../assets/images/review2.jpg'
 import review3 from '../assets/images/review3.jpg'
 import review4 from '../assets/images/review4.jpg'
 import bannerModel from '../assets/images/bannerModel.png'
+import { fadeIn } from '../assets/utils/motion.js'
+import { motion } from "framer-motion";
 
 
 function Home() {
   const [isMonth, setIsMonth] = useState(false);
+  const [inView, setInView] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.disconnect(); // Stop observing once in view
+      }
+    });
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect(); // Cleanup on unmount
+    };
+  }, []);
 
   const monthYearToggle = () => {
     setIsMonth(previsMonth => !previsMonth);
@@ -330,9 +351,15 @@ function Home() {
           </div>
 
           {/* Monthly Packs */}
-          <div className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
+          <div
+
+            className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
             {Array(3).fill().map((_, index) => (
-              <div key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+              <motion.div
+                ref={ref}
+                initial='hidden'
+                animate={inView ? 'show' : 'hidden'}
+                variants={fadeIn("right", "spring", index * 0.2, 0.75)} key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
                 <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                 <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
                 <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -344,14 +371,19 @@ function Home() {
                   ))}
                 </ul>
                 <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Yearly Packs */}
           <div className={`${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'}`}>
             {Array(3).fill().map((_, index) => (
-              <div key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+              <motion.div
+                ref={ref}
+                initial='hidden'
+                animate={inView ? 'show' : 'hidden'}
+                variants={fadeIn("right", "spring", index * 0.2, 0.75)}
+                key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-white">
                 <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                 <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
                 <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -363,12 +395,10 @@ function Home() {
                   ))}
                 </ul>
                 <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
-
-
 
         {/* review  */}
         <section className='py-24 px-20 bg-cover h-auto'>

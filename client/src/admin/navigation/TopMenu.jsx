@@ -29,7 +29,8 @@ const TopMenu = () => {
         navigate('/home')
     }
     const profileClick = () => {
-        alert('profileClick')
+        navigate('/admin/profile');
+        toggleProfileModal();
     }
 
     const searchClick = () => {

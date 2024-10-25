@@ -58,7 +58,8 @@ function AppRoutes() {
                 { path: "dashboard", element: <AdminDashboard /> },
                 { path: "Plans", element: <AdminPlans /> },
                 { path: "user", element: <AdminUsers /> },
-                { path: "trainer", element: <ProtectedRoute component={AdminTrainers} /> }
+                { path: "trainer", element: <ProtectedRoute component={AdminTrainers} /> },
+                { path: 'profile', element: <Profile /> }
 
             ]
         },
@@ -66,7 +67,6 @@ function AppRoutes() {
         { path: "signup", element: <Signup /> },
         { path: 'loader', element: <Loader /> },
         { path: 'test', element: <Test /> },
-        { path: 'profile', element: <Profile /> }
     ];
 
     return (
