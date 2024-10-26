@@ -20,9 +20,11 @@ import review1 from '../assets/images/review1.jpg'
 import review2 from '../assets/images/review2.jpg'
 import review3 from '../assets/images/review3.jpg'
 import review4 from '../assets/images/review4.jpg'
-import bannerModel from '../assets/images/bannerModel.png'
 import { fadeIn } from '../assets/utils/motion.js'
 import { motion } from "framer-motion";
+import MyButton from '../components/Button.jsx'
+// import bannerBg from '../assets/videos/bannerBg.mp4'
+// import bannerBg from '../assets/videos/bannerBg2.mp4'
 
 
 function Home() {
@@ -30,6 +32,7 @@ function Home() {
   const [inView, setInView] = useState(false);
   const ref = useRef();
 
+  const bannerBg = 'gray'
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -86,7 +89,31 @@ function Home() {
   const previousIndex = getPreviousIndex(currentIndex);
   const nextIndex = getNextIndex(currentIndex);
 
+  const webData = [
+    { number: '500+', label: 'Happy Members', description: 'Our Community is growing fast' },
+    { number: '5+', label: 'Years Experience', description: 'Experience in various Workouts' },
+    { number: '13+', label: 'Certified Trainers', description: 'Guidance at every step' },
+    { number: '90%', label: 'Customer Satisfaction', description: 'We ensure your progress satisfaction' },
+  ];
 
+  const trainers = [
+    {
+      name: 'Trainer 1',
+      image: trainer1,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
+    },
+    {
+      name: 'Trainer 2',
+      image: trainer2,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
+    },
+    {
+      name: 'Trainer 3',
+      image: trainer3,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
+    }
+    // Add more trainers as needed
+  ];
 
 
   return (
@@ -96,61 +123,69 @@ function Home() {
       </div>}>
 
         {/* banner  */}
-        <section className='banner flex flex-col md:flex-row w-full h-screen border-solid px-8 md:px-24 relative top-0'>
-          <div className="w-full md:w-1/2 pr-7 flex flex-col gap-8 justify-center">
-            <h1 className='text-4xl md:text-8xl font-bold'>Elevate Your WorkOut</h1>
-            <p className="text-lg md:text-2xl"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div className='flex flex-col md:flex-row'>
-              <span className='mb-4 md:mb-0 md:mr-8'><ButtonUi
-                text="Get Started"
-                onClick={handleClick}
-                type="secondary"
-                size="medium"
-              /></span>
-              <span className='text-center font-normal py-2 px-4 rounded-xl hover:rounded-xl hover:bg-black hover:text-white transition ease-in-out duration-300'><button className='text-center'>Play Video</button></span>
+        <section
+          className='w-full h-screen flex flex-col justify-center items-center relative top-[-100px] p-4 overflow-hidden'
+          style={{ backgroundColor: bannerBg, backgroundPosition: 'center' }}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            className='backdrop-sepia bg-black/90 absolute top-0 left-0 w-full h-full object-cover '
+            style={{ zIndex: -1, objectFit: 'cover' }}
+          >
+            <source src={bannerBg} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <motion.div
+            initial='hidden'
+            animate={'show'}
+            variants={fadeIn("up", "", 0, 0.75)}
+            className='relative z-10' // Ensure content is above the video
+          >
+            <h1 className='font-extrabold text-4xl sm:text-5xl md:text-6xl text-center mb-8 text-white'>
+              Scenes to take your <br /> breath away
+            </h1>
+            <div className='flex gap-6 justify-around items-center'>
+              <span className='w-full sm:w-1/2 h-14'>
+                <MyButton text="Shop Trend" type="primary" size="medium" />
+              </span>
+              <span className='w-full sm:w-1/2 h-14'>
+                <MyButton text="kya hal h" type="secondary" size="medium" />
+              </span>
             </div>
-            <div className='flex justify-start gap-4 md:gap-8'>
-              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>FB</span>
-              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>IN</span>
-              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>LI</span>
-              <span className='rounded-sm border border-black px-2 hover:bg-black hover:text-white transition ease-in-out duration-300 cursor-pointer'>XX</span>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2 mt-8 md:mt-0">
-            <div className='bg-black absolute h-1/4 md:h-full w-full md:w-1/4 right-0'></div>
-            <div className='bannerImage absolute bottom-0 right-0'>
-              <img src={bannerModel} alt="" className='mr-10' />
-            </div>
-          </div>
+          </motion.div>
         </section>
+
+
+
+
+
+
+
 
 
         {/* black banner section */}
-        <section className="w-full flex flex-wrap justify-around c-bg-black c-text-white py-8">
-          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
-            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">500+</h4>
-            <p className="card-details">Happy Members</p>
-            <p className="card-details">Our Community is growing fast</p>
-          </div>
-
-          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
-            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">5+</h4>
-            <p className="card-details">Years Experience</p>
-            <p className="card-details">Experience in various Workouts</p>
-          </div>
-
-          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
-            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">13+</h4>
-            <p className="card-details">Certified Trainers</p>
-            <p className="card-details">Guidance at every step</p>
-          </div>
-
-          <div className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
-            <h4 className='text-4xl font-extrabold mb-4' aria-level="2">90%</h4>
-            <p className="card-details">Customer Satisfaction</p>
-            <p className="card-details">We ensure your progress satisfaction</p>
-          </div>
+        <section className="w-full flex flex-wrap justify-around c-bg-black c-text-white py-8 mt-[-98px]">
+          {webData.map((data, index) => (
+            <motion.div
+              initial='hidden'
+              animate='show'
+              variants={fadeIn("right", "spring", index * 0.2, 0.75)}
+              key={index} className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4">
+              <h4 className='text-4xl font-extrabold mb-4' aria-level="2">{data.number}</h4>
+              <p className="card-details">{data.label}</p>
+              <p className="card-details">{data.description}</p>
+            </motion.div>
+          ))}
         </section>
+
+
+
+
+
+
+
 
 
         {/* why choose us  */}
@@ -240,6 +275,9 @@ function Home() {
 
 
 
+
+
+
         {/* Meet Our Trainers  */}
         <section className='w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20'>
           <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Meet Our Trainers</h2>
@@ -248,57 +286,32 @@ function Home() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-32 my-10 lg:my-20 p-0 box-border">
-
-            <div className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
-              <LazyLoadImage
-                src={trainer1}
-                alt="Trainer"
-                className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
-              />
-              <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
-                <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>Name</h6>
-                <div className="c-text-white text-left">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+            {trainers.map((trainer, index) => (
+              <motion.div
+                initial='hidden'
+                animate='show'
+                variants={fadeIn("", "", index * 0.2, 0.75)} key={index} className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
+                <LazyLoadImage
+                  src={trainer.image}
+                  alt={trainer.name}
+                  className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
+                />
+                <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
+                  <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>{trainer.name}</h6>
+                  <div className="c-text-white text-left">
+                    {trainer.description}
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
-              <LazyLoadImage
-                src={trainer2}
-                alt="Trainer"
-                className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
-              />
-              <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
-                <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>Name</h6>
-                <div className="c-text-white text-left">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-              </div>
-            </div>
-
-            <div className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'>
-              <LazyLoadImage
-                src={trainer3}
-                alt="Trainer"
-                className="object-cover transition duration-300 ease-in-out transform hover:scale-95 hover:blur-sm w-full"
-              />
-              <div className="absolute inset-0 flex flex-col items-start p-6 rounded-[32px] bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 backdrop-blur-sm hover:bg-[#00000070]">
-                <h6 className='text-2xl sm:text-3xl font-bold mb-2 text-white'>Name</h6>
-                <div className="c-text-white text-left">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-              </div>
-            </div>
-
+              </motion.div>
+            ))}
           </div>
         </section>
-
 
 
         {/* Coaches */}
         <section className='w-full h-full border-solid px-24 py-20 flex '>
           <div className="flex flex-col sm:flex-row w-full sm:w-8/12 lg:w-5/12">
+
             <div className="mx-0 sm:mx-4 w-1/2 overflow-hidden sm:w-1/2 mt-4 sm:mt-0 transition-all duration-300 ease-in-out hover:w-full h-96 rounded-3xl	">
               <LazyLoadImage
                 src={coach1}
@@ -352,14 +365,13 @@ function Home() {
 
           {/* Monthly Packs */}
           <div
-
             className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
             {Array(3).fill().map((_, index) => (
               <motion.div
                 ref={ref}
                 initial='hidden'
                 animate={inView ? 'show' : 'hidden'}
-                variants={fadeIn("right", "spring", index * 0.2, 0.75)} key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+                variants={fadeIn("left", "spring", index * 0.2, 0.75)} key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
                 <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                 <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
                 <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -382,7 +394,7 @@ function Home() {
                 ref={ref}
                 initial='hidden'
                 animate={inView ? 'show' : 'hidden'}
-                variants={fadeIn("right", "spring", index * 0.2, 0.75)}
+                variants={fadeIn("", "spring", index * 0.2, 0.75)}
                 key={index} className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-white">
                 <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                 <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>

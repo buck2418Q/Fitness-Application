@@ -11,12 +11,12 @@ function ProtectedRoute({ component: Component }) {
     }, [navigate]);
 
     const validateToken = () => {
-        const user = sessionStorage.getItem('token');
+        const user = localStorage.getItem('token');
         if (!user) {
             navigate('/login');
         }
     }
-    const user = sessionStorage.getItem('token');
+    const user = localStorage.getItem('token');
     if (!user) {
         return null;
     }

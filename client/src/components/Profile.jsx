@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 function Profile() {
-  const userName = sessionStorage.getItem('userName');
+  const userName = localStorage.getItem('userName');
   const [activeTab, setActiveTab] = useState('tab1');
 
   const tabs = ['tab1', 'tab2', 'tab3'];

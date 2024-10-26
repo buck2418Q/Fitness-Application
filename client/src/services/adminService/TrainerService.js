@@ -4,7 +4,7 @@ import { Trainers } from "../apiEndPoint/EnpPoint";
 
 
 export const getAllTrainers = async () => {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     try {
         const response = await axios.get(Trainers, {
             headers: {

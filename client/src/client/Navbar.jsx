@@ -1,61 +1,114 @@
-import React, { Suspense, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
-const ButtonUi = React.lazy(() => import('../components/Button'))
-import logo from './../assets/logos/logo.png'
+import React, { Suspense, useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import logo from './../assets/logos/logo.png';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../assets/utils/motion.js';
+
+const ButtonUi = React.lazy(() => import('../components/Button'));
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-
     const navigate = useNavigate();
-    const joinNowClick = () => {
-        navigate('/login')
-    }
+    const location = useLocation();
+    const menuRef = useRef(null);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const joinNowClick = () => navigate('/login');
 
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-    };
+    // Toggle Menu Function
+    const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+
+    // Close menu when clicked outside
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }, []);
+
+    // Define Navbar Links
+    const navbarLinks = [
+        { to: 'home', label: 'Home' },
+        { to: 'about', label: 'About' },
+        { to: 'trainers', label: 'Trainers' },
+        { to: 'review', label: 'Review' },
+        { to: 'plans', label: 'Plans' },
+    ];
 
     return (
-        <nav className="py-4">
-            <div className="container mx-auto px-4 flex justify-between items-center">
+        <nav className="py-2">
+            <div
+                className="mx-4 rounded-xl p-2 flex justify-between"
+                style={{ backgroundColor: 'rgba(0, 0, 0, .5)' }}
+            >
+                {/* Logo */}
                 <img src={logo} alt="logo" className="h-10" />
 
-                <div className={`md:flex items-center gap-6 ${isMenuOpen ? 'flex opacity-100 z-10' : 'opacity-0 invisible z-10'} flex-col md:flex-row absolute md:relative top-16 md:top-0 left-0 md:left-auto w-full md:w-auto bg-gray-100 md:bg-transparent p-4 md:p-0 transition-all duration-300 ease-in-out md:opacity-100 md:visible`}>
-                    <Link to="home" className="hover:text-blue-600 transition-colors" onClick={closeMenu}>Home</Link>
-                    <Link to="about" className="hover:text-blue-600 transition-colors" onClick={closeMenu}>About</Link>
-                    <Link to="trainers" className="hover:text-blue-600 transition-colors" onClick={closeMenu}>Trainers</Link>
-                    <Link to="review" className="hover:text-blue-600 transition-colors" onClick={closeMenu}>Review</Link>
-                    <Link to="plans" className="hover:text-blue-600 transition-colors" onClick={closeMenu}>Plans</Link>
+                {/* Desktop Menu */}
+                <div className={`md:flex items-center gap-6 invisible md:visible z-10 flex-col md:flex-row`}>
+                    {navbarLinks.map((link) => (
+                        <Link
+                            key={link.to}
+                            to={link.to}
+                            aria-current={location.pathname === link.to ? 'page' : undefined}
+                            className="hover:text-blue-600 transition-colors text-white"
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
                 </div>
 
+                {/* Sign-in Button */}
                 <div className="hidden md:block">
                     <Suspense fallback={<div>Loading...</div>}>
-                        <ButtonUi
-                            text="Sign in"
-                            onClick={joinNowClick}
-                            type="primary"
-                            size="medium"
-                        />
+                        <ButtonUi text="Sign in" onClick={joinNowClick} type="primary" size="medium" />
                     </Suspense>
                 </div>
 
+                {/* Mobile Menu Toggle */}
                 <button
-                    className="md:hidden focus:outline-none"
+                    className="md:hidden focus:outline-none z-50"
                     onClick={toggleMenu}
+                    aria-expanded={isMenuOpen}
                     aria-label="Toggle menu"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
+
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+                <motion.div
+                    ref={menuRef}
+                    initial="hidden"
+                    animate="show"
+                    variants={fadeIn('right', 'spring', 0, 0.75)}
+                    className="h-96 w-full bg-transparent absolute z-20 flex items-start justify-end"
+                >
+                    <div
+                        className="rounded-xl flex flex-col w-full float-right items-end pr-4 pl-16 py-4 mx-4 mt-4"
+                        style={{ backgroundColor: 'rgba(0, 0, 0, .8)' }}
+                    >
+                        {navbarLinks.map((link) => (
+                            <Link
+                                key={link.to}
+                                to={link.to}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="hover:text-blue-600 transition-colors text-white text-lg mb-2"
+                                aria-current={location.pathname === link.to ? 'page' : undefined}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
+                </motion.div>
+            )}
         </nav>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

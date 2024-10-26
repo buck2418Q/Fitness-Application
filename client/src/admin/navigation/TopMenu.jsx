@@ -11,7 +11,7 @@ import { fadeIn } from '../../assets/utils/motion';
 const TopMenu = () => {
 
     const navigate = useNavigate()
-    const userName = sessionStorage.getItem('userName');
+    const userName = localStorage.getItem('userName');
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleProfileModal = () => {
@@ -25,7 +25,7 @@ const TopMenu = () => {
     };
 
     const logoutClick = () => {
-        sessionStorage.clear('token');
+        localStorage.clear('token');
         navigate('/home')
     }
     const profileClick = () => {
