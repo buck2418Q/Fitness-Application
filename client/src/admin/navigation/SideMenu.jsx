@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion'; // Import necessary components
 import { RoutesData } from './AdminRoutesData';
 import logo from '../../assets/logos/logo.png';
-import { chevronUpIcon } from '../../components/icons'
+import { chevronUpIcon, menuIcon, xIcon } from '../../components/icons'
 
 const SideMenu = () => {
     const [openMenu, setOpenMenu] = useState(null);
@@ -30,7 +30,8 @@ const SideMenu = () => {
                     className={`text-white py-4 ${collapsed ? 'pr-0' : 'pr-4'}`}
                     onClick={toggleCollapse}
                 >
-                    {collapsed ? '▶' : '◀'}
+                    {collapsed ?
+                        <img src={xIcon } alt="" /> : <img src={menuIcon} alt="" />}
                 </button>
             </div>
             <ul className={`transition-all duration-200 ease-in-out`}>

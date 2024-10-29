@@ -24,7 +24,7 @@ import { fadeIn } from '../assets/utils/motion.js'
 import { motion } from "framer-motion";
 import MyButton from '../components/Button.jsx'
 // import bannerBg from '../assets/videos/bannerBg.mp4'
-// import bannerBg from '../assets/videos/bannerBg2.mp4'
+import bannerBg from '../assets/videos/bannerBg2.mp4'
 
 
 function Home() {
@@ -32,7 +32,7 @@ function Home() {
   const [inView, setInView] = useState(false);
   const ref = useRef();
 
-  const bannerBg = 'gray'
+  // const bannerBg = 'gray'
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -140,7 +140,7 @@ function Home() {
           <motion.div
             initial='hidden'
             animate={'show'}
-            variants={fadeIn("up", "", 0, 0.75)}
+            variants={fadeIn("up", "", 0.6, 0.5)}
             className='relative z-10' // Ensure content is above the video
           >
             <h1 className='font-extrabold text-4xl sm:text-5xl md:text-6xl text-center mb-8 text-white'>

@@ -1,4 +1,5 @@
 import archiveIcon from '../assets/icons/archive.svg';
+import alignRightIcon from '../assets/icons/align-right.svg'
 import arrowDownIcon from '../assets/icons/arrow-down.svg';
 import arrowDownCircleIcon from '../assets/icons/arrow-down-circle.svg';
 import arrowLeftIcon from '../assets/icons/arrow-left.svg';
@@ -187,6 +188,7 @@ import zoomOutIcon from '../assets/icons/zoom-out.svg';
 export {
     archiveIcon,
     arrowDownIcon,
+    alignRightIcon,
     arrowDownCircleIcon,
     arrowLeftIcon,
     arrowLeftCircleIcon,
