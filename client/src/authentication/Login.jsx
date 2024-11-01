@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import { useNavigate } from 'react-router-dom';
-import { Input } from "@nextui-org/react"; // Adjusted import
+import { Input } from "@nextui-org/input";
 import { eyeIcon, eyeOffIcon } from '../components/icons';
 import { toast, Toaster } from "sonner";
 import Loader from "../components/Loader";

@@ -6,6 +6,15 @@ export const getUsers = async () => {
     return await UserModel.find();
 }
 
+
+// export const getUsers = async () => {
+//     return await UserModel.find().select('firstName lastName age gender email profilePicture ');
+// }
+
+
+
+
+
 export const createUser = async (userData) => {
     const isEmailExists = await getUserByEmail(userData.email);
     // if (!userData.email || !userData.password) {
