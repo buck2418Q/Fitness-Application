@@ -1,6 +1,17 @@
 import TrainerModel from "../models/Trainers.js";
-import { createTrainer, deleteTrainer, getTrainers, updateTrainer } from "../services/TrainerService.js";
+import { createTrainer, deleteTrainer, getTrainers, trainerCount, updateTrainer } from "../services/TrainerService.js";
 
+
+export const TrainerCount = async (req, res) => {
+    try {
+        const totalTrainer = await trainerCount();
+        res.status(200).send({ totalTrainer })
+    } catch (error) {
+        res.status(404).send({
+            error: e?.message
+        });
+    }
+}
 
 export const GetTrainers = async (req, res) => {
     try {

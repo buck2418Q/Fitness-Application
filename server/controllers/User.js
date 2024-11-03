@@ -1,5 +1,17 @@
-import { createUser, deleteUser, findUserById, getUsers, updateUser } from '../services/UserService.js';
+import { createUser, deleteUser, findUserById, getUsers, updateUser, userCount } from '../services/UserService.js';
 
+
+export const UserCount = async (req, res) => {
+    try {
+        const totalUser = await userCount();
+        res.status(200).send({ totalUser })
+
+    } catch (e) {
+        res.status(404).send({
+            error: e?.message
+        });
+    }
+}
 
 
 

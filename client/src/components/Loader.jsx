@@ -1,14 +1,11 @@
-import '../styleSheets/Loader.css'
+import { Spinner, } from "@nextui-org/react";
 
 function Loader() {
     return (
         <>
-            <div className="loader-container">
-                <div className="spinner-box">
-                    <div className="col-sm-2">
-                        <div className="sp sp-loadbar"></div>
-                    </div>
-                </div>
+            <div className='bg-transparent flex items-center justify-center w-full h-svh'>
+                <Spinner label="Loading..." color="success" />
+
             </div>
         </>
     )

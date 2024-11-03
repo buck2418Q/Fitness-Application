@@ -1,6 +1,13 @@
 import TrainerModel from "../models/Trainers.js";
 import { createResponse, passwordHash } from "../utils/utilityFunctions.js";
 
+//vdlkasnvka
+export const trainerCount = async () => {
+    const count = TrainerModel.countDocuments();
+    return await count;
+}
+
+
 export const getTrainers = async () => {
     return await TrainerModel.find();
 }

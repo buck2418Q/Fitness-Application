@@ -134,7 +134,7 @@ function Trainers() {
         try {
             setLoading(true);
             const result = await DeleteTrainer(id);
-            console.log('hhhhhhhhhh', result)
+            // console.log('hhhhhhhhhh', result)
             toast.success("Trainer Delete Successfully")
             getAllTrainers();
 

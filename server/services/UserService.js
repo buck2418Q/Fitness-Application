@@ -11,6 +11,10 @@ export const getUsers = async () => {
 //     return await UserModel.find().select('firstName lastName age gender email profilePicture ');
 // }
 
+export const userCount = async () => {
+    const count = UserModel.countDocuments()
+    return await count;
+}
 
 
 

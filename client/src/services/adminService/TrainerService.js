@@ -1,7 +1,16 @@
 import axios from "axios";
-import { Trainers } from "../apiEndPoint/EnpPoint";
+import { totalTrainer, Trainers } from "../apiEndPoint/EnpPoint";
 
 
+//alnkdjkfa
+export const trainerCount = async () => {
+    try {
+        const response = await axios.get(totalTrainer);
+        return response.data.totalTrainer;
+    } catch (error) {
+        throw new Error("Unable to access API!", error);
+    }
+}
 
 export const getAllTrainers = async () => {
     const token = localStorage.getItem('token');

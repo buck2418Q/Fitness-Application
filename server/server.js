@@ -3,8 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "./controllers/Admin.js";
-import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser } from "./controllers/User.js";
-import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, UpdateTrainer } from "./controllers/Trainer.js";
+import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser, UserCount } from "./controllers/User.js";
+import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
 import { Login } from "./controllers/Login.js";
 import { verifyToken } from "./middleWare/MiddleWare.js";
 
@@ -30,6 +30,7 @@ router.delete("/admin", DeleteAdmin);
 router.get("/findadminbyid", FindAdminById)
 
 //user
+router.get("/totaluser", UserCount)
 router.get("/user", GetUsers);
 router.post("/user", CreateUser);
 router.put("/user", UpdateUser);
@@ -37,6 +38,7 @@ router.delete("/user", DeleteUser);
 router.get("/finduserbyid", FindUserById);
 
 //trainers
+router.get("/trainercount", TrainerCount)
 router.get("/trainer", verifyToken, GetTrainers);
 router.post("/trainer", CreateTrainer);
 router.put("/trainer", UpdateTrainer);

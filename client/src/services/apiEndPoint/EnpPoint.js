@@ -4,6 +4,8 @@ export const GetUsers = {
     getAllUsers: () => `${BASE_URL}user`,
 };
 
+export const totalUser = `${BASE_URL}totaluser`;
+export const totalTrainer = `${BASE_URL}trainercount`;
 
 
 export const Users = `${BASE_URL}user`;

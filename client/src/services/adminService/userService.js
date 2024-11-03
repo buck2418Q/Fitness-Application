@@ -1,5 +1,16 @@
 import axios from 'axios';
-import { GetUsers, Users } from '../apiEndPoint/EnpPoint';
+import { GetUsers, totalUser, Users } from '../apiEndPoint/EnpPoint';
+
+
+
+export const userCount = async () => {
+    try {
+        const response = await axios.get(totalUser);
+        return response.data.totalUser;
+    } catch (error) {
+        throw new Error("Unable to access API!", error);
+    }
+}
 
 export const getAllUsers = async () => {
     try {
