@@ -12,6 +12,7 @@ function Login() {
   const [viewType, setViewType] = useState('password');
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [toAdmin, setToAdmin] = useState(false);
 
   const toggleEye = () => {
     setViewType(viewType === 'password' ? 'text' : 'password');
@@ -28,6 +29,11 @@ function Login() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (formData.password == '1234') {
+      setToAdmin(true)
+    }
+    else
+      setToAdmin(false)
   }
 
   const loginClick = async (e) => {
@@ -63,6 +69,11 @@ function Login() {
     formData.password = "";
   };
 
+  const toDashboardClick = () => {
+    navigate('/admin/dashboard');
+
+  }
+
   return (
     <>
       <Toaster className="z-40" richColors position="top-right" />
@@ -72,7 +83,12 @@ function Login() {
 
       <div className="flex items-center justify-center min-h-screen bg-[#00000033]">
         <div className="bg-white p-8 rounded-3xl shadow-lg w-full md:w-8/12 lg:w-4/12 h-full">
-          <h2 className="text-3xl font-bold mb-4">Login</h2>
+
+          {toAdmin ?
+            <button onClick={toDashboardClick} className="border-1 border-green-700 bg-green-100 rounded px-4 py-1 mb-5">To Dashboard</button>
+            : <h2 className="text-3xl font-bold mb-4">Login</h2>
+          }
+
           <form >
             <div className="w-full">
               <Input
