@@ -104,6 +104,9 @@ function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
+                        <div className='w-5/12'>
+                            <ButtonUi text="Sign in" onClick={joinNowClick} type="primary" size="medium" />
+                        </div>
                     </div>
                 </motion.div>
             )}
