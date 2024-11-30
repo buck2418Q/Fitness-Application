@@ -24,7 +24,7 @@ function Banner() {
                     initial='hidden'
                     animate={'show'}
                     variants={fadeIn("up", "", 0.6, 0.5)}
-                    className='relative z-10' // Ensure content is above the video
+                    className='relative z-10' 
                 >
                     <h1 className='font-extrabold text-4xl sm:text-5xl md:text-6xl text-center mb-8 text-white'>
                         Scenes to take your <br /> breath away

@@ -185,6 +185,12 @@ import zapOffIcon from '../assets/icons/zap-off.svg';
 import zoomInIcon from '../assets/icons/zoom-in.svg';
 import zoomOutIcon from '../assets/icons/zoom-out.svg';
 
+
+// images
+import trainerLoader from '../assets/images/trainer-loader.png';
+import traineeLoader from '../assets/images/trainee-loader.png';
+
+//client\src\assets\images\trainee-loader.png
 export {
     archiveIcon,
     arrowDownIcon,
@@ -370,5 +376,10 @@ export {
     zapIcon,
     zapOffIcon,
     zoomInIcon,
-    zoomOutIcon
+    zoomOutIcon,
+
+
+    // images
+    trainerLoader,
+    traineeLoader,
 };

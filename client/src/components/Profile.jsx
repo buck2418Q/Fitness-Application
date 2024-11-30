@@ -13,9 +13,9 @@ function Profile() {
   const user = {
     fullName: 'John Doe',
     email: 'john@example.com',
-    phone: '(239) 816-9029',
-    mobile: '(320) 380-4539',
-    address: 'Bay Area, San Francisco, CA',
+    phone: '45783804539',
+    mobile: '45783804539',
+    address: 'test',
   };
 
   const userInfo = [

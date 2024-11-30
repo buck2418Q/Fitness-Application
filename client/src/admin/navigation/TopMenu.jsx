@@ -54,9 +54,9 @@ const TopMenu = () => {
                         />
                     </label>
                     <span >
-                        <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative' />
+                        <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
-                    <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center">
+                    <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center hover:shadow-xl">
                         <img src={profilePic} alt="User" className='border rounded-full h-full cursor-pointer' onClick={toggleProfileModal} />
                     </span>
                 </div>
