@@ -70,6 +70,8 @@ function Login() {
   };
 
   const toDashboardClick = () => {
+    localStorage.setItem('userName', "groot@test.com")
+    localStorage.setItem('token', "some_token_webapp_underdevelopment")
     navigate('/admin/dashboard');
 
   }
