@@ -7,7 +7,8 @@ import { toast, Toaster } from "sonner";
 import MyForm from '../../components/Form'
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-
+import { motion } from 'framer-motion';
+import { fadeIn } from "../../assets/utils/motion";
 
 function Trainers() {
 
@@ -196,7 +197,7 @@ function Trainers() {
         <>
             {deletePopUp && (
                 <div className="flex  justify-center z-30 absolute inset-0 h-24 top-6">
-                    <div className="bg-white p-3 rounded-lg shadow-2xl">
+                    <div className="bg-white p-3 rounded-lg shadow-2xl border-[1px]">
                         <p>Do you want to delete this user?</p>
                         <div className="mt-2 flex justify-around w-full">
                             <button
@@ -225,10 +226,13 @@ function Trainers() {
 
 
 
-            <div className="flex justify-between h-10 mb-8">
+            <motion.div
+                initial="hidden"
+                animate="show"
+                variants={fadeIn('', 'spring', .2, 0.75)} className="flex justify-between h-10 mb-8">
                 <h2 className="text-2xl">Application Trainers List</h2>
                 <button type="submit" className={`transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black ${openForm === true ? 'hidden' : ''}`} onClick={toggleOpenForm}>Add Trainer</button>
-            </div>
+            </motion.div>
 
             <div className={`z-40 transition ease-in-out duration-900 w-6/12 border-2 shadow-lg border-black bg-white p-8 rounded-3xl absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 ${openForm ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
                 <div className="flex justify-between mb-4">
@@ -239,12 +243,15 @@ function Trainers() {
             </div>
 
 
-            <div className="ag-theme-quartz h-[80%]"            >
+            <motion.div
+                initial="hidden"
+                animate="show"
+                variants={fadeIn('', 'spring', .4, 0.75)} className="ag-theme-quartz h-[80%]"            >
                 <AgGridReact
                     rowData={rowData}
                     columnDefs={colDefs}
                 />
-            </div>
+            </motion.div>
         </>
     )
 }

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion'; // Import necessary components
+import { motion, AnimatePresence } from 'framer-motion'; 
 import { RoutesData } from './AdminRoutesData';
 import logo from '../../assets/logos/logo.png';
 import { chevronUpIcon, menuIcon, xIcon } from '../../components/icons'

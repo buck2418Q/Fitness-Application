@@ -29,7 +29,7 @@ function PageNotFound() {
 
                                     <p className="my-4 sm:my-2 text-lg sm:text-base">The page you are looking for is not available!</p>
 
-                                    <button onClick={goToHome} className="link_404 text-white bg-green-600 py-2 px-5 mt-5 inline-block text-lg sm:text-base">Go to Home</button>
+                                    <button onClick={goToHome} className="link_404 text-white border-[1px] bg-green-600 py-2 px-5 mt-5 inline-block text-lg sm:text-base rounded-lg hover:bg-white hover:text-green-600 hover:border-green-600  transition ease-in-out duration-300">Go to Home</button>
                                 </div>
                             </div>
                         </div>
