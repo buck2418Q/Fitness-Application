@@ -29,7 +29,7 @@ function Trainers() {
     const isInView = useInView(ref, { once: true });
 
     return (
-        <section className='w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20' ref={ref}>
+        <section className='w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary' ref={ref}>
             {isInView && (
                 <>
                     <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Meet Our Trainers</h2>

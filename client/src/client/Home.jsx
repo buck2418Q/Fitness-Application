@@ -18,19 +18,21 @@ function Home() {
 
   return (
     <>
-      <Suspense fallback={<div>
-        <Loader />
-      </div>}>
+      <div className=' text-light p-0'>
 
-        {Object.keys(components).map((key) => {
-          const Component = components[key];
-          return <Component key={key} />;
-        })}
+        <Suspense fallback={<div>
+          <Loader />
+        </div>}>
 
-        <section className='m-20'>
-        </section>
+          {Object.keys(components).map((key) => {
+            const Component = components[key];
+            return <Component key={key} />;
+          })}
 
-      </Suspense>
+
+
+        </Suspense>
+      </div>
     </>
   )
 }

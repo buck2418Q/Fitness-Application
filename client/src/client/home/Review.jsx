@@ -41,7 +41,7 @@ function Review() {
 
     return (
         <>
-            <section className='py-24 px-20 bg-cover h-auto'>
+            <section className='py-24 px-20 bg-cover h-auto bg-background'>
                 <div className='flex justify-between items-center'>
                     <div>
                         <p className='text-xl  mx-2 c-text-gray'>Reviews</p>
@@ -75,20 +75,20 @@ function Review() {
 
 
 
-                        <div className="flex gap-8 ali justify-evenly items-center  overflow-hidden rounded-3xl">
+                        <div className="flex gap-8 ali justify-evenly items-center  overflow-hidden  rounded-3xl">
 
 
-                            <div className="shrink-0 grid place-content-top w-[clamp(12rem,1rem+50vw,32rem)] p-6 aspect-[16/9] font-semibold border-2 rounded-3xl">
+                            <div className="shrink-0 grid place-content-top w-[clamp(12rem,1rem+50vw,32rem)] p-6 aspect-[16/9] font-semibold  border-primary border-2 rounded-3xl">
                                 <h4 className='text-3xl font-bold'>{cards[previousIndex].name}</h4>
                                 <p className='my-2'>{cards[previousIndex].rating}</p>
                                 <p className='text-lg'>{cards[previousIndex].description}</p>
                             </div>
-                            <div className="shrink-0 grid place-content-top w-[clamp(12rem,1rem+50vw,32rem)] p-6 aspect-[16/9] font-semibold border-2 rounded-3xl">
+                            <div className="shrink-0 grid place-content-top w-[clamp(12rem,1rem+50vw,32rem)] p-6 aspect-[16/9] font-semibold  border-primary border-2 rounded-3xl">
                                 <h4 className='text-3xl font-bold'>{cards[currentIndex].name}</h4>
                                 <p className='my-2'>{cards[currentIndex].rating}</p>
                                 <p className='text-lg'>{cards[currentIndex].description}</p>
                             </div>
-                            <div className="shrink-0 grid place-content-top w-[clamp(12rem,1rem+50vw,32rem)] p-6 aspect-[16/9] font-semibold border-2 rounded-3xl">
+                            <div className="shrink-0 grid place-content-top w-[clamp(12rem,1rem+50vw,32rem)] p-6 aspect-[16/9] font-semibold  border-primary border-2 rounded-3xl">
                                 <h4 className='text-3xl font-bold'>{cards[nextIndex].name}</h4>
                                 <p className='my-2'>{cards[nextIndex].rating}</p>
                                 <p className='text-lg'>{cards[nextIndex].description}</p>

@@ -91,6 +91,7 @@ import logInIcon from '../assets/icons/log-in.svg';
 import logOutIcon from '../assets/icons/log-out.svg';
 import mailIcon from '../assets/icons/mail.svg';
 import mapIcon from '../assets/icons/map.svg';
+import mapPinIcon from '../assets/icons/map-pin.svg';
 import maximizeIcon from '../assets/icons/maximize.svg';
 import menuIcon from '../assets/icons/menu.svg';
 import messageCircleIcon from '../assets/icons/message-circle.svg';
@@ -192,6 +193,7 @@ import traineeLoader from '../assets/images/trainee-loader.png';
 
 //client\src\assets\images\trainee-loader.png
 export {
+    mapPinIcon,
     archiveIcon,
     arrowDownIcon,
     alignRightIcon,

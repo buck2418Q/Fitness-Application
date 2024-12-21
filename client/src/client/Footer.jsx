@@ -1,38 +1,64 @@
+//"client\src\components\icons.js"
+import { phoneIcon, mailIcon, mapPinIcon } from '../../src/components/icons'
+
 function Footer() {
   return (
-    <div className="border-2 m-4 rounded-xl">
+    <div className="px-16 py-6   mb-4 bg-background text-secondlight">
       <div className="flex flex-col md:flex-row py-4 px-4 justify-between items-start">
-        {/* Map section */}
-        <div className="w-full md:w-5/12 overflow-hidden h-0 pb-[56.25%] md:pb-[20%] relative rounded-xl bg-green-500 mb-4 md:mb-0 z-0 ">
+
+        {/* First Section */}
+        <div className="w-full md:w-1/4 mb-4 md:mb-0">
+          <h3 className="font-bold mb-2 text-light">Actions</h3>
+          <ul className="list-none p-0">
+            <li className="hover:text-light">Login</li>
+            <li className="hover:text-light">Sign In</li>
+            <li className="hover:text-light">Book Demo</li>
+            <li className="hover:text-light">Orders</li>
+          </ul>
         </div>
 
-        {/* Content section */}
-        <div className="w-full md:w-6/12 md:px-6 flex flex-col md:flex-row justify-evenly">
-          <div className="w-full md:w-1/2 mb-4 md:mb-0">
-            <div className="flex py-4 px-4 justify-between items-start  rounded-xl">
-              <div>
-                <h3 className="font-bold mb-2">Actions</h3>
-                <ul className="list-none p-0">
-                  <li>Login</li>
-                  <li>Sign In</li>
-                  <li>Book Demo</li>
-                  <li>Orders</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2">
-            {/* Content for the second column */}
-            <div className=" rounded-xl p-4">
-              <h3 className="font-bold mb-2">Contact Us</h3>
-              <p>Email: info@example.com</p>
-              <p>Phone: (123) 456-7890</p>
-            </div>
-          </div>
+        {/* Second Section */}
+        <div className="w-full md:w-1/4 mb-4 md:mb-0">
+          <h3 className="font-bold mb-2 text-light">Actions</h3>
+          <ul className="list-none p-0">
+            <li className="hover:text-light">Login</li>
+            <li className="hover:text-light">Sign In</li>
+            <li className="hover:text-light">Book Demo</li>
+            <li className="hover:text-light">Orders</li>
+          </ul>
+        </div>
+
+        {/* Third Section */}
+        <div className="w-full md:w-1/4 mb-4 md:mb-0">
+          <h3 className="font-bold mb-2 text-light">Information</h3>
+          <ul className="list-none p-0">
+            <li className="hover:text-light">Locations</li>
+            <li className="hover:text-light">Gyms</li>
+            <li className="hover:text-light">Yoga Centers</li>
+          </ul>
+        </div>
+
+        {/* Fourth Section */}
+        <div className="w-full md:w-1/4 mb-4 md:mb-0">
+          <h3 className="font-bold  mb-2 text-light">Get in touch</h3>
+          <ul className="list-none p-0">
+            <li className="hover:text-light">
+              <img src={phoneIcon} className='inline w-5 mr-2 text-sm' />
+              1234564578</li>
+            <li className="hover:text-light">
+              <img src={mailIcon} className='inline w-5 mr-2 text-sm' />
+              kartik@admin.com</li>
+            <li className="hover:text-light">
+              <img src={phoneIcon} className='inline w-5 mr-2 text-sm' />
+              Book Demo</li>
+            <li className="hover:text-light">
+              <img src={mapPinIcon} className='inline w-5 mr-2 text-sm' />
+              Chandigarh</li>
+          </ul>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

@@ -34,10 +34,10 @@ function JoinToday() {
     };
 
     return (
-        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto'>
+        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-secondary'>
             <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div>
-                    <p className='text-xl mx-2 c-text-gray'>Pricing Plan</p>
+                    <p className='text-xl mx-2  '>Pricing Plan</p>
                     <h2 className='text-4xl md:text-6xl my-2 font-extrabold'>Join Today</h2>
                 </div>
                 <div>
@@ -60,11 +60,11 @@ function JoinToday() {
                         animate='show'
                         variants={fadeIn("left", "spring", index * 0.2, 0.75)}
                         key={index}
-                        className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                         <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
-                        <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul className='c-text-gray mt-8 mb-12'>
+                        <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul className='  mt-8 mb-12'>
                             {Array(5).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
                                 <li key={i} className='flex items-center my-2'>
                                     <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
@@ -77,18 +77,18 @@ function JoinToday() {
             </div>
 
             {/* Yearly Packs */}
-            <div className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'}`}>
+            <div className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'} bg-secondary`}>
                 {Array(3).fill().map((_, index) => (
                     <motion.div
                         initial='hidden'
                         animate={inView ? 'show' : 'hidden'}
                         variants={fadeIn("right", "spring", index * 0.2, 0.75)}
                         key={index}
-                        className="text-left flex flex-col border rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-white">
+                        className="text-left flex flex-col  border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                         <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
-                        <p className='mt-4 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul className='c-text-gray mt-8 mb-12'>
+                        <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul className='  mt-8 mb-12'>
                             {Array(7).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
                                 <li key={i} className='flex items-center my-2'>
                                     <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}

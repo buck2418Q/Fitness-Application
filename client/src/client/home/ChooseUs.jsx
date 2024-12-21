@@ -10,9 +10,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 function ChooseUs() {
     return (
         <>
-            <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20'>
+            <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20  text-light bg-background'>
                 <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Why Choose Us</h2>
-                <p className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 c-text-gray'>
+                <p className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 text-secondlight'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
 
@@ -28,7 +28,7 @@ function ChooseUs() {
                                 <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                                     Trainer Qualifications
                                 </h6>
-                                <div className="c-text-gray">
+                                <div className="text-secondlight">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                                 </div>
                             </div>
@@ -43,7 +43,7 @@ function ChooseUs() {
                                 <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                                     Facility Amenities
                                 </h6>
-                                <div className="c-text-gray">
+                                <div className="text-secondlight">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                                 </div>
                             </div>
@@ -58,7 +58,7 @@ function ChooseUs() {
                                 <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                                     Membership Cost
                                 </h6>
-                                <div className="c-text-gray">
+                                <div className="text-secondlight">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                                 </div>
                             </div>
@@ -73,7 +73,7 @@ function ChooseUs() {
                                 <h6 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-2'>
                                     Operating Hours
                                 </h6>
-                                <div className="c-text-gray">
+                                <div className="text-secondlight">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                                 </div>
                             </div>

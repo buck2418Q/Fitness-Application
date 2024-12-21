@@ -9,10 +9,10 @@ function Coaches() {
     const handleClick = () => {
         alert('working')
     }
-    
+
     return (
         <>
-            <section className='w-full h-full border-solid px-24 py-20 flex '>
+            <section className='w-full h-full border-solid px-24 py-20 flex bg-background'>
                 <div className="flex flex-col sm:flex-row w-full sm:w-8/12 lg:w-5/12">
 
                     <div className="mx-0 sm:mx-4 w-1/2 overflow-hidden sm:w-1/2 mt-4 sm:mt-0 transition-all duration-300 ease-in-out hover:w-full h-96 rounded-3xl	">

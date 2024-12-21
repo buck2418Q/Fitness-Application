@@ -38,7 +38,7 @@ function Navbar() {
     ];
 
     return (
-        <nav className="py-2">
+        <nav className="py-2 bg-secondlight">
             <div
                 className="mx-4 rounded-xl p-2 flex justify-between"
                 style={{ backgroundColor: 'rgba(0, 0, 0, .5)' }}
