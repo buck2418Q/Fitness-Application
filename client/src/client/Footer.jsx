@@ -67,7 +67,7 @@ function Footer() {
       </div>
 
       <div className="px-16 py-2 sm:px-8 bg-background text-secondlight sm:text-center text-[14px]">
-        All rights reserved by @fitness360
+        &copy; 2014 fitness360. All Rights Reserved.
       </div>
 
     </>
