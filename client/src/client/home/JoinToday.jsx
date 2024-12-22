@@ -37,8 +37,18 @@ function JoinToday() {
         <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-secondary'>
             <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div>
-                    <p className='text-xl mx-2  '>Pricing Plan</p>
-                    <h2 className='text-4xl md:text-6xl my-2 font-extrabold'>Join Today</h2>
+                    <motion.p
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("left", "", 0.3, 0.5)}
+                        className='text-xl mx-2  '>Pricing Plan</motion.p>
+                    <motion.h2
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("left", "", 0.5, 0.5)}
+                        className='text-4xl md:text-6xl my-2 font-extrabold'>Join Today</motion.h2>
                 </div>
                 <div>
                     <div className="relative w-36 h-[36px] mt-[-20px] mx-auto overflow-hidden drop-shadow-xl bg-white rounded-xl cursor-pointer" onClick={monthYearToggle}>
@@ -53,14 +63,21 @@ function JoinToday() {
             </div>
 
             {/* Monthly Packs */}
-            <div className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
+            <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeIn("up", "", 0.2, 0.6)}
+                className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
                 {Array(3).fill().map((_, index) => (
                     <motion.div
-                        initial='hidden'
-                        animate='show'
-                        variants={fadeIn("left", "spring", index * 0.2, 0.75)}
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("", "", index * 0.2, 0.4)}
+                        // variants={fadeIn("left", "spring", index * 0.2, 0.75)}
                         key={index}
-                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-secondary">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                         <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
                         <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -74,15 +91,21 @@ function JoinToday() {
                         <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
                     </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Yearly Packs */}
-            <div className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'} bg-secondary`}>
+            <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeIn("up", "", 0.2, 0.6)}
+                className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'} bg-secondary`}>
                 {Array(3).fill().map((_, index) => (
                     <motion.div
-                        initial='hidden'
-                        animate={inView ? 'show' : 'hidden'}
-                        variants={fadeIn("right", "spring", index * 0.2, 0.75)}
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("", "", index * 0.2, 0.4)}
                         key={index}
                         className="text-left flex flex-col  border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
@@ -98,8 +121,8 @@ function JoinToday() {
                         <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
                     </motion.div>
                 ))}
-            </div>
-        </section>
+            </motion.div>
+        </section >
     );
 }
 

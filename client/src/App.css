@@ -3,7 +3,10 @@
   --light-color: #ffffff;
   --primary-color: #109340;
   --font-size: 16px;
-  --primary-btn: linear-gradient(198deg, rgba(16, 147, 64, 1) 0%, rgba(22, 182, 80, 1) 50%, rgba(16, 147, 64, 1) 100%);
+  --primary-btn: linear-gradient(198deg,
+      rgba(16, 147, 64, 1) 0%,
+      rgba(22, 182, 80, 1) 50%,
+      rgba(16, 147, 64, 1) 100%);
   --gray-color: #999999;
 }
 
@@ -26,9 +29,11 @@ html {
 .c-text-black {
   color: var(--dark-color);
 }
+
 .c-border-black {
   border: 1px solid var(--dark-color);
 }
+
 .c-text-white {
   color: var(--light-color);
 }
@@ -42,9 +47,10 @@ html {
   /* background-color: var(--dark-color); */
 }
 
-.test{
-background-color: black;
+.test {
+  background-color: black;
 }
+
 .c-bg-white {
   background: var(--light-color);
 }
@@ -53,4 +59,79 @@ background-color: black;
   background: var(--primary-color);
 }
 
+.dtu_appear {
+  animation: appearAnimation_btu linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 24%;
+}
 
+@keyframes appearAnimation_btu {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.rtl_appear {
+  animation: appearAnimation_rtl linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 24%;
+  overflow: hidden;
+}
+
+@keyframes appearAnimation_rtl {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* left to right  */
+.ltr_appear {
+  animation: appearAnimation_ltr linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 24%;
+}
+
+@keyframes appearAnimation_ltr {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* fade animation  */
+.fade_appear {
+  animation: fade_in 1s ease-out;
+  animation-timeline: view();
+  animation-range: entry 0% cover 24%;
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+    /* Starts fully transparent */
+  }
+
+  100% {
+    opacity: 1;
+    /* Ends fully visible */
+  }
+}

@@ -5,6 +5,8 @@ import trainer3 from '../../assets/images/trainer-3.png'
 import { fadeIn } from '../../assets/utils/motion';
 import { motion, useInView } from "framer-motion";
 import { useRef } from 'react';
+
+
 const trainers = [
     {
         name: 'Trainer 1',
@@ -32,17 +34,28 @@ function Trainers() {
         <section className='w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary' ref={ref}>
             {isInView && (
                 <>
-                    <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Meet Our Trainers</h2>
-                    <p className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray'>
+                    <motion.h2
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("up", "", 0.2, 0.5)}
+                        className='text-4xl sm:text-5xl lg:text-6xl font-black'>Meet Our Trainers</motion.h2>
+                    <motion.p
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray'>
+
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
+                    </motion.p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-32 my-10 lg:my-20 p-0 box-border">
                         {trainers.map((trainer, index) => (
                             <motion.div
-                                initial='hidden'
-                                animate='show'
-                                variants={fadeIn("right", "", index * 0.4, 0.75)}
+                                whileInView="show"
+                                initial="hidden"
+                                viewport={{ once: false, amount: 0.2 }}
+                                variants={fadeIn("up", "", index * 0.2, 0.5)}
                                 key={index}
                                 className='relative flex items-center justify-center m-auto overflow-hidden w-5/6 rounded-[32px]'
                             >

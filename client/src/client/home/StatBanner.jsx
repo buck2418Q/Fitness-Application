@@ -24,8 +24,8 @@ function StatBanner() {
                             animate='show'
                             variants={fadeIn("right", "spring", index * 0.4, 0.75)}
                             key={index}
-                            className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4"
-                        >
+                            className="card flex flex-col items-center text-center mb-6 w-full md:w-1/2 lg:w-1/4 dtu_appear"
+                        >   
                             <h3 className='text-4xl font-extrabold mb-4'>{data.number}</h3>
                             <p className="card-details font-semibold">{data.label}</p>
                             <p className="card-details">{data.description}</p>
