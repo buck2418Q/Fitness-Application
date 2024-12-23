@@ -3,10 +3,12 @@
   --light-color: #ffffff;
   --primary-color: #109340;
   --font-size: 16px;
-  --primary-btn: linear-gradient(198deg,
-      rgba(16, 147, 64, 1) 0%,
-      rgba(22, 182, 80, 1) 50%,
-      rgba(16, 147, 64, 1) 100%);
+  --primary-btn: linear-gradient(
+    198deg,
+    rgba(16, 147, 64, 1) 0%,
+    rgba(22, 182, 80, 1) 50%,
+    rgba(16, 147, 64, 1) 100%
+  );
   --gray-color: #999999;
 }
 
@@ -96,7 +98,6 @@ html {
   }
 }
 
-
 /* left to right  */
 .ltr_appear {
   animation: appearAnimation_ltr linear;
@@ -115,7 +116,6 @@ html {
     transform: translateX(0);
   }
 }
-
 
 /* fade animation  */
 .fade_appear {
@@ -138,39 +138,6 @@ html {
 
 
 
-
-
-/* .marquee-container {
-  animation: marquee 5s linear infinite;
-}
-
-.marquee-container:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-
-  25% {
-    transform: translateX(-100%);
-  }
-
-  50% {
-    transform: translateX(0%);
-  }
-
-  75% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
-} */
-
-
 .marquee-container {
   display: flex;
   overflow: hidden;
@@ -180,11 +147,6 @@ html {
 .marquee-content {
   display: flex;
   animation: marquee 50s linear infinite;
-}
-
-.marquee-item {
-  white-space: nowrap;
-  padding-right: 50px;
 }
 
 .marquee-container:hover .marquee-content {

@@ -6,7 +6,7 @@ function Footer() {
     <>
 
 
-      <div className="px-16 pt-4 bg-background mb-[1px] text-secondlight hidden md:block">
+      <div className="px-16 pt-4 bg-background  text-secondlight hidden md:block">
         <div className="flex flex-col md:flex-row py-4 px-4 justify-between items-start">
 
           {/* First Section */}
@@ -66,6 +66,7 @@ function Footer() {
         </div>
       </div>
 
+      <div className='h-[1px] bg-secondlight'></div>
       <div className="px-16 py-2 sm:px-8 bg-background text-secondlight sm:text-center text-[14px]">
         &copy; 2014 fitness360. All Rights Reserved.
       </div>
