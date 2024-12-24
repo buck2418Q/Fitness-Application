@@ -47,7 +47,7 @@ function Navbar() {
                 <img src={logo} alt="logo" className="h-10" />
 
                 {/* Desktop Menu */}
-                <div className={`md:flex items-center gap-6 invisible md:visible z-10 flex-col md:flex-row`}>
+                <div className={`md:flex items-center gap-6 hidden md:visible z-10 flex-col md:flex-row`}>
                     {navbarLinks.map((link) => (
                         <Link
                             key={link.to}

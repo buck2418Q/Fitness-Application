@@ -8,6 +8,8 @@ import mixlrCompany from '../assets/images/mixlr.png';
 import gym1Company from '../assets/images/gym1.png';
 import gym2Company from '../assets/images/gym2.png';
 import aboutUs from '../assets/images/about-us.jpg';
+import athelete1 from '../assets/images/athelete1.jpg';
+import fitnessblog from '../assets/images/fitnessblog.jpg';
 export {
     trainerLoader,
     traineeLoader,
@@ -18,5 +20,7 @@ export {
     mixlrCompany,
     gym1Company,
     gym2Company,
-    aboutUs
+    aboutUs,
+    athelete1,
+    fitnessblog
 }
