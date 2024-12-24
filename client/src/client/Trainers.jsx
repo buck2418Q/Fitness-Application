@@ -132,7 +132,11 @@ function Trainers() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </motion.p>
 
-        <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] ">
+        <motion.div
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("up", "", 0.6, 0.5)} className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] ">
 
           {trainersData.map((trainer, index) => (
             <Card key={index} isFooterBlurred className="border-none w-80 bg-background mb-6" radius="lg">
@@ -172,7 +176,7 @@ function Trainers() {
               </CardFooter>
             </Card>))}
 
-        </div>
+        </motion.div>
       </section >
     </>
   )
