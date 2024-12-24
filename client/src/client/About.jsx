@@ -396,7 +396,7 @@ flex flex-wrap lg:flex-nowrap items-center text-light bg-background gap-8">
                 <CardBody className="overflow-visible pt-2 pb-0  w-full ">
                   <h4 className="font-bold text-large">{blog.blogTitle}</h4>
                   <p className="text-tiny uppercase mt-[6px] mb-2">{blog.blogDescription}</p>
-                  <small className="text-default-500 ">See More </small>
+                  <small className="text-default-500 hover:cursor-pointer hover:text-light transition ease-in-out duration-300">See More </small>
                 </CardBody>
               </Card>
             ))
