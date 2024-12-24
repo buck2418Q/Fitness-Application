@@ -128,7 +128,7 @@ function Trainers() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray text-center text-secondlight'>
+          variants={fadeIn("up", "", 0.3, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray text-center text-secondlight'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </motion.p>
 
