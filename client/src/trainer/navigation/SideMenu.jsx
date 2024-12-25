@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/logos/logo.png";
 import { chevronUpIcon, menuIcon, xIcon } from "../../components/icons";
-import { RoutesData } from "./UsersRoutesData";
+import { RoutesData } from "./TrainerRoutesData";
 
 const SideMenu = () => {
     const [openMenu, setOpenMenu] = useState(null);

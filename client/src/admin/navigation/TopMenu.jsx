@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { bellIcon } from '../../components/icons'
 import ButtonUi from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
@@ -7,11 +7,18 @@ import profilePic from '../../assets/images/profilePic.jpg'
 import { searchIcon } from '../../components/icons'
 import { motion } from "framer-motion"
 import { fadeIn } from '../../assets/utils/motion';
+import { jwtDecode } from 'jwt-decode';
 
 const TopMenu = () => {
-
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const navigate = useNavigate()
-    const userName = localStorage.getItem('userName');
+    useEffect(() => {
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        setUserName(decodedToken.userName);
+        setUserEmail(decodedToken.email);
+    }, [])
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleProfileModal = () => {
@@ -26,6 +33,7 @@ const TopMenu = () => {
 
     const logoutClick = () => {
         localStorage.clear('token');
+        sessionStorage.clear('token');
         navigate('/home')
     }
     const profileClick = () => {
@@ -41,7 +49,7 @@ const TopMenu = () => {
         <>
             <div className=" h-16 flex items-center justify-between px-8 pt-2 m-2">
                 <h3 className="text-2xl font-bold">
-                    Welcome {userName}
+                    Admin {userName}
                 </h3>
                 <div className="flex gap-6 items-center">
                     <label className="relative block">
@@ -78,7 +86,7 @@ const TopMenu = () => {
 
                         <div className="px-5 relative top-[-40px]">
                             <p className='text-xl text-center font-bold'>{userName}</p>
-                            <p className='text-base text-center font-semibold'>{userName}</p>
+                            <p className='text-base text-center font-semibold'>{userEmail}</p>
                         </div>
 
                         <div className="flex justify-evenly p-2  relative top-[-40px]">

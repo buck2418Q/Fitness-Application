@@ -9,6 +9,11 @@ const TrainerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        required: false,
+        default: "trainer",
+    },
     email: {
         type: String,
         required: true
@@ -53,24 +58,18 @@ const TrainerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pricingDetails: {
+    instaId: {
         type: String,
         required: true
-    }
-
-
-    // pricingDetails: [
-    //     {
-    //         pricingDetails: {
-    //             type: String,
-    //             required: true
-    //         }, pricingDetails: {
-    //             type: String,
-    //             required: true
-    //         },
-    //     }
-    // ],
-
+    },
+    facebook: {
+        type: String,
+        required: true
+    },
+    twitter: {
+        type: String,
+        required: true
+    },
 })
 
 const TrainerModel = mongoose.model('trainers', TrainerSchema);

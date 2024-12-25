@@ -1,5 +1,5 @@
 import AdminModel from "../models/Admin.js";
-import { getAdmins } from "../services/AdminService.js";
+import { createAdmin, getAdmins } from "../services/AdminService.js";
 
 
 
@@ -15,9 +15,8 @@ export const GetAdmin = async (req, res) => {
 export const CreateAdmin = async (req, res) => {
     try {
 
-        const adminData = await AdminModel.create(req.body);
-        if (adminData) res.status(201).send({ message: "Admin Created" });
-        else res.status(404).send({ message: "Unable to create" });
+        const adminData = await createAdmin(req.body);
+        return res.status(adminData.statusCode).send(adminData)
     } catch (e) {
         res.status(404).send({ eror: e?.message });
     }

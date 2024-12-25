@@ -1,8 +1,7 @@
-
-import { Outlet } from 'react-router-dom';
-import SideMenu from './SideMenu';
-import TopMenu from './TopMenu';
-import { RoutesData } from './UsersRoutesData';
+import SideMenu from "./SideMenu";
+import TopMenu from "./TopMenu";
+import { RoutesData } from "./TrainerRoutesData";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
     return (

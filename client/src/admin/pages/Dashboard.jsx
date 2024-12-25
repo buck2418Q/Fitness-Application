@@ -21,7 +21,6 @@ function Dashboard() {
     try {
       const totalUsers = await userCount();
       setTotalUsers(totalUsers);
-      console.log("totalUsers", totalUsers);
     } catch (error) {
       console.error(error);
     }

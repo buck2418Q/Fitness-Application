@@ -33,16 +33,14 @@ function Trainers() {
                 </select>
             )
         },
-        { field: "certifications", headerName: "Certifications", },
+        { field: "certifications", headerName: "Certifications" },
         { field: "city", headerName: "City" },
         { field: "location", headerName: "Location" },
-        { field: "pricingDetails", headerName: "Pricing Details" },
         { field: "serviceType", headerName: "Service Type" },
-        { field: "servicesOffered", headerName: "Services Offered", },
+        { field: "servicesOffered", headerName: "Services Offered" },
         { field: "totalClients", headerName: "Total Clients" },
         {
-            field: "profilePicture",
-            headerName: "Profile Picture",
+            field: "profilePicture", headerName: "Profile Picture",
             cellRenderer: (params) => (
                 <img
                     src={params.value}
@@ -51,6 +49,9 @@ function Trainers() {
                 />
             ),
         },
+        { field: "instaId", headerName: "Insta ID" },
+        { field: "facebook", headerName: "Facebook" },
+        { field: "twitter", headerName: "Twitter" },
         {
             field: "actionButtons",
             headerName: "Actions",
@@ -67,6 +68,7 @@ function Trainers() {
         },
     ]);
 
+
     const fields = [
         { label: 'First Name', name: 'firstName', type: 'text', required: true },
         { label: 'Last Name', name: 'lastName', type: 'text', required: true },
@@ -81,8 +83,11 @@ function Trainers() {
         { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: true },
         { label: 'Services Offered', name: 'servicesOffered', type: 'text', required: true },
         { label: 'Total Clients', name: 'totalClients', type: 'text', required: true },
-        { label: 'Pricing Details', name: 'pricingDetails', type: 'text', required: true },
+        { label: 'Insta ID', name: 'instaId', type: 'text', required: true },
+        { label: 'Facebook', name: 'facebook', type: 'text', required: true },
+        { label: 'Twitter', name: 'twitter', type: 'text', required: true },
     ];
+
 
 
     useEffect(() => {
@@ -92,6 +97,7 @@ function Trainers() {
     const initialFormData = {
         firstName: '',
         lastName: '',
+        role: 'trainer',
         email: '',
         password: '',
         serviceType: '',
@@ -103,8 +109,11 @@ function Trainers() {
         profilePicture: '',
         servicesOffered: '',
         totalClients: '',
-        pricingDetails: ''
+        instaId: '',
+        facebook: '',
+        twitter: ''
     };
+
 
     const [formData, setFormData] = useState(initialFormData);
 
@@ -135,9 +144,8 @@ function Trainers() {
         try {
             setLoading(true);
             const result = await DeleteTrainer(id);
-            // console.log('hhhhhhhhhh', result)
             toast.success("Trainer Delete Successfully")
-            getAllTrainers();
+            GetAllTrainers();
 
         } catch (error) {
             console.error("Error deleting trainer:", error);
@@ -145,6 +153,7 @@ function Trainers() {
         } finally {
             setLoading(false);
         }
+
     }
 
     const GetAllTrainers = async () => {
@@ -175,7 +184,6 @@ function Trainers() {
         try {
             setLoading(true);
             const result = await CreateTrainer(formData);
-            console.log("result data :  ", result);
             if (result.data.statusCode === 201) toast.success(result.data.message);
             if (result.data.statusCode === 400) toast.error(result.data.message);
             if (result.data.statusCode === 404) toast.error(result.data.message);

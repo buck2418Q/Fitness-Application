@@ -1,18 +1,17 @@
-
 export const RoutesData = [
     {
         title: "Dashboard",
         icon: "🏠",
-        path: "/groot/dashboard",
+        path: "/user/dashboard",
     },
     
     {
         title: "Plans",
         icon: "🤝",
-        path: "/groot/plans",
+        path: "/user/plans",
         children: [
-            { title: "Yoga Plans", path: "/groot/plans", icon: "🤝", },
-            { title: "XYZ Plans", path: "/groot/plans", icon: "🤝", },
+            { title: "Yoga Plans", path: "/user/plans", icon: "🤝", },
+            { title: "XYZ Plans", path: "/user/plans", icon: "🤝", },
         ],
     },
     {

@@ -18,6 +18,24 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar-track {
+  background: #111419;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dddddd;
+  border: 1px solid #111419;
+  border-radius: 5px;
 }
 
 html {
@@ -135,8 +153,6 @@ html {
     /* Ends fully visible */
   }
 }
-
-
 
 .marquee-container {
   display: flex;

@@ -1,123 +1,70 @@
+/* eslint-disable no-unused-vars */
 // import React from 'react'
 import { Card, CardFooter, Image, } from "@nextui-org/react";
 import { fadeIn } from "../assets/utils/motion";
 import { motion } from "framer-motion";
 import { facebookIcon, instagramIcon, twitterIcon } from "../components/icons";
-import {
-  trainer4,
-  trainer5,
-  trainer6,
-  trainer7
-} from "../components/images";
-
-const trainersData = [
-  {
-    name: "Alice Johnson",
-    specialization: "Yoga",
-    image: trainer6,
-    instagramId: "https://github.com/AliceYoga",
-    twitterId: "https://github.com/AliceYoga",
-    facebookId: "https://github.com/AliceYoga",
-  },
-  {
-    name: "Bob Smith",
-    specialization: "Cardio",
-    image: trainer7,
-    instagramId: "https://github.com/BobCardio",
-    twitterId: "https://github.com/BobCardio",
-    facebookId: "https://github.com/BobCardio",
-  },
-  {
-    name: "Carla Green",
-    specialization: "Strength Training",
-    image: trainer5,
-    instagramId: "https://github.com/CarlaStrength",
-    twitterId: "https://github.com/CarlaStrength",
-    facebookId: "https://github.com/CarlaStrength",
-  },
-  {
-    name: "David Lee",
-    specialization: "Pilates",
-    image: trainer4,
-    instagramId: "https://github.com/DavidPilates",
-    twitterId: "https://github.com/DavidPilates",
-    facebookId: "https://github.com/DavidPilates",
-  },
-  {
-    name: "Emily White",
-    specialization: "CrossFit",
-    image: trainer7,
-    instagramId: "https://github.com/EmilyCrossFit",
-    twitterId: "https://github.com/EmilyCrossFit",
-    facebookId: "https://github.com/EmilyCrossFit",
-  },
-  {
-    name: "Frank Black",
-    specialization: "HIIT",
-    image: trainer6,
-    instagramId: "https://github.com/FrankHIIT",
-    twitterId: "https://github.com/FrankHIIT",
-    facebookId: "https://github.com/FrankHIIT",
-  },
-  {
-    name: "Grace Brown",
-    specialization: "Body Building",
-    image: trainer4,
-    instagramId: "https://github.com/GraceBodyBuilding",
-    twitterId: "https://github.com/GraceBodyBuilding",
-    facebookId: "https://github.com/GraceBodyBuilding",
-  },
-  {
-    name: "Henry Adams",
-    specialization: "Boxing",
-    image: trainer5,
-    instagramId: "https://github.com/HenryBoxing",
-    twitterId: "https://github.com/HenryBoxing",
-    facebookId: "https://github.com/HenryBoxing",
-  },
-  {
-    name: "Isla Scott",
-    specialization: "Martial Arts",
-    image: trainer7,
-    instagramId: "https://github.com/IslaMartialArts",
-    twitterId: "https://github.com/IslaMartialArts",
-    facebookId: "https://github.com/IslaMartialArts",
-  },
-  {
-    name: "Jack Thompson",
-    specialization: "Functional Training",
-    image: trainer6,
-    instagramId: "https://github.com/JackFunctionalTraining",
-    twitterId: "https://github.com/JackFunctionalTraining",
-    facebookId: "https://github.com/JackFunctionalTraining",
-  },
-  {
-    name: "Kelly Martinez",
-    specialization: "Swimming",
-    image: trainer5,
-    instagramId: "https://github.com/KellySwimming",
-    twitterId: "https://github.com/KellySwimming",
-    facebookId: "https://github.com/KellySwimming",
-  },
-  {
-    name: "Liam Harris",
-    specialization: "Weight Loss",
-    image: trainer4,
-    instagramId: "https://github.com/LiamWeightLoss",
-    twitterId: "https://github.com/LiamWeightLoss",
-    facebookId: "https://github.com/LiamWeightLoss",
-  }
-];
+import { trainer4, } from "../components/images";
+import { useEffect, useState } from "react";
+import { knowAllTrainers } from "../services/homeService/HomeService";
+import Loader from "../components/Loader";
 
 
 function Trainers() {
+
+  const [trainersData, setTrainersData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPageData, setCurrentPageData] = useState([]);
+
+
+  useEffect(() => {
+    fetchTrainers(page);
+  }, [page]);
+
+  const fetchTrainers = async (page) => {
+    try {
+      setLoading(true);
+      const { trainerData, totalPages } = await knowAllTrainers(page, pageSize);
+      setTrainersData(trainerData);
+      setTotalPages(totalPages);
+    } catch (e) {
+      console.error(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const updatePageData = (data, currentPage) => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    setCurrentPageData(data.slice(startIndex, endIndex));
+  };
+
+  const handlePageChange = (action) => {
+    setTrainersData([]);
+    let newPage = action === "next" ? page + 1 : page - 1;
+    if (newPage > 0 && newPage <= totalPages) {
+      setPage(newPage);
+      updatePageData(trainersData, newPage);
+    }
+  };
+
+
   const onSmClick = (link) => {
-    window.open(link, '_blank', 'noopener noreferrer');
+    window.open(link, "_blank");
   };
 
   return (
     <>
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary ">
+      <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
+        <Loader />
+      </div>
+
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary">
         <motion.h2
           whileInView="show"
           initial="hidden"
@@ -139,44 +86,68 @@ function Trainers() {
           variants={fadeIn("up", "", 0.6, 0.5)} className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] ">
 
           {trainersData.map((trainer, index) => (
-            <Card key={index} isFooterBlurred className="border-none w-80 bg-background mb-6" radius="lg">
-              <Image
-                alt="Woman listing to music"
-                className="object-cover w-full "
-                src={trainer.image}
-              />
-              <CardFooter className=" before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10 justify-between">
-                <p className="text-tiny left-0 text-white/80 text-left">
-                  <span className="block text-base">{trainer.name}</span>
-                  <span>{trainer.specialization}</span>
-                </p>
+            <motion.div
+              whileInView="show"
+              initial="hidden"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={fadeIn("up", "", index * 0.1, 0.5)}
+              key={index}
+            >
+              <Card isFooterBlurred className="border-none w-80 h-56 bg-background mb-6" radius="lg">
+                <Image
+                  alt="Woman listing to music"
+                  className="object-cover w-full "
+                  src={trainer.image || trainer4}
+                />
+                <CardFooter className=" before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10 justify-between">
+                  <p className="text-tiny left-0 text-white/80 text-left">
+                    <span className="block text-base">{trainer.firstName + " " + trainer.lastName}</span>
+                    <span>{trainer.serviceType}</span>
+                  </p>
 
-                <p
-                  className="text-tiny text-white bg-black/40 flex gap-1 p-1 rounded-full"
-                  color="default"
-                  radius="lg"
-                  size="sm"
-                >
-                  <img src={instagramIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                  <p
+                    className="text-tiny text-white bg-black/40 flex gap-1 p-1 rounded-full"
                     color="default"
                     radius="lg"
                     size="sm"
-                    onClick={() => onSmClick(trainer.instagramId)} />
-                  <img src={twitterIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
-                    color="default"
-                    radius="lg"
-                    size="sm"
-                    onClick={() => onSmClick(trainer.twitterId)} />
-                  <img src={facebookIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
-                    color="default"
-                    radius="lg"
-                    size="sm"
-                    onClick={() => onSmClick(trainer.facebookId)} />
-                </p>
-              </CardFooter>
-            </Card>))}
-
+                  >
+                    <img src={instagramIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                      color="default"
+                      radius="lg"
+                      size="sm"
+                      onClick={() => onSmClick(trainer.instaId)} />
+                    <img src={twitterIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                      color="default"
+                      radius="lg"
+                      size="sm"
+                      onClick={() => onSmClick(trainer.twitter)} />
+                    <img src={facebookIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                      color="default"
+                      radius="lg"
+                      size="sm"
+                      onClick={() => onSmClick(trainer.facebook)} />
+                  </p>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
         </motion.div>
+
+        <div className="pagination-controls text-light flex justify-end">
+          <div className="text-white bg-black/40 flex gap-1 rounded-full p-2">
+            <button onClick={() => handlePageChange("back")} disabled={page === 1} className={`bg-secondary py-1 rounded-full px-4  border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === 1 ? "hover:border-secondary" : ""}`} >
+              Back
+            </button>
+            {/* <span className="mx-4">
+            Page {page} of {totalPages}
+          </span> */}
+            <button onClick={() => handlePageChange("next")} disabled={page === totalPages} className={`bg-secondary py-1 rounded-full px-4 border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === totalPages ? "hover:border-secondary" : ""}`}>
+              Load More
+            </button>
+          </div>
+
+        </div>
+
       </section >
     </>
   )

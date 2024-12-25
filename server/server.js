@@ -7,6 +7,8 @@ import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser, UserCount }
 import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
 import { Login } from "./controllers/Login.js";
 import { verifyToken } from "./middleWare/MiddleWare.js";
+import { getTrainerDetails } from "./services/HomeService.js";
+import { GetTrainerDetails } from "./controllers/Home.js";
 
 dotenv.config();
 
@@ -45,10 +47,14 @@ router.put("/trainer", UpdateTrainer);
 router.delete("/trainer", DeleteTrainer);
 router.get("/findtrainerbyid", FindTrainerById);
 
-
-
 //login
 router.post("/login", Login);
+
+
+// home page data
+router.get("/knowtrainer", GetTrainerDetails)
+
+
 
 mongoose.connect(dbUrl).then((d) => {
     app.listen(port, () => {

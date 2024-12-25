@@ -23,6 +23,7 @@ const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
 const PageNotFound = React.lazy(() => import('./components/PageNotFound'))
 const Test = React.lazy(() => import('./components/Test'))
 const Profile = React.lazy(() => import('./components/Profile'))
+const TrainerLayout = React.lazy(() => import('./trainer/navigation/Layout'));
 
 function AppRoutes() {
     const routesList = [
@@ -44,7 +45,7 @@ function AppRoutes() {
 
         // user routes 
         {
-            path: "groot", element: <Layout />, children: [
+            path: "user", element: <Layout />, children: [
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "plans", element: <UserPlans /> }
@@ -63,6 +64,21 @@ function AppRoutes() {
 
             ]
         },
+
+        // trainer routes
+        {
+            path: "trainer", element: <TrainerLayout />, children: [
+                { path: "", element: <Navigate to="dashboard" /> },
+                { path: "dashboard", element: <AdminDashboard /> },
+                { path: "Plans", element: <AdminPlans /> },
+                { path: "user", element: <AdminUsers /> },
+                { path: "trainer", element: <ProtectedRoute component={AdminTrainers} /> },
+                { path: 'profile', element: <Profile /> }
+
+            ]
+        },
+
+
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
         { path: 'loader', element: <Loader /> },

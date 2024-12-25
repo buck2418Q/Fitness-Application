@@ -3,13 +3,21 @@
 import { useState } from "react";
 import ButtonUi from '../components/Button'
 import file from '../assets/icons/file.png'
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { fadeIn } from "../assets/utils/motion";
 
 function Signup() {
   const [step, setStep] = useState(1);
 
+  const navigate = useNavigate();
   const nextStep = () => {
     setStep(step + 1);
   };
+
+  const signInClick = () => {
+    navigate('/login');
+  }
 
   const prevStep = () => {
     setStep(step - 1);
@@ -23,22 +31,32 @@ function Signup() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#00000033]">
-    
-      <div className="bg-white p-8 rounded-3xl shadow-lg w-full md:w-8/12 lg:w-5/12 h-full">
-        <h2 className="text-3xl font-bold mb-4">Join Us Now</h2>
+    <div className="flex items-center justify-center min-h-screen bg-secondary">
+
+      <motion.div
+        whileInView="show"
+        initial="hidden"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={fadeIn("", "", 0.2, 0.4)}
+
+        className="bg-background text-light p-8 rounded-3xl shadow-lg w-full md:w-8/12 lg:w-5/12 h-full">
+
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl font-bold mb-4">Join Us Now</h2>
+          <button className="my-4 text-secondlight underline cursor-pointer leading-relaxed" onClick={signInClick}>Already Have an account ?</button>
+        </div>
         <hr />
         <div className={`${step === 4 ? 'hidden' : 'flex items-center justify-between m-6 overflow-hidden'}`}>
-          <span className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white">
+          <span className="flex items-center justify-center w-10 h-10 rounded-full bg-light text-background">
             1
           </span>
           <span className="w-4/12 h-[2px] rounded-xl bg-gray-400"></span>
-          <span className={`flex items-center justify-center w-10 h-10 rounded-full  text-white ${step === 2 || step === 3 ? 'bg-black' : 'bg-gray-400'}`}>
+          <span className={`flex items-center justify-center w-10 h-10 rounded-full  text-background ${step === 2 || step === 3 ? 'bg-light' : 'bg-gray-500 text-secondlight'}`}>
             2
           </span>
 
           <span className="w-4/12 h-[2px] rounded-xl bg-gray-400"></span>
-          <span className={`flex items-center justify-center w-10 h-10 rounded-full  text-white ${step === 3 ? 'bg-black' : 'bg-gray-400'}`}>
+          <span className={`flex items-center justify-center w-10 h-10 rounded-full  text-background ${step === 3 ? 'bg-light' : 'bg-gray-500 text-secondlight'}`}>
             3
           </span>
 
@@ -157,7 +175,7 @@ function Signup() {
             />
           </div>
         )}
-      </div>
+      </motion.div>
     </div >
   )
 }

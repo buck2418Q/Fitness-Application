@@ -25,34 +25,59 @@ function Users() {
         { field: "lastName", headerName: "Last Name" },
         { field: "age", headerName: "Age" },
         { field: "email", headerName: "Email" },
-        { field: "gender", headerName: "Gender" },
-        { field: "height", headerName: "Height (cm)" },
-        { field: "weight", headerName: "Weight (kg)" },
-        { field: "fitnessGoals", headerName: "Fitness Goals" },
-        { field: "profilePicture", headerName: "Profile Picture", cellRenderer: (params) => <img src={params.value} alt="Profile" style={{ width: '50px', borderRadius: '50%' }} /> },
+        { field: "contactNumber", headerName: "Phone Number" },
         {
-            field: 'action Buttn', headerName: "Actions", cellRenderer: (params) => (
+            field: "gender", headerName: "Gender",
+        },
+        { field: "height", headerName: "Height" },
+        { field: "weight", headerName: "Weight" },
+        { field: "address", headerName: "Address" },
+        { field: "city", headerName: "City" },
+        { field: "state", headerName: "State" },
+        {
+            field: "profilePicture", headerName: "Profile Picture",
+            cellRenderer: (params) => (
+                <img
+                    src={params.value}
+                    alt="Profile"
+                    style={{ width: '50px', borderRadius: '50%' }}
+                />
+            ),
+        },
+        {
+            field: "actionButtons",
+            headerName: "Actions",
+            cellRenderer: (params) => (
                 <div>
-                    <button className="bg-blue-400 mx-1 rounded h-9  px-[14px] relative text-center leading-0 " onClick={() => handleEdit(params.data)}>Edit</button>
-                    <button className="bg-red-400 mx-1 rounded h-9  px-[14px] relative text-center leading-0 " onClick={() => handleDelete(params.data)}>Delete</button>
+                    <button className="bg-blue-400 mx-1 rounded h-9 px-[14px] text-center" onClick={() => handleEdit(params.data)}>
+                        Edit
+                    </button>
+                    <button className="bg-red-400 mx-1 rounded h-9 px-[14px] text-center" onClick={() => handleDelete(params.data)}>
+                        Delete
+                    </button>
                 </div>
-            )
-        }
+            ),
+        },
     ]);
 
+
     const initialFormData = {
+        role: 'user',
         firstName: '',
         lastName: '',
+        age: '',
         email: '',
         password: '',
+        contactNumber: '',
         profilePicture: '',
-        age: '',
         gender: '',
         height: '',
         weight: '',
-        fitnessGoals: '',
-        address: ''
+        address: '',
+        city: '',
+        state: ''
     };
+
 
     const [formData, setFormData] = useState(initialFormData);
 
@@ -135,22 +160,19 @@ function Users() {
     const fields = [
         { label: 'First Name', name: 'firstName', type: 'text', required: true },
         { label: 'Last Name', name: 'lastName', type: 'text', required: true },
-        { label: 'Email', name: 'email', type: 'email', required: true, unique: true },
-        { label: 'Password', name: 'password', type: 'password', required: true },
-        { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: false },
         { label: 'Age', name: 'age', type: 'number', required: true },
-        {
-            label: 'Gender', name: 'gender', type: 'radio', required: true, options: [
-                { value: 'Male', label: 'Male' },
-                { value: 'Female', label: 'Female' },
-                { value: 'Other', label: 'Other' }
-            ]
-        },
-        { label: 'Height (cm)', name: 'height', type: 'number', required: true },
-        { label: 'Weight (kg)', name: 'weight', type: 'number', required: true },
-        { label: 'Fitness Goals', name: 'fitnessGoals', type: 'text', required: true },
+        { label: 'Email', name: 'email', type: 'email', required: true },
+        { label: 'Password', name: 'password', type: 'password', required: true },
+        { label: 'Contact Number', name: 'contactNumber', type: 'number', required: true },
+        { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: false },
+        { label: 'Gender', name: 'gender', type: 'text', required: true },
+        { label: 'Height', name: 'height', type: 'number', required: true },
+        { label: 'Weight', name: 'weight', type: 'number', required: true },
         { label: 'Address', name: 'address', type: 'text', required: true },
+        { label: 'City', name: 'city', type: 'text', required: true },
+        { label: 'State', name: 'state', type: 'text', required: true }
     ];
+
 
 
     const handleSubmit = async (formData) => {

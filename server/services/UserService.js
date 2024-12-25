@@ -21,9 +21,6 @@ export const userCount = async () => {
 
 export const createUser = async (userData) => {
     const isEmailExists = await getUserByEmail(userData.email);
-    // if (!userData.email || !userData.password) {
-    //     return createResponse(404, "Email and password are required", "");
-    // }
     if (isEmailExists) {
         return createResponse(400, "Email Exists", null);
     } else {
@@ -34,7 +31,7 @@ export const createUser = async (userData) => {
             if (newUser) {
                 return createResponse(201, "User Created", null);
             } else {
-                return createResponse(400, "Unable to create user", null);
+                return createResponse(202, "Unable to create user", null);
             }
         } catch (error) {
             throw new Error(error.message || "DB error");

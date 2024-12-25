@@ -13,7 +13,7 @@ export const trainerCount = async () => {
 }
 
 export const getAllTrainers = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     try {
         const response = await axios.get(Trainers, {
             headers: {
