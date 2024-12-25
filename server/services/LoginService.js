@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { createResponse } from "../utils/utilityFunctions.js";
 import UserModel from '../models/User.js';
 import TrainerModel from '../models/Trainers.js';
