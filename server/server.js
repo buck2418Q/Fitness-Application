@@ -7,20 +7,28 @@ import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser, UserCount }
 import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
 import { Login } from "./controllers/Login.js";
 import { verifyToken } from "./middleWare/MiddleWare.js";
-import { getTrainerDetails } from "./services/HomeService.js";
 import { GetTrainerDetails } from "./controllers/Home.js";
 
 dotenv.config();
 
+// Initialize Express app and middleware
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Configurations and variables
 const port = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
 const appName = "/fitness360";
-const router = express.Router();
 
+// Validate Environment Variables
+if (!dbUrl) {
+    console.error("Error: DB_URL is not defined in environment variables.");
+    process.exit(1); // Exit the process if DB_URL is not set
+}
+
+// Routes
+const router = express.Router();
 app.use(appName, router);
 
 
@@ -56,11 +64,19 @@ router.get("/knowtrainer", GetTrainerDetails)
 
 
 
-mongoose.connect(dbUrl).then((d) => {
-    app.listen(port, () => {
-        console.log("Server running at port ", port);
-    });
-    console.log("DB Connected");
-}).catch((e) => {
-    console.log('DB connection error');
-});
+// Database connection
+const connectDB = async () => {
+    try {
+        await mongoose.connect(dbUrl); // No need for deprecated options
+        console.log("DB Connected");
+
+        app.listen(port, () => {
+            console.log(`Server running at port ${port}`);
+        });
+    } catch (error) {
+        console.error("DB connection error:", error.message);
+        process.exit(1); // Exit the process on DB connection failure
+    }
+};
+// Connect to database
+connectDB();
