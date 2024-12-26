@@ -1,182 +1,398 @@
-// import React from 'react'
+/* eslint-disable no-unused-vars */
+"use client";
 
+// import React from 'react'
+import { Button, Input, Select, SelectItem, Link, Divider, } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
 import { useState } from "react";
 import ButtonUi from '../components/Button'
-import file from '../assets/icons/file.png'
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "../assets/utils/motion";
+import { toast, Toaster } from "sonner";
+import Loader from "../components/Loader";
+import { CreateUser } from "../services/AuthenticationService";
 
 function Signup() {
   const [step, setStep] = useState(1);
-
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    gender: '',
+    age: '',
+    height: '',
+    weight: '',
+    address: '',
+    city: '',
+    state: '',
+    contactNumber: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const navigate = useNavigate();
+
   const nextStep = () => {
     setStep(step + 1);
   };
-
-  const signInClick = () => {
+  const logInClick = () => {
     navigate('/login');
   }
-
   const prevStep = () => {
     setStep(step - 1);
   };
-  const returnHome = () => {
-    alert('back to home')
-    setStep(1)
-  }
-  const acceptNumber = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/g, '')
-  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const resetForm = () => {
+
+    formData.firstName = ''
+    formData.lastName = ''
+    formData.gender = ''
+    formData.age = ''
+    formData.height = ''
+    formData.weight = ''
+    formData.address = ''
+    formData.city = ''
+    formData.state = ''
+    formData.contactNumber = ''
+    formData.email = ''
+    formData.password = ''
+    formData.confirmPassword = ''
+
+  };
+
+  const createUserClick = async (e) => {
+    e.preventDefault();
+    // for (const key in formData) {
+    //   if (formData[key] === '') {
+    //     toast(`Please enter ${key}`);
+    //     return;
+    //   }
+    // }
+    console.log('Form Data ', formData);
+    try {
+      setLoading(true);
+      const result = await CreateUser(formData);
+      if (result.statusCode === 201) {
+        toast.success(result.message);
+        navigate('/login')
+      } else if (result.statusCode === 203) {
+        toast.warning(result.message);
+        setStep(1)
+      } else if (result.statusCode === 202) {
+        toast.error(result.message);
+        setStep(1)
+      }
+    } catch (e) {
+      console.error(e)
+    }
+    finally {
+      resetForm()
+      setLoading(false)
+    }
+  };
+
+  // const acceptNumber = (e) => {
+  //   e.target.value = e.target.value.replace(/[^0-9]/g, '');
+  // };
+  const gender = [
+    { key: "male", label: "Male" },
+    { key: "female", label: "Female" },
+    { key: "other", label: "Other" },
+  ]
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+  const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
+
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-secondary">
 
-      <motion.div
-        whileInView="show"
-        initial="hidden"
-        viewport={{ once: false, amount: 0.2 }}
-        variants={fadeIn("", "", 0.2, 0.4)}
-
-        className="bg-background text-light p-8 rounded-3xl shadow-lg w-full md:w-8/12 lg:w-5/12 h-full">
-
-        <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold mb-4">Join Us Now</h2>
-          <button className="my-4 text-secondlight underline cursor-pointer leading-relaxed" onClick={signInClick}>Already Have an account ?</button>
-        </div>
-        <hr />
-        <div className={`${step === 4 ? 'hidden' : 'flex items-center justify-between m-6 overflow-hidden'}`}>
-          <span className="flex items-center justify-center w-10 h-10 rounded-full bg-light text-background">
-            1
-          </span>
-          <span className="w-4/12 h-[2px] rounded-xl bg-gray-400"></span>
-          <span className={`flex items-center justify-center w-10 h-10 rounded-full  text-background ${step === 2 || step === 3 ? 'bg-light' : 'bg-gray-500 text-secondlight'}`}>
-            2
-          </span>
-
-          <span className="w-4/12 h-[2px] rounded-xl bg-gray-400"></span>
-          <span className={`flex items-center justify-center w-10 h-10 rounded-full  text-background ${step === 3 ? 'bg-light' : 'bg-gray-500 text-secondlight'}`}>
-            3
-          </span>
-
-        </div>
-        {step === 1 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Basic Details</h2>
-            <div className="flex flex-col md:flex-row">
-              <div className="w-full md:w-1/2 md:mr-2">
-                <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Enter name" />
-                <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Enter phone no" />
-                <input className="w-full p-2 mb-4 border rounded-xl" type="email" placeholder="Enter email" />
-              </div>
-              <div className="w-full md:w-1/2 md:ml-2 mb-4">
-                <label htmlFor="file-upload" className="border w-full h-full flex flex-col items-center justify-center cursor-pointer rounded-xl">
-                  <img src={file} alt="" />
-                  <span className="text-s m-1 text-center"> Drop your file here or browse</span>
-                  <span className="text-xs font-thin text-center">Maximum uploaded file size: 05 MB</span>
-                </label>
-                <input type="file" name="" id="file-upload" className="hidden" />
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row gap-2">
-              <select className="w-full p-2 mb-4 border rounded-xl">
-                <option value="" disabled defaultValue>Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-              <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Enter age" onInput={acceptNumber} />
-              <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Enter height" onInput={acceptNumber} />
-              <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Enter weight" onInput={acceptNumber} />
-            </div>
-            <div className="w-full">
-              <ButtonUi
-                text="Next"
-                onClick={nextStep}
-                type="secondary"
-                size="medium"
-              />
-            </div>
+    <>
+      <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
+        <Loader />
+      </div>
+      <div className="flex flex-col h-full w-full items-center justify-center absolute bg-gradient-to-r from-green-50 to-blue-50">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fadeIn('', 'spring', .2, 0.75)}
+          className="flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35 ">
+          <div className="flex flex-col items-center pb-6">
+            {/* <AcmeIcon size={60} /> */}
+            <p className="text-xl font-medium">Welcome</p>
+            <p className="text-small text-default-500">Create an account to get started</p>
           </div>
-        )}
-        {step === 2 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Membership Details</h2>
-            <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Select Plan" />
-            <input className="w-full p-2 mb-4 border rounded-xl" type="text" placeholder="Plan Duration" />
-            <input className="w-full p-2 mb-4 border rounded-xl" type="date" placeholder="Start Date" />
-            <input className="w-full p-2 mb-4 border rounded-xl" type="date" placeholder="End Date" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 1</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 2</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 3</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 4</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 5</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 6</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 7</span>
-              <span className="bg-gray-200 p-2 rounded-xl">Goal 8</span>
-            </div>
-            <div className="flex justify-evenly gap-2 md:gap-28">
-              <div></div>
-              <div className="w-full">
-                <ButtonUi
-                  text="Back"
-                  onClick={prevStep}
-                  type="secondary"
-                  size="medium"
-                />
+
+
+          <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
+            {/* Step 1: Email */}
+            {step === 1 && (
+              <Button color="primary" type="submit" onClick={nextStep}>
+                Continue with email
+              </Button>
+            )}
+
+            {/* Step 2: First Name, Last Name, Gender, Age */}
+            {step === 2 && (
+              <div>
+                <div className="flex flex-col mb-4">
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-b-none" }}
+                    label="First Name"
+                    name="firstName"
+                    type="text"
+                    variant="bordered"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-none" }}
+                    label="Last Name"
+                    name="lastName"
+                    type="text"
+                    variant="bordered"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                  />
+                  <Select
+                    radius="none"
+                    classNames="rounded-t-none rounded-lg bg-red-500"
+                    variant="bordered"
+                    items={gender}
+                    label="Gender"
+                    placeholder="Select gender"
+
+                  >
+                    {(item) =>
+                      <SelectItem
+                        key={item.value}
+                        value={item.value}>{item.label}
+                      </SelectItem>}
+                  </Select>
+
+                  <Input
+                    isRequired
+                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    label="Age"
+                    name="age"
+                    type="number"
+                    variant="bordered"
+                    value={formData.age}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex justify-evenly gap-2 md:gap-28">
+                  <div className="w-full">
+                    <ButtonUi text="Back" onClick={prevStep} type="secondary" size="medium" />
+                  </div>
+                  <div className="w-full">
+                    <ButtonUi text="Next" onClick={nextStep} type="secondary" size="medium" />
+                  </div>
+                </div>
               </div>
-              <div className="w-full">
-                <ButtonUi
-                  text="Next"
-                  onClick={nextStep}
-                  type="secondary"
-                  size="medium"
-                />
+            )}
+
+            {/* Step 3: Height, Weight, Address, City, State */}
+            {step === 3 && (
+              <div>
+                <div className="flex flex-col mb-4">
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-b-none" }}
+                    label="Height in cm"
+                    name="height"
+                    type="number"
+                    variant="bordered"
+                    value={formData.height}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-none" }}
+                    label="Weight in kg"
+                    name="weight"
+                    type="number"
+                    variant="bordered"
+                    value={formData.weight}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-none" }}
+                    label="Address"
+                    name="address"
+                    type="text"
+                    variant="bordered"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-none" }}
+                    label="City"
+                    name="city"
+                    type="text"
+                    variant="bordered"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    label="State"
+                    name="state"
+                    type="text"
+                    variant="bordered"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex justify-evenly gap-2 md:gap-28">
+                  <div className="w-full">
+                    <ButtonUi text="Back" onClick={prevStep} type="secondary" size="medium" />
+                  </div>
+                  <div className="w-full">
+                    <ButtonUi text="Next" onClick={nextStep} type="secondary" size="medium" />
+                  </div>
+                </div>
               </div>
-              <div></div>
-            </div>
+            )}
+
+            {/* Step 4: Contact Number, Email, Password, Confirm Password */}
+            {step === 4 && (
+              <div>
+                <div className="flex flex-col mb-4">
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-b-none" }}
+                    label="Contact Number"
+                    name="contactNumber"
+                    type="number"
+                    variant="bordered"
+                    value={formData.contactNumber}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-none" }}
+                    label="Email"
+                    name="email"
+                    type="email"
+                    variant="bordered"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ base: "-mb-[2px]", inputWrapper: "rounded-none" }}
+                    label="Password"
+                    name="password"
+                    type={isVisible ? "text" : "password"}
+                    variant="bordered"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    endContent={
+                      <button type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                          <Icon
+                            className="pointer-events-none text-2xl text-default-400"
+                            icon="solar:eye-closed-linear"
+                          />
+                        ) : (
+                          <Icon
+                            className="pointer-events-none text-2xl text-default-400"
+                            icon="solar:eye-bold"
+                          />
+                        )}
+                      </button>
+                    }
+                  />
+                  <Input
+                    isRequired
+                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type={isVisible ? "text" : "password"}
+                    variant="bordered"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    endContent={
+                      <button type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                          <Icon
+                            className="pointer-events-none text-2xl text-default-400"
+                            icon="solar:eye-closed-linear"
+                          />
+                        ) : (
+                          <Icon
+                            className="pointer-events-none text-2xl text-default-400"
+                            icon="solar:eye-bold"
+                          />
+                        )}
+                      </button>
+                    }
+                  />
+
+                </div>
+                <div className="flex justify-evenly gap-2 md:gap-28">
+                  <div className="w-full">
+                    <ButtonUi text="Back" onClick={prevStep} type="secondary" size="medium" />
+                  </div>
+                  <div className="w-full">
+                    <ButtonUi text="Submit" onClick={createUserClick} type="primary" size="medium" />
+                  </div>
+                </div>
+              </div>
+            )}
+          </form>
+
+
+
+
+          <div className="flex items-center gap-4 py-2">
+            <Divider className="flex-1" />
+            <p className="shrink-0 text-tiny text-default-500">OR</p>
+            <Divider className="flex-1" />
           </div>
-        )}
-        {step === 3 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Pricing</h2>
-            <div className="flex justify-evenly gap-2 md:gap-28">
-              <div></div>
-              <div className="w-full">
-                <ButtonUi
-                  text="Back"
-                  onClick={prevStep}
-                  type="secondary"
-                  size="medium"
-                />
-              </div>
-              <div className="w-full">
-                <ButtonUi
-                  text="Next"
-                  onClick={nextStep}
-                  type="secondary"
-                  size="medium"
-                />
-              </div>
-              <div></div>
-            </div>
+          <div className="flex flex-col gap-2">
+            <Button
+              startContent={<Icon icon="flat-color-icons:google" width={24} />}
+              variant="bordered"
+            >
+              Sign Up with Google
+            </Button>
+            <Button
+              startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
+              variant="bordered"
+            >
+              Sign Up with Github
+            </Button>
           </div>
-        )}
-        {step === 4 && (
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Thank you !!</h2>
-            <ButtonUi
-              text="Back To Home"
-              onClick={returnHome}
-              type="secondary"
-              size="medium"
-            />
-          </div>
-        )}
-      </motion.div>
-    </div >
+          <p className="text-center text-small">
+            Already have an account?&nbsp;
+            <Link onClick={logInClick} size="sm" className="hover:cursor-pointer">
+              Log In
+            </Link>
+          </p>
+        </motion.div>
+      </div>
+      <Toaster className="z-40" richColors position="top-right" />
+
+    </>
+
   )
 }
 

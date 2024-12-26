@@ -62,15 +62,13 @@ function Login() {
             navigate('/admin');
           }
           else if (decodedToken.role === 'user') {
-            alert('use are user')
             navigate('/user');
           }
           else if (decodedToken.role === 'trainer') {
-            alert('use are trainer')
             navigate('/trainer');
           }
           else {
-            alert('invalid user')
+            toast.error('Invalid User')
             navigate('/');
           }
           if (rememberMe) {

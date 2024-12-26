@@ -22,7 +22,7 @@ export const userCount = async () => {
 export const createUser = async (userData) => {
     const isEmailExists = await getUserByEmail(userData.email);
     if (isEmailExists) {
-        return createResponse(400, "Email Exists", null);
+        return createResponse(203, "Email Exists", null);
     } else {
         try {
             const hashedPassword = await passwordHash(userData.password);
@@ -62,20 +62,23 @@ export const updateUser = async (req) => { //kk
     else {
         try {
             const user = await UserModel.findByIdAndUpdate({ _id: req.body._id }, {
+                role: req.body.role || "user",
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                email: req.body.email,
-                password: req.body.password,
-                profilePicture: req.body.profilePicture,
                 age: req.body.age,
                 gender: req.body.gender,
+                email: req.body.email,
+                password: req.body.password,
+                contactNumber: req.body.contactNumber,
+                profilePicture: req.body.profilePicture,
                 height: req.body.height,
                 weight: req.body.weight,
-                fitnessGoals: req.body.fitnessGoals,
-                address: req.body.address
+                address: req.body.address,
+                city: req.body.city,
+                state: req.body.state,
             });
-            if (user) return createResponse(200, "user Created", null);
-            else return createResponse(400, "user not created", null);
+            if (user) return createResponse(200, "user updated", null);
+            else return createResponse(400, "Unable to Updated", null);
         } catch (error) {
             throw new Error(error.message || "DB Error")
         }

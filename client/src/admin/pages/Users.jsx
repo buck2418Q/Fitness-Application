@@ -26,9 +26,7 @@ function Users() {
         { field: "age", headerName: "Age" },
         { field: "email", headerName: "Email" },
         { field: "contactNumber", headerName: "Phone Number" },
-        {
-            field: "gender", headerName: "Gender",
-        },
+        { field: "gender", headerName: "Gender" },
         { field: "height", headerName: "Height" },
         { field: "weight", headerName: "Weight" },
         { field: "address", headerName: "Address" },
@@ -62,7 +60,6 @@ function Users() {
 
 
     const initialFormData = {
-        role: 'user',
         firstName: '',
         lastName: '',
         age: '',
@@ -77,6 +74,7 @@ function Users() {
         city: '',
         state: ''
     };
+
 
 
     const [formData, setFormData] = useState(initialFormData);
@@ -162,9 +160,9 @@ function Users() {
         { label: 'Last Name', name: 'lastName', type: 'text', required: true },
         { label: 'Age', name: 'age', type: 'number', required: true },
         { label: 'Email', name: 'email', type: 'email', required: true },
-        { label: 'Password', name: 'password', type: 'password', required: true },
+        { label: 'Password', name: 'password', type: 'text', required: true },
         { label: 'Contact Number', name: 'contactNumber', type: 'number', required: true },
-        { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: false },
+        { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: false },  // Optional
         { label: 'Gender', name: 'gender', type: 'text', required: true },
         { label: 'Height', name: 'height', type: 'number', required: true },
         { label: 'Weight', name: 'weight', type: 'number', required: true },
