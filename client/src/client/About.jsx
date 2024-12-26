@@ -2,13 +2,13 @@ import { fadeIn } from "../assets/utils/motion";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company } from "../components/images";
-import Button from "../components/Button";
+
 import { aboutUs } from "../components/images";
 import { Card, CardHeader, CardBody, Image, } from "@nextui-org/react";
 import { athelete1, fitnessblog } from "../components/images";
 import { useState } from "react";
 import { plusIcon, minusIcon, } from "../components/icons";
-
+import { NextButton } from "../components/NextButton";
 
 function About() {
 
@@ -244,7 +244,7 @@ flex flex-wrap lg:flex-nowrap items-center text-light bg-background gap-8">
               viewport={{ once: false, amount: 0.2 }}
               variants={fadeIn("up", "", 0.6, 0.5)}
               className="">
-              <Button text="See More" onClick={seeMoreClick} type="secondary" size="medium" />
+              <NextButton onClick={seeMoreClick} color="secondary" >See More</NextButton>
             </motion.div>
           </div>
         </div>

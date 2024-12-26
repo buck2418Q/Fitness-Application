@@ -5,13 +5,13 @@
 import { Button, Input, Select, SelectItem, Link, Divider, } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-import ButtonUi from '../components/Button'
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "../assets/utils/motion";
 import { toast, Toaster } from "sonner";
 import Loader from "../components/Loader";
 import { CreateUser } from "../services/AuthenticationService";
+import { NextButton } from "../components/NextButton";
 
 function Signup() {
   const [step, setStep] = useState(1);
@@ -111,10 +111,8 @@ function Signup() {
 
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
   const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
-
 
   return (
 
@@ -122,7 +120,7 @@ function Signup() {
       <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
         <Loader />
       </div>
-      <div className="flex flex-col h-full w-full items-center justify-center absolute bg-gradient-to-r from-green-50 to-blue-50">
+      <div className="flex flex-col h-full w-full items-center justify-center absolute bg-gradient-to-r from-green-100 to-gray-200">
         <motion.div
           initial="hidden"
           animate="show"
@@ -138,9 +136,10 @@ function Signup() {
           <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
             {/* Step 1: Email */}
             {step === 1 && (
-              <Button color="primary" type="submit" onClick={nextStep}>
+              <NextButton color="secondary" size="md" className="w-full" type="submit" onClick={nextStep}>
                 Continue with email
-              </Button>
+              </NextButton>
+
             )}
 
             {/* Step 2: First Name, Last Name, Gender, Age */}
@@ -194,13 +193,12 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="flex justify-evenly gap-2 md:gap-28">
-                  <div className="w-full">
-                    <ButtonUi text="Back" onClick={prevStep} type="secondary" size="medium" />
-                  </div>
-                  <div className="w-full">
-                    <ButtonUi text="Next" onClick={nextStep} type="secondary" size="medium" />
-                  </div>
+                <div className="flex justify-between gap-2 md:gap-28">
+
+                  <NextButton onClick={prevStep} color="secondary" size="md" className="w-full">Back</NextButton>
+
+                  <NextButton onClick={nextStep} color="secondary" size="md" className="w-full">Next</NextButton>
+
                 </div>
               </div>
             )}
@@ -260,13 +258,9 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="flex justify-evenly gap-2 md:gap-28">
-                  <div className="w-full">
-                    <ButtonUi text="Back" onClick={prevStep} type="secondary" size="medium" />
-                  </div>
-                  <div className="w-full">
-                    <ButtonUi text="Next" onClick={nextStep} type="secondary" size="medium" />
-                  </div>
+                <div className="flex justify-between gap-2 md:gap-28">
+                  <NextButton onClick={prevStep} color="secondary" size="md" className="w-full" > Back</NextButton>
+                  <NextButton onClick={nextStep} color="secondary" size="md" className="w-full" >Next</NextButton>
                 </div>
               </div>
             )}
@@ -347,13 +341,9 @@ function Signup() {
                   />
 
                 </div>
-                <div className="flex justify-evenly gap-2 md:gap-28">
-                  <div className="w-full">
-                    <ButtonUi text="Back" onClick={prevStep} type="secondary" size="medium" />
-                  </div>
-                  <div className="w-full">
-                    <ButtonUi text="Submit" onClick={createUserClick} type="primary" size="medium" />
-                  </div>
+                <div className="flex justify-between gap-2 md:gap-28">
+                  <NextButton onClick={prevStep} color="secondary" size="md" className="w-full" >Back</NextButton>
+                  <NextButton onClick={createUserClick} type="primary" size="md" className="w-full">Submit</NextButton>
                 </div>
               </div>
             )}

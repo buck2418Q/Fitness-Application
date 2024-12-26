@@ -1,18 +1,18 @@
-import React, { Suspense, useState, useEffect, useRef } from 'react';
+import { Suspense, useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from './../assets/logos/logo.png';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../assets/utils/motion.js';
-
-const ButtonUi = React.lazy(() => import('../components/Button'));
-
+import { NextButton } from '../components/NextButton';
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const menuRef = useRef(null);
 
-    const joinNowClick = () => navigate('/login');
+    const joinNowClick = () => {
+        navigate('/login');
+    }
 
     // Toggle Menu Function
     const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -63,7 +63,7 @@ function Navbar() {
                 {/* Sign-in Button */}
                 <div className="hidden md:block">
                     <Suspense fallback={<div>Loading...</div>}>
-                        <ButtonUi text="Sign in" onClick={joinNowClick} type="primary" size="medium" />
+                        <NextButton onClick={joinNowClick} type="background" className='z-50'>Sign In</NextButton>
                     </Suspense>
                 </div>
 
@@ -105,7 +105,7 @@ function Navbar() {
                             </Link>
                         ))}
                         <div className='w-5/12'>
-                            <ButtonUi text="Sign in" onClick={joinNowClick} type="primary" size="medium" />
+                            <NextButton onClick={joinNowClick} type="primary" size="medium" >Sign In</NextButton>
                         </div>
                     </div>
                 </motion.div>

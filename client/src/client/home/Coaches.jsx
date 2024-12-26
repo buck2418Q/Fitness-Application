@@ -1,10 +1,10 @@
 
 import coach1 from '../../assets/images/coach1.avif'
 import coach2 from '../../assets/images/coach2.jpg'
-import ButtonUi from '../../components/Button.jsx'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
+import { NextButton } from '../../components/NextButton';
 
 
 function Coaches() {
@@ -67,12 +67,10 @@ function Coaches() {
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
                         variants={fadeIn("left", "", 0.6, 0.5)} className='absolute bottom-0 mb-4 shadow-2xl '>
-                        <ButtonUi
-                            text="Join Now"
+                        <NextButton
                             onClick={handleClick}
-                            type="secondary"
-                            size="medium"
-                        />
+                            color="secondary"
+                        >Join Now</NextButton>
                     </motion.div>
                 </div>
             </section>

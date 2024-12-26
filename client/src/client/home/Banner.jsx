@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import MyButton from '../../components/Button.jsx'
 import bannerBg from '../../assets/videos/bannerBg2.mp4'
 import { fadeIn } from "../../assets/utils/motion";
+import { NextButton } from "../../components/NextButton";
 
 function Banner() {
     return (
@@ -24,18 +24,15 @@ function Banner() {
                     initial='hidden'
                     animate={'show'}
                     variants={fadeIn("up", "", 0.6, 0.5)}
-                    className='relative z-10' 
+                    className='relative z-10'
                 >
                     <h1 className='font-extrabold text-4xl sm:text-5xl md:text-6xl text-center mb-8 text-white'>
                         Scenes to take your <br /> breath away
                     </h1>
                     <div className='flex gap-6 justify-around items-center'>
-                        <span className='w-full sm:w-1/2 h-14'>
-                            <MyButton text="Shop Trend" type="primary" size="medium" />
-                        </span>
-                        <span className='w-full sm:w-1/2 h-14'>
-                            <MyButton text="kya hal h" type="secondary" size="medium" />
-                        </span>
+                        <NextButton color="secondary" className="w-full sm:w-1/2">Shop Trend</NextButton>
+
+                        <NextButton type="background" className="w-full sm:w-1/2">Lets Start</NextButton>
                     </div>
                 </motion.div>
             </section>

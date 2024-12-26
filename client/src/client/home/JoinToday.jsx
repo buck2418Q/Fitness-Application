@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import ButtonUi from '../../components/Button.jsx';
 import check from '../../assets/icons/check.png';
 import { motion } from "framer-motion";
 import { fadeIn } from '../../assets/utils/motion.js';
 import { useEffect, useState } from 'react';
+import { NextButton } from '../../components/NextButton.jsx';
 
 function JoinToday() {
     const [isMonth, setIsMonth] = useState(false);
@@ -86,7 +86,7 @@ function JoinToday() {
                                 </li>
                             ))}
                         </ul>
-                        <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
+                        <NextButton onClick={handleClick} color="secondary" >Join Now</NextButton>
                     </motion.div>
                 ))}
             </motion.div>
@@ -116,7 +116,7 @@ function JoinToday() {
                                 </li>
                             ))}
                         </ul>
-                        <ButtonUi text="Join Now" onClick={handleClick} type="secondary" size="medium" />
+                        <NextButton onClick={handleClick} color="secondary" >Join Now</NextButton>
                     </motion.div>
                 ))}
             </motion.div>

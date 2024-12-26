@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { bellIcon } from '../../components/icons'
-import ButtonUi from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 import profileBanner from '../../assets/images/profileBanner.jpg'
 import profilePic from '../../assets/images/profilePic.jpg'
@@ -8,6 +7,7 @@ import { searchIcon } from '../../components/icons'
 import { motion } from "framer-motion"
 import { fadeIn } from '../../assets/utils/motion';
 import { jwtDecode } from 'jwt-decode';
+import { NextButton } from '../../components/NextButton';
 
 const TopMenu = () => {
     const [userName, setUserName] = useState('');
@@ -91,20 +91,17 @@ const TopMenu = () => {
 
                         <div className="flex justify-evenly p-2  relative top-[-40px]">
                             <p className=' m-2 w-full rounded-lg'>
-                                <ButtonUi
-                                    text="Profile"
+                                <NextButton
                                     onClick={profileClick}
                                     type="primary"
-                                    size="medium"
-                                />
+
+                                >Profile</NextButton>
                             </p>
                             <p className=' m-2 w-full rounded-lg'>
-                                <ButtonUi
-                                    text="Logout"
+                                <NextButton
                                     onClick={logoutClick}
                                     type="primary"
-                                    size="medium"
-                                />
+                                >Logout</NextButton>
                             </p>
                         </div>
                     </motion.div>

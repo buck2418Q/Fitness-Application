@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "../components/Button";
 import { useNavigate } from 'react-router-dom';
 import { Input } from "@nextui-org/input";
 import { Checkbox } from "@nextui-org/react";
@@ -10,6 +9,7 @@ import { LoginUser } from "../services/AuthenticationService";
 import { motion } from "framer-motion";
 import { fadeIn } from "../assets/utils/motion";
 import { jwtDecode } from "jwt-decode";
+import { NextButton } from "../components/NextButton";
 
 
 function Login() {
@@ -110,29 +110,34 @@ function Login() {
         <Loader />
       </div>
 
-      <div className="flex items-center justify-center min-h-screen bg-secondary">
+      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-r from-secondary to-background">
         <motion.div
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("", "", 0.2, 0.4)}
 
-          className="bg-background text-light p-8 rounded-3xl shadow-lg w-full md:w-8/12 lg:w-4/12 h-full shadow-gray-500/20">
+          className=" text-light flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20 bg-background">
 
           {toAdmin ?
             <button onClick={toDashboardClick} className="border-1 border-green-700 bg-green-100 rounded px-4 py-1 mb-5">To Dashboard</button>
-            : <h2 className="text-3xl font-bold mb-4">Login</h2>
+            : <div className="flex flex-col items-center pb-6">
+              {/* <AcmeIcon size={60} /> */}
+              <p className="text-xl font-medium">Login</p>
+              <p className="text-small text-default-500">Create an account to get started</p>
+            </div>
           }
 
           <form >
-            <div className="w-full ">
+            <div className="w-full">
               <Input
                 name="email"
                 label="Email"
-                className="w-full mb-4 border rounded-xl text-background"
+                className="w-full mb-4 "
                 color="background"
                 type="email"
                 required
+                radius='sm'
                 value={formData.email}
                 onChange={handleChange}
               />
@@ -140,9 +145,10 @@ function Login() {
                 <Input
                   label="Password"
                   name="password"
-                  className="w-full mb-4 border rounded-xl text-background"
+                  className="w-full mb-4"
                   type={viewType}
                   required
+                  radius='sm'
                   value={formData.password}
                   onChange={handleChange}
                 />
@@ -154,16 +160,16 @@ function Login() {
                   />
                 </button>
               </div>
-              <Button text="Login" type="primary" size="large" onClick={loginClick} />
+              <NextButton type="primary" onClick={loginClick} size="md" className="w-full" >Login</NextButton>
             </div>
           </form>
           <div className="flex items-center justify-between my-4 text-secondlight  cursor-pointer">
             <span >
-              <Checkbox defaultSelected size="md" onChange={handleRememberMe}>
+              <Checkbox defaultSelected size="sm" onChange={handleRememberMe}>
               </Checkbox>
-              <label htmlFor="rememberMe" className="cursor-pointer">Remember Me</label></span>
-            <button onClick={forgetPasswordClick} className="underline">Forget Password</button>
-            <button onClick={SignUpClick} className="underline">Register Yourself</button>
+              <label htmlFor="rememberMe" className="cursor-pointer text-sm">Remember Me</label></span>
+            <button onClick={forgetPasswordClick} className="underline text-sm text-primary">Forget Password</button>
+            <button onClick={SignUpClick} className="underline text-sm text-primary">Register Yourself</button>
           </div>
         </motion.div>
       </div>
