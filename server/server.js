@@ -6,8 +6,8 @@ import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "
 import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser, UserCount } from "./controllers/User.js";
 import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
 import { Login } from "./controllers/Login.js";
-import { verifyToken } from "./middleWare/MiddleWare.js";
 import { GetTrainerDetails } from "./controllers/Home.js";
+import { verifyAndCheckRole } from "./middleWare/VarifyTokenMiddleWare.js";
 
 dotenv.config();
 
@@ -33,27 +33,27 @@ app.use(appName, router);
 
 
 // all admins 
-router.get("/admin", GetAdmin);
+router.get("/admin", verifyAndCheckRole(['admin']), GetAdmin);
 router.post("/admin", CreateAdmin);
-router.put("/admin", UpdateAdmin);
-router.delete("/admin", DeleteAdmin);
-router.get("/findadminbyid", FindAdminById)
+router.put("/admin", verifyAndCheckRole(['admin']), UpdateAdmin);
+router.delete("/admin", verifyAndCheckRole(['admin']), DeleteAdmin);
+router.get("/findadminbyid", verifyAndCheckRole(['admin']), FindAdminById)
 
 //user
-router.get("/totaluser", UserCount)
-router.get("/user", GetUsers);
+router.get("/totaluser", verifyAndCheckRole(['admin']), UserCount)
+router.get("/user", verifyAndCheckRole(['admin']), GetUsers);
 router.post("/user", CreateUser);
-router.put("/user", UpdateUser);
-router.delete("/user", DeleteUser);
-router.get("/finduserbyid", FindUserById);
+router.put("/user", verifyAndCheckRole(['admin', 'user']), UpdateUser);
+router.delete("/user", verifyAndCheckRole(['admin', 'user']), DeleteUser);
+router.get("/finduserbyid", verifyAndCheckRole(['admin', 'trainer', 'user']), FindUserById);
 
 //trainers
-router.get("/trainercount", TrainerCount)
-router.get("/trainer", verifyToken, GetTrainers);
+router.get("/trainercount", verifyAndCheckRole(['admin']), TrainerCount)
+router.get("/trainer", verifyAndCheckRole(['admin']), GetTrainers);
 router.post("/trainer", CreateTrainer);
-router.put("/trainer", UpdateTrainer);
-router.delete("/trainer", DeleteTrainer);
-router.get("/findtrainerbyid", FindTrainerById);
+router.put("/trainer", verifyAndCheckRole(['admin', 'trainer']), UpdateTrainer);
+router.delete("/trainer", verifyAndCheckRole(['admin', 'trainer']), DeleteTrainer);
+router.get("/findtrainerbyid", verifyAndCheckRole(['admin', 'trainer']), FindTrainerById);
 
 //login
 router.post("/login", Login);
