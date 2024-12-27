@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:8080/fitness360/";
-// const BASE_URL = "https://fitness360app.onrender.com/fitness360/";
+// const BASE_URL = "http://localhost:8080/fitness360/";
+const BASE_URL = "https://fitness360app.onrender.com/fitness360/";
 
 export const GetUsers = {
     getAllUsers: () => `${BASE_URL}user`,
