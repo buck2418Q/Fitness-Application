@@ -19,7 +19,8 @@ export const userCount = async () => {
 
 
 
-export const createUser = async (userData) => {
+export const createUser = async (data) => {
+    const userData = data.body;
     const isEmailExists = await getUserByEmail(userData.email);
     if (isEmailExists) {
         return createResponse(203, "Email Exists", null);
@@ -27,6 +28,11 @@ export const createUser = async (userData) => {
         try {
             const hashedPassword = await passwordHash(userData.password);
             userData.password = hashedPassword;
+
+            const image = data?.file?.map((items) => {
+                return items.filename
+            })
+            userData.profilePicture = image;
             const newUser = await UserModel.create(userData);
             if (newUser) {
                 return createResponse(201, "User Created", null);
