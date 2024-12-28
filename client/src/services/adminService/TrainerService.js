@@ -2,10 +2,15 @@ import axios from "axios";
 import { totalTrainer, Trainers } from "../apiEndPoint/EnpPoint";
 
 
-//alnkdjkfa
+const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
 export const trainerCount = async () => {
     try {
-        const response = await axios.get(totalTrainer);
+        const response = await axios.get(totalTrainer, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data.totalTrainer;
     } catch (error) {
         throw new Error("Unable to access API!", error);
@@ -13,7 +18,6 @@ export const trainerCount = async () => {
 }
 
 export const getAllTrainers = async () => {
-    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     try {
         const response = await axios.get(Trainers, {
             headers: {
@@ -25,7 +29,6 @@ export const getAllTrainers = async () => {
         throw new Error("Unable to access API!", error);
     }
 }
-
 
 export const CreateTrainer = async (formData) => {
     try {
@@ -39,10 +42,14 @@ export const CreateTrainer = async (formData) => {
 export const DeleteTrainer = async (id) => {
     try {
         const response = await axios.delete(Trainers, {
-            data: { id }
+            data: { id },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         return response.data
     } catch (error) {
         throw new Error("Unable to access API", error);
     }
 }
+

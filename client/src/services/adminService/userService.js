@@ -1,11 +1,16 @@
 import axios from 'axios';
-import { GetUsers, totalUser, Users } from '../apiEndPoint/EnpPoint';
+import { totalUser, Users } from '../apiEndPoint/EnpPoint';
 
 
+const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 
 export const userCount = async () => {
     try {
-        const response = await axios.get(totalUser);
+        const response = await axios.get(totalUser, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data.totalUser;
     } catch (error) {
         throw new Error("Unable to access API!", error);
@@ -14,7 +19,11 @@ export const userCount = async () => {
 
 export const getAllUsers = async () => {
     try {
-        const response = await axios.get(GetUsers.getAllUsers());
+        const response = await axios.get(Users, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data.userData;
     } catch (error) {
         throw new Error("Unable to access API!", error);
@@ -30,10 +39,14 @@ export const CreateUser = async (formData) => {
     }
 }
 
+
 export const DeleteUser = async (id) => {
     try {
         const response = await axios.delete(Users, {
-            data: { id }
+            data: { id },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
         return response.data;
     } catch (error) {
@@ -44,7 +57,12 @@ export const DeleteUser = async (id) => {
 
 export const UpdateUser = async (formData) => {
     try {
-        const response = await axios.put(Users, formData);
+        const response = await axios.put(Users, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+
+            }
+        });
         return response.data;
     } catch (error) {
         throw new Error("Unable to access API", error);

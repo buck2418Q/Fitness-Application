@@ -1,20 +1,13 @@
-// const BASE_URL = "http://localhost:8080/fitness360/";
-const BASE_URL = "https://fitness360app.onrender.com/fitness360/";
-
-export const GetUsers = {
-    getAllUsers: () => `${BASE_URL}user`,
-};
-
-export const totalUser = `${BASE_URL}totaluser`;
-export const totalTrainer = `${BASE_URL}trainercount`;
+const BASE_URL = "http://localhost:8080/fitness360/";
+// const BASE_URL = "https://fitness360app.onrender.com/fitness360/";
 
 
 export const Users = `${BASE_URL}user`;
-
-
 export const Trainers = `${BASE_URL}trainer`;
 export const Login = `${BASE_URL}login`;
 
+export const totalUser = `${BASE_URL}totaluser`;
+export const totalTrainer = `${BASE_URL}trainercount`;
 
 // home trainer 
 export const knowTrainer = {
