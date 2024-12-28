@@ -36,8 +36,6 @@ export const openAuthentication = async (data) => {
             audience: clientId,
         });
         const payload = ticket.getPayload();
-        console.log("Decoded Payload:", payload);
-
         const isEmailExists = await getUserByEmail(payload.email);
 
         if (isEmailExists) {

@@ -414,14 +414,14 @@ function Signup() {
             <Divider className="flex-1" />
           </div>
           <div className="flex flex-col gap-2">
-            <GoogleOAuthProvider clientId={googleClientId}>
-              <div className="">
+            <div className="flex items-center justify-center w-full">
+              <GoogleOAuthProvider clientId={googleClientId}>
                 <GoogleLogin
                   onSuccess={handleGoogleSuccess}
                   onError={handleGoogleFailure}
                 />
-              </div>
-            </GoogleOAuthProvider>
+              </GoogleOAuthProvider>
+            </div>
             <Button
               startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
               variant="bordered"
