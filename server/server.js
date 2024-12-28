@@ -5,7 +5,7 @@ import express from "express";
 import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "./controllers/Admin.js";
 import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser, UserCount } from "./controllers/User.js";
 import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
-import { Login } from "./controllers/Login.js";
+import { Login, oAuth } from "./controllers/Login.js";
 import { GetTrainerDetails } from "./controllers/Home.js";
 import { verifyAndCheckRole } from "./middleWare/VarifyTokenMiddleWare.js";
 
@@ -57,7 +57,7 @@ router.get("/findtrainerbyid", verifyAndCheckRole(['admin', 'trainer']), FindTra
 
 //login
 router.post("/login", Login);
-
+router.post("/oauth", oAuth);
 
 // home page data
 router.get("/knowtrainer", GetTrainerDetails)

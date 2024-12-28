@@ -4,6 +4,11 @@ import UserModel from '../models/User.js';
 import TrainerModel from '../models/Trainers.js';
 import AdminModel from '../models/Admin.js';
 import jwt from 'jsonwebtoken'
+import { OAuth2Client } from 'google-auth-library';
+import { getUserByEmail } from './UserService.js';
+
+const clientId = process.env.GOOGLE_CLIENT_ID;
+const client = new OAuth2Client(clientId);
 
 export const login = async (userData) => {
     const user = await FindUserByEmail(userData.email);
@@ -22,6 +27,50 @@ export const login = async (userData) => {
         throw new Error(error.message || "DB error");
     }
 };
+
+export const openAuthentication = async (data) => {
+    try {
+        const token = data.token.credential;
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: clientId,
+        });
+        const payload = ticket.getPayload();
+        console.log("Decoded Payload:", payload);
+
+        const isEmailExists = await getUserByEmail(payload.email);
+
+        if (isEmailExists) {
+            const userData = {
+                email: payload.email,
+                firstName: payload.name,
+                profilePicture: payload.picture,
+                role: 'user'
+            };
+            const jwtToken = await createJwtToken(userData);
+            console.log('dnajdnfnad------', jwtToken)
+            return createResponse(200, "Login Successful", jwtToken);
+        } else {
+            const userData = {
+                googleId: payload.sub,
+                email: payload.email,
+                firstName: payload.name,
+                profilePicture: payload.picture,
+            };
+            const newUser = await UserModel.create(userData);
+            if (newUser) {
+                const jwtToken = await createJwtToken(newUser.email);
+                return createResponse(200, "User Created and Logged In", jwtToken);
+            } else {
+                return createResponse(202, "Unable to create user", null);
+            }
+        }
+    } catch (error) {
+        console.error("Error during Google Authentication:", error.message);
+        throw new Error(error.message || "Internal Server Error");
+    }
+};
+
 
 
 // export const FindUserByEmail = async (email) => {
@@ -44,9 +93,10 @@ export const createJwtToken = async (user) => {
     try {
         const jwtToken = await jwt.sign(
             {
-                userName: user.firstName + ' ' + user.lastName,
+                userName: user.firstName + ' ' + user?.lastName,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                profilePicture: user.profilePicture
             },
             process.env.JWT_SECRET,
             {

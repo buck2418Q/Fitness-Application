@@ -11,12 +11,14 @@ import { NextButton } from "../../components/NextButton";
 const TopMenu = () => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [profilePicture, setProfilePicture] = useState(profilePic)
     const navigate = useNavigate()
     useEffect(() => {
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
         const decodedToken = jwtDecode(token);
         setUserName(decodedToken.userName);
         setUserEmail(decodedToken.email);
+        setProfilePicture(decodedToken.profilePicture)
     }, [])
     const [isOpen, setIsOpen] = useState(false);
 
@@ -64,7 +66,7 @@ const TopMenu = () => {
                         <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
                     <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center hover:shadow-xl">
-                        <img src={profilePic} alt="User" className='border rounded-full h-full cursor-pointer' onClick={toggleProfileModal} />
+                        <img src={profilePicture} alt="User" className='border rounded-full h-full cursor-pointer' onClick={toggleProfileModal} />
                     </span>
                 </div>
             </div>
@@ -78,7 +80,7 @@ const TopMenu = () => {
 
                         <div className='p-1 flex flex-col items-center justify-center '>
                             <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
-                            <img src={profilePic} alt="" className='rounded-full w-24 top-[-48px]  relative shadow-black border-white border-3' />
+                            <img src={profilePicture} alt="" className='rounded-full w-24 top-[-48px]  relative shadow-black border-white border-3' />
 
                         </div>
 
@@ -88,18 +90,17 @@ const TopMenu = () => {
                             <p className='text-base text-center font-semibold'>{userEmail}</p>
                         </div>
 
-                        <div className="flex justify-evenly p-2  relative top-[-40px]">
-                            <p className=' m-2 w-full rounded-lg'>
-                                <NextButton
-                                    onClick={profileClick}
-                                    type="primary"
-                                >Profile</NextButton>
-                            </p>
-                            <p className=' m-2 w-full rounded-lg'>
-                                <NextButton
-                                    onClick={logoutClick}
-                                    type="primary" >Logout</NextButton>
-                            </p>
+                        <div className="flex justify-evenly gap-4 p-2  relative top-[-40px]">
+                            <NextButton
+                                onClick={profileClick}
+                                type="primary"
+                                className='w-full'
+                            >Profile</NextButton>
+                            <NextButton
+                                onClick={logoutClick}
+                                type="primary"
+                                className='w-full'
+                            >Logout</NextButton>
                         </div>
                     </motion.div>
                 </div>

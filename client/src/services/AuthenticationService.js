@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Login, Users } from "./apiEndPoint/EnpPoint";
+import { Login, oAuthLogin, Users } from "./apiEndPoint/EnpPoint";
 
 export const LoginUser = async (formData) => {
     try {
@@ -7,6 +7,17 @@ export const LoginUser = async (formData) => {
         return response.data;
     } catch (error) {
         throw new Error("Unable to access API!", error);
+    }
+}
+
+
+export const openAuth = async (data) => {
+    try {
+        const response = await axios.post(oAuthLogin, data)
+        return response.data;
+    } catch (error) {
+        console.log("Unable to access API!", error);
+        return "Unable to access API!"
     }
 }
 

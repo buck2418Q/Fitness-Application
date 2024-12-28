@@ -89,20 +89,17 @@ const TopMenu = () => {
                             <p className='text-base text-center font-semibold'>{userEmail}</p>
                         </div>
 
-                        <div className="flex justify-evenly p-2  relative top-[-40px]">
-                            <p className=' m-2 w-full rounded-lg'>
-                                <NextButton
-                                    onClick={profileClick}
-                                    type="primary"
-
-                                >Profile</NextButton>
-                            </p>
-                            <p className=' m-2 w-full rounded-lg'>
-                                <NextButton
-                                    onClick={logoutClick}
-                                    type="primary"
-                                >Logout</NextButton>
-                            </p>
+                        <div className="flex justify-evenly gap-4 p-2  relative top-[-40px]">
+                            <NextButton
+                                onClick={profileClick}
+                                type="primary"
+                                className='w-full'
+                            >Profile</NextButton>
+                            <NextButton
+                                onClick={logoutClick}
+                                type="primary"
+                                className='w-full'
+                            >Logout</NextButton>
                         </div>
                     </motion.div>
                 </div>

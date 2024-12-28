@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Input } from "@nextui-org/input";
@@ -5,12 +6,14 @@ import { Checkbox } from "@nextui-org/react";
 import { eyeIcon, eyeOffIcon } from '../components/icons';
 import { toast, Toaster } from "sonner";
 import Loader from "../components/Loader";
-import { LoginUser } from "../services/AuthenticationService";
+import { LoginUser, openAuth } from "../services/AuthenticationService";
 import { motion } from "framer-motion";
 import { fadeIn } from "../assets/utils/motion";
 import { jwtDecode } from "jwt-decode";
 import { NextButton } from "../components/NextButton";
-
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { Divider, } from "@nextui-org/react";
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Login() {
   const navigate = useNavigate();
@@ -19,6 +22,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [toAdmin, setToAdmin] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [oAuthProvider, setOAuthProvider] = useState({ provider: '', token: '' })
 
   const toggleEye = () => {
     setViewType(viewType === 'password' ? 'text' : 'password');
@@ -47,46 +51,25 @@ function Login() {
   }
 
 
+
   const loginClick = async (e) => {
     e.preventDefault();
-    if (formData.email == '' || formData.password == '') {
-      toast('Enter Email and Password')
-    } else {
-      try {
-        setLoading(true);
-        const result = await LoginUser(formData);
-        if (result.statusCode === 200) {
-          toast.success(result.message);
-          const decodedToken = jwtDecode(result.token);
-          if (decodedToken.role === 'admin') {
-            navigate('/admin');
-          }
-          else if (decodedToken.role === 'user') {
-            navigate('/user');
-          }
-          else if (decodedToken.role === 'trainer') {
-            navigate('/trainer');
-          }
-          else {
-            toast.error('Invalid User')
-            navigate('/');
-          }
-          if (rememberMe) {
-            localStorage.setItem('token', result.token);
-          } else {
-            sessionStorage.setItem('token', result.token);
-          }
-        }
-        if (result.statusCode === 211) toast.error(result.message);
-      } catch (error) {
-        console.log('fgshj', error)
-        toast.error(error.message)
-      }
-      finally {
-        setLoading(false);
-        resetForm();
-        setLoading(false);
-      }
+    if (!formData.email || !formData.password) {
+      toast.error('Enter Email and Password');
+      return;
+    }
+    try {
+      setLoading(true);
+      const result = await LoginUser(formData);
+      console.log('Login Result:', result);
+
+      handleAuthSuccess(result);
+    } catch (error) {
+      console.error('Error in loginClick:', error);
+      toast.error(error.message || 'Login failed');
+    } finally {
+      setLoading(false);
+      resetForm();
     }
   };
 
@@ -103,6 +86,73 @@ function Login() {
 
   }
 
+
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      setLoading(true);
+      oAuthProvider.provider = 'Google';
+      oAuthProvider.token = credentialResponse;
+      const result = await openAuth(oAuthProvider);
+      console.log('Google Auth Result:', result);
+      handleAuthSuccess(result);
+    } catch (error) {
+      console.error('Error in handleGoogleSuccess:', error);
+      toast.error(error.message || 'Google authentication failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const handleGoogleFailure = () => {
+    console.error("Google Sign-In Failed");
+  };
+
+  const handleAuthSuccess = (result) => {
+    try {
+      if (result.statusCode === 200) {
+        toast.success(result.message);
+
+        // Decode the token
+        const decodedToken = jwtDecode(result.token);
+
+        // Navigate based on role
+        switch (decodedToken.role) {
+          case 'admin':
+            navigate('/admin');
+            break;
+          case 'user':
+            navigate('/user');
+            break;
+          case 'trainer':
+            navigate('/trainer');
+            break;
+          default:
+            toast.error('Invalid User');
+            navigate('/');
+        }
+
+        // Store the token
+        if (rememberMe) {
+          localStorage.setItem('token', result.token);
+        } else {
+          sessionStorage.setItem('token', result.token);
+        }
+      } else if (result.statusCode === 211) {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      console.error('Error in handleAuthSuccess:', error);
+      toast.error(error.message || 'Something went wrong');
+    }
+  };
+
+
+
+
+
+
   return (
     <>
       <Toaster className="z-40" richColors position="top-right" />
@@ -110,7 +160,7 @@ function Login() {
         <Loader />
       </div>
 
-      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-r from-secondary to-background">
+      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-r from-secondary to-background ">
         <motion.div
           whileInView="show"
           initial="hidden"
@@ -121,19 +171,20 @@ function Login() {
 
           {toAdmin ?
             <button onClick={toDashboardClick} className="border-1 border-green-700 bg-green-100 rounded px-4 py-1 mb-5">To Dashboard</button>
-            : <div className="flex flex-col items-center pb-6">
+            : <div className="flex flex-col items-center pb-4">
               {/* <AcmeIcon size={60} /> */}
               <p className="text-xl font-medium">Login</p>
-              <p className="text-small text-default-500">Create an account to get started</p>
+              <p className="text-small text-default-500">Fitness360</p>
             </div>
           }
+
 
           <form >
             <div className="w-full">
               <Input
                 name="email"
                 label="Email"
-                className="w-full mb-4 "
+                className="w-full mb-4 text-background"
                 color="background"
                 type="email"
                 required
@@ -145,7 +196,7 @@ function Login() {
                 <Input
                   label="Password"
                   name="password"
-                  className="w-full mb-4"
+                  className="w-full mb-2  text-background"
                   type={viewType}
                   required
                   radius='sm'
@@ -160,18 +211,36 @@ function Login() {
                   />
                 </button>
               </div>
+              <div className="flex items-center justify-between mb-4 px-2 text-secondlight  cursor-pointer">
+                <span >
+                  <Checkbox defaultSelected size="sm" onChange={handleRememberMe}>
+                  </Checkbox>
+                  <label htmlFor="rememberMe" className="cursor-pointer text-sm">Remember Me</label></span>
+                {/* <button onClick={forgetPasswordClick} className="underline text-sm text-primary">Forget Password</button> */}
+                <button onClick={SignUpClick} className="underline text-sm text-primary">Register Yourself</button>
+              </div>
               <NextButton type="primary" onClick={loginClick} size="md" className="w-full" >Login</NextButton>
             </div>
           </form>
-          <div className="flex items-center justify-between my-4 text-secondlight  cursor-pointer">
-            <span >
-              <Checkbox defaultSelected size="sm" onChange={handleRememberMe}>
-              </Checkbox>
-              <label htmlFor="rememberMe" className="cursor-pointer text-sm">Remember Me</label></span>
-            <button onClick={forgetPasswordClick} className="underline text-sm text-primary">Forget Password</button>
-            <button onClick={SignUpClick} className="underline text-sm text-primary">Register Yourself</button>
+          <div className="flex items-center gap-4 py-2">
+            <Divider className="flex-1 bg-default-500 " />
+            <p className="shrink-0 text-tiny text-default-500">OR</p>
+            <Divider className="flex-1 bg-default-500" />
           </div>
+          <div className="bg-blue-300 w-full rounded-3xl">
+            <GoogleOAuthProvider clientId={googleClientId}>
+              <div className="">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleFailure}
+                />
+              </div>
+            </GoogleOAuthProvider>
+          </div>
+
+
         </motion.div>
+
       </div>
     </>
   );

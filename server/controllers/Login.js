@@ -1,4 +1,4 @@
-import { login } from "../services/LoginService.js";
+import { login, openAuthentication } from "../services/LoginService.js";
 
 export const Login = async (req, res) => {
     try {
@@ -8,3 +8,13 @@ export const Login = async (req, res) => {
         res.status(500).send({ error: e.message || "Internal server error" });
     }
 };
+
+
+export const oAuth = async (req, res) => {
+    try {
+        const data = await openAuthentication(req.body);
+        return res.status(data.statusCode).send(data);
+    } catch (e) {
+        res.status(500).send({ error: e.message || "Internal server error" });
+    }
+}

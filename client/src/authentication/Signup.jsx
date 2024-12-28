@@ -10,12 +10,20 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../assets/utils/motion";
 import { toast, Toaster } from "sonner";
 import Loader from "../components/Loader";
-import { CreateUser } from "../services/AuthenticationService";
+import { CreateUser, openAuth } from "../services/AuthenticationService";
 import { NextButton } from "../components/NextButton";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Signup() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
+  const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
+  const [oAuthProvider, setOAuthProvider] = useState({ provider: '', token: '' })
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -108,11 +116,59 @@ function Signup() {
     { key: "female", label: "Female" },
     { key: "other", label: "Other" },
   ]
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      setLoading(true);
+      oAuthProvider.provider = 'Google';
+      oAuthProvider.token = credentialResponse;
+      const result = await openAuth(oAuthProvider);
+      console.log('Google Auth Result:', result);
+      handleAuthSuccess(result);
+    } catch (error) {
+      console.error('Error in handleGoogleSuccess:', error);
+      toast.error(error.message || 'Google authentication failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
+  const handleGoogleFailure = () => {
+    console.error("Google Sign-In Failed");
+  };
+
+  const handleAuthSuccess = (result) => {
+    try {
+      if (result.statusCode === 200) {
+        toast.success(result.message);
+
+        // Decode the token
+        const decodedToken = jwtDecode(result.token);
+
+        switch (decodedToken.role) {
+          case 'admin':
+            navigate('/admin');
+            break;
+          case 'user':
+            navigate('/user');
+            break;
+          case 'trainer':
+            navigate('/trainer');
+            break;
+          default:
+            toast.error('Invalid User');
+            navigate('/');
+        }
+        sessionStorage.setItem('token', result.token);
+
+      } else if (result.statusCode === 211) {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      console.error('Error in handleAuthSuccess:', error);
+      toast.error(error.message || 'Something went wrong');
+    }
+  };
+
 
   return (
 
@@ -358,12 +414,14 @@ function Signup() {
             <Divider className="flex-1" />
           </div>
           <div className="flex flex-col gap-2">
-            <Button
-              startContent={<Icon icon="flat-color-icons:google" width={24} />}
-              variant="bordered"
-            >
-              Sign Up with Google
-            </Button>
+            <GoogleOAuthProvider clientId={googleClientId}>
+              <div className="">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleFailure}
+                />
+              </div>
+            </GoogleOAuthProvider>
             <Button
               startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
               variant="bordered"
