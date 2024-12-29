@@ -7,7 +7,7 @@ export const NextButton = extendVariants(Button, {
             background: "bg-[#111419] text-[#fff]",
             secondary: "bg-[#1d2029] text-[#fff]",
             light: "bg-[#ffff] text-[#000]",
-            secondlight: "bg-[#dddddd] text-[#fffff]",
+            secondlight: " border-[#dddddd]  border-[1px] text-[#ffff]",
             primary: "bg-[#009336] text-[#ffffff]",
         },
         isDisabled: {

@@ -30,41 +30,71 @@ export const login = async (userData) => {
 
 export const openAuthentication = async (data) => {
     try {
-        const token = data.token.credential;
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: clientId,
-        });
-        const payload = ticket.getPayload();
-        const isEmailExists = await getUserByEmail(payload.email);
+        if (data.provider === 'Google') {
+            const token = data.token.credential;
+            const ticket = await client.verifyIdToken({
+                idToken: token,
+                audience: clientId,
+            });
+            const payload = ticket.getPayload();
+            const isEmailExists = await getUserByEmail(payload.email);
 
-        if (isEmailExists) {
-            const userData = {
-                email: payload.email,
-                firstName: payload.name,
-                profilePicture: payload.picture,
-                role: 'user'
-            };
-            const jwtToken = await createJwtToken(userData);
-            console.log('dnajdnfnad------', jwtToken)
-            return createResponse(200, "Login Successful", jwtToken);
-        } else {
-            const userData = {
-                googleId: payload.sub,
-                email: payload.email,
-                firstName: payload.name,
-                profilePicture: payload.picture,
-            };
-            const newUser = await UserModel.create(userData);
-            if (newUser) {
-                const jwtToken = await createJwtToken(newUser.email);
-                return createResponse(200, "User Created and Logged In", jwtToken);
+            if (isEmailExists) {
+                const userData = {
+                    email: payload.email,
+                    firstName: payload.name,
+                    profilePicture: payload.picture,
+                    role: 'user'
+                };
+                const jwtToken = await createJwtToken(userData);
+                return createResponse(200, "Login Successful", jwtToken);
             } else {
-                return createResponse(202, "Unable to create user", null);
+                const userData = {
+                    googleId: payload.sub,
+                    email: payload.email,
+                    firstName: payload.name,
+                    profilePicture: payload.picture,
+                };
+                const newUser = await UserModel.create(userData);
+                if (newUser) {
+                    const jwtToken = await createJwtToken(newUser.email);
+                    return createResponse(200, "User Created and Logged In", jwtToken);
+                } else {
+                    return createResponse(202, "Unable to create user", null);
+                }
+            }
+        }
+        else if (data.provider === 'Facebook') {
+            const isEmailExists = await getUserByEmail(data.email);
+            if (isEmailExists) {
+                const userData = {
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    profilePicture: data.profilePicture,
+                    role: 'user'
+                }
+                const jwtToken = await createJwtToken(userData);
+                return createResponse(200, "Login Successful", jwtToken);
+            } else {
+                const userData = {
+                    facebookId: data.facebookId,
+                    email: data.email,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    profilePicture: data.profilePicture,
+                    role: 'user'
+                };
+                const newUser = await UserModel.create(userData);
+                if (newUser) {
+                    const jwtToken = await createJwtToken(newUser);
+                    return createResponse(200, "User Created and Logged In", jwtToken);
+                } else {
+                    return createResponse(202, "Unable to create user", null);
+                }
             }
         }
     } catch (error) {
-        console.error("Error during Google Authentication:", error.message);
         throw new Error(error.message || "Internal Server Error");
     }
 };

@@ -13,6 +13,7 @@ import { jwtDecode } from "jwt-decode";
 import { NextButton } from "../components/NextButton";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { Divider, } from "@nextui-org/react";
+import FacebookLogin from "./FacebookLogin";
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Login() {
@@ -23,6 +24,7 @@ function Login() {
   const [toAdmin, setToAdmin] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [oAuthProvider, setOAuthProvider] = useState({ provider: '', token: '' })
+  const [oAuthFacebook, setOAuthFacebook] = useState({ provider: '', firstName: '', lastName: '', email: '', profilePicture: '', facebookId: '' })
 
   const toggleEye = () => {
     setViewType(viewType === 'password' ? 'text' : 'password');
@@ -113,11 +115,7 @@ function Login() {
     try {
       if (result.statusCode === 200) {
         toast.success(result.message);
-
-        // Decode the token
         const decodedToken = jwtDecode(result.token);
-
-        // Navigate based on role
         switch (decodedToken.role) {
           case 'admin':
             navigate('/admin');
@@ -132,8 +130,6 @@ function Login() {
             toast.error('Invalid User');
             navigate('/');
         }
-
-        // Store the token
         if (rememberMe) {
           localStorage.setItem('token', result.token);
         } else {
@@ -148,7 +144,26 @@ function Login() {
     }
   };
 
-
+  const handleFacebookSuccess = async (accessToken, profile) => {
+    try {
+      let nameParts = profile.name.split(' ');
+      let firstName = nameParts[0];
+      let lastName = nameParts[1];
+      oAuthFacebook.provider = 'Facebook',
+        oAuthFacebook.facebookId = profile.id
+      oAuthFacebook.firstName = firstName,
+        oAuthFacebook.lastName = lastName;
+      oAuthFacebook.email = profile.email;
+      oAuthFacebook.profilePicture = profile.picture.data.url;
+      const result = await openAuth(oAuthFacebook)
+      handleAuthSuccess(result);
+    } catch (error) {
+      console.error('Error in handle Facebook Success:', error);
+      toast.error(error.message || 'facebook authentication failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
 
@@ -184,7 +199,7 @@ function Login() {
               <Input
                 name="email"
                 label="Email"
-                className="w-full mb-4 text-background"
+                className="w-full mb-4 text-background h-12"
                 color="background"
                 type="email"
                 required
@@ -196,7 +211,7 @@ function Login() {
                 <Input
                   label="Password"
                   name="password"
-                  className="w-full mb-2  text-background"
+                  className="w-full mb-2  text-background h-12"
                   type={viewType}
                   required
                   radius='sm'
@@ -235,7 +250,7 @@ function Login() {
               />
             </GoogleOAuthProvider>
           </div>
-
+          <FacebookLogin onSuccess={handleFacebookSuccess} />
 
         </motion.div>
 

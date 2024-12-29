@@ -15,7 +15,8 @@ const UserSchema = new mongoose.Schema({
     address: { type: String, required: false },
     city: { type: String, required: false },
     state: { type: String, required: false },
-    googleId:{type:String, required:false,},
+    googleId: { type: String, required: false, },
+    facebookId: { type: String, required: false, },
     dateCreated: { type: Date, default: Date.now },
 });
 
