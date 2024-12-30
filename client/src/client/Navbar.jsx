@@ -107,9 +107,9 @@ function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
-                        <div className='w-5/12'>
+                        {/* <div className='w-5/12 flex align-bottom justify-end'> */}
                             <NextButton onClick={joinNowClick} type="primary" size="medium" >Sign In</NextButton>
-                        </div>
+                        {/* </div> */}
                     </div>
                 </motion.div>
             )}

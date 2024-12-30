@@ -84,7 +84,7 @@ function Service() {
             viewport={{ once: false, amount: 0.2 }}
             variants={fadeIn("up", "", 0.2, 0.5)}
             className='sm:text-4xl lg:text-6xl text-6xl  font-black text-left text-primary '>A1 Elliptical Trainer</motion.h2>
-          <motion.p
+          <motion.div
             whileInView="show"
             initial="hidden"
             viewport={{ once: false, amount: 0.2 }}
@@ -102,7 +102,7 @@ function Service() {
               <NextButton className="text-lg  px-8 rounded-none border-1 border-light" color="secondary">Full DETAILS</NextButton>
               {/* </div> */}
             </div>
-          </motion.p>
+          </motion.div>
         </div>
 
         <div className="w-1/2 bg-green-300">
