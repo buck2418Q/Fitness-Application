@@ -4,6 +4,7 @@ import logo from './../assets/logos/logo.png';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../assets/utils/motion.js';
 import { NextButton } from '../components/NextButton';
+import ThemeToggle from '../theme/ThemeToggle.jsx';
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ function Navbar() {
     ];
 
     return (
-        <nav className="py-2 bg-gradient-to-tr from-background from-10% via-secondary to-background">
+        <nav className="py-2 bg-gradient-to-tr from-background from-10% via-secondary to-background  ">
             {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
             <div
                 className="mx-4 rounded-xl p-2 flex justify-between "
@@ -60,9 +61,10 @@ function Navbar() {
                         </Link>
                     ))}
                 </div>
-
                 {/* Sign-in Button */}
-                <div className="hidden md:block">
+                <div className="hidden md:flex gap-2">
+                    <ThemeToggle />
+
                     <Suspense fallback={<div>Loading...</div>}>
                         <NextButton onClick={joinNowClick} type="background" className='z-50'>Sign In</NextButton>
                     </Suspense>

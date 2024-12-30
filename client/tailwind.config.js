@@ -4,6 +4,7 @@
 import { nextui } from "@nextui-org/react";
 
 export default {
+  darkMode: "class",
   content: [
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./index.html",
@@ -12,13 +13,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Custom colors
+        // dark theme colors
         background: "#111419",  // Main dark 
         secondary: "#1d2029",  // Secondary dark 
         light: "#ffffff",      // Light
         secondlight: "#dddddd",
         primary: "#16b650",    // Green 
         "hover-primary": "#13a048", // Slightly darker green for hover effects
+
+
+        // Light theme colors
+        "light-background": "#f9f9f9", // Main light
+        "light-secondary": "#f0f0f0", // Secondary light
+        "dark-text": "#111419", // Dark text on light background
+        "light-text": "#333333", // Slightly darker text
       },
       backgroundImage: {
         'callbanner': "url('./src/assets/images/call-banner.png')",

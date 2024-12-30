@@ -182,7 +182,7 @@ function About() {
   return (
     <>
       {/* our team section */}
-      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-background text-light flex flex-col justify-center items-center gap-6 sm:gap-8">
+      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-background text-light  dark:bg-light-background dark:text-dark-text flex flex-col justify-center items-center gap-6 sm:gap-8">
         <motion.h2 whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
@@ -225,10 +225,10 @@ function About() {
 
 
       {/* marathon  */}
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background">
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background text-light dark:bg-light-background dark:text-dark-text">
         <h2
 
-          className='text-4xl sm:text-5xl lg:text-6xl font-black text-center text-light'>Races For Beginners To Marathoners.</h2>
+          className='text-4xl sm:text-5xl lg:text-6xl font-black text-center'>Races For Beginners To Marathoners.</h2>
         <p className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </p>

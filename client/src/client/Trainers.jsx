@@ -15,7 +15,7 @@ function Trainers() {
   const [trainersData, setTrainersData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPageData, setCurrentPageData] = useState([]);
 

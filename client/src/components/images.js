@@ -14,6 +14,8 @@ import trainer4 from '../assets/images/trainer-4.jpg';
 import trainer5 from '../assets/images/trainer-5.jpg';
 import trainer6 from '../assets/images/trainer-6.jpg';
 import trainer7 from '../assets/images/trainer-7.jpg';
+import serviceBg1 from '../assets/images/serviceBg1.png'
+import serviceBg2 from '../assets/images/serviceBg2.png'
 export {
     trainerLoader,
     traineeLoader,
@@ -30,5 +32,7 @@ export {
     trainer4,
     trainer5,
     trainer6,
-    trainer7
+    trainer7,
+    serviceBg1,
+    serviceBg2
 }
