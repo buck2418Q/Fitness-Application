@@ -34,7 +34,7 @@ function JoinToday() {
     };
 
     return (
-        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-secondary'>
+        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-background'>
             <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div>
                     <motion.p
@@ -61,6 +61,36 @@ function JoinToday() {
                 </div>
             </div>
 
+            {/* Yearly Packs */}
+            <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeIn("up", "", 0.2, 0.6)}
+                className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'}`}>
+                {Array(3).fill().map((_, index) => (
+                    <motion.div
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("", "", index * 0.2, 0.4)}
+                        key={index}
+                        className="text-left flex flex-col  border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-gradient-to-tl from-background from-10% to-secondary">
+                        <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
+                        <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
+                        <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul className='  mt-8 mb-12'>
+                            {Array(7).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
+                                <li key={i} className='flex items-center my-2'>
+                                    <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
+                                </li>
+                            ))}
+                        </ul>
+                        <NextButton onClick={handleClick} color="secondlight" >Join Now</NextButton>
+                    </motion.div>
+                ))}
+            </motion.div>
+
             {/* Monthly Packs */}
             <motion.div
                 whileInView="show"
@@ -75,7 +105,7 @@ function JoinToday() {
                         viewport={{ once: false, amount: 0.2 }}
                         variants={fadeIn("", "", index * 0.2, 0.4)}
                         key={index}
-                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
+                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-gradient-to-tr from-background from-10% to-secondary">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                         <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
                         <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -86,40 +116,12 @@ function JoinToday() {
                                 </li>
                             ))}
                         </ul>
-                        <NextButton onClick={handleClick} color="secondary" >Join Now</NextButton>
+                        <NextButton onClick={handleClick} color="secondlight" >Join Now</NextButton>
                     </motion.div>
                 ))}
             </motion.div>
 
-            {/* Yearly Packs */}
-            <motion.div
-                whileInView="show"
-                initial="hidden"
-                viewport={{ once: false, amount: 0.2 }}
-                variants={fadeIn("up", "", 0.2, 0.6)}
-                className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'} bg-secondary`}>
-                {Array(3).fill().map((_, index) => (
-                    <motion.div
-                        whileInView="show"
-                        initial="hidden"
-                        viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("", "", index * 0.2, 0.4)}
-                        key={index}
-                        className="text-left flex flex-col  border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out">
-                        <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
-                        <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
-                        <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul className='  mt-8 mb-12'>
-                            {Array(7).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
-                                <li key={i} className='flex items-center my-2'>
-                                    <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
-                                </li>
-                            ))}
-                        </ul>
-                        <NextButton onClick={handleClick} color="secondary" >Join Now</NextButton>
-                    </motion.div>
-                ))}
-            </motion.div>
+
         </section >
     );
 }

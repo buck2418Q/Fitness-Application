@@ -41,7 +41,7 @@ function Review() {
 
     return (
         <>
-            <section className='py-24 px-20 bg-cover h-auto bg-background'>
+            <section className='py-24 px-20 bg-cover h-auto bg-secondary'>
                 <div className='flex justify-between items-center'>
                     <div>
                         <p className='text-xl  mx-2 c-text-gray'>Reviews</p>

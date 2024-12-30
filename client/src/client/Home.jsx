@@ -4,7 +4,7 @@ const Loader = React.lazy(() => import('../components/Loader.jsx'))
 const Banner = React.lazy(() => import('./home/Banner.jsx'));
 const StatBanner = React.lazy(() => import('./home/StatBanner.jsx'));
 const ChooseUs = React.lazy(() => import('./home/ChooseUs.jsx'));
-const Trainers = React.lazy(() => import('./home/Trainers.jsx'));
+const Trainers = React.lazy(() => import('./Trainers.jsx'));
 const Coaches = React.lazy(() => import('./home/Coaches.jsx'));
 const JoinToday = React.lazy(() => import('./home/JoinToday.jsx'));
 const Review = React.lazy(() => import('./home/Review.jsx'));

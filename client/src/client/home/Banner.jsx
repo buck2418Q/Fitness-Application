@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import bannerBg from '../../assets/videos/bannerBg2.mp4'
+import bannerBg from '../../assets/videos/bannerBg.mp4'
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
 
@@ -7,8 +7,8 @@ function Banner() {
     return (
         <>
             <section
-                className='w-full h-screen flex flex-col justify-center items-center relative top-[-100px] p-4 overflow-hidden'
-                style={{ backgroundColor: bannerBg, backgroundPosition: 'center' }}
+                className='w-full h-screen flex flex-col justify-center items-center  p-4 overflow-hidden'
+                style={{ backgroundColor: bannerBg, backgroundPosition: 'center', }}
             >
                 <video
                     autoPlay

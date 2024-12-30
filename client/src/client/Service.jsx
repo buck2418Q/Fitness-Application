@@ -2,7 +2,7 @@
 import { fadeIn } from "../assets/utils/motion";
 import { motion } from "framer-motion";
 
-function Review() {
+function Service() {
   return (
     <>
       <section
@@ -13,7 +13,7 @@ function Review() {
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("up", "", 0.2, 0.5)}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide fade_appear text-center">
-          Reviews from our Members
+          Services 
         </motion.h2>
         <motion.p
           whileInView="show"
@@ -31,4 +31,4 @@ function Review() {
   )
 }
 
-export default Review
+export default Service

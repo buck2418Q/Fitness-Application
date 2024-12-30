@@ -41,13 +41,13 @@ const imageData = [
 function ChooseUs() {
     return (
         <>
-            <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20  text-light bg-background'>
-                <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black fade_appear'>Why Choose Us</h2>
+            <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20  text-light bg-secondary'>
+                <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Why Choose Us</h2>
                 <motion.p
                     whileInView="show"
                     initial="hidden"
                     viewport={{ once: false, amount: 0.2 }}
-                    variants={fadeIn("up", "", 0.6, 0.5)}
+                    variants={fadeIn("up", "", 0.25, 0.5)}
                     className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 text-secondlight '>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </motion.p>
@@ -56,8 +56,13 @@ function ChooseUs() {
                     {/* Card Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 m-0 p-0 box-border w-full lg:w-8/12">
                         {cardData.map((card, index) => (
-                            <div
-                                key={index} className="m-4 flex ltr_appear">
+                            <motion.div
+                                whileInView="show"
+                                initial="hidden"
+                                viewport={{ once: false, amount: 0.2 }}
+                                variants={fadeIn("right", "", index * 0.15, 0.4)}
+                                key={index}
+                                className="m-4 flex ltr_appear">
                                 <div className="mx-4 my-2 p-2 rounded-full c-bg-black h-fit ">
                                     <img src={card.imgSrc} alt={card.title} className="w-12 aspect-square" />
                                 </div>
@@ -65,12 +70,17 @@ function ChooseUs() {
                                     <h6 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">{card.title}</h6>
                                     <div className="text-secondlight">{card.description}</div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
 
                     {/* Images */}
-                    <div className="w-full lg:w-4/12 flex flex-col">
+                    <motion.div
+                        whileInView="show"
+                        initial="hidden"
+                        viewport={{ once: false, amount: 0.2 }}
+                        variants={fadeIn("left", "", .4, 0.4)}
+                        className="w-full lg:w-4/12 flex flex-col">
                         <div className="m-4 flex flex-col sm:flex-row ">
                             <div className="mx-0 sm:mx-4 w-full sm:w-1/2 ">
                                 {imageData.slice(0, 2).map((image, index) => (
@@ -90,7 +100,7 @@ function ChooseUs() {
                                 />
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
         </>

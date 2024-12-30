@@ -201,7 +201,12 @@ function About() {
 
       {/* marquee  */}
       <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondary overflow-hidden ">
-        <div className="marquee-container relative ">
+        <motion.div
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("left", "", 0.4, 1)}
+          className="marquee-container relative ">
           {/* The following 8 divs are the blocks that move */}
           <div className="marquee-content flex gap-16 animate-marquee">
             {companies.map((company, index) => (
@@ -214,112 +219,50 @@ function About() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-
-      {/* why choose us */}
-      <section className="w-full h-full border-solid 
-px-4 sm:px-8 md:px-16 lg:px-24 xl:px-36 
-py-8 sm:py-12 md:py-20 lg:py-28 xl:py-32 
-flex flex-wrap lg:flex-nowrap items-center text-light bg-background gap-8">
-
-        <div className="w-full  lg:w-2/6 flex flex-col items-start gap-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black fade_appear">
-            <span className="block mb-4 sm:mb-5">Why</span> Choose Us
-          </h2>
-          <motion.p
-            whileInView="show"
-            initial="hidden"
-            viewport={{ once: false, amount: 0.2 }}
-            variants={fadeIn("up", "", 0.6, 0.5)}
-            className="text-base sm:text-lg md:text-xl lg:text-xl my-4 sm:my-5 lg:my-10 text-secondlight">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
-          </motion.p>
-
-          <div className="w-full">
-            <motion.div
-              whileInView="show"
-              initial="hidden"
-              viewport={{ once: false, amount: 0.2 }}
-              variants={fadeIn("up", "", 0.6, 0.5)}
-              className="">
-              <NextButton onClick={seeMoreClick} color="secondary" >See More</NextButton>
-            </motion.div>
-          </div>
-        </div>
-
-        <motion.div
-          whileInView="show"
-          initial="hidden"
-          viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("", "", 0.6, 0.5)}
-          className="w-full  lg:w-2/6 rounded-xl hidden lg:block
-      p-2 lg:p-12">
-          <LazyLoadImage
-            key="{index}"
-            src={aboutUs}
-            alt=""
-            className="rounded-2xl w-full h-full"
-          />
         </motion.div>
-
-        <div className="w-full  lg:w-2/6 flex flex-col gap-4">
-          {cardData.map((card, index) => (
-            <motion.div
-              whileInView="show"
-              initial="hidden"
-              viewport={{ once: false, amount: 0.2 }}
-              variants={fadeIn("left", "", 0.6, 0.5)}
-              key={index}
-              className="m-2 sm:m-4 flex ">
-              <div className="mx-2 sm:mx-4 my-2 p-2 sm:p-4 rounded-full bg-primary h-fit">
-                <img src={card.imgSrc} className="w-8 sm:w-10 md:w-12 aspect-square" />
-              </div>
-              <div className="h-fit">
-                <h6 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">{card.title}</h6>
-                <div className="text-secondlight text-sm sm:text-base md:text-medium">{card.description}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
       </section>
+
+
 
       {/* marathon  */}
       <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background">
-        <motion.h2
-          whileInView="show"
-          initial="hidden"
-          viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.2, 0.5)}
-          className='text-4xl sm:text-5xl lg:text-6xl font-black text-center text-light'>Races For Beginners To Marathoners.</motion.h2>
-        <motion.p
-          whileInView="show"
-          initial="hidden"
-          viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray text-center text-secondlight'>
+        <h2
+
+          className='text-4xl sm:text-5xl lg:text-6xl font-black text-center text-light'>Races For Beginners To Marathoners.</h2>
+        <p className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
-        </motion.p>
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
           {
             marathonData.map((marathon, index) => (
-              <Card className="py-4 bg-secondary text-light" key={index}>
-                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                  <p className="text-tiny uppercase font-bold">{marathon.stats}</p>
-                  <small className="text-default-500">{marathon.distance}</small>
-                  <h4 className="font-bold text-large">{marathon.title}</h4>
-                </CardHeader>
-                <CardBody className="overflow-visible pt-2 pb-0  w-full">
-                  <Image
-                    alt="Card background"
-                    className="object-cover rounded-xl"
-                    src={marathon.image}
-                  />
-                </CardBody>
-              </Card>
+
+
+
+              <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeIn("", "ease-in-out", index * .2, 0.6)}
+                key={index}
+              >
+
+                <Card className="py-4 bg-secondary text-light">
+                  <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                    <p className="text-tiny uppercase font-bold">{marathon.stats}</p>
+                    <small className="text-default-500">{marathon.distance}</small>
+                    <h4 className="font-bold text-large">{marathon.title}</h4>
+                  </CardHeader>
+                  <CardBody className="overflow-visible pt-2 pb-0  w-full">
+                    <Image
+                      alt="Card background"
+                      className="object-cover rounded-xl"
+                      src={marathon.image}
+                    />
+                  </CardBody>
+                </Card>
+              </motion.div>
             ))
           }
         </div>
@@ -342,18 +285,16 @@ flex flex-wrap lg:flex-nowrap items-center text-light bg-background gap-8">
             variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl my-5 sm:my-10  text-left text-secondlight'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
           </motion.p>
+          <div className="flex">
+            <NextButton color="light"> Ask a question</NextButton></div>
         </div>
         <div className="w-full">
           {faqData.map((item, index) => (
-            <motion.div
-              whileInView="show"
-              initial="hidden"
-              viewport={{ once: false, amount: 0.2 }}
-              variants={fadeIn("left", "", index * 0.4, 0.5)}
+            <div
               key={index} className=" pt-6 pb-4">
               <p
                 onClick={() => toggleAnswer(index)}
-                className="w-full text-left text-xl font-semibold text-light focus:outline-none border-primary border-1 p-2 lg:p-5 xl:p-6 rounded-3xl"
+                className="w-full text-left text-xl font-semibold text-light focus:outline-none border-primary border-1 p-2 lg:p-5 xl:p-6 rounded-3xl cursor-pointer"
               >
                 <img src={activeIndex === index ? plusIcon : minusIcon} alt="" className="inline mr-3" />
                 {item.question}
@@ -366,7 +307,7 @@ flex flex-wrap lg:flex-nowrap items-center text-light bg-background gap-8">
                   variants={fadeIn("", "", 0.2, 0.5)}
                   className="mt-2 text-light transition ease-in-out duration-400 text-left pb-2 lg:pb-5 xl:pb-6  pt-1 lg:pt-2 xl:pt-3 pl-2 lg:pl-5 xl:pl-6">{item.answer}</motion.p>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -385,7 +326,7 @@ flex flex-wrap lg:flex-nowrap items-center text-light bg-background gap-8">
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray text-center text-secondlight'>
+          variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </motion.p>
 

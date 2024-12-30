@@ -15,7 +15,7 @@ function Coaches() {
 
     return (
         <>
-            <section className='w-full h-full border-solid px-24 py-20 flex bg-background'>
+            <section className='w-full h-full border-solid px-24 py-20 flex bg-secondary'>
                 <div className="flex flex-col sm:flex-row w-full sm:w-8/12 lg:w-5/12">
 
                     <motion.div
@@ -49,27 +49,27 @@ function Coaches() {
                         whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("left", "", 0.3, 0.5)}
+                        variants={fadeIn("", "", 0.3, 0.5)}
                         className='text-2xl mb-6 opacity-85 font-bold'>Are you looking for a Mentor?</motion.p>
                     <motion.h2
                         whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("left", "", 0.5, 0.5)}
+                        variants={fadeIn("", "", 0.5, 0.5)}
                         className='text-6xl font-extrabold'>Coaches</motion.h2>
                     <motion.p
                         whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("left", "", 0.6, 0.5)} className='text-xl my-6 mx-2 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </motion.p>
+                        variants={fadeIn("", "", 0.6, 0.5)} className='text-xl my-6 mx-2 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </motion.p>
 
                     <motion.div whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("left", "", 0.6, 0.5)} className='absolute bottom-0 mb-4 shadow-2xl '>
+                        variants={fadeIn("", "", 0.6, 0.5)} className='absolute bottom-0 mb-4 shadow-2xl '>
                         <NextButton
                             onClick={handleClick}
-                            color="secondary"
+                            color="light"
                         >Join Now</NextButton>
                     </motion.div>
                 </div>

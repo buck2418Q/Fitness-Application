@@ -437,15 +437,13 @@ function Signup() {
             <p className="shrink-0 text-tiny text-default-500">OR</p>
             <Divider className="flex-1 bg-default-500" />
           </div>
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-center w-full">
-              <GoogleOAuthProvider clientId={googleClientId}>
-                <GoogleLogin
-                  onSuccess={handleGoogleSuccess}
-                  onError={handleGoogleFailure}
-                />
-              </GoogleOAuthProvider>
-            </div>
+          <div className="flex flex-col gap-4">
+            <GoogleOAuthProvider clientId={googleClientId}>
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleFailure}
+              />
+            </GoogleOAuthProvider>
             <FacebookLogin onSuccess={handleFacebookSuccess} />
 
           </div>

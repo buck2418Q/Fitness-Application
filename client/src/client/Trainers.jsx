@@ -64,7 +64,7 @@ function Trainers() {
         <Loader />
       </div>
 
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary">
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background">
         <motion.h2
           whileInView="show"
           initial="hidden"
@@ -142,7 +142,7 @@ function Trainers() {
             Page {page} of {totalPages}
           </span> */}
             <button onClick={() => handlePageChange("next")} disabled={page === totalPages} className={`bg-secondary py-1 rounded-full px-4 border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === totalPages ? "hover:border-secondary" : ""}`}>
-              Load More
+              See More
             </button>
           </div>
 

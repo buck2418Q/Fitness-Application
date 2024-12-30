@@ -33,15 +33,16 @@ function Navbar() {
         { to: 'home', label: 'Home' },
         { to: 'about', label: 'About' },
         { to: 'trainers', label: 'Trainers' },
-        { to: 'review', label: 'Review' },
+        { to: 'service', label: 'Service' },
         { to: 'plans', label: 'Plans' },
     ];
 
     return (
-        <nav className="py-2 bg-secondlight">
+        <nav className="py-2 bg-gradient-to-tr from-background from-10% via-secondary to-background">
+            {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
             <div
-                className="mx-4 rounded-xl p-2 flex justify-between"
-                style={{ backgroundColor: 'rgba(0, 0, 0, .5)' }}
+                className="mx-4 rounded-xl p-2 flex justify-between "
+                style={{ backgroundColor: 'rgba(0, 0, 0, .4)' }}
             >
                 {/* Logo */}
                 <img src={logo} alt="logo" className="h-10" />
@@ -53,7 +54,7 @@ function Navbar() {
                             key={link.to}
                             to={link.to}
                             aria-current={location.pathname === link.to ? 'page' : undefined}
-                            className="hover:text-blue-600 transition-colors text-white"
+                            className="hover:text-primary transition-colors text-white"
                         >
                             {link.label}
                         </Link>
@@ -74,7 +75,7 @@ function Navbar() {
                     aria-expanded={isMenuOpen}
                     aria-label="Toggle menu"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
