@@ -39,7 +39,8 @@ function Signup() {
     contactNumber: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    profilePicture: ''
   });
   const navigate = useNavigate();
 
@@ -79,36 +80,64 @@ function Signup() {
 
   };
 
+  // const createUserClick = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     setLoading(true);
+  //     const result = await CreateUser(formData);
+  //     if (result.statusCode === 201) {
+  //       toast.success(result.message);
+  //       navigate('/login')
+  //     } else if (result.statusCode === 203) {
+  //       toast.warning(result.message);
+  //       setStep(1)
+  //     } else if (result.statusCode === 202) {
+  //       toast.error(result.message);
+  //       setStep(1)
+  //     }
+  //   } catch (e) {
+  //     console.error(e)
+  //   }
+  //   finally {
+  //     resetForm()
+  //     setLoading(false)
+  //   }
+  // };
+
   const createUserClick = async (e) => {
     e.preventDefault();
-    // for (const key in formData) {
-    //   if (formData[key] === '') {
-    //     toast(`Please enter ${key}`);
-    //     return;
-    //   }
-    // }
-    console.log('Form Data ', formData);
+
     try {
       setLoading(true);
-      const result = await CreateUser(formData);
+
+      // Create FormData
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      const result = await CreateUser(formDataToSend);
       if (result.statusCode === 201) {
         toast.success(result.message);
-        navigate('/login')
+        navigate('/login');
       } else if (result.statusCode === 203) {
         toast.warning(result.message);
-        setStep(1)
+        setStep(1);
       } else if (result.statusCode === 202) {
         toast.error(result.message);
-        setStep(1)
+        setStep(1);
       }
     } catch (e) {
-      console.error(e)
-    }
-    finally {
-      resetForm()
-      setLoading(false)
+      console.error(e);
+    } finally {
+      resetForm();
+      setLoading(false);
     }
   };
+
+
+
 
   // const acceptNumber = (e) => {
   //   e.target.value = e.target.value.replace(/[^0-9]/g, '');
@@ -271,6 +300,16 @@ function Signup() {
                     variant="bordered"
                     value={formData.age}
                     onChange={handleInputChange}
+                  />
+
+                  <Input
+                    isRequired
+                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    label="Picture"
+                    name="profilePicture"
+                    type="file"
+                    variant="bordered"
+                    onChange={(e) => setFormData({ ...formData, profilePicture: e.target.files[0] })}
                   />
                 </div>
                 <div className="flex justify-between gap-2 md:gap-28">

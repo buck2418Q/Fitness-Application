@@ -28,14 +28,20 @@ export const GetUsers = async (req, res) => {
 
 export const CreateUser = async (req, res) => {
     try {
-        const userData = await createUser(req.body);
-        return res.status(userData.statusCode).send(userData)
+        const userData = req.body;
+        if (req.file) {
+            userData.profilePicture = `/${req.file.path.replace(/\\/g, "/")}`;
+            console.log('file path ', userData.profilePicture)
+        }
+
+        const userResponse = await createUser(userData);
+        return res.status(userResponse.statusCode).send(userResponse);
     } catch (e) {
         return res.status(500).send({
             error: e?.message || "Internal Server Error",
         });
     }
-}
+};
 
 export const UpdateUser = async (req, res) => {
     try {

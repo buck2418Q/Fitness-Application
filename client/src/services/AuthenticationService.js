@@ -23,10 +23,13 @@ export const openAuth = async (data) => {
 
 export const CreateUser = async (formData) => {
     try {
-        console.log('service', formData)
-        const response = await axios.post(Users, formData);
+        const response = await axios.post(Users, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
         return response.data;
     } catch (e) {
-        console.error(e)
+        console.error(e);
     }
-}
+};

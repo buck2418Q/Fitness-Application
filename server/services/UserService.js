@@ -18,9 +18,8 @@ export const userCount = async () => {
 
 
 
-
 export const createUser = async (userData) => {
-    console.log('backedn :-----', userData)
+
     const isEmailExists = await getUserByEmail(userData.email);
     if (isEmailExists) {
         return createResponse(203, "Email Exists", null);
@@ -28,6 +27,8 @@ export const createUser = async (userData) => {
         try {
             const hashedPassword = await passwordHash(userData.password);
             userData.password = hashedPassword;
+
+            // Save user data, including profilePicture, to the database
             const newUser = await UserModel.create(userData);
             if (newUser) {
                 return createResponse(201, "User Created", null);
@@ -39,6 +40,7 @@ export const createUser = async (userData) => {
         }
     }
 };
+
 
 export const deleteUser = async (id) => {
     const isUserExists = await getUserById(id);

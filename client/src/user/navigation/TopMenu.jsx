@@ -7,6 +7,7 @@ import profilePic from "../../assets/images/profilePic.jpg";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
+const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
 
 const TopMenu = () => {
     const [userName, setUserName] = useState('');
@@ -19,6 +20,7 @@ const TopMenu = () => {
         setUserName(decodedToken.userName);
         setUserEmail(decodedToken.email);
         setProfilePicture(decodedToken.profilePicture)
+        console.log(token)
     }, [])
     const [isOpen, setIsOpen] = useState(false);
 
@@ -66,7 +68,7 @@ const TopMenu = () => {
                         <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
                     <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center hover:shadow-xl">
-                        <img src={profilePicture} alt="User" className='border rounded-full h-full cursor-pointer' onClick={toggleProfileModal} />
+                        <img src={imgBaseUrl + profilePicture} alt="User" className='object-cover w-12 h-12 border rounded-full cursor-pointer' onClick={toggleProfileModal} />
                     </span>
                 </div>
             </div>
@@ -80,7 +82,7 @@ const TopMenu = () => {
 
                         <div className='p-1 flex flex-col items-center justify-center '>
                             <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
-                            <img src={profilePicture} alt="" className='rounded-full w-24 top-[-48px]  relative shadow-black border-white border-3' />
+                            <img src={imgBaseUrl + profilePicture} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover	 bg-gradient-to-tr from-cyan-500 to-blue-500 relative shadow-black border-white border-3' />
 
                         </div>
 

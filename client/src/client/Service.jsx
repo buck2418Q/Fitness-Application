@@ -15,7 +15,7 @@ function Service() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.2, 0.5)}
+          variants={fadeIn("left", "", 0.3, 0.5)}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide  w-[45%] pl-32">
           <h2 className="uppercase text-7xl leading-none font-black	">
             <span className="block">Get the</span>
@@ -31,7 +31,7 @@ function Service() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.3, 0.5)}
+          variants={fadeIn("left", "", 0.3, 0.5)}
           className="text-base sm:text-lg lg:text-xl text-center  text-secondlight w-[55%] h-[90%]"
         >
           <img src={serviceBg1} alt="Background Image" className="w-full h-full object-cover" />
@@ -47,7 +47,7 @@ function Service() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.3, 0.5)}
+          variants={fadeIn("right", "", 0.3, 0.5)}
           className="text-base sm:text-lg lg:text-xl text-center  text-secondlight w-[65%] h-[90%]"
         >
           <img src={serviceBg2} alt="Background Image" className="w-full h-full object-cover" />
@@ -58,7 +58,7 @@ function Service() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.2, 0.5)}
+          variants={fadeIn("right", "", 0.3, 0.5)}
           className="font-bold tracking-wide  w-[35%] pr-32">
           <h2 className="uppercase  sm:text-4xl text-primary lg:text-6xl text-6xl leading-none font-black">
             <span className="block">Cardio </span>

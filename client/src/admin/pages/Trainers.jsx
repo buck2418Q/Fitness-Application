@@ -9,7 +9,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { motion } from 'framer-motion';
 import { fadeIn } from "../../assets/utils/motion";
-
+const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
 function Trainers() {
 
     const [openForm, setOpenForm] = useState(false);
@@ -43,7 +43,7 @@ function Trainers() {
             field: "profilePicture", headerName: "Profile Picture",
             cellRenderer: (params) => (
                 <img
-                    src={params.value}
+                    src={imgBaseUrl + params.value}
                     alt="Profile"
                     style={{ width: '50px', borderRadius: '50%' }}
                 />
