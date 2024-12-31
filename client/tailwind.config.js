@@ -20,13 +20,7 @@ export default {
         secondlight: "#dddddd",
         primary: "#16b650",    // Green 
         "hover-primary": "#13a048", // Slightly darker green for hover effects
-
-
-        // Light theme colors
-        "light-background": "#f9f9f9", // Main light
-        "light-secondary": "#f0f0f0", // Secondary light
-        "dark-text": "#111419", // Dark text on light background
-        "light-text": "#333333", // Slightly darker text
+        blue:"#0064d7"
       },
       backgroundImage: {
         'callbanner': "url('./src/assets/images/call-banner.png')",

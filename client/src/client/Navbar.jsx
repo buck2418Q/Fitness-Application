@@ -39,7 +39,7 @@ function Navbar() {
     ];
 
     return (
-        <nav className="py-2 bg-gradient-to-tr from-background from-10% via-secondary to-background  ">
+        <nav className="py-2 bg-gradient-to-tr from-background from-10% via-secondary to-background  dark:from-light dark:via-secondlight dark:to-light">
             {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
             <div
                 className="mx-4 rounded-xl p-2 flex justify-between "
@@ -108,7 +108,7 @@ function Navbar() {
                             </Link>
                         ))}
                         {/* <div className='w-5/12 flex align-bottom justify-end'> */}
-                            <NextButton onClick={joinNowClick} type="primary" size="medium" >Sign In</NextButton>
+                        <NextButton onClick={joinNowClick} type="primary" size="medium" >Sign In</NextButton>
                         {/* </div> */}
                     </div>
                 </motion.div>

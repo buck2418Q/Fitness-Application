@@ -34,7 +34,7 @@ function JoinToday() {
     };
 
     return (
-        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-background'>
+        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-background dark:bg-light dark:text-background'>
             <div className='flex flex-col md:flex-row justify-between items-center'>
                 <div>
                     <motion.p
@@ -51,11 +51,13 @@ function JoinToday() {
                         className='text-4xl md:text-6xl my-2 font-extrabold'>Join Today</motion.h2>
                 </div>
                 <div>
-                    <div className="relative w-[150px] h-[36px] mt-[-20px] mx-auto overflow-hidden drop-shadow-xl bg-white rounded-xl cursor-pointer" onClick={monthYearToggle}>
+                    <div className="relative w-[150px] h-[36px] mt-[-20px] mx-auto overflow-hidden drop-shadow-xl bg-light dark:bg-background rounded-xl cursor-pointer" onClick={monthYearToggle}>
                         <div className="absolute inset-0 flex items-center justify-start z-20 transition-all duration-300 ease-linear ml-1">
-                            <span className={isMonth === true ? 'absolute left-2  z-10 transition-all duration-300 ease-linear m-2 text-light' : 'absolute left-2  z-10 transition-all duration-300 ease-linear m-2 text-background'}>Month</span>
-                            <span className={isMonth === false ? 'absolute right-3 top-[-2px] z-10 transition-all duration-300 ease-linear m-2 text-light' : 'absolute right-3 top-[-2px] z-10 transition-all duration-300 ease-linear m-2 text-background'}>Year</span>
-                            <div className={`${isMonth ? 'absolute left-0 top-1 w-20 h-[28px] bg-black rounded-xl transition-all duration-300 ease-linear' : 'absolute left-[76px] top-1 w-16 h-[28px] bg-black rounded-xl transition-all duration-300 ease-linear  '}`}></div>
+                            <span className={isMonth === true ? 'dark:text-background absolute left-2  z-10 transition-all duration-300 ease-linear m-2 text-light ' : 'absolute left-2  z-10 transition-all duration-300 ease-linear m-2 text-background  dark:text-light'}>Month</span>
+
+                            <span className={isMonth === false ? 'absolute right-3 top-[-2px] z-10 transition-all duration-300 ease-linear m-2 text-light dark:text-background' : 'absolute right-3 top-[-2px] z-10 transition-all duration-300 ease-linear m-2 text-background dark:text-light'}>Year</span>
+
+                            <div className={`${isMonth ? 'absolute left-0 top-1 w-20 h-[28px] bg-black rounded-xl transition-all duration-300 ease-linear dark:bg-light' : 'absolute left-[76px] top-1 w-16 h-[28px] bg-background dark:bg-light rounded-xl transition-all duration-300 ease-linear'}`}></div>
                         </div>
                     </div>
                 </div>
@@ -75,7 +77,7 @@ function JoinToday() {
                         viewport={{ once: false, amount: 0.2 }}
                         variants={fadeIn("", "", index * 0.2, 0.4)}
                         key={index}
-                        className="text-left flex flex-col  border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-gradient-to-tl from-background from-10% to-secondary">
+                        className="text-left flex flex-col  border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-gradient-to-tl from-background from-10% to-secondary dark:from-light dark:to-secondlight">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                         <h2 className='text-4xl font-extrabold'>$99.9 <span className="text-sm font-bold">/Year</span></h2>
                         <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -105,7 +107,7 @@ function JoinToday() {
                         viewport={{ once: false, amount: 0.2 }}
                         variants={fadeIn("", "", index * 0.2, 0.4)}
                         key={index}
-                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-gradient-to-tr from-background from-10% to-secondary">
+                        className="text-left flex flex-col border-primary border-1 rounded-2xl my-4 py-4 px-5 transition duration-300 ease-in-out bg-gradient-to-tr from-background from-10% to-secondary dark:from-light dark:to-secondlight">
                         <p className='text-xl mb-2 opacity-85 font-bold'>Beginner Plan</p>
                         <h2 className='text-4xl font-extrabold'>$19.9 <span className="text-sm font-bold">/Month</span></h2>
                         <p className='mt-4  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

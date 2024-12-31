@@ -182,7 +182,7 @@ function About() {
   return (
     <>
       {/* our team section */}
-      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-background text-light  dark:bg-light-background dark:text-dark-text flex flex-col justify-center items-center gap-6 sm:gap-8">
+      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-background text-light  dark:bg-light dark:text-background flex flex-col justify-center items-center gap-6 sm:gap-8">
         <motion.h2 whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
@@ -194,13 +194,13 @@ function About() {
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("up", "", 0.3, 0.5)}
-          className="text-base sm:text-lg lg:text-xl text-center sm:m-5 lg:m-10 text-secondlight">
+          className="text-base sm:text-lg lg:text-xl text-center sm:m-5 lg:m-10 text-secondlight dark:text-secondary">
           Fitness360 is a results-driven fitness organization offering tailored training programs, expert coaching, and community support. We prioritize health, strength, and mental well-being, helping members achieve their fitness goals with dedication.
         </motion.p>
       </section>
 
       {/* marquee  */}
-      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondary overflow-hidden ">
+      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondary dark:bg-secondlight overflow-hidden ">
         <motion.div
           whileInView="show"
           initial="hidden"
@@ -215,7 +215,7 @@ function About() {
                 className="w-auto h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 flex-shrink-0  cursor-pointer flex items-center justify-center gap-4 grayscale hover:grayscale-0  transition ease-in-out duration-300"
               >
                 <img src={company.image} alt="" className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20" />
-                <p className="text-lg sm: md:text-xl lg:text-2xl xl:text-3xl text-light">{company.CompanyName}</p>
+                <p className="text-lg sm: md:text-xl lg:text-2xl xl:text-3xl text-light dark:text-background">{company.CompanyName}</p>
               </div>
             ))}
           </div>
@@ -225,11 +225,11 @@ function About() {
 
 
       {/* marathon  */}
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background text-light dark:bg-light-background dark:text-dark-text">
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background text-light dark:bg-light dark:text-background">
         <h2
 
           className='text-4xl sm:text-5xl lg:text-6xl font-black text-center'>Races For Beginners To Marathoners.</h2>
-        <p className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight'>
+        <p className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight dark:text-background'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </p>
 
@@ -248,16 +248,16 @@ function About() {
                 key={index}
               >
 
-                <Card className="py-4 bg-secondary text-light">
+                <Card className="py-4 bg-secondary dark:bg-secondlight dark:text-background dark:shadow-none dark:border-background dark:border-1">
                   <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                     <p className="text-tiny uppercase font-bold">{marathon.stats}</p>
-                    <small className="text-default-500">{marathon.distance}</small>
+                    <small className="text-default-500 dark:text-secondary">{marathon.distance}</small>
                     <h4 className="font-bold text-large">{marathon.title}</h4>
                   </CardHeader>
                   <CardBody className="overflow-visible pt-2 pb-0  w-full">
                     <Image
                       alt="Card background"
-                      className="object-cover rounded-xl"
+                      className="object-cover rounded-xl dark:border-1 dark:border-secondary-50"
                       src={marathon.image}
                     />
                   </CardBody>
@@ -270,23 +270,23 @@ function About() {
 
 
       {/* faq  */}
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background flex flex-col md:flex-row gap-2 sm:gap-6 md:gap-12 lg:gap:16 xl:gap-20">
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background text-light dark:bg-light dark:text-background flex flex-col md:flex-row gap-2 sm:gap-6 md:gap-12 lg:gap:16 xl:gap-20">
         <div className="w-full">
           <motion.h2
             whileInView="show"
             initial="hidden"
             viewport={{ once: false, amount: 0.2 }}
             variants={fadeIn("up", "", 0.2, 0.5)}
-            className='text-4xl sm:text-5xl lg:text-6xl font-black text-left text-light'>Frequently Asked Questions</motion.h2>
+            className='text-4xl sm:text-5xl lg:text-6xl font-black text-left '>Frequently Asked Questions</motion.h2>
           <motion.p
             whileInView="show"
             initial="hidden"
             viewport={{ once: false, amount: 0.2 }}
-            variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl my-5 sm:my-10  text-left text-secondlight'>
+            variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl my-5 sm:my-10  text-left text-secondlight dark:text-secondary'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
           </motion.p>
           <div className="flex">
-            <NextButton color="light"> Ask a question</NextButton></div>
+            <NextButton color="light" className="dark:bg-background dark:text-light"> Ask a question</NextButton></div>
         </div>
         <div className="w-full">
           {faqData.map((item, index) => (
@@ -294,9 +294,9 @@ function About() {
               key={index} className=" pt-6 pb-4">
               <p
                 onClick={() => toggleAnswer(index)}
-                className="w-full text-left text-xl font-semibold text-light focus:outline-none border-primary border-1 p-2 lg:p-5 xl:p-6 rounded-3xl cursor-pointer"
+                className="w-full text-left text-xl font-semibold focus:outline-none d border-primary dark:text-background border-1 p-2 lg:p-5 xl:p-6 rounded-3xl cursor-pointer"
               >
-                <img src={activeIndex === index ? plusIcon : minusIcon} alt="" className="inline mr-3" />
+                <img src={activeIndex === index ? plusIcon : minusIcon} alt="" className="inline mr-3  " />
                 {item.question}
               </p>
               {activeIndex === index && (
@@ -305,7 +305,7 @@ function About() {
                   initial="hidden"
                   viewport={{ once: false, amount: 0.2 }}
                   variants={fadeIn("", "", 0.2, 0.5)}
-                  className="mt-2 text-light transition ease-in-out duration-400 text-left pb-2 lg:pb-5 xl:pb-6  pt-1 lg:pt-2 xl:pt-3 pl-2 lg:pl-5 xl:pl-6">{item.answer}</motion.p>
+                  className="mt-2 text-light transition ease-in-out duration-400 text-left pb-2 lg:pb-5 xl:pb-6  pt-1 lg:pt-2 xl:pt-3 pl-2 lg:pl-5 xl:pl-6 dark:text-background">{item.answer}</motion.p>
               )}
             </div>
           ))}
@@ -315,25 +315,25 @@ function About() {
 
 
       {/* blog section  */}
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary ">
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-secondary text-light dark:text-background dark:bg-secondlight">
         <motion.h2
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("up", "", 0.2, 0.5)}
-          className='text-4xl sm:text-5xl lg:text-6xl font-black text-center text-light'>Our Latest Blogs.</motion.h2>
+          className='text-4xl sm:text-5xl lg:text-6xl font-black text-center'>Our Latest Blogs.</motion.h2>
         <motion.p
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight'>
+          variants={fadeIn("up", "", 0.6, 0.5)} className='text-lg sm:text-xl lg:text-2xl mb-7 sm:mb-12 mt-3 sm:mt-7 c-text-gray text-center text-secondlight dark:text-secondary'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
           {
             BlogData.map((blog, index) => (
-              <Card className="py-4 bg-secondary text-light border-primary border-1" key={index}>
+              <Card className="py-4 bg-secondary text-light dark:bg-light dark:text-background   border-primary border-1" key={index}>
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
 
                   <Image
@@ -357,7 +357,7 @@ function About() {
 
       {/* join our newsoutlet section */}
       <section className="flex text-secondlight">
-        <div className="bg-background flex flex-col justify-center items-center 
+        <div className="bg-background  dark:bg-light dark:text-background flex flex-col justify-center items-center 
         px-2 sm:px-8 md:px-16 lg:px-24 xl:px-36
         py-2 sm:py-8 md:py-16 lg:py-24 xl:py-20
         w-full">
@@ -370,8 +370,8 @@ function About() {
               <p className="text-base sm:text-lg md:text-xl lg:text-xl">Sign up for our newsletter to receive the latest news, updates, and special offers from Fitness360.</p>
             </div>
             <div className="flex gap-4  w-full md:w-1/2 ">
-              <input type="text" placeholder="Enter your email" className="w-4/6  px-4 rounded-lg" />
-              <button className="bg-background text-light
+              <input type="text" placeholder="Enter your email" className="w-4/6 px-4 rounded-lg dark:bg-light dark:text-background" />
+              <button className="bg-background text-light dark:bg-light dark:text-background
               py-1 sm:py-2 md:py-3 lg:py-4
              px-2 sm:px-4 md:px-6 lg:px-8 
                rounded-lg w-2/6">Subscribe</button>

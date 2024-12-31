@@ -14,30 +14,20 @@ import fs from "fs";
 dotenv.config();
 const appUser = process.env.APP_USER
 
-
+// file multer config
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        // Define user-specific folder path
         const userFolder = `uploads/userProfilePicture/`;
-
-        // Check if the folder exists; if not, create it
         if (!fs.existsSync(userFolder)) {
-            fs.mkdirSync(userFolder, { recursive: true }); // Create folder dynamically
+            fs.mkdirSync(userFolder, { recursive: true });
         }
-
-        cb(null, userFolder); // Set destination folder
+        cb(null, userFolder);
     },
     filename: (req, file, cb) => {
-        // Generate timestamp in DDMMYYYYHHMM format
         const timestamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 12);
-
-        // Get file extension
         const fileExt = path.extname(file.originalname);
-
-        // Set file name (email + timestamp + extension)
         const email = req.body.email?.replace(/[@.]/g, "") || "unknown";
         const fileName = `${email}${timestamp}${fileExt}`;
-
         cb(null, fileName);
     },
 });
@@ -45,15 +35,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // cors 
-var whitelist = ['http://localhost:5173', 'https://fitness360.vercel.app/']
 var corsOptions = {
-    // origin: function (origin, callback) {
-    //     if (whitelist.indexOf(origin) !== -1) {
-    //         callback(null, true)
-    //     } else {
-    //         callback(new Error('Not allowed by CORS'))
-    //     }
-    // },
     origin: appUser,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
@@ -70,15 +52,6 @@ const port = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
 const appName = "/fitness360";
 
-
-
-
-
-// Validate Environment Variables
-if (!dbUrl) {
-    console.error("Error: DB_URL is not defined in environment variables.");
-    process.exit(1); // Exit the process if DB_URL is not set
-}
 
 // Routes
 const router = express.Router();
@@ -117,10 +90,16 @@ router.get("/knowtrainer", GetTrainerDetails)
 
 
 
+
 // Database connection
+if (!dbUrl) {
+    console.error("Error: DB_URL is not defined in environment variables.");
+    process.exit(1);
+}
+
 const connectDB = async () => {
     try {
-        await mongoose.connect(dbUrl); // No need for deprecated options
+        await mongoose.connect(dbUrl);
         console.log("DB Connected");
 
         app.listen(port, () => {
@@ -128,7 +107,7 @@ const connectDB = async () => {
         });
     } catch (error) {
         console.error("DB connection error:", error.message);
-        process.exit(1); // Exit the process on DB connection failure
+        process.exit(1);
     }
 };
 // Connect to database

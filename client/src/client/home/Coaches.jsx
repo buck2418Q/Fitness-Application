@@ -15,7 +15,7 @@ function Coaches() {
 
     return (
         <>
-            <section className='w-full h-full border-solid px-24 py-20 flex bg-secondary'>
+            <section className='w-full h-full border-solid px-24 py-20 flex bg-secondary dark:bg-secondlight dark:text-background'>
                 <div className="flex flex-col sm:flex-row w-full sm:w-8/12 lg:w-5/12">
 
                     <motion.div
@@ -61,7 +61,7 @@ function Coaches() {
                         whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("", "", 0.6, 0.5)} className='text-xl my-6 mx-2 c-text-gray'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </motion.p>
+                        variants={fadeIn("", "", 0.6, 0.5)} className='text-xl my-6 mx-2 text-secondlight dark:text-secondary'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </motion.p>
 
                     <motion.div whileInView="show"
                         initial="hidden"
@@ -70,6 +70,7 @@ function Coaches() {
                         <NextButton
                             onClick={handleClick}
                             color="light"
+                            className='dark:bg-background dark:text-light'
                         >Join Now</NextButton>
                     </motion.div>
                 </div>

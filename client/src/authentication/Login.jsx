@@ -21,7 +21,6 @@ function Login() {
   const [viewType, setViewType] = useState('password');
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
-  const [toAdmin, setToAdmin] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [oAuthProvider, setOAuthProvider] = useState({ provider: '', token: '' })
   const [oAuthFacebook, setOAuthFacebook] = useState({ provider: '', firstName: '', lastName: '', email: '', profilePicture: '', facebookId: '' })
@@ -41,11 +40,7 @@ function Login() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (formData.password == '1234') {
-      setToAdmin(true)
-    }
-    else
-      setToAdmin(false)
+
   }
 
   const handleRememberMe = (e) => {
@@ -175,23 +170,20 @@ function Login() {
         <Loader />
       </div>
 
-      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-r from-secondary to-background ">
+      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-br from-secondary to-background dark:from-secondlight dark:to-light">
         <motion.div
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("", "", 0.2, 0.4)}
 
-          className=" text-light flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20 bg-background">
+          className="flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20  text-light dark:text-background dark:border-background bg-gradient-to-t from-secondary to-background dark:from-secondlight dark:via-light dark:to-light ">
 
-          {toAdmin ?
-            <button onClick={toDashboardClick} className="border-1 border-green-700 bg-green-100 rounded px-4 py-1 mb-5">To Dashboard</button>
-            : <div className="flex flex-col items-center pb-4">
-              {/* <AcmeIcon size={60} /> */}
-              <p className="text-xl font-medium">Login</p>
-              <p className="text-small text-default-500">Fitness360</p>
-            </div>
-          }
+          <div className="flex flex-col items-center pb-4">
+            {/* <AcmeIcon size={60} /> */}
+            <p className="text-xl font-medium">Login</p>
+            <p className="text-small text-default-500">Fitness360</p>
+          </div>
 
 
           <form >
@@ -199,8 +191,8 @@ function Login() {
               <Input
                 name="email"
                 label="Email"
-                className="w-full mb-4 text-background h-12"
-                color="background"
+                className="w-full mb-4 text-background  h-12"
+                // color="background"
                 type="email"
                 required
                 radius='sm'
@@ -226,7 +218,7 @@ function Login() {
                   />
                 </button>
               </div>
-              <div className="flex items-center justify-between mb-4 px-2 text-secondlight  cursor-pointer">
+              <div className="flex items-center justify-between mb-4 px-2 text-secondlight dark:text-secondary  cursor-pointer">
                 <span >
                   <Checkbox defaultSelected size="sm" onChange={handleRememberMe}>
                   </Checkbox>

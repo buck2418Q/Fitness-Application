@@ -229,16 +229,16 @@ function Signup() {
       <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
         <Loader />
       </div>
-      <div className="flex flex-col h-full w-full items-center justify-center absolute bg-gradient-to-r from-secondary to-background text-light">
+      <div className="flex flex-col h-full w-full items-center justify-center absolute text-light bg-gradient-to-br from-secondary to-background dark:from-secondlight dark:to-light text-light dark:text-background ">
         <motion.div
           initial="hidden"
           animate="show"
           variants={fadeIn('', 'spring', .2, 0.75)}
-          className="flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35 bg-background ">
+          className="flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35 bg-gradient-to-br from-secondary to-background dark:from-secondlight dark:to-light text-light dark:border-1 dark:border-secondary/30 dark:shadow-none">
           <div className="flex flex-col items-center pb-4">
             {/* <AcmeIcon size={60} /> */}
-            <p className="text-small text-default-500">fitness360 welcomes you</p>
-            <p className="text-xl font-medium">Create Your Account</p>
+            <p className="text-small text-default-500 dark:text-secondary">fitness360 welcomes you</p>
+            <p className="text-xl font-medium dark:text-background">Create Your Account</p>
           </div>
 
 
@@ -256,8 +256,8 @@ function Signup() {
               <div >
                 <div className="flex flex-col mb-4">
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none dark:border-secondary dark:text-background" }}
                     label="First Name"
                     name="firstName"
                     type="text"
@@ -266,8 +266,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none dark:text-background" }}
                     label="Last Name"
                     name="lastName"
                     type="text"
@@ -277,7 +277,7 @@ function Signup() {
                   />
                   <Select
                     radius="none"
-                    classNames="rounded-t-none rounded-lg bg-red-500"
+                    classNames={{ base: "mb-[2px] h-[52px] rounded-t-none dark:border-red-500", inputWraper: "rounded-lg bg-red-500 dark:text-background" }}
                     variant="bordered"
                     items={gender}
                     label="Gender"
@@ -292,8 +292,8 @@ function Signup() {
                   </Select>
 
                   <Input
-                    isRequired
-                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    required
+                    classNames={{ base: "mb-[2px] h-[52px]", inputWrapper: "rounded-t-none", inputWrapper: "rounded-none dark:text-background" }}
                     label="Age"
                     name="age"
                     type="number"
@@ -303,10 +303,11 @@ function Signup() {
                   />
 
                   <Input
-                    isRequired
-                    classNames={{ inputWrapper: "rounded-t-none" }}
-                    label="Picture"
+                    required
+                    classNames={{ base: "mb-[2px] h-[52px]", inputWrapper: "rounded-t-none dark:text-background" }}
                     name="profilePicture"
+                    label="Choose your Profile Image"
+
                     type="file"
                     variant="bordered"
                     onChange={(e) => setFormData({ ...formData, profilePicture: e.target.files[0] })}
@@ -327,8 +328,8 @@ function Signup() {
               <div >
                 <div className="flex flex-col mb-4">
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none  dark:text-background" }}
                     label="Height in cm"
                     name="height"
                     type="number"
@@ -337,8 +338,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none  dark:text-background" }}
                     label="Weight in kg"
                     name="weight"
                     type="number"
@@ -347,8 +348,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none  dark:text-background" }}
                     label="Address"
                     name="address"
                     type="text"
@@ -357,8 +358,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none dark:text-background" }}
                     label="City"
                     name="city"
                     type="text"
@@ -367,8 +368,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    required
+                    classNames={{ inputWrapper: "rounded-t-none  dark:text-background" }}
                     label="State"
                     name="state"
                     type="text"
@@ -389,8 +390,8 @@ function Signup() {
               <div >
                 <div className="flex flex-col mb-4">
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none dark:text-background" }}
                     label="Contact Number"
                     name="contactNumber"
                     type="number"
@@ -399,8 +400,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none dark:text-background" }}
                     label="Email"
                     name="email"
                     type="email"
@@ -409,8 +410,8 @@ function Signup() {
                     onChange={handleInputChange}
                   />
                   <Input
-                    isRequired
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none" }}
+                    required
+                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-none dark:text-background" }}
                     label="Password"
                     name="password"
                     type={isVisible ? "text" : "password"}
@@ -434,8 +435,8 @@ function Signup() {
                     }
                   />
                   <Input
-                    isRequired
-                    classNames={{ inputWrapper: "rounded-t-none" }}
+                    required
+                    classNames={{ inputWrapper: "rounded-t-none  dark:text-background" }}
                     label="Confirm Password"
                     name="confirmPassword"
                     type={isVisible ? "text" : "password"}
@@ -486,7 +487,7 @@ function Signup() {
             <FacebookLogin onSuccess={handleFacebookSuccess} />
 
           </div>
-          <p className="text-center text-small">
+          <p className="text-center text-small dark:text-secondary">
             Already have an account?&nbsp;
             <Link onClick={logInClick} size="sm" className="hover:cursor-pointer">
               Log In

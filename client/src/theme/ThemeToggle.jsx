@@ -33,9 +33,6 @@ const ThemeToggle = () => {
                 </div>
             </div>
 
-            {/* <div className="bg-background text-light dark:bg-light-background dark:text-dark-text">
-                <p>This is a theme-aware component!</p>
-            </div> */}
         </>
     );
 };

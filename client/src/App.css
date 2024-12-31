@@ -3,10 +3,12 @@
   --light-color: #ffffff;
   --primary-color: #109340;
   --font-size: 16px;
-  --primary-btn: linear-gradient(198deg,
-      rgba(16, 147, 64, 1) 0%,
-      rgba(22, 182, 80, 1) 50%,
-      rgba(16, 147, 64, 1) 100%);
+  --primary-btn: linear-gradient(
+    198deg,
+    rgba(16, 147, 64, 1) 0%,
+    rgba(22, 182, 80, 1) 50%,
+    rgba(16, 147, 64, 1) 100%
+  );
   --gray-color: #999999;
 }
 
@@ -38,39 +40,6 @@
 
 html {
   height: 100%;
-}
-
-.c-text-gray {
-  color: var(--gray-color);
-}
-
-.c-text-black {
-  color: var(--dark-color);
-}
-
-.c-border-black {
-  border: 1px solid var(--dark-color);
-}
-
-.c-text-white {
-  color: var(--light-color);
-}
-
-.c-text-primary {
-  color: var(--primary-color);
-}
-
-.c-bg-black {
-  background: var(--dark-color);
-  /* background-color: var(--dark-color); */
-}
-
-.test {
-  background-color: black;
-}
-
-.c-bg-white {
-  background: var(--light-color);
 }
 
 .marquee-container {

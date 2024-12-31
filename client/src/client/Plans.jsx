@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 function Plans() {
   return (
     <>
-      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-background text-light flex flex-col justify-center items-center gap-6 sm:gap-8">
+      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-background text-light  dark:bg-light dark:text-background flex flex-col justify-center items-center gap-6 sm:gap-8">
         <motion.h2
           whileInView="show"
           initial="hidden"
@@ -18,7 +18,7 @@ function Plans() {
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("up", "", 0.3, 0.5)}
-          className="text-base sm:text-lg lg:text-xl text-center sm:m-5 lg:m-10 text-secondlight">
+          className="text-base sm:text-lg lg:text-xl text-center sm:m-5 lg:m-10 text-secondlight dark:text-secondary">
           Fitness360 is a results-driven fitness organization offering tailored training programs, expert coaching, and community support. We prioritize health, strength, and mental well-being, helping members achieve their fitness goals with dedication.
         </motion.p>
       </section>
