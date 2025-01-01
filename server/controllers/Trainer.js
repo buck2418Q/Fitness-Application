@@ -1,5 +1,6 @@
 import TrainerModel from "../models/Trainers.js";
 import { createTrainer, deleteTrainer, getTrainers, trainerCount, updateTrainer } from "../services/TrainerService.js";
+import { validatePagination } from "../utils/utilityFunctions.js";
 
 
 export const TrainerCount = async (req, res) => {
@@ -13,16 +14,32 @@ export const TrainerCount = async (req, res) => {
     }
 }
 
+// export const GetTrainers = async (req, res) => {
+//     try {
+//         const trainerData = await getTrainers();
+//         res.status(200).send({ trainerData });
+//     } catch (e) {
+//         res.status(404).send({
+//             error: e?.message
+//         });
+//     }
+// }
+
 export const GetTrainers = async (req, res) => {
     try {
-        const trainerData = await getTrainers();
-        res.status(200).send({ trainerData });
+        const { page, pageSize } = req.query;
+        const { validatedPage, validatedPageSize } = validatePagination(page, pageSize);
+
+        const trainerData = await getTrainers(validatedPage, validatedPageSize);
+        res.status(200).send(trainerData);
     } catch (e) {
         res.status(404).send({
-            error: e?.message
+            error: e?.message,
         });
     }
-}
+};
+
+
 
 export const CreateTrainer = async (req, res) => {
     try {

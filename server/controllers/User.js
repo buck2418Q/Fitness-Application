@@ -1,4 +1,5 @@
 import { createUser, deleteUser, findUserById, getUsers, updateUser, userCount } from '../services/UserService.js';
+import { validatePagination } from '../utils/utilityFunctions.js';
 
 
 export const UserCount = async (req, res) => {
@@ -17,7 +18,9 @@ export const UserCount = async (req, res) => {
 
 export const GetUsers = async (req, res) => {
     try {
-        const userData = await getUsers();
+        const { page, pageSize } = req.query;
+        const { validatedPage, validatedPageSize } = validatePagination(page, pageSize);
+        const userData = await getUsers(validatedPage, validatedPageSize);
         res.status(200).send({ userData });
     } catch (e) {
         res.status(404).send({

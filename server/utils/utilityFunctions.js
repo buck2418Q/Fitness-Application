@@ -15,3 +15,9 @@ export const createResponse = (statusCode, message, token = null) => {
         token: token || null
     }
 }
+
+export const validatePagination = (page, pageSize) => {
+    const validatedPage = Math.max(parseInt(page, 10), 1);
+    const validatedPageSize = Math.max(parseInt(pageSize, 10), 1);
+    return { validatedPage, validatedPageSize };
+};

@@ -8,9 +8,20 @@ export const trainerCount = async () => {
 }
 
 
-export const getTrainers = async () => {
-    return await TrainerModel.find();
-}
+// export const getTrainers = async () => {
+//     return await TrainerModel.find();
+// }
+export const getTrainers = async (page, pageSize) => {
+    const skip = (page - 1) * pageSize;
+    const trainers = await TrainerModel.find().skip(skip).limit(pageSize); 
+    const totalTrainers = await TrainerModel.countDocuments();
+    const totalPages = Math.ceil(totalTrainers / pageSize); 
+    return {
+        trainers, 
+        totalPages,
+    };
+};
+
 
 export const createTrainer = async (trainerData) => {
     debugger;

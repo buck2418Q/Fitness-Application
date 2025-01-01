@@ -2,8 +2,15 @@ import UserModel from "../models/User.js";
 import { createResponse, passwordHash } from "../utils/utilityFunctions.js";
 
 
-export const getUsers = async () => {
-    return await UserModel.find();
+export const getUsers = async (page, pageSize) => {
+    const skip = (page - 1) * pageSize;
+    const users = await UserModel.find().skip(skip).limit(pageSize);
+    const totalUsers = await UserModel.countDocuments();
+    const totalPages = Math.ceil(totalUsers / pageSize);
+    return {
+        users,
+        totalPages,
+    };
 }
 
 
