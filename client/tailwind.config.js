@@ -17,7 +17,7 @@ export default {
         background: "#111419",  // Main dark 
         secondary: "#1d2029",  // Secondary dark 
         light: "#ffffff",      // Light
-        secondlight: "#dddddd",
+        secondlight: "#dddddd", //second light
         primary: "#16b650",    // Green 
         "hover-primary": "#13a048", // Slightly darker green for hover effects
         blue:"#0064d7"

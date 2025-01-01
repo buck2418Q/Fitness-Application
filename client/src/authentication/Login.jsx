@@ -240,9 +240,9 @@ function Login() {
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
               onError={handleGoogleFailure}
-
             />
           </GoogleOAuthProvider>
+
           <FacebookLogin onSuccess={handleFacebookSuccess} />
 
         </motion.div>
