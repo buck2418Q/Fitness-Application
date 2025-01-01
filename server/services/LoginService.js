@@ -31,6 +31,7 @@ export const login = async (userData) => {
 export const openAuthentication = async (data) => {
     try {
         if (data.provider === 'Google') {
+            console.log('data', data);
             const token = data.token.credential;
             const ticket = await client.verifyIdToken({
                 idToken: token,
@@ -54,10 +55,11 @@ export const openAuthentication = async (data) => {
                     email: payload.email,
                     firstName: payload.name,
                     profilePicture: payload.picture,
+                    role: 'user'
                 };
                 const newUser = await UserModel.create(userData);
                 if (newUser) {
-                    const jwtToken = await createJwtToken(newUser.email);
+                    const jwtToken = await createJwtToken(newUser);
                     return createResponse(200, "User Created and Logged In", jwtToken);
                 } else {
                     return createResponse(202, "Unable to create user", null);

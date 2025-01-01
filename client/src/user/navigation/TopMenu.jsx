@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
 import ThemeToggle from "../../theme/ThemeToggle";
-const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
+const imgBaseUrl = '';
 
 const TopMenu = () => {
     const [userName, setUserName] = useState('');

@@ -90,8 +90,9 @@ function Login() {
       setLoading(true);
       oAuthProvider.provider = 'Google';
       oAuthProvider.token = credentialResponse;
+      console.log('oAuthProvider.token', oAuthProvider.token);
       const result = await openAuth(oAuthProvider);
-      console.log('Google Auth Result:', result);
+      console.log('Google Auth Result backend:', result);
       handleAuthSuccess(result);
     } catch (error) {
       console.error('Error in handleGoogleSuccess:', error);

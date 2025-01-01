@@ -11,7 +11,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { motion } from 'framer-motion';
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
-const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
+const imgBaseUrl = '';
 
 function Users() {
     const [loading, setLoading] = useState(false);
@@ -254,23 +254,23 @@ function Users() {
                     columnDefs={colDefs}
                 />
                 <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte">
-                    <div className="border-1 border-secondary rounded-lg p-[1px]">
+                    <div className="border-1 dark:border-secondary border-light rounded-lg p-[1px]">
                         <NextButton
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((prev) => prev - 1)}
                             color="secondary"
-                            className="w-32 "
+                            className="w-32 dark:bg-secondary bg-light dark:text-light text-background"
                         >
                             Previous
                         </NextButton>
-                        <span className="mx-[2px] border-1 border-secondary rounded-lg p-2">
+                        <span className="mx-[2px] border-1 dark:border-secondary border-light text-light dark:text-background rounded-lg p-2">
                             Page {currentPage} of {totalPages}
                         </span>
                         <NextButton
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((prev) => prev + 1)}
                             color="secondary"
-                            className="w-32 "
+                            className="w-32 dark:bg-secondary bg-light dark:text-light text-background"
                         >
                             Next
                         </NextButton>

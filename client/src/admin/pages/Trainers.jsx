@@ -10,7 +10,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { motion } from 'framer-motion';
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
-const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
+const imgBaseUrl = '';
 function Trainers() {
 
     const [openForm, setOpenForm] = useState(false);

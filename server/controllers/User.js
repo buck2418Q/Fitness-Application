@@ -1,6 +1,6 @@
 import { createUser, deleteUser, findUserById, getUsers, updateUser, userCount } from '../services/UserService.js';
 import { validatePagination } from '../utils/utilityFunctions.js';
-
+// const imageBaseUrl = 'http://localhost:8080';
 
 export const UserCount = async (req, res) => {
     try {
@@ -33,7 +33,8 @@ export const CreateUser = async (req, res) => {
     try {
         const userData = req.body;
         if (req.file) {
-            userData.profilePicture = `/${req.file.path.replace(/\\/g, "/")}`;
+            const imageBaseUrl = process.env.BASE_URL_IMG;
+            userData.profilePicture = await `${imageBaseUrl}/${req.file.path.replace(/\\/g, "/")}`;
             console.log('file path ', userData.profilePicture)
         }
 

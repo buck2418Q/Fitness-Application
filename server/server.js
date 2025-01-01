@@ -13,7 +13,6 @@ import path from "path";
 import fs from "fs";
 dotenv.config();
 const appUser = process.env.APP_USER
-
 // file multer config
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
