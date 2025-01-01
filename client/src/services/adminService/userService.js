@@ -17,9 +17,9 @@ export const userCount = async () => {
     }
 }
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (page, pageSize) => {
     try {
-        const response = await axios.get(Users, {
+        const response = await axios.get(`${Users}?page=${page}&pageSize=${pageSize}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
