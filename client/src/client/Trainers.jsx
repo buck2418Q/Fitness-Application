@@ -135,7 +135,7 @@ function Trainers() {
 
         <div className="pagination-controls text-light flex justify-end">
           <div className="text-white bg-background/40 flex gap-1 rounded-full p-2">
-            <button onClick={() => handlePageChange("back")} disabled={page === 1} className={`bg-secondary py-1 rounded-full px-4  border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === 1 ? "hover:border-secondary" : ""}`} >
+            <button onClick={() => handlePageChange("back")} disabled={page === 1} className={`bg-secondaryb py-1 rounded-full px-4  border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === 1 ? "hover:border-secondary" : ""}`} >
               Back
             </button>
             {/* <span className="mx-4">

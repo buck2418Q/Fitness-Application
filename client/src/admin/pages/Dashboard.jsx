@@ -42,10 +42,10 @@ function Dashboard() {
 
   return (
     <>
-      <div className="flex flex-col gap-5 ">
+      <div className="flex flex-col gap-5 text-background">
         <div className="flex gap-5">
           {/* trainer  */}
-          <div className="w-2/6 bg-green-50 border border-green-200 rounded-xl p-4 flex justify-between hover:shadow-md hover:bg-green-100 hover:border-green-300 transition ease-in-out duration-300">
+          <div className=" w-2/6 bg-green-50 border border-green-200 rounded-xl p-4 flex justify-between hover:shadow-md hover:bg-green-100 hover:border-green-300 transition ease-in-out duration-300">
             <div>
               <svg width="160" height="160">
                 <circle
@@ -113,16 +113,16 @@ function Dashboard() {
           </div>
 
           <div className="w-2/6 flex flex-col gap-5">
-            <div className=" bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between h-[50%]">1</div>
-            <div className=" bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between h-[50%]">2</div>
+            <div className=" bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between h-[50%] text-light dark:text-background">1</div>
+            <div className=" bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between h-[50%] text-light dark:text-background">2</div>
           </div>
         </div>
 
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex justify-between">
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex justify-between text-backgroun">
           section 2
         </div>
 
-        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 flex justify-between">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 flex justify-between text-backgroun">
           section 3
         </div>
 

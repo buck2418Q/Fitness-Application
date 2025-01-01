@@ -7,6 +7,7 @@ import profilePic from "../../assets/images/profilePic.jpg";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
+import ThemeToggle from "../../theme/ThemeToggle";
 const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
 
 const TopMenu = () => {
@@ -50,7 +51,7 @@ const TopMenu = () => {
 
     return (
         <>
-            <div className=" h-16 flex items-center justify-between px-8 pt-2 m-2">
+            <div className=" h-16 flex items-center justify-between px-8 pt-2 m-2 ">
                 <h3 className="text-2xl font-bold">
                     Welcome {userName}
                 </h3>
@@ -60,10 +61,11 @@ const TopMenu = () => {
                             <img src={searchIcon} alt="" className='w-5 opacity-55' />
                         </span>
                         <input
-                            className="placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-gray-300 focus:ring-gray-300 focus:ring-1 sm:text-sm shadow-sm w-72 transition-width duration-300 ease-in-out focus:w-[300px]"
+                            className="placeholder:italic placeholder:text-slate-400 block border border-slate-300 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-gray-300 focus:ring-gray-300 focus:ring-1 sm:text-sm shadow-sm w-72 transition-width duration-300 ease-in-out focus:w-[300px] bg-secondary dark:bg-light"
                             placeholder="Search..." type="text" name="search"
                         />
                     </label>
+                    <ThemeToggle />
                     <span >
                         <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
@@ -78,11 +80,11 @@ const TopMenu = () => {
                     className={`fixed inset-0 flex items-start justify-end bg-black bg-opacity-5 z-50 transition ease-in-out duration-700 `}
                     onClick={handleOverlayClick}
                 >
-                    <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-white rounded-lg shadow-lg w-1/6 border border-gray-200  top-20 absolute right-8 h-[350px]" onClick={(e) => e.stopPropagation()}>
+                    <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-background dark:bg-light rounded-lg shadow-lg w-1/6 border border-light  top-20 absolute right-8 h-[350px]" onClick={(e) => e.stopPropagation()}>
 
                         <div className='p-1 flex flex-col items-center justify-center '>
                             <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
-                            <img src={imgBaseUrl + profilePicture} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover	 bg-gradient-to-tr from-cyan-500 to-blue-500 relative shadow-black border-white border-3' />
+                            <img src={imgBaseUrl + profilePicture} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover bg-gradient-to-tr from-background to-secondary relative shadow-black border-white border-3' />
 
                         </div>
 

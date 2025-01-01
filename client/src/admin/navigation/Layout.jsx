@@ -6,7 +6,7 @@ import { RoutesData } from './AdminRoutesData.js';
 
 const Layout = () => {
     return (
-        <div className="flex h-screen">
+        <div className="flex h-screen bg-background dark:bg-light text-light dark:text-background">
             <SideMenu RoutesData={RoutesData} />
             <div className="flex-1 flex flex-col">
                 <TopMenu RoutesData={RoutesData} />

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion'; 
+import { motion, AnimatePresence } from 'framer-motion';
 import { RoutesData } from './AdminRoutesData';
 import logo from '../../assets/logos/logo.png';
 import { chevronUpIcon, menuIcon, xIcon } from '../../components/icons'
@@ -21,7 +21,7 @@ const SideMenu = () => {
     };
 
     return (
-        <div className={`h-full border border-r-gray-100 text-black ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
+        <div className={`h-full border-r-1 border-r-secondlight text-light dark:text-background ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
             <div className='flex justify-between items-center'>
                 <h2 className="flex mb-4 mt-2 items-center justify-center ">
                     <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
@@ -31,7 +31,7 @@ const SideMenu = () => {
                     onClick={toggleCollapse}
                 >
                     {collapsed ?
-                        <img src={xIcon } alt="" /> : <img src={menuIcon} alt="" />}
+                        <img src={xIcon} alt="" /> : <img src={menuIcon} alt="" />}
                 </button>
             </div>
             <ul className={`transition-all duration-200 ease-in-out`}>
@@ -39,7 +39,7 @@ const SideMenu = () => {
                     <li key={index} className="relative">
                         <Link
                             to={menu.path}
-                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300' : '')}`}
+                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 hover:text-background dark:text-background transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background' : '')}`}
                             onClick={() => handleToggleMenu(index)}
                         >
                             <span className={`${collapsed ? 'pl-3' : ''}`}>

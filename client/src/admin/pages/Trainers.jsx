@@ -9,6 +9,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { motion } from 'framer-motion';
 import { fadeIn } from "../../assets/utils/motion";
+import { NextButton } from "../../components/NextButton";
 const imgBaseUrl = import.meta.env.VITE_IMG_BASE_URL;
 function Trainers() {
 
@@ -18,6 +19,8 @@ function Trainers() {
     const [editData, setEditData] = useState(null);
     const [selectedTrainer, setselectedTrainer] = useState(null);
     const [deletePopUp, setDeletePopUp] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [colDefs, setColDefs] = useState([
         { field: "firstName", headerName: "First Name" },
         { field: "lastName", headerName: "Last Name" },
@@ -57,7 +60,7 @@ function Trainers() {
             headerName: "Actions",
             cellRenderer: (params) => (
                 <div>
-                    <button className="bg-blue-400 mx-1 rounded h-9 px-[14px] text-center" onClick={() => handleEdit(params.data)}>
+                    <button className="bg-cyan-400 mx-1 rounded h-9 px-[14px] text-center" onClick={() => handleEdit(params.data)}>
                         Edit
                     </button>
                     <button className="bg-red-400 mx-1 rounded h-9 px-[14px] text-center" onClick={() => handleDelete(params.data)}>
@@ -89,10 +92,9 @@ function Trainers() {
     ];
 
 
-
     useEffect(() => {
-        GetAllTrainers();
-    }, [])
+        GetAllTrainers(currentPage); // Fetch the first page initially
+    }, [currentPage]);
 
     const initialFormData = {
         firstName: '',
@@ -113,8 +115,6 @@ function Trainers() {
         facebook: '',
         twitter: ''
     };
-
-
     const [formData, setFormData] = useState(initialFormData);
 
 
@@ -156,17 +156,22 @@ function Trainers() {
 
     }
 
-    const GetAllTrainers = async () => {
+    // change the pagesize to change get no of records
+    const GetAllTrainers = async (page = 1, pageSize = 5) => {
         try {
-            setLoading(true)
-            const result = await getAllTrainers();
-            setRowData(result)
+            // setLoading(true);
+            const result = await getAllTrainers(page, pageSize);
+            setRowData(result.trainers);
+            setTotalPages(result.totalPages);
+            setLoading(false);
+
         } catch (error) {
-            console.log('erro ', error)
+            console.error("Error fetching trainers:", error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
+
 
     const toggleOpenForm = () => {
         setOpenForm(!openForm);
@@ -201,6 +206,8 @@ function Trainers() {
     const handleUpdateTrainer = async (formData) => {
 
     }
+
+
     return (
         <>
             {deletePopUp && (
@@ -229,11 +236,7 @@ function Trainers() {
             <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
                 <Loader />
             </div>
-
             <Toaster className="z-40" richColors position="top-right" />
-
-
-
             <motion.div
                 initial="hidden"
                 animate="show"
@@ -241,7 +244,6 @@ function Trainers() {
                 <h2 className="text-2xl">Application Trainers List</h2>
                 <button type="submit" className={`transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black ${openForm === true ? 'hidden' : ''}`} onClick={toggleOpenForm}>Add Trainer</button>
             </motion.div>
-
             <div className={`z-40 transition ease-in-out duration-900 w-6/12 border-2 shadow-lg border-black bg-white p-8 rounded-3xl absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 ${openForm ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
                 <div className="flex justify-between mb-4">
                     <p className="text-xl">  {editData ? 'Edit Trainer' : 'Add New Trainer'}</p>
@@ -259,6 +261,30 @@ function Trainers() {
                     rowData={rowData}
                     columnDefs={colDefs}
                 />
+                <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte">
+                    <div className="border-1 border-secondary rounded-lg p-[1px]">
+                        <NextButton
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((prev) => prev - 1)}
+                            color="secondary"
+                            className="w-32 "
+                        >
+                            Previous
+                        </NextButton>
+                        <span className="mx-[2px] border-1 border-secondary rounded-lg p-2">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        <NextButton
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((prev) => prev + 1)}
+                            color="secondary"
+                            className="w-32 "
+                        >
+                            Next
+                        </NextButton>
+                    </div>
+                </div>
+
             </motion.div>
         </>
     )
