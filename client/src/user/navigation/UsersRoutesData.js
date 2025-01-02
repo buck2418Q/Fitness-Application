@@ -4,7 +4,7 @@ export const RoutesData = [
         icon: "🏠",
         path: "/user/dashboard",
     },
-    
+
     {
         title: "Plans",
         icon: "🤝",
@@ -13,6 +13,16 @@ export const RoutesData = [
             { title: "Yoga Plans", path: "/user/plans", icon: "🤝", },
             { title: "XYZ Plans", path: "/user/plans", icon: "🤝", },
         ],
+    },
+    {
+        title: "Categories",
+        icon: "🏠",
+        path: "/user/category",
+    },
+    {
+        title: "Workout",
+        icon: "🏠",
+        path: "/user/workout",
     },
     {
         title: "Settings",

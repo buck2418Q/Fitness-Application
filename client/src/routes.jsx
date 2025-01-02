@@ -14,15 +14,21 @@ const Signup = React.lazy(() => import('./authentication/Signup'));
 const HomePage = React.lazy(() => import('./client/HomePage'));
 const Layout = React.lazy(() => import('./user/navigation/Layout'));
 const Dashboard = React.lazy(() => import('./user/pages/Dashboard'))
+const PageNotFound = React.lazy(() => import('./components/PageNotFound'))
+const Test = React.lazy(() => import('./components/Test'))
+const Profile = React.lazy(() => import('./components/Profile'))
+// user 
 const UserPlans = React.lazy(() => import('./user/pages/Plans'));
+const UserCategory = React.lazy(() => import('./user/pages/Category'));
+const UserWorkout = React.lazy(() => import('./user/pages/Workouts'));
+// admin 
 const AdminDashboard = React.lazy(() => import('./admin/pages/Dashboard'));
 const AdminPlans = React.lazy(() => import('./admin/pages/Plans'));
 const AdminLayout = React.lazy(() => import('./admin/navigation/Layout'));
 const AdminUsers = React.lazy(() => import('./admin/pages/Users'))
 const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
-const PageNotFound = React.lazy(() => import('./components/PageNotFound'))
-const Test = React.lazy(() => import('./components/Test'))
-const Profile = React.lazy(() => import('./components/Profile'))
+
+//trainer
 const TrainerLayout = React.lazy(() => import('./trainer/navigation/Layout'));
 const TrainerDashboard = React.lazy(() => import('./trainer/pages/Dashboard'));
 const TrainerPlans = React.lazy(() => import('./trainer/pages/Plans'));
@@ -51,7 +57,9 @@ function AppRoutes() {
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "plans", element: <UserPlans /> },
-                { path: 'profile', element: <Profile /> }
+                { path: 'profile', element: <Profile /> },
+                { path: 'category', element: <UserCategory /> },
+                { path: 'workout', element: <UserWorkout /> }
 
             ]
         },

@@ -16,6 +16,15 @@ import trainer6 from '../assets/images/trainer-6.jpg';
 import trainer7 from '../assets/images/trainer-7.jpg';
 import serviceBg1 from '../assets/images/serviceBg1.png'
 import serviceBg2 from '../assets/images/serviceBg2.png'
+import categoryimg1 from '../assets/images/category/category1.png';
+import categoryimg2 from '../assets/images/category/category2.png';
+import categoryimg3 from '../assets/images/category/category3.png';
+import categoryimg4 from '../assets/images/category/category4.png';
+import categoryimg5 from '../assets/images/category/category5.png';
+import categoryimg6 from '../assets/images/category/category6.png';
+import categoryimg7 from '../assets/images/category/category7.png';
+import categoryimg8 from '../assets/images/category/category8.png';
+
 export {
     trainerLoader,
     traineeLoader,
@@ -34,5 +43,14 @@ export {
     trainer6,
     trainer7,
     serviceBg1,
-    serviceBg2
+    serviceBg2,
+    categoryimg1,
+    categoryimg2,
+    categoryimg3,
+    categoryimg4,
+    categoryimg5,
+    categoryimg6,
+    categoryimg7,
+    categoryimg8
+    
 }
