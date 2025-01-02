@@ -64,7 +64,7 @@ function Profile() {
     <>
       <div className=" flex justify-center w-full gap-4 " style={{ height: 'calc(100vh - 105px)' }}>
 
-        <motion.div initial='hidden' animate='show' variants={fadeIn("right", "spring", .1, 0.5)} className="bg-white rounded-lg shadow-lg w-1/4 border border-gray-200 " onClick={(e) => e.stopPropagation()}>
+        <motion.div initial='hidden' animate='show' variants={fadeIn("right", "spring", .1, 0.5)} className="bg-light dark:bg-secondary text-secondary dark:text-light rounded-lg shadow-lg w-1/4 border border-gray-200 " onClick={(e) => e.stopPropagation()}>
 
           <div className='p-1 flex flex-col items-center justify-center '>
             <img src={profileBanner} alt="" className='rounded-lg w-full h-44 object-cover' />

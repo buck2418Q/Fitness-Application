@@ -41,14 +41,14 @@ const imageData = [
 function ChooseUs() {
     return (
         <>
-            <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20  text-light bg-secondary dark:bg-secondlight dark:text-background'>
+            <section className='w-full h-full border-solid text-center px-4 sm:px-12 lg:px-24 py-10 lg:py-20  text-background bg-secondlight dark:bg-secondary dark:text-light'>
                 <h2 className='text-4xl sm:text-5xl lg:text-6xl font-black'>Why Choose Us</h2>
                 <motion.p
                     whileInView="show"
                     initial="hidden"
                     viewport={{ once: false, amount: 0.2 }}
                     variants={fadeIn("up", "", 0.25, 0.5)}
-                    className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 text-secondlight dark:text-secondary'>
+                    className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 text-secondary dark:text-secondlight'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </motion.p>
 
@@ -68,7 +68,7 @@ function ChooseUs() {
                                 </div>
                                 <div className="h-fit">
                                     <h6 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">{card.title}</h6>
-                                    <div className="text-secondlight dark:text-secondary">{card.description}</div>
+                                    <div className="text-secondary dark:text-secondlight">{card.description}</div>
                                 </div>
                             </motion.div>
                         ))}

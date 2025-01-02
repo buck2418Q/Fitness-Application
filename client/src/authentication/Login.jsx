@@ -58,8 +58,6 @@ function Login() {
     try {
       setLoading(true);
       const result = await LoginUser(formData);
-      console.log('Login Result:', result);
-
       handleAuthSuccess(result);
     } catch (error) {
       console.error('Error in loginClick:', error);
@@ -171,14 +169,14 @@ function Login() {
         <Loader />
       </div>
 
-      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-br from-secondary to-background dark:from-secondlight dark:to-light">
+      <div className="flex items-center justify-center min-h-screen  bg-gradient-to-br from-light to-secondlight  dark:from-background dark:to-secondary">
         <motion.div
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("", "", 0.2, 0.4)}
 
-          className="flex w-full max-w-sm flex-col gap-4 rounded-large  border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20  text-light dark:text-background dark:border-background bg-gradient-to-t from-secondary to-background dark:from-secondlight dark:via-light dark:to-light ">
+          className="flex w-full max-w-sm flex-col gap-4 rounded-large border-background border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20  text-background dark:text-light dark:border-light bg-gradient-to-tl from-light to-secondlight dark:from-secondary dark:via-background dark:to-background ">
 
           <div className="flex flex-col items-center pb-4">
             {/* <AcmeIcon size={60} /> */}
@@ -192,7 +190,7 @@ function Login() {
               <Input
                 name="email"
                 label="Email"
-                className="w-full mb-4 text-background  h-12"
+                className="w-full mb-4 text-background h-12"
                 // color="background"
                 type="email"
                 required
@@ -204,7 +202,7 @@ function Login() {
                 <Input
                   label="Password"
                   name="password"
-                  className="w-full mb-2  text-background h-12"
+                  className="w-full mb-2 h-12"
                   type={viewType}
                   required
                   radius='sm'
@@ -219,7 +217,7 @@ function Login() {
                   />
                 </button>
               </div>
-              <div className="flex items-center justify-between mb-4 px-2 text-secondlight dark:text-secondary  cursor-pointer">
+              <div className="flex items-center justify-between mb-4 px-2 text-secondary dark:text-secondlight  cursor-pointer">
                 <span >
                   <Checkbox defaultSelected size="sm" onChange={handleRememberMe}>
                   </Checkbox>

@@ -67,7 +67,6 @@ function Users() {
         email: '',
         password: '',
         contactNumber: '',
-        profilePicture: '',
         gender: '',
         height: '',
         weight: '',
@@ -162,7 +161,6 @@ function Users() {
         { label: 'Email', name: 'email', type: 'email', required: true },
         { label: 'Password', name: 'password', type: 'text', required: true },
         { label: 'Contact Number', name: 'contactNumber', type: 'number', required: true },
-        { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: false },  // Optional
         { label: 'Gender', name: 'gender', type: 'text', required: true },
         { label: 'Height', name: 'height', type: 'number', required: true },
         { label: 'Weight', name: 'weight', type: 'number', required: true },
@@ -172,7 +170,7 @@ function Users() {
     ];
 
     const handleSubmit = async (formData) => {
-        console.log(formData)
+        console.log('formdata :  '.formData)
         try {
             setLoading(true);
             const result = await CreateUser(formData);

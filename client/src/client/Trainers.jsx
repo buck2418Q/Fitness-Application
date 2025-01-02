@@ -64,7 +64,7 @@ function Trainers() {
         <Loader />
       </div>
 
-      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 bg-background text-light dark:bg-light dark:text-background">
+      <section className="w-full h-full border-solid text-center px-6 sm:px-12 lg:px-24 py-10 lg:py-20 text-background bg-light dark:bg-background dark:text-light">
         <motion.h2
           whileInView="show"
           initial="hidden"
@@ -75,7 +75,7 @@ function Trainers() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.3, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray text-center text-secondlight dark:text-secondary'>
+          variants={fadeIn("up", "", 0.3, 0.5)} className='text-lg sm:text-xl lg:text-2xl m-5 sm:m-10 c-text-gray text-center text-secondary dark:text-secondlight'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ipsa deleniti, ipsum saepe earum obcaecati praesentium officiis maxime hic ullam.
         </motion.p>
 
@@ -93,7 +93,7 @@ function Trainers() {
               variants={fadeIn("up", "", index * 0.1, 0.5)}
               key={index}
             >
-              <Card isFooterBlurred className="border-none w-80 h-56 bg-background dark:shadow-none mb-6" radius="lg">
+              <Card isFooterBlurred className="border-none w-80 h-56 bg-background dark:bg-secondlight/40 dark:shadow-none mb-6" radius="lg">
                 <Image
                   alt="Woman listing to music"
                   className="object-cover w-full "
@@ -134,8 +134,8 @@ function Trainers() {
         </motion.div>
 
         <div className="pagination-controls text-light flex justify-end">
-          <div className="text-white bg-background/40 flex gap-1 rounded-full p-2">
-            <button onClick={() => handlePageChange("back")} disabled={page === 1} className={`bg-secondaryb py-1 rounded-full px-4  border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === 1 ? "hover:border-secondary" : ""}`} >
+          <div className="text-white bg-background/40 flex gap-1 rounded-full p-2 dark:bg-secondlight/50">
+            <button onClick={() => handlePageChange("back")} disabled={page === 1} className={`bg-secondary py-1 rounded-full px-4 border-[1px] border-secondary hover:border-secondlight transition ease-in-out duration-400 ${page === totalPages ? "hover:border-secondary" : ""}`} >
               Back
             </button>
             {/* <span className="mx-4">

@@ -13,7 +13,7 @@ function StatBanner() {
 
     return (
         <section className="w-full flex flex-wrap justify-around 
-        bg-background text-light dark:bg-light dark:text-background py-8 mt-[-98px] " role="region" aria-labelledby="stat-banner">
+        bg-light text-background dark:bg-background dark:text-light py-8 mt-[-98px] " role="region" aria-labelledby="stat-banner">
             <h2 id="stat-banner" className="sr-only">Statistics Banner</h2>
 
 

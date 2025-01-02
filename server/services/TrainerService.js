@@ -13,18 +13,17 @@ export const trainerCount = async () => {
 // }
 export const getTrainers = async (page, pageSize) => {
     const skip = (page - 1) * pageSize;
-    const trainers = await TrainerModel.find().skip(skip).limit(pageSize); 
+    const trainers = await TrainerModel.find().skip(skip).limit(pageSize);
     const totalTrainers = await TrainerModel.countDocuments();
-    const totalPages = Math.ceil(totalTrainers / pageSize); 
+    const totalPages = Math.ceil(totalTrainers / pageSize);
     return {
-        trainers, 
+        trainers,
         totalPages,
     };
 };
 
 
 export const createTrainer = async (trainerData) => {
-    debugger;
     const isEmailExists = await getTrainerByEmail(trainerData.email);
     if (isEmailExists) {
         return createResponse(400, "Email Exist", null)

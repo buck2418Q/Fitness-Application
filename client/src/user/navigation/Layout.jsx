@@ -6,7 +6,7 @@ import { RoutesData } from './UsersRoutesData';
 
 const Layout = () => {
     return (
-        <div className="flex h-screen bg-background dark:bg-light text-light dark:text-background">
+        <div className="flex h-screen bg-light dark:bg-background text-background dark:text-light">
             <SideMenu RoutesData={RoutesData} />
             <div className="flex-1 flex flex-col">
                 <TopMenu RoutesData={RoutesData} />

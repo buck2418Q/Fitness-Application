@@ -39,7 +39,7 @@ function Navbar() {
     ];
 
     return (
-        <nav className="py-2 bg-gradient-to-tr from-background from-10% via-secondary to-background  dark:from-light dark:via-secondlight dark:to-light">
+        <nav className="py-2 bg-gradient-to-tr from-light from-10% via-secondlight to-light  dark:from-background dark:via-secondary dark:to-background">
             {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
             <div
                 className="mx-4 rounded-xl p-2 flex justify-between "
@@ -55,7 +55,7 @@ function Navbar() {
                             key={link.to}
                             to={link.to}
                             aria-current={location.pathname === link.to ? 'page' : undefined}
-                            className="hover:text-primary transition-colors text-white"
+                            className="hover:text-primary transition-colors text-light"
                         >
                             {link.label}
                         </Link>
@@ -101,7 +101,7 @@ function Navbar() {
                                 key={link.to}
                                 to={link.to}
                                 onClick={() => setIsMenuOpen(false)}
-                                className="hover:text-blue-600 transition-colors text-white text-lg mb-2"
+                                className="hover:text-blue-600 transition-colors text-light text-lg mb-2"
                                 aria-current={location.pathname === link.to ? 'page' : undefined}
                             >
                                 {link.label}

@@ -50,7 +50,9 @@ function AppRoutes() {
             path: "user", element: <ProtectedRoute component={Layout} role='user' />, children: [
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
-                { path: "plans", element: <UserPlans /> }
+                { path: "plans", element: <UserPlans /> },
+                { path: 'profile', element: <Profile /> }
+
             ]
         },
 
@@ -62,7 +64,7 @@ function AppRoutes() {
                 { path: "Plans", element: <AdminPlans /> },
                 { path: "user", element: <AdminUsers /> },
                 { path: "trainer", element: <AdminTrainers /> },
-                { path: 'profile', element: <Profile /> }
+                // { path: 'profile', element: <Profile /> }
 
             ]
         },
@@ -73,7 +75,7 @@ function AppRoutes() {
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <TrainerDashboard /> },
                 { path: "Plans", element: <TrainerPlans /> },
-                { path: 'profile', element: <Profile /> }
+                // { path: 'profile', element: <Profile /> }
 
             ]
         },

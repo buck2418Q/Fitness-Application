@@ -18,13 +18,13 @@ const SideMenu = () => {
     };
 
     return (
-        <div className={`h-full border-r-1 border-r-secondlight text-light dark:text-background ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
+        <div className={`h-full border-r-1 border-r-secondlight text-light dark:text-light ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
             <div className='flex justify-between items-center'>
                 <h2 className="flex mb-4 mt-2 items-center justify-center ">
                     <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
                 </h2>
                 <button
-                    className={`text-white py-4 ${collapsed ? 'pr-0' : 'pr-4'}`}
+                    className={`text-background py-4 ${collapsed ? 'pr-0' : 'pr-4'}`}
                     onClick={toggleCollapse}
                 >
                     {collapsed ?
@@ -36,7 +36,7 @@ const SideMenu = () => {
                     <li key={index} className="relative">
                         <Link
                             to={menu.path}
-                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 hover:text-background dark:text-background transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background' : '')}`}
+                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background ' : '')}`}
                             onClick={() => handleToggleMenu(index)}
                         >
                             <span className={`${collapsed ? 'pl-3' : ''}`}>
