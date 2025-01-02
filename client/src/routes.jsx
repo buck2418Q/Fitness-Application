@@ -24,6 +24,8 @@ const PageNotFound = React.lazy(() => import('./components/PageNotFound'))
 const Test = React.lazy(() => import('./components/Test'))
 const Profile = React.lazy(() => import('./components/Profile'))
 const TrainerLayout = React.lazy(() => import('./trainer/navigation/Layout'));
+const TrainerDashboard = React.lazy(() => import('./trainer/pages/Dashboard'));
+const TrainerPlans = React.lazy(() => import('./trainer/pages/Plans'));
 
 function AppRoutes() {
     const routesList = [
@@ -45,7 +47,7 @@ function AppRoutes() {
 
         // user routes 
         {
-            path: "user", element: <Layout />, children: [
+            path: "user", element: <ProtectedRoute component={Layout} role='user' />, children: [
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "plans", element: <UserPlans /> }
@@ -54,12 +56,12 @@ function AppRoutes() {
 
         // admin routes
         {
-            path: "admin", element: <AdminLayout />, children: [
+            path: "admin", element: <ProtectedRoute component={AdminLayout} role='admin' />, children: [
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <AdminDashboard /> },
                 { path: "Plans", element: <AdminPlans /> },
                 { path: "user", element: <AdminUsers /> },
-                { path: "trainer", element: <ProtectedRoute component={AdminTrainers} /> },
+                { path: "trainer", element: <AdminTrainers /> },
                 { path: 'profile', element: <Profile /> }
 
             ]
@@ -69,10 +71,8 @@ function AppRoutes() {
         {
             path: "trainer", element: <TrainerLayout />, children: [
                 { path: "", element: <Navigate to="dashboard" /> },
-                { path: "dashboard", element: <AdminDashboard /> },
-                { path: "Plans", element: <AdminPlans /> },
-                { path: "user", element: <AdminUsers /> },
-                { path: "trainer", element: <ProtectedRoute component={AdminTrainers} /> },
+                { path: "dashboard", element: <TrainerDashboard /> },
+                { path: "Plans", element: <TrainerPlans /> },
                 { path: 'profile', element: <Profile /> }
 
             ]
