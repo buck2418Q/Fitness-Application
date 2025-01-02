@@ -22,10 +22,10 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-  const toggleVisibility = () => setIsVisible(!isVisible);
   const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
   const [oAuthProvider, setOAuthProvider] = useState({ provider: '', token: '' })
   const [oAuthFacebook, setOAuthFacebook] = useState({ provider: '', firstName: '', lastName: '', email: '', profilePicture: '', facebookId: '' })
+  const [passwordsMatch, setPasswordsMatch] = useState(true)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -60,8 +60,20 @@ function Signup() {
       ...prevData,
       [name]: value
     }));
-  };
+    if (name === "password" || name === "confirmPassword") {
+      const password = name === "password" ? value : formData.password;
+      const confirmPassword = name === "confirmPassword" ? value : formData.confirmPassword;
 
+      if (password !== confirmPassword) {
+        setPasswordsMatch(false);
+      } else {
+        setPasswordsMatch(true);
+      }
+    }
+  };
+  const toggleVisibility = () => {
+    setIsVisible((prevVisibility) => !prevVisibility);
+  };
   const resetForm = () => {
 
     formData.firstName = ''
@@ -80,34 +92,12 @@ function Signup() {
 
   };
 
-  // const createUserClick = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     setLoading(true);
-  //     const result = await CreateUser(formData);
-  //     if (result.statusCode === 201) {
-  //       toast.success(result.message);
-  //       navigate('/login')
-  //     } else if (result.statusCode === 203) {
-  //       toast.warning(result.message);
-  //       setStep(1)
-  //     } else if (result.statusCode === 202) {
-  //       toast.error(result.message);
-  //       setStep(1)
-  //     }
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  //   finally {
-  //     resetForm()
-  //     setLoading(false)
-  //   }
-  // };
-
   const createUserClick = async (e) => {
     e.preventDefault();
-
+    if (!passwordsMatch) {
+      alert("Passwords do not match!");
+      return;
+    }
     try {
       setLoading(true);
 
@@ -443,27 +433,14 @@ function Signup() {
                     variant="bordered"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
-                    endContent={
-                      <button type="button" onClick={toggleVisibility}>
-                        {isVisible ? (
-                          <Icon
-                            className="pointer-events-none text-2xl text-default-400"
-                            icon="solar:eye-closed-linear"
-                          />
-                        ) : (
-                          <Icon
-                            className="pointer-events-none text-2xl text-default-400"
-                            icon="solar:eye-bold"
-                          />
-                        )}
-                      </button>
-                    }
                   />
-
+                  {!passwordsMatch && (
+                    <p className="text-red-500 text-sm">Passwords do not match!</p>
+                  )}
                 </div>
                 <div className="flex justify-between gap-2 md:gap-28">
                   <NextButton onClick={prevStep} color="secondlight" size="md" className="w-full" >Back</NextButton>
-                  <NextButton onClick={createUserClick} type="primary" size="md" className="w-full">Submit</NextButton>
+                  <NextButton onClick={createUserClick} type="submit" size="md" className="w-full" disabled={!passwordsMatch}>Submit</NextButton>
                 </div>
               </div>
             )}
