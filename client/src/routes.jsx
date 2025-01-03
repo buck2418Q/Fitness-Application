@@ -32,7 +32,7 @@ const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
 const TrainerLayout = React.lazy(() => import('./trainer/navigation/Layout'));
 const TrainerDashboard = React.lazy(() => import('./trainer/pages/Dashboard'));
 const TrainerPlans = React.lazy(() => import('./trainer/pages/Plans'));
-
+const TrainerWorkout = React.lazy(() => import('./trainer/pages/Workout'));
 function AppRoutes() {
     const routesList = [
         {
@@ -83,7 +83,7 @@ function AppRoutes() {
                 { path: "", element: <Navigate to="dashboard" /> },
                 { path: "dashboard", element: <TrainerDashboard /> },
                 { path: "Plans", element: <TrainerPlans /> },
-                // { path: 'profile', element: <Profile /> }
+                { path: 'workout', element: <TrainerWorkout /> }
 
             ]
         },

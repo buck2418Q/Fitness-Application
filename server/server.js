@@ -11,9 +11,12 @@ import { verifyAndCheckRole } from "./middleWare/VarifyTokenMiddleWare.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { CreateWorkout, DeleteWorkout, GetWorkouts, GetWorkoutsbyTrainer } from "./controllers/Workouts.js";
+import { createMulterConfig } from "./multerConfig/MulterConfig.js";
+import bodypars from "body-parser";
 dotenv.config();
 const appUser = process.env.APP_USER
-// file multer config
+// file multer config for user profile picture
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const userFolder = `uploads/userProfilePicture/`;
@@ -23,10 +26,11 @@ const storage = multer.diskStorage({
         cb(null, userFolder);
     },
     filename: (req, file, cb) => {
-        const timestamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 12);
+        // const timestamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 12);
         const fileExt = path.extname(file.originalname);
         const email = req.body.email?.replace(/[@.]/g, "") || "unknown";
-        const fileName = `${email}${timestamp}${fileExt}`;
+        // const fileName = `${email}${timestamp}${fileExt}`;
+        const fileName = `${email}${fileExt}`;
         cb(null, fileName);
     },
 });
@@ -45,7 +49,8 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/uploads", cors(), express.static("uploads"));
-
+app.use(bodypars.json());
+app.use(bodypars.urlencoded({ extended: true }));
 // Configurations and variables
 const port = process.env.PORT || 3000;
 const dbUrl = process.env.DB_URL;
@@ -87,6 +92,23 @@ router.post("/oauth", oAuth);
 // home page data
 router.get("/knowtrainer", GetTrainerDetails)
 
+
+const folderBase = "uploads/trainer-workout"; // Base folder for trainer workouts
+const workoutUpload = createMulterConfig(
+    folderBase,
+    [".mp4", ".mkv", ".jpg", ".jpeg", ".png"], // Allowed file extensions
+    50 // Max file size in MB
+);
+// workout 
+router.get("/workout", GetWorkouts)
+router.get("/workouttrainer", GetWorkoutsbyTrainer)
+
+router.post("/workout", workoutUpload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "video", maxCount: 1 },
+]), CreateWorkout);
+// router.put("/workout", CreateWorkout);
+router.delete("/workout", DeleteWorkout);
 
 
 

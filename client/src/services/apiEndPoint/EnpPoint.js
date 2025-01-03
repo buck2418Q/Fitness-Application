@@ -13,11 +13,4 @@ export const knowTrainer = {
     getAllTrainer: () => `${BASE_URL}knowtrainer`, // Pagination handled by service file
 };
 
-
-
-
-// # local
-// # B_URL = "http://localhost:8080/fitness360/"
-
-// # live
-// B_URL = "https://fitness360app.onrender.com"
+export const workout = `${BASE_URL}workout`;

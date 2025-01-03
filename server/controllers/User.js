@@ -33,11 +33,9 @@ export const CreateUser = async (req, res) => {
     try {
         const userData = req.body;
         if (req.file) {
-            const imageBaseUrl = process.env.BASE_URL_IMG;
+            const imageBaseUrl = process.env.BASE_URL_MEDIA;
             userData.profilePicture = await `${imageBaseUrl}/${req.file.path.replace(/\\/g, "/")}`;
-            console.log('file path ', userData.profilePicture)
         }
-
         const userResponse = await createUser(userData);
         return res.status(userResponse.statusCode).send(userResponse);
     } catch (e) {

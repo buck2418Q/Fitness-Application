@@ -13,22 +13,10 @@ export const trainerCount = async () => {
         });
         return response.data.totalTrainer;
     } catch (error) {
-        throw new Error("Unable to access API!", error);
+        console.log("Unable to access API!", error);
     }
 }
 
-// export const getAllTrainers = async () => {
-//     try {
-//         const response = await axios.get(Trainers, {
-//             headers: {
-//                 Authorization: `Bearer ${token}`
-//             }
-//         });
-//         return response.data.trainerData
-//     } catch (error) {
-//         throw new Error("Unable to access API!", error);
-//     }
-// }
 export const getAllTrainers = async (page, pageSize) => {
     try {
         const response = await axios.get(`${Trainers}?page=${page}&pageSize=${pageSize}`, {
@@ -38,7 +26,7 @@ export const getAllTrainers = async (page, pageSize) => {
         });
         return response.data; // Expect `{ trainers, totalPages }` in the response
     } catch (error) {
-        throw new Error("Unable to access API!", error);
+        console.log("Unable to access API!", error);
     }
 };
 
@@ -48,7 +36,7 @@ export const CreateTrainer = async (formData) => {
         const response = await axios.post(Trainers, formData);
         return response;
     } catch (error) {
-        throw new Error("unable to access API", error)
+        console.log("unable to access API", error)
     }
 }
 
@@ -62,7 +50,7 @@ export const DeleteTrainer = async (id) => {
         })
         return response.data
     } catch (error) {
-        throw new Error("Unable to access API", error);
+        console.log("Unable to access API", error);
     }
 }
 

@@ -125,6 +125,7 @@ export const createJwtToken = async (user) => {
             {
                 userName: user.firstName + ' ' + user?.lastName,
                 email: user.email,
+                id: user._id,
                 role: user.role,
                 profilePicture: user.profilePicture
             },

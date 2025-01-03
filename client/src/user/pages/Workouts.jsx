@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function Workouts() {
-    const { workoutValue } = useParams();
-
+    const [workOut, setworkOut] = useState('');
     useEffect(() => {
-        debugger
-        if (workoutValue) {
-            fetchWorkoutData(workoutValue);
-        }
-    }, [workoutValue]);
+        const workoutValue = sessionStorage.getItem('workoutValue');
 
-    const fetchWorkoutData = async (workoutValue) => {
-        console.log('workoutValue', workoutValue)
-    }
+        if (workoutValue) {
+            setworkOut(workoutValue);
+            console.log('1', workoutValue);
+            sessionStorage.removeItem('workoutValue');
+            console.log('2', workoutValue);
+        }
+    }, [])
+
     return (
-        <div>the workout is : {workoutValue}</div>
+        <div>the workout is : {workOut}</div>
     )
 }
 

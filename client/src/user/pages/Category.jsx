@@ -3,7 +3,7 @@ import { fadeIn } from "../../assets/utils/motion";
 import { Card, CardFooter, image, Image, Link } from "@nextui-org/react";
 import { categoryimg1, categoryimg2, categoryimg3, categoryimg4, categoryimg5, categoryimg6, categoryimg7, categoryimg8 } from "../../components/images";
 import { useNavigate } from "react-router-dom";
-
+import Workouts from "./Workouts";
 function Category() {
     const navigate = useNavigate()
     const categoryData = [
@@ -52,7 +52,7 @@ function Category() {
 
     const navigateToWorkout = async (workoutValue) => {
         // navigate('/user/workout')
-        console.log('value', workoutValue)
+        sessionStorage.setItem('workoutValue', workoutValue);
         navigate(`/user/workout`);
     }
 
