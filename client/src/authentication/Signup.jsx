@@ -42,6 +42,7 @@ function Signup() {
     confirmPassword: '',
     profilePicture: ''
   });
+  const [error, setError] = useState(true)
   const navigate = useNavigate();
 
   const nextStep = () => {
@@ -92,37 +93,85 @@ function Signup() {
 
   };
 
+  const validateFormData = () => {
+    const errorMessages = [];
+    if (formData.firstName === 'ADMIN' || formData.firstName === 'admin' || formData.firstName === 'Admin') {
+      errorMessages.push('ooops! You hacked the system');
+    }
+    if (formData.firstName === '' || formData.firstName.length < 2) {
+      errorMessages.push('Enter a valid first name!');
+    }
+    if (formData.lastName === '') {
+      errorMessages.push('Enter a valid last name!');
+    }
+    if (formData.age === '' || formData.age < 8) {
+      errorMessages.push('Enter a valid age greater than 8');
+    }
+    if (formData.height === '') {
+      errorMessages.push('Enter your height');
+    }
+    if (formData.weight === '') {
+      errorMessages.push('Enter your weight');
+    }
+    if (formData.address === '') {
+      errorMessages.push('Enter your address');
+    }
+    if (formData.city === '') {
+      errorMessages.push('Enter your city');
+    }
+    if (formData.state === '') {
+      errorMessages.push('Enter your state');
+    }
+    if (formData.contactNumber.length !== 10) {
+      errorMessages.push('Enter a valid contact number!');
+    }
+    if (formData.email === '') {
+      errorMessages.push('Enter your email address');
+    }
+    if (formData.password === '') {
+      errorMessages.push('Enter your password');
+    }
+    if (formData.profilePicture === '') {
+      errorMessages.push('Please select a profile picture');
+    }
+    if (!passwordsMatch) {
+      errorMessages.push('Passwords do not match!');
+    }
+
+    if (errorMessages.length > 0) {
+      errorMessages.forEach(msg => toast.error(msg));
+      return true;
+    }
+    setError(false);
+  };
+
   const createUserClick = async (e) => {
     e.preventDefault();
-    if (!passwordsMatch) {
-      alert("Passwords do not match!");
-      return;
-    }
-    try {
-      setLoading(true);
-
-      // Create FormData
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
-      });
-
-      const result = await CreateUser(formDataToSend);
-      if (result.statusCode === 201) {
-        toast.success(result.message);
-        navigate('/login');
-      } else if (result.statusCode === 203) {
-        toast.warning(result.message);
-        setStep(1);
-      } else if (result.statusCode === 202) {
-        toast.error(result.message);
-        setStep(1);
+    const validation = validateFormData()
+    if (!validation) {
+      try {
+        setLoading(true);
+        const formDataToSend = new FormData();
+        Object.keys(formData).forEach((key) => {
+          formDataToSend.append(key, formData[key]);
+        });
+        const result = await CreateUser(formDataToSend);
+        if (result.statusCode === 201) {
+          toast.success(result.message);
+          navigate('/login');
+        } else if (result.statusCode === 203) {
+          toast.warning(result.message);
+          setStep(1);
+        } else if (result.statusCode === 202) {
+          toast.error(result.message);
+          setStep(1);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        resetForm();
+        setLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      resetForm();
-      setLoading(false);
     }
   };
 
@@ -297,10 +346,19 @@ function Signup() {
                     classNames={{ base: "mb-[2px] h-[52px]", inputWrapper: "rounded-t-none" }}
                     name="profilePicture"
                     label="Choose your Profile Image"
-
                     type="file"
                     variant="bordered"
-                    onChange={(e) => setFormData({ ...formData, profilePicture: e.target.files[0] })}
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                        if (!allowedTypes.includes(file.type)) {
+                          toast.error('Please choose a valid image file (JPG, PNG, or JPEG only)');
+                          return;
+                        }
+                        setFormData({ ...formData, profilePicture: file });
+                      }
+                    }}
                   />
                 </div>
                 <div className="flex justify-between gap-2 md:gap-28">
