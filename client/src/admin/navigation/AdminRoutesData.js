@@ -16,6 +16,11 @@ export const RoutesData = [
         path: "/admin/trainer",
     },
     {
+        title: "Workout",
+        icon: "⛹️",
+        path: "/admin/workout",
+    },
+    {
         title: "Plans",
         icon: "🤝",
         path: "/admin/plans",

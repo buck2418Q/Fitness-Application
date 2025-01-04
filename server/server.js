@@ -107,7 +107,6 @@ router.post("/workout", workoutUpload.fields([
     { name: "image", maxCount: 1 },
     { name: "video", maxCount: 1 },
 ]), CreateWorkout);
-// router.put("/workout", CreateWorkout);
 router.delete("/workout", DeleteWorkout);
 
 

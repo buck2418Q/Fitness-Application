@@ -1,16 +1,9 @@
 import e from "cors";
 import WorkoutModel from "../models/Workout.js";
 import { createResponse } from "../utils/utilityFunctions.js";
+import UserModel from "../models/User.js";
 
 
-// export const createWorkout = async (workoutData) => {
-//     const NewWorkout = WorkoutModel.create(workoutData);
-//     if (NewWorkout) {
-//         return createResponse(201, "workout Created", null);
-//     } else {
-//         return createResponse(202, "Unable to create workout", null);
-//     }
-// }
 export const createWorkout = async (workoutData) => {
     try {
         const newWorkout = await WorkoutModel.create(workoutData);
@@ -25,10 +18,16 @@ export const createWorkout = async (workoutData) => {
     }
 };
 
-export const getWorkouts = async () => {
-    const workoutData = await WorkoutModel.find();
+export const getWorkouts = async (trainerId, page, pageSize) => {
+    const skip = (page - 1) * pageSize;
+    const workoutData = await WorkoutModel.find({ trainerId }).skip(skip).limit(pageSize);
+    const totalWorkout = await UserModel.countDocuments();
+    const totalPages = Math.ceil(totalWorkout / pageSize)
     if (workoutData) {
-        return workoutData;
+        return {
+            workoutData,
+            totalPages
+        };
     } else {
         return createResponse(404, "No workout Data", null);
     }

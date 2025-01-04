@@ -22,6 +22,7 @@ function Users() {
     const [selectedUser, setSelectedUser] = useState(null); // user id
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+
     const [colDefs, setColDefs] = useState([
         { field: "firstName", headerName: "First Name" },
         { field: "lastName", headerName: "Last Name" },
@@ -252,23 +253,23 @@ function Users() {
                     columnDefs={colDefs}
                 />
                 <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte">
-                    <div className="border-1 dark:border-secondary border-light rounded-lg p-[1px]">
+                    <div className="border-1 dark:border-secondlight border-background rounded-lg p-[1px] flex justify-center">
                         <NextButton
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((prev) => prev - 1)}
                             color="secondary"
-                            className="w-32 dark:bg-secondary bg-light dark:text-light text-background"
+                            className="w-32 dark:bg-light dark:text-background"
                         >
                             Previous
                         </NextButton>
-                        <span className="mx-[2px] border-1 dark:border-secondary border-light text-light dark:text-background rounded-lg p-2">
+                        <span className="mx-[2px] border-1 border-background dark:border-light rounded-lg px-2 pt-[8px]">
                             Page {currentPage} of {totalPages}
                         </span>
                         <NextButton
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((prev) => prev + 1)}
                             color="secondary"
-                            className="w-32 dark:bg-secondary bg-light dark:text-light text-background"
+                            className="w-32 dark:bg-light dark:text-background"
                         >
                             Next
                         </NextButton>

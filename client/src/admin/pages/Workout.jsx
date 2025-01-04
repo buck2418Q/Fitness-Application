@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getWorkoutData } from '../../services/trainerServices/Workout'
+import { getWorkoutData } from '../../services/adminService/Workout';
 import Loader from '../../components/Loader';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
@@ -17,7 +17,6 @@ import {
 } from "@nextui-org/react";
 import { Form } from "@nextui-org/form";
 import { NextButton } from '../../components/NextButton';
-import { jwtDecode } from 'jwt-decode';
 function Workout() {
 
     const [workout, setWorkout] = useState([]);
@@ -28,17 +27,10 @@ function Workout() {
     // const [action, setAction] = useState(null);
     const [action, setAction] = React.useState(null);
     const [selectedWorkout, setSelectedWorkout] = useState(null);
-    // const [trainerId, setTrainerId] = useState(null)
+
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
-        if (token) {
-            const decodedToken = jwtDecode(token);
-            // setTrainerId(decodedToken.id)
-            const trainerId = decodedToken.id;
-            console.log('decodedToken : ', decodedToken.id);
-            getWorkout(trainerId, currentPage)
-        }
+        getWorkout(currentPage)
     }, [currentPage]);
     const handleEdit = (data) => {
         console.log('edit', data)
@@ -47,10 +39,10 @@ function Workout() {
         console.log('Delete : ', data)
     }
 
-    const getWorkout = async (trainerId, page = 1, pageSize = 5) => {
+    const getWorkout = async (page = 1, pageSize = 5) => {
         try {
             setLoading(true)
-            const result = await getWorkoutData(trainerId, page, pageSize)
+            const result = await getWorkoutData(page, pageSize)
             // console.log('workouts : ', result.workoutData.workoutData)
             setWorkout(result.workoutData.workoutData)
             setTotalPages(result.workoutData.totalPages)

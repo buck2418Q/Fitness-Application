@@ -27,7 +27,7 @@ const AdminPlans = React.lazy(() => import('./admin/pages/Plans'));
 const AdminLayout = React.lazy(() => import('./admin/navigation/Layout'));
 const AdminUsers = React.lazy(() => import('./admin/pages/Users'))
 const AdminTrainers = React.lazy(() => import('./admin/pages/Trainers'))
-
+const AdminWorkout = React.lazy(() => import('./admin/pages/Workout'))
 //trainer
 const TrainerLayout = React.lazy(() => import('./trainer/navigation/Layout'));
 const TrainerDashboard = React.lazy(() => import('./trainer/pages/Dashboard'));
@@ -72,7 +72,8 @@ function AppRoutes() {
                 { path: "Plans", element: <AdminPlans /> },
                 { path: "user", element: <AdminUsers /> },
                 { path: "trainer", element: <AdminTrainers /> },
-                // { path: 'profile', element: <Profile /> }
+                // { path: 'profile', element: <Profile /> },
+                { path: 'workout', element: <AdminWorkout /> }
 
             ]
         },

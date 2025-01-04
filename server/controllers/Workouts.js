@@ -1,5 +1,5 @@
 import { createWorkout, deleteWorkout, getWorkoutbyTrainerId, getWorkouts } from "../services/Workout.js";
-import { createResponse } from "../utils/utilityFunctions.js";
+import { createResponse, validatePagination } from "../utils/utilityFunctions.js";
 
 
 export const CreateWorkout = async (req, res) => {
@@ -32,7 +32,9 @@ export const CreateWorkout = async (req, res) => {
 
 export const GetWorkouts = async (req, res) => {
     try {
-        const workoutData = await getWorkouts();
+        const { trainerId, page, pageSize } = req.query;
+        const { validatedPage, validatedPageSize } = validatePagination(page, pageSize)
+        const workoutData = await getWorkouts(trainerId, validatedPage, validatedPageSize);
         res.status(200).send({ workoutData });
     } catch (e) {
         res.status(404).send({

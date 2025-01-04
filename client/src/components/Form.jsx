@@ -24,7 +24,7 @@ const Form = ({ fields, onSubmit, initialValues }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='p-2 h-full w-full'>
+        <form onSubmit={handleSubmit} className='p-2 h-full w-full '>
             <div className='grid grid-cols-2 gap-4'>
                 {fields.map((field) => (
                     <div key={field.name} className='flex justify-between w-full'>
