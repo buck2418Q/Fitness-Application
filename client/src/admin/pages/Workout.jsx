@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { getWorkoutData } from '../../services/adminService/Workout';
+import React, { useEffect, useMemo, useState } from 'react'
+import { getTrainersNameDate, getWorkoutData } from '../../services/adminService/Workout';
 import Loader from '../../components/Loader';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
@@ -13,7 +13,7 @@ import {
     ModalBody,
     ModalFooter,
     CardFooter,
-    useDisclosure,
+    useDisclosure, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem
 } from "@nextui-org/react";
 import { Form } from "@nextui-org/form";
 import { NextButton } from '../../components/NextButton';
@@ -27,11 +27,42 @@ function Workout() {
     // const [action, setAction] = useState(null);
     const [action, setAction] = React.useState(null);
     const [selectedWorkout, setSelectedWorkout] = useState(null);
+    const [selectedTrainer, setSelectedTrainer] = useState([]);
+    const [selectedKeys, setSelectedKeys] = useState(new Set(["text"]));
+
+    const selectedValue = useMemo(() => {
+        // Get the selected ID from selectedKeys
+        const selectedId = Array.from(selectedKeys)[0];
+
+        // Find the selected trainer's name using the selected ID
+        const selectedTrainerData = selectedTrainer.find(trainer => trainer.id === selectedId);
+
+        // If a trainer is selected, return their name, else return a default prompt
+        return selectedTrainerData ? `${selectedTrainerData.firstName} ${selectedTrainerData.lastName}` : "Select a Trainer";
+    }, [selectedKeys, selectedTrainer]);
+
+    const handleSelectionChange = (newSelectedKeys) => {
+        setSelectedKeys(newSelectedKeys);
+
+        // Get the selected trainer's ID from the new selected keys
+        const selectedId = Array.from(newSelectedKeys)[0];
+
+        // Find the selected trainer's details from the selectedTrainer array
+        const selectedTrainer = selectedTrainer.find(
+            (trainer) => trainer.id === selectedId
+        );
+
+        if (selectedTrainer) {
+            console.log(`Selected: ${selectedTrainer.firstName} ${selectedTrainer.lastName}, ID: ${selectedId}`);
+        }
+    };
 
 
     useEffect(() => {
         getWorkout(currentPage)
+        getTrainersName();
     }, [currentPage]);
+
     const handleEdit = (data) => {
         console.log('edit', data)
     }
@@ -39,11 +70,21 @@ function Workout() {
         console.log('Delete : ', data)
     }
 
+    const getTrainersName = async () => {
+        try {
+            const result = await getTrainersNameDate()
+            console.log('Trainers Name : ', result.trainerData)
+            setSelectedTrainer(result.trainerData);
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
+
     const getWorkout = async (page = 1, pageSize = 5) => {
         try {
             setLoading(true)
             const result = await getWorkoutData(page, pageSize)
-            // console.log('workouts : ', result.workoutData.workoutData)
             setWorkout(result.workoutData.workoutData)
             setTotalPages(result.workoutData.totalPages)
         } catch (error) {
@@ -61,7 +102,29 @@ function Workout() {
             <section>
                 <div className='flex justify-between mb-4'>
                     <div className='text-xl font-semibold'>Workout List</div>
-                    <NextButton color='secondary' onPress={onOpen}>Add Workout</NextButton>
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button className="capitalize" variant="bordered">
+                                {selectedValue}
+                            </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu
+                            disallowEmptySelection
+                            aria-label="Single selection example"
+                            selectedKeys={selectedKeys}
+                            selectionMode="single"
+                            variant="flat"
+                            onSelectionChange={setSelectedKeys}
+                        >
+                            {selectedTrainer.map((data, index) => (
+                                <DropdownItem key={index}>{data.firstName} {data.lastName}</DropdownItem>
+                            ))
+
+                            }
+
+                            <DropdownItem key="iteration">Iteration</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
                 </div>
 
                 <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>

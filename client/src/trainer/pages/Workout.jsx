@@ -34,9 +34,7 @@ function Workout() {
         const token = sessionStorage.getItem('token') || localStorage.getItem('token');
         if (token) {
             const decodedToken = jwtDecode(token);
-            // setTrainerId(decodedToken.id)
             const trainerId = decodedToken.id;
-            console.log('decodedToken : ', decodedToken.id);
             getWorkout(trainerId, currentPage)
         }
     }, [currentPage]);
@@ -51,7 +49,7 @@ function Workout() {
         try {
             setLoading(true)
             const result = await getWorkoutData(trainerId, page, pageSize)
-            // console.log('workouts : ', result.workoutData.workoutData)
+            console.log('workouts : ', result.workoutData.workoutData)
             setWorkout(result.workoutData.workoutData)
             setTotalPages(result.workoutData.totalPages)
         } catch (error) {

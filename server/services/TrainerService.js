@@ -22,6 +22,9 @@ export const getTrainers = async (page, pageSize) => {
     };
 };
 
+export const getTrainersName = async () => {
+    return await TrainerModel.find({}, 'firstName lastName');
+}
 
 export const createTrainer = async (trainerData) => {
     const isEmailExists = await getTrainerByEmail(trainerData.email);

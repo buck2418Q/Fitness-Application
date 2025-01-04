@@ -34,7 +34,7 @@ export const GetWorkouts = async (req, res) => {
     try {
         const { trainerId, page, pageSize } = req.query;
         const { validatedPage, validatedPageSize } = validatePagination(page, pageSize)
-        const workoutData = await getWorkouts(trainerId, validatedPage, validatedPageSize);
+        const workoutData = await getWorkouts(validatedPage, validatedPageSize, trainerId);
         res.status(200).send({ workoutData });
     } catch (e) {
         res.status(404).send({

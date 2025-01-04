@@ -1,5 +1,5 @@
 import TrainerModel from "../models/Trainers.js";
-import { createTrainer, deleteTrainer, getTrainers, trainerCount, updateTrainer } from "../services/TrainerService.js";
+import { createTrainer, deleteTrainer, getTrainers, getTrainersName, trainerCount, updateTrainer } from "../services/TrainerService.js";
 import { validatePagination } from "../utils/utilityFunctions.js";
 
 
@@ -38,7 +38,16 @@ export const GetTrainers = async (req, res) => {
         });
     }
 };
-
+export const GetTrainersName = async (req, res) => {
+    try {
+        const trainerData = await getTrainersName();
+        res.status(200).send({ trainerData });
+    } catch (e) {
+        res.status(404).send({
+            error: e?.message,
+        });
+    }
+}
 
 
 export const CreateTrainer = async (req, res) => {

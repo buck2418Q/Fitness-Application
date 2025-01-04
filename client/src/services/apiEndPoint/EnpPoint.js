@@ -14,3 +14,4 @@ export const knowTrainer = {
 };
 
 export const workout = `${BASE_URL}workout`;
+export const trainerName = `${BASE_URL}trainername`;

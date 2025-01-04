@@ -18,20 +18,35 @@ export const createWorkout = async (workoutData) => {
     }
 };
 
-export const getWorkouts = async (trainerId, page, pageSize) => {
+export const getWorkouts = async (page, pageSize, trainerId) => {
     const skip = (page - 1) * pageSize;
-    const workoutData = await WorkoutModel.find({ trainerId }).skip(skip).limit(pageSize);
-    const totalWorkout = await UserModel.countDocuments();
-    const totalPages = Math.ceil(totalWorkout / pageSize)
+
+    let workoutData;
+    if (trainerId && trainerId.length > 0) {
+        workoutData = await WorkoutModel.find({ trainerId: trainerId })
+            .skip(skip)
+            .limit(pageSize);
+    } else {
+        workoutData = await WorkoutModel.find({})
+            .skip(skip)
+            .limit(pageSize);
+    }
+    const totalWorkout = trainerId && trainerId.length > 0
+        ? await WorkoutModel.countDocuments({ createdBy: trainerId })
+        : await WorkoutModel.countDocuments();
+
+    const totalPages = Math.ceil(totalWorkout / pageSize);
+
     if (workoutData) {
         return {
             workoutData,
             totalPages
         };
     } else {
-        return createResponse(404, "No workout Data", null);
+        return createResponse(404, "No workout data", null);
     }
-}
+};
+
 
 export const getWorkoutbyTrainerId = async (trainerId) => {
     const workoutData = await WorkoutModel.find({ trainerId });
