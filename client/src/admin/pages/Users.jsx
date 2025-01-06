@@ -142,7 +142,7 @@ function Users() {
     };
 
     // change the pagesize to change get no of records
-    const fetchAllUsers = async (page = 1, pageSize = 5) => {
+    const fetchAllUsers = async (page = 1, pageSize = 10) => {
         try {
             setLoading(true);
             const result = await getAllUsers(page, pageSize)

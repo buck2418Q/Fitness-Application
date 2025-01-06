@@ -29,6 +29,7 @@ const SideMenu = () => {
     const GetUserDetails = async (userId) => {
         try {
             const result = await getUserDetails(userId)
+            console.log(result)
             setUser(result[0])
             console.log(result)
         } catch (e) {

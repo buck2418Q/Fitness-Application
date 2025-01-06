@@ -26,10 +26,11 @@ function Signup() {
   const [oAuthProvider, setOAuthProvider] = useState({ provider: '', token: '' })
   const [oAuthFacebook, setOAuthFacebook] = useState({ provider: '', firstName: '', lastName: '', email: '', profilePicture: '', facebookId: '' })
   const [passwordsMatch, setPasswordsMatch] = useState(true)
+  const [selectedGender, setSelectedGender] = useState('');
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    gender: '',
     age: '',
     height: '',
     weight: '',
@@ -44,6 +45,7 @@ function Signup() {
   });
   const [error, setError] = useState(true)
   const navigate = useNavigate();
+
 
   const nextStep = () => {
     setStep(step + 1);
@@ -76,7 +78,6 @@ function Signup() {
     setIsVisible((prevVisibility) => !prevVisibility);
   };
   const resetForm = () => {
-
     formData.firstName = ''
     formData.lastName = ''
     formData.gender = ''
@@ -145,6 +146,13 @@ function Signup() {
     setError(false);
   };
 
+  const handleGenderChange = (value) => {
+    console.log('Selected gender:', value.target.value);
+    setSelectedGender(value.target.value);
+  };
+
+
+
   const createUserClick = async (e) => {
     e.preventDefault();
     const validation = validateFormData()
@@ -153,8 +161,22 @@ function Signup() {
         setLoading(true);
         const formDataToSend = new FormData();
         Object.keys(formData).forEach((key) => {
-          formDataToSend.append(key, formData[key]);
+          if (key !== 'gender') {
+            formDataToSend.append(key, formData[key]);
+          }
         });
+
+        if (selectedGender) {
+          formDataToSend.append('gender', selectedGender);
+        } else {
+          console.warn('Gender is not selected');
+        }
+
+        console.log('formDataToSend contents:');
+        for (let [key, value] of formDataToSend.entries()) {
+          console.log(`${key}: ${value}`);
+        }
+
         const result = await CreateUser(formDataToSend);
         if (result.statusCode === 201) {
           toast.success(result.message);
@@ -182,9 +204,9 @@ function Signup() {
   //   e.target.value = e.target.value.replace(/[^0-9]/g, '');
   // };
   const gender = [
-    { key: "male", label: "Male" },
-    { key: "female", label: "Female" },
-    { key: "other", label: "Other" },
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+    { value: "other", label: "Other" },
   ]
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
@@ -314,7 +336,7 @@ function Signup() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                   />
-                  <Select
+                  {/* <Select
                     radius="none"
                     classNames={{ base: "mb-[2px] h-[52px] rounded-t-none dark:border-red-500", inputWraper: "rounded-lg " }}
                     variant="bordered"
@@ -328,6 +350,25 @@ function Signup() {
                         key={item.value}
                         value={item.value}>{item.label}
                       </SelectItem>}
+                  </Select> */}
+                  <Select
+                    radius="none"
+                    classNames={{
+                      base: "mb-[2px] h-[52px] rounded-t-none dark:border-red-500",
+                      inputWraper: "rounded-lg "
+                    }}
+                    variant="bordered"
+                    items={gender}
+                    label="Gender"
+                    placeholder="Select gender"
+                    value={selectedGender}
+                    onChange={handleGenderChange}
+                  >
+                    {(item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    )}
                   </Select>
 
                   <Input
@@ -347,6 +388,7 @@ function Signup() {
                     name="profilePicture"
                     label="Choose your Profile Image"
                     type="file"
+                    accept="image/*"
                     variant="bordered"
                     onChange={(e) => {
                       const file = e.target.files[0];
