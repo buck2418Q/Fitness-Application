@@ -1,5 +1,5 @@
 import axios from "axios";
-import { totalTrainer, Trainers } from "../apiEndPoint/EnpPoint";
+import { totalTrainer, totalWorkout, Trainers, workout } from "../apiEndPoint/EnpPoint";
 
 
 const token = localStorage.getItem('token') || sessionStorage.getItem('token');
@@ -14,6 +14,19 @@ export const trainerCount = async () => {
         return response.data.totalTrainer;
     } catch (error) {
         console.log("Unable to access API!", error);
+    }
+}
+
+export const workoutCount = async () => {
+    try {
+        const response = await axios.get(totalWorkout, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.log("unable to get workouts ", error)
     }
 }
 

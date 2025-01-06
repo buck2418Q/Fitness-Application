@@ -1,4 +1,4 @@
-import { createWorkout, deleteWorkout, getWorkoutbyTrainerId, getWorkouts } from "../services/Workout.js";
+import { createWorkout, deleteWorkout, getWorkoutCount, getWorkouts } from "../services/Workout.js";
 import { createResponse, validatePagination } from "../utils/utilityFunctions.js";
 
 
@@ -42,17 +42,27 @@ export const GetWorkouts = async (req, res) => {
         });
     }
 }
-
-export const GetWorkoutsbyTrainer = async (req, res) => {
+export const GetWorkoutCount = async (req, res) => {
     try {
-        const workoutData = await getWorkoutbyTrainerId(req.body.trainerId);
-        res.status(200).send({ workoutData });
+        const count = await getWorkoutCount();
+        res.status(200).send({count})
     } catch (e) {
-        res.status(404).send({
+        res.status(400).send({
             error: e?.message
         });
     }
 }
+
+// export const GetWorkoutsbyTrainer = async (req, res) => {
+//     try {
+//         const workoutData = await getWorkoutbyTrainerId(req.body.trainerId);
+//         res.status(200).send({ workoutData });
+//     } catch (e) {
+//         res.status(404).send({
+//             error: e?.message
+//         });
+//     }
+// }
 
 export const DeleteWorkout = async (req, res) => {
     try {

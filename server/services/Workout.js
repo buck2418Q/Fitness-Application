@@ -47,15 +47,19 @@ export const getWorkouts = async (page, pageSize, trainerId) => {
     }
 };
 
-
-export const getWorkoutbyTrainerId = async (trainerId) => {
-    const workoutData = await WorkoutModel.find({ trainerId });
-    if (workoutData) {
-        return createResponse(200, "workout Data", workoutData);
-    } else {
-        return createResponse(201, "No workout Data", null);
-    }
+export const getWorkoutCount = async () => {
+    const count = WorkoutModel.countDocuments();
+    return count;
 }
+
+// export const getWorkoutbyTrainerId = async (trainerId) => {
+//     const workoutData = await WorkoutModel.find({ trainerId });
+//     if (workoutData) {
+//         return createResponse(200, "workout Data", workoutData);
+//     } else {
+//         return createResponse(201, "No workout Data", null);
+//     }
+// }
 
 export const deleteWorkout = async (id) => {
     const isWorkoutExists = await WorkoutModel.findById(id);

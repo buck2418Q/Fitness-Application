@@ -71,7 +71,7 @@ const TopMenu = () => {
                         <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
                     <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center hover:shadow-xl">
-                        <img src={imgBaseUrl + profilePicture} alt="User" className='object-cover w-12 h-12 border rounded-full cursor-pointer' onClick={toggleProfileModal} />
+                        <img src={profilePic} alt="User" className='object-cover w-12 h-12 border rounded-full cursor-pointer' onClick={toggleProfileModal} />
                     </span>
                 </div>
             </div>
@@ -85,7 +85,7 @@ const TopMenu = () => {
 
                         <div className='p-1 flex flex-col items-center justify-center '>
                             <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
-                            <img src={imgBaseUrl + profilePicture} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover bg-gradient-to-tr from-background to-secondary relative shadow-black border-white border-3' />
+                            <img src={profilePic} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover bg-gradient-to-tr from-background to-secondary relative shadow-black border-white border-3' />
 
                         </div>
 

@@ -24,7 +24,7 @@ import categoryimg5 from '../assets/images/category/category5.png';
 import categoryimg6 from '../assets/images/category/category6.png';
 import categoryimg7 from '../assets/images/category/category7.png';
 import categoryimg8 from '../assets/images/category/category8.png';
-
+import profilePic from '../assets/images/profilePic.jpg'
 export {
     trainerLoader,
     traineeLoader,
@@ -51,6 +51,7 @@ export {
     categoryimg5,
     categoryimg6,
     categoryimg7,
-    categoryimg8
-    
+    categoryimg8,
+    profilePic
+
 }

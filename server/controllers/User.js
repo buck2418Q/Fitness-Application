@@ -65,7 +65,7 @@ export const DeleteUser = async (req, res) => {
 
 export const FindUserById = async (req, res) => {
     try {
-        const userData = await findUserById(req.body.id); // Use req.params.
+        const userData = await findUserById(req.query.id); // Use req.params.
         if (!userData) {
             return res.status(404).send({ error: "User does not exist" });
         }

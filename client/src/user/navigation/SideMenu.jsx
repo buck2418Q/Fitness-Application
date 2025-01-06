@@ -1,18 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/logos/logo.png";
 import { chevronUpIcon, menuIcon, xIcon } from "../../components/icons";
 import { RoutesData } from "./UsersRoutesData";
+import { profilePic } from '../../components/images'
+import { getUserDetails } from "../../services/userServices/UserData";
+import { jwtDecode } from 'jwt-decode';
 
 const SideMenu = () => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
+    const [profilePicture, setProfilePicture] = useState(profilePic)
     const location = useLocation();
+    const [userId, setUserId] = useState('')
+
+    const [user, setUser] = useState({ firstName: '', lastName: '', gender: '', age: '', height: 0, weight: 0 })
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token')
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            setUserId(decodedToken.id);
+            GetUserDetails(userId);
+        }
+    }, [userId])
+
+    const GetUserDetails = async (userId) => {
+        try {
+            const result = await getUserDetails(userId)
+            setUser(result[0])
+            console.log(result)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
     const toggleCollapse = () => {
         setCollapsed(!collapsed);
     };
-
     const handleToggleMenu = (index) => {
         setOpenMenu(openMenu === index ? null : index);
     };
@@ -31,18 +58,27 @@ const SideMenu = () => {
                         <img src={xIcon} alt="" /> : <img src={menuIcon} alt="" />}
                 </button>
             </div>
-            <div className="bg-red-300">
-                <div>
+            <div className="p-2 text-background dark:text-light">
+                {!collapsed &&
                     <div>
-                        <img src={logo} alt="kkk" srcset="" />
-                        <span>edit</span>
+                        <div className="px-2 mb-1 rounded-md bg-background/10 dark:bg-light/10 py-1">
+                            <span>{user.gender} &nbsp;</span>
+                            <span>{user.age} year</span>
+                        </div>
+                        <div className="flex justify-between px-2 mb-1 rounded-md bg-background/10 dark:bg-light/10  py-1">
+                            <p className="flex flex-col  justify-center w-full text-xl font-semibold">Height
+                                <span className="text-sm font-normal">
+                                    {user.height} cm
+                                </span>
+                            </p>
+                            <p className="flex flex-col py-1 px-4 justify-center w-full text-xl font-semibold">Wight
+                                <span className="text-sm font-normal">
+                                    {user.weight} kg
+                                </span>
+                            </p>
+                        </div>
                     </div>
-                    <div>name</div>
-                    <div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                }
             </div>
             <ul className={`transition-all duration-200 ease-in-out`}>
                 {RoutesData.map((menu, index) => (

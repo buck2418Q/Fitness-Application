@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchIcon, bellIcon } from "../../components/icons";
 import profileBanner from "../../assets/images/profileBanner.jpg";
-import profilePic from "../../assets/images/profilePic.jpg";
+import { profilePic } from '../../components/images'
 import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
@@ -21,7 +21,6 @@ const TopMenu = () => {
         setUserName(decodedToken.userName);
         setUserEmail(decodedToken.email);
         setProfilePicture(decodedToken.profilePicture)
-        console.log(token)
     }, [])
     const [isOpen, setIsOpen] = useState(false);
 

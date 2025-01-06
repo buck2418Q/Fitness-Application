@@ -11,7 +11,7 @@ import { verifyAndCheckRole } from "./middleWare/VarifyTokenMiddleWare.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { CreateWorkout, DeleteWorkout, GetWorkouts, GetWorkoutsbyTrainer } from "./controllers/Workouts.js";
+import { CreateWorkout, DeleteWorkout, GetWorkoutCount, GetWorkouts } from "./controllers/Workouts.js";
 import { createMulterConfig } from "./multerConfig/MulterConfig.js";
 import bodypars from "body-parser";
 dotenv.config();
@@ -93,15 +93,16 @@ router.post("/oauth", oAuth);
 router.get("/knowtrainer", GetTrainerDetails)
 
 
-const folderBase = "uploads/trainer-workout"; // Base folder for trainer workouts
+const folderBase = "uploads/trainer-workout"; 
 const workoutUpload = createMulterConfig(
     folderBase,
-    [".mp4", ".mkv", ".jpg", ".jpeg", ".png"], // Allowed file extensions
+    [".mp4", ".mkv", ".jpg", ".jpeg", ".png"], 
     50 // Max file size in MB
 );
 // workout 
 router.get("/workout", GetWorkouts)
-router.get("/workouttrainer", GetWorkoutsbyTrainer)
+router.get("/workoutcount", GetWorkoutCount)
+// router.get("/workouttrainer", GetWorkoutsbyTrainer)
 
 router.post("/workout", workoutUpload.fields([
     { name: "image", maxCount: 1 },
