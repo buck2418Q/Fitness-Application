@@ -26,6 +26,7 @@ function Trainers() {
         { field: "lastName", headerName: "Last Name" },
         { field: "contactNumber", headerName: "Phone Number" },
         { field: "email", headerName: "Email" },
+        { field: "age", headerName: "Age" },
         {
             field: "bio", headerName: "Bio",
             cellRenderer: (params) => (
@@ -77,19 +78,21 @@ function Trainers() {
         { label: 'Last Name', name: 'lastName', type: 'text', required: true },
         { label: 'Email', name: 'email', type: 'email', required: true },
         { label: 'Password', name: 'password', type: 'password', required: true },
-        { label: 'Service Type', name: 'serviceType', type: 'text', required: true },
-        { label: 'Location', name: 'location', type: 'text', required: true },
-        { label: 'City', name: 'city', type: 'text', required: true },
+        { label: 'Age', name: 'age', type: 'number', required: true },
         { label: 'Contact Number', name: 'contactNumber', type: 'number', required: true },
-        { label: 'Bio', name: 'bio', type: 'text', required: true },
-        { label: 'Certifications', name: 'certifications', type: 'text', required: true },
         { label: 'Profile Picture', name: 'profilePicture', type: 'text', required: true },
+        { label: 'Gender', name: 'gender', type: 'text', required: true },
+        { label: 'Address', name: 'address', type: 'text', required: true },
+        { label: 'City', name: 'city', type: 'text', required: true },
+        { label: 'State', name: 'state', type: 'text', required: true },
+        { label: 'Service Type', name: 'serviceType', type: 'text', required: true },
+        { label: 'Bio', name: 'bio', type: 'text', required: true },
         { label: 'Services Offered', name: 'servicesOffered', type: 'text', required: true },
         { label: 'Total Clients', name: 'totalClients', type: 'text', required: true },
-        { label: 'Insta ID', name: 'instaId', type: 'text', required: true },
+        { label: 'Instagram ID', name: 'instaId', type: 'text', required: true },
         { label: 'Facebook', name: 'facebook', type: 'text', required: true },
-        { label: 'Twitter', name: 'twitter', type: 'text', required: true },
-    ];
+        { label: 'Twitter', name: 'twitter', type: 'text', required: true }
+    ]
 
 
     useEffect(() => {
@@ -102,19 +105,22 @@ function Trainers() {
         role: 'trainer',
         email: '',
         password: '',
-        serviceType: '',
-        location: '',
-        city: '',
+        age: '',
         contactNumber: '',
-        bio: '',
-        certifications: '',
         profilePicture: '',
+        gender: '',
+        address: '',
+        city: '',
+        state: '',
+        serviceType: '',
+        bio: '',
         servicesOffered: '',
         totalClients: '',
         instaId: '',
         facebook: '',
-        twitter: ''
+        twitter: '',
     };
+
     const [formData, setFormData] = useState(initialFormData);
 
 
@@ -188,7 +194,9 @@ function Trainers() {
     const handleSubmit = async (formData) => {
         try {
             setLoading(true);
+            console.log('formData', formData)
             const result = await CreateTrainer(formData);
+            console.log('result', result)
             if (result.data.statusCode === 201) toast.success(result.data.message);
             if (result.data.statusCode === 400) toast.error(result.data.message);
             if (result.data.statusCode === 404) toast.error(result.data.message);

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { CreateAdmin, DeleteAdmin, FindAdminById, GetAdmin, UpdateAdmin } from "./controllers/Admin.js";
 import { CreateUser, DeleteUser, FindUserById, GetUsers, UpdateUser, UserCount } from "./controllers/User.js";
-import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
+import { CreateTrainer, DeleteTrainer, FindTrainerById, GetTrainers, GetTrainersName, TrainerCount, UpdateTrainer } from "./controllers/Trainer.js";
 import { Login, oAuth } from "./controllers/Login.js";
 import { GetTrainerDetails } from "./controllers/Home.js";
 import { verifyAndCheckRole } from "./middleWare/VarifyTokenMiddleWare.js";
@@ -84,7 +84,7 @@ router.post("/trainer", CreateTrainer);
 router.put("/trainer", verifyAndCheckRole(['admin', 'trainer']), UpdateTrainer);
 router.delete("/trainer", verifyAndCheckRole(['admin', 'trainer']), DeleteTrainer);
 router.get("/findtrainerbyid", verifyAndCheckRole(['admin', 'trainer']), FindTrainerById);
-
+router.get("/trainername", GetTrainersName)
 //login
 router.post("/login", Login);
 router.post("/oauth", oAuth);

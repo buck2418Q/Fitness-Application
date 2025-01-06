@@ -8,9 +8,9 @@ export const createWorkout = async (workoutData) => {
     try {
         const newWorkout = await WorkoutModel.create(workoutData);
         if (newWorkout) {
-            return createResponse(201, "Workout created successfully", 'newWorkout');
+            return createResponse(200, "Workout created successfully", null);
         } else {
-            return createResponse(500, "Unable to create workout");
+            return createResponse(203, "Unable to create workout", null);
         }
     } catch (error) {
         console.error("Error in createWorkout:", error);
@@ -32,7 +32,7 @@ export const getWorkouts = async (page, pageSize, trainerId) => {
             .limit(pageSize);
     }
     const totalWorkout = trainerId && trainerId.length > 0
-        ? await WorkoutModel.countDocuments({ createdBy: trainerId })
+        ? await WorkoutModel.countDocuments({ trainerId: trainerId })
         : await WorkoutModel.countDocuments();
 
     const totalPages = Math.ceil(totalWorkout / pageSize);
@@ -60,7 +60,7 @@ export const getWorkoutbyTrainerId = async (trainerId) => {
 export const deleteWorkout = async (id) => {
     const isWorkoutExists = await WorkoutModel.findById(id);
     if (!isWorkoutExists) {
-        return createResponse(404, "Workout does not exist", null);
+        return createResponse(204, "Workout does not exist", null);
     } else {
         try {
             const workout = await WorkoutModel.deleteOne({ _id: id });

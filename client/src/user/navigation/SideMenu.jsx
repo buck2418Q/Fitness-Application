@@ -31,6 +31,19 @@ const SideMenu = () => {
                         <img src={xIcon} alt="" /> : <img src={menuIcon} alt="" />}
                 </button>
             </div>
+            <div className="bg-red-300">
+                <div>
+                    <div>
+                        <img src={logo} alt="kkk" srcset="" />
+                        <span>edit</span>
+                    </div>
+                    <div>name</div>
+                    <div>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
             <ul className={`transition-all duration-200 ease-in-out`}>
                 {RoutesData.map((menu, index) => (
                     <li key={index} className="relative">

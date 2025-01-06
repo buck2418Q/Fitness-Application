@@ -6,8 +6,8 @@ export const CreateWorkout = async (req, res) => {
     try {
         const workoutData = req.body;
         if (!workoutData.title || !workoutData.trainerId) {
-            return res.status(400).send(
-                createResponse(400, "Workout title and Trainer ID are required.")
+            return res.status(204).send(
+                createResponse(204, "Workout title and Trainer ID are required.", null)
             );
         }
         if (req.files["image"]) {

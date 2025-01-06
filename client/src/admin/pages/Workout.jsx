@@ -3,6 +3,7 @@ import { getTrainersNameDate, getWorkoutData } from '../../services/adminService
 import Loader from '../../components/Loader';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import { Toaster, toast } from 'sonner'
 import { motion } from 'framer-motion';
 import { fadeIn } from '../../assets/utils/motion';
 import {
@@ -24,44 +25,15 @@ function Workout() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    // const [action, setAction] = useState(null);
     const [action, setAction] = React.useState(null);
     const [selectedWorkout, setSelectedWorkout] = useState(null);
     const [selectedTrainer, setSelectedTrainer] = useState([]);
-    const [selectedKeys, setSelectedKeys] = useState(new Set(["text"]));
-
-    const selectedValue = useMemo(() => {
-        // Get the selected ID from selectedKeys
-        const selectedId = Array.from(selectedKeys)[0];
-
-        // Find the selected trainer's name using the selected ID
-        const selectedTrainerData = selectedTrainer.find(trainer => trainer.id === selectedId);
-
-        // If a trainer is selected, return their name, else return a default prompt
-        return selectedTrainerData ? `${selectedTrainerData.firstName} ${selectedTrainerData.lastName}` : "Select a Trainer";
-    }, [selectedKeys, selectedTrainer]);
-
-    const handleSelectionChange = (newSelectedKeys) => {
-        setSelectedKeys(newSelectedKeys);
-
-        // Get the selected trainer's ID from the new selected keys
-        const selectedId = Array.from(newSelectedKeys)[0];
-
-        // Find the selected trainer's details from the selectedTrainer array
-        const selectedTrainer = selectedTrainer.find(
-            (trainer) => trainer.id === selectedId
-        );
-
-        if (selectedTrainer) {
-            console.log(`Selected: ${selectedTrainer.firstName} ${selectedTrainer.lastName}, ID: ${selectedId}`);
-        }
-    };
-
-
+    const [selectedValue, setSelectedValue] = useState("Trainer")
+    const [trainerId, setTrainerId] = useState('')
     useEffect(() => {
-        getWorkout(currentPage)
+        getWorkout(trainerId, currentPage)
         getTrainersName();
-    }, [currentPage]);
+    }, [currentPage, trainerId]);
 
     const handleEdit = (data) => {
         console.log('edit', data)
@@ -73,32 +45,39 @@ function Workout() {
     const getTrainersName = async () => {
         try {
             const result = await getTrainersNameDate()
-            console.log('Trainers Name : ', result.trainerData)
             setSelectedTrainer(result.trainerData);
         } catch (error) {
             console.log(error)
-
         }
     }
-
-    const getWorkout = async (page = 1, pageSize = 5) => {
+    const onTrainerChange = (id, name) => {
+        setTrainerId(id);
+        setSelectedValue(name);
+    }
+    const getWorkout = async (trainerId, page = 1, pageSize = 9) => {
         try {
-            setLoading(true)
-            const result = await getWorkoutData(page, pageSize)
-            setWorkout(result.workoutData.workoutData)
-            setTotalPages(result.workoutData.totalPages)
+            setLoading(true);
+            const result = await getWorkoutData(trainerId, page, pageSize);
+            // console.log('res', result.workoutData.workoutData)
+            if (!result.workoutData.workoutData || result.workoutData.workoutData.length === 0) {
+                toast.info('No Workout Found')
+            }
+            setWorkout(result.workoutData.workoutData);
+            setTotalPages(result.workoutData.totalPages);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
     const workoutDetails = (data) => {
         // console.log('workout details', data)
         setSelectedWorkout(data);
     }
+
     return (
         <>
+            <Toaster className="z-40" richColors position="top-right" closeButton />
             <section>
                 <div className='flex justify-between mb-4'>
                     <div className='text-xl font-semibold'>Workout List</div>
@@ -111,18 +90,16 @@ function Workout() {
                         <DropdownMenu
                             disallowEmptySelection
                             aria-label="Single selection example"
-                            selectedKeys={selectedKeys}
+                            selectedKeys={selectedValue}
                             selectionMode="single"
                             variant="flat"
-                            onSelectionChange={setSelectedKeys}
+                            onSelectionChange={setSelectedValue}
                         >
+                            <DropdownItem onClick={() => onTrainerChange('', 'Trainer')}>Trainer</DropdownItem>
                             {selectedTrainer.map((data, index) => (
-                                <DropdownItem key={index}>{data.firstName} {data.lastName}</DropdownItem>
+                                <DropdownItem key={index} textValue={data.firstName} onClick={() => onTrainerChange(data._id, data.firstName + ' ' + data.lastName)}>{data.firstName} {data.lastName}</DropdownItem>
                             ))
-
                             }
-
-                            <DropdownItem key="iteration">Iteration</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>

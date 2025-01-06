@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getWorkoutData } from '../../services/trainerServices/Workout'
+import { deleteWorkout, getWorkoutData, saveWorkout } from '../../services/trainerServices/Workout'
 import Loader from '../../components/Loader';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
@@ -13,14 +13,20 @@ import {
     ModalBody,
     ModalFooter,
     CardFooter,
-    useDisclosure,
+    useDisclosure, Textarea
 } from "@nextui-org/react";
 import { Form } from "@nextui-org/form";
 import { NextButton } from '../../components/NextButton';
 import { jwtDecode } from 'jwt-decode';
+import { toast, Toaster } from "sonner";
+
+
 function Workout() {
 
+    const [videoFile, setVideoFile] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
     const [workout, setWorkout] = useState([]);
+    const [selectedWorkoutId, setSlectedWorkoutId] = useState('')
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -28,28 +34,67 @@ function Workout() {
     // const [action, setAction] = useState(null);
     const [action, setAction] = React.useState(null);
     const [selectedWorkout, setSelectedWorkout] = useState(null);
-    // const [trainerId, setTrainerId] = useState(null)
+    const [trainer, setTrainer] = useState(null)
+    const [deleteConfirm, setDeleteConfirm] = useState(false)
 
     useEffect(() => {
         const token = sessionStorage.getItem('token') || localStorage.getItem('token');
         if (token) {
             const decodedToken = jwtDecode(token);
             const trainerId = decodedToken.id;
+            setTrainer(trainerId)
             getWorkout(trainerId, currentPage)
         }
     }, [currentPage]);
     const handleEdit = (data) => {
         console.log('edit', data)
     }
+
+
+
+    // delete work
     const handleDelete = (data) => {
-        console.log('Delete : ', data)
+        console.log('Delete : ', data);
+        setSlectedWorkoutId(data)
+        setDeleteConfirm(true)
+        console.log(deleteConfirm)
+    }
+    const deleteCofirm = async () => {
+        setDeleteConfirm(false)
+        try {
+            // console.log(selectedWorkoutId)
+            const result = await deleteWorkout(selectedWorkoutId)
+            // console.log(result)
+            if (result.statusCode === 200) {
+                toast.success(result.message)
+                const closeBtn = document.getElementById('closeVideo')
+                if (closeBtn) {
+                    closeBtn.click()
+                }
+            } else if (result.statusCode === 204) {
+                toast.error(result.message)
+            } else if (result.statusCode === 203) {
+                toast.success(result.message)
+            }
+
+        } catch (error) {
+            console.log(error)
+        } finally {
+            getWorkout(trainerId, currentPage)
+        }
+    }
+    const deleteCancel = async () => {
+        setDeleteConfirm(false)
+        toast.info('Data is safe')
     }
 
-    const getWorkout = async (trainerId, page = 1, pageSize = 5) => {
+
+
+
+    const getWorkout = async (trainerId, page = 1, pageSize = 9) => {
         try {
             setLoading(true)
             const result = await getWorkoutData(trainerId, page, pageSize)
-            console.log('workouts : ', result.workoutData.workoutData)
             setWorkout(result.workoutData.workoutData)
             setTotalPages(result.workoutData.totalPages)
         } catch (error) {
@@ -58,12 +103,42 @@ function Workout() {
             setLoading(false)
         }
     };
+
     const workoutDetails = (data) => {
         // console.log('workout details', data)
         setSelectedWorkout(data);
     }
+
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        formData.append("trainerId", trainer)
+        if (videoFile) formData.append("video", videoFile);
+        if (imageFile) formData.append("image", imageFile);
+        try {
+            const response = await saveWorkout(formData);
+            console.log('response', response)
+            if (response.statusCode === 200) {
+                toast.success(response.message)
+            }
+            else if (response.statusCode === 204) {
+                toast.error(response.message)
+            } else if (response.statusCode === 203) {
+                toast.error(response.message)
+            }
+            const closeBtn = document.getElementById('closeBtn')
+            if (closeBtn) {
+                closeBtn.click()
+            }
+        } catch (error) {
+            console.error("Error saving workout:", error.response?.data || error.message);
+            setAction("Failed to save workout.");
+        }
+    };
     return (
         <>
+            <Toaster className="z-50" richColors position="top-right" />
             <section>
                 <div className='flex justify-between mb-4'>
                     <div className='text-xl font-semibold'>Workout List</div>
@@ -81,6 +156,7 @@ function Workout() {
                     {workout.map((data, index) => (
 
                         <Card key={index} isPressable shadow="sm" onPress={() => workoutDetails(data)}>
+
                             <CardBody className="overflow-visible p-0">
                                 <Image
                                     alt={data.title}
@@ -122,7 +198,7 @@ function Workout() {
                         </NextButton>
                     </div>
                 </div>
-            </section>
+            </section >
 
             <Modal
                 isDismissable={false}
@@ -136,35 +212,45 @@ function Workout() {
                             <ModalHeader className="flex flex-col gap-1">Add A new Workout</ModalHeader>
                             <ModalBody>
                                 <Form
-                                    className="w-full max-w-xs flex flex-col gap-4"
+                                    className="w-full flex flex-col gap-4"
                                     validationBehavior="native"
-                                    onReset={() => setAction("reset")}
-                                    onSubmit={(e) => {
-                                        e.preventDefault();
-                                        let data = Object.fromEntries(new FormData(e.currentTarget));
-
-                                        setAction(`submit ${JSON.stringify(data)}`);
-                                    }}
+                                    onReset={() => setAction("Form reset.")}
+                                    onSubmit={handleFormSubmit}
                                 >
                                     <Input
                                         isRequired
-                                        errorMessage="Please enter a valid username"
-                                        label="Username"
+                                        errorMessage="Please enter a workout title"
+                                        label="Workout Title"
                                         labelPlacement="outside"
-                                        name="username"
-                                        placeholder="Enter your username"
+                                        name="title"
+                                        placeholder="Enter the workout title"
                                         type="text"
                                     />
 
+                                    <Textarea
+                                        isRequired
+                                        label="Workout Description"
+                                        labelPlacement="outside"
+                                        name="description"
+                                        placeholder="Enter a description"
+                                    />
                                     <Input
                                         isRequired
-                                        errorMessage="Please enter a valid email"
-                                        label="Email"
+                                        label="Workout Image"
                                         labelPlacement="outside"
-                                        name="email"
-                                        placeholder="Enter your email"
-                                        type="email"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => setImageFile(e.target.files[0])}
                                     />
+                                    <Input
+                                        isRequired
+                                        label="Workout Video"
+                                        labelPlacement="outside"
+                                        type="file"
+                                        accept="video/*"
+                                        onChange={(e) => setVideoFile(e.target.files[0])}
+                                    />
+
                                     <div className="flex gap-2">
                                         <Button color="primary" type="submit">
                                             Submit
@@ -172,57 +258,63 @@ function Workout() {
                                         <Button type="reset" variant="flat">
                                             Reset
                                         </Button>
+                                        <Button id='closeBtn' onPress={onClose} className='hidden'>
+                                            close
+                                        </Button>
                                     </div>
-                                    {action && (
-                                        <div className="text-small text-default-500">
-                                            Action: <code>{action}</code>
-                                        </div>
-                                    )}
                                 </Form>
                             </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                    Cancel
-                                </Button>
-                                <Button color="primary" onPress={onClose}>
-                                    Save
-                                </Button>
-                            </ModalFooter>
                         </>
                     )}
                 </ModalContent>
             </Modal>
 
             {/* Modal for displaying workout details */}
-            {selectedWorkout && (
-                <Modal size="5xl" isOpen={Boolean(selectedWorkout)} onOpenChange={() => setSelectedWorkout(null)} className='w-[90%]'>
-                    <ModalContent>
-                        <ModalHeader>{selectedWorkout.title}</ModalHeader>
-                        <ModalBody>
-                            <div className='flex flex-col gap-2'>
-                                <div className='flex gap-2 justify-between text-sm bg-secondlight/40 py-1 px-2  rounded-md'>
-                                    <p><strong>Date Created:</strong> {new Date(selectedWorkout.dateCreated).toLocaleDateString()}</p>
-                                    <p><strong>Time Created:</strong> {new Date(selectedWorkout.dateCreated).toLocaleTimeString()}</p>
+            {
+                selectedWorkout && (
+                    <Modal size="5xl" isOpen={Boolean(selectedWorkout)} onOpenChange={() => setSelectedWorkout(null)} className='w-[90%]'>
+                        <ModalContent>
+                            <ModalHeader>{selectedWorkout.title}</ModalHeader>
+                            <ModalBody>
+                                <div className='flex flex-col gap-2'>
+                                    <div className='flex gap-2 justify-between text-sm bg-secondlight/40 py-1 px-2  rounded-md'>
+                                        <p><strong>Date Created:</strong> {new Date(selectedWorkout.dateCreated).toLocaleDateString()}</p>
+                                        <p><strong>Time Created:</strong> {new Date(selectedWorkout.dateCreated).toLocaleTimeString()}</p>
+                                    </div>
+                                    <p className='bg-secondlight/40 py-1 px-2  rounded-md'><strong>Description:</strong> {selectedWorkout.description}</p>
                                 </div>
-                                <p className='bg-secondlight/40 py-1 px-2  rounded-md'><strong>Description:</strong> {selectedWorkout.description}</p>
-                            </div>
-                            <video src={selectedWorkout.videoPath} controls></video>
-                        </ModalBody>
-                        <ModalFooter className='flex justify-between'>
-                            <div className='flex gap-2'>
-                                <NextButton className="border-1 bg-sky-200 border-sky-600 text-background rounded h-9 px-[14px] text-center" onClick={() => handleEdit(data._id)}>
-                                    Edit
-                                </NextButton>
-                                <NextButton className="border-1 bg-red-200 border-red-500 text-background rounded rounded-br-lg h-9 px-[14px] text-center" onClick={() => handleDelete(data._id)}>
-                                    Delete
-                                </NextButton>
-                            </div>
+                                <video src={selectedWorkout.videoPath} controls></video>
+                            </ModalBody>
+                            <ModalFooter className='flex justify-between'>
+                                <div className='flex gap-2'>
+                                    <NextButton className="border-1 bg-sky-200 border-sky-600 text-background rounded h-9 px-[14px] text-center" onClick={() => handleEdit(selectedWorkout._id)}>
+                                        Edit
+                                    </NextButton>
+                                    <NextButton className="border-1 bg-red-200 border-red-500 text-background rounded rounded-br-lg h-9 px-[14px] text-center" onClick={() => handleDelete(selectedWorkout._id)}>
+                                        Delete
+                                    </NextButton>
+                                </div>
+                                {deleteConfirm &&
+                                    <div className='h-screen w-screen bg-secondary/50  fixed top-0 left-0 flex items-center justify-center '>
+                                        <div className=' bg-light p-2 rounded-md'>
+                                            <div className='text-center text-xl font-semibold mb-2'> Want to Delete?</div>
+                                            <div className='flex justify-between gap-24'>
+                                                <NextButton className="border-1 bg-green-200 border-green-600 text-background rounded h-9 px-[14px] text-center" onClick={deleteCancel}>
+                                                    No, Don't Delete
+                                                </NextButton>
+                                                <NextButton className="border-1 bg-red-200 border-red-500 text-background rounded rounded-br-lg h-9 px-[14px] text-center" onClick={deleteCofirm} >
+                                                    Yes, Delete
+                                                </NextButton>
 
-                            <Button color="danger" variant="light" onPress={() => setSelectedWorkout(null)}>Close</Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal >
-            )
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <Button color="danger" variant="light" onPress={() => setSelectedWorkout(null)} id='closeVideo'>Close</Button>
+                            </ModalFooter>
+                        </ModalContent>
+                    </Modal >
+                )
             }
         </>
     )
