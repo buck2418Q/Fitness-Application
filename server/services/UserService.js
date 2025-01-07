@@ -102,7 +102,7 @@ export const findUserById = async (id) => {
     }
     else {
         try {
-            const user = await UserModel.find({ _id: id }).select('firstName lastName age gender height weight');
+            const user = await UserModel.findOne({ _id: id }).select('firstName lastName age gender height weight');
             return user
         } catch (error) {
             throw new Error(error.message || "DB Error")

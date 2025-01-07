@@ -35,7 +35,7 @@ function JoinToday() {
 
     return (
         <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-secondlight text-background dark:bg-background dark:text-light'>
-            <div className='flex flex-col md:flex-row justify-between items-center'>
+            <div className='flex flex-col sm:flex-row justify-between items-center gap-5'>
                 <div>
                     <motion.p
                         whileInView="show"

@@ -13,10 +13,10 @@ function Footer() {
           <div className="w-full md:w-1/4 mb-4 md:mb-0">
             <h3 className="font-bold mb-2 ">Actions</h3>
             <ul className="list-none p-0">
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Login</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Sign In</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Book Demo</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Orders</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Login</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Sign In</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Book Demo</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Orders</li>
             </ul>
           </div>
 
@@ -24,10 +24,10 @@ function Footer() {
           <div className="w-full md:w-1/4 mb-4 md:mb-0">
             <h3 className="font-bold mb-2 ">Actions</h3>
             <ul className="list-none p-0">
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Login</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Sign In</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Book Demo</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Orders</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Login</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Sign In</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Book Demo</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Orders</li>
             </ul>
           </div>
 
@@ -36,9 +36,9 @@ function Footer() {
           <div className="w-full md:w-1/4 mb-4 md:mb-0">
             <h3 className="font-bold mb-2">Information</h3>
             <ul className="list-none p-0">
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Locations</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Gyms</li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">Yoga Centers</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Locations</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Gyms</li>
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">Yoga Centers</li>
             </ul>
           </div>
 
@@ -50,15 +50,15 @@ function Footer() {
                 <img src={phoneIcon} className='inline w-5 mr-2 text-sm' />
                 1234564578
               </li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">
                 <img src={mailIcon} className='inline w-5 mr-2 text-sm' />
                 mail@fitness360
               </li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">
                 <img src={phoneIcon} className='inline w-5 mr-2 text-sm' />
                 Book Demo
               </li>
-              <li className="hover:text-light dark:hover:text-light cursor-pointer">
+              <li className="hover:text-background dark:hover:text-light cursor-pointer">
                 <img src={mapPinIcon} className='inline w-5 mr-2 text-sm' />
                 Chandigarh
               </li>

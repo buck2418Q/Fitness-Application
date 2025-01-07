@@ -10,7 +10,7 @@ function Service() {
   return (
     <>
       <section
-        className=" bg-background text-light flex  justify-center items-center gap-6 sm:gap-8">
+        className=" bg-background text-light flex  justify-center items-center gap-6 sm:gap-8 py-20">
         <motion.div
           whileInView="show"
           initial="hidden"
@@ -42,7 +42,7 @@ function Service() {
 
       {/* Cardio  */}
       <section
-        className=" bg-secondary text-light flex  justify-center items-center gap-12 sm:gap-32">
+        className=" bg-secondary text-light flex  justify-center items-center gap-12 sm:gap-32 py-20">
         <motion.div
           whileInView="show"
           initial="hidden"

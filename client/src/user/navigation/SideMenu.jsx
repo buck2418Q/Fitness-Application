@@ -11,27 +11,29 @@ import { jwtDecode } from 'jwt-decode';
 const SideMenu = () => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
-    const [profilePicture, setProfilePicture] = useState(profilePic)
     const location = useLocation();
-    const [userId, setUserId] = useState('')
 
-    const [user, setUser] = useState({ firstName: '', lastName: '', gender: '', age: '', height: 0, weight: 0 })
+    const [user, setUser] = useState({
+        firstName: '',
+        lastName: '',
+        gender: '',
+        age: 0,
+        height: 0,
+        weight: 0
+    });
 
     useEffect(() => {
         const token = sessionStorage.getItem('token') || localStorage.getItem('token')
         if (token) {
             const decodedToken = jwtDecode(token);
-            setUserId(decodedToken.id);
-            GetUserDetails(userId);
+            GetUserDetails(decodedToken.id);
         }
-    }, [userId])
+    }, [])
 
     const GetUserDetails = async (userId) => {
         try {
             const result = await getUserDetails(userId)
-            console.log(result)
-            setUser(result[0])
-            console.log(result)
+            setUser(result);
         } catch (e) {
             console.log(e)
         }
@@ -63,7 +65,7 @@ const SideMenu = () => {
                 {!collapsed &&
                     <div>
                         <div className="px-2 mb-1 rounded-md bg-background/10 dark:bg-light/10 py-1">
-                            <span>{user.gender} &nbsp;</span>
+                            <span className="capitalize">{user.gender} &nbsp;</span>
                             <span>{user.age} year</span>
                         </div>
                         <div className="flex justify-between px-2 mb-1 rounded-md bg-background/10 dark:bg-light/10  py-1">
@@ -86,7 +88,7 @@ const SideMenu = () => {
                     <li key={index} className="relative">
                         <Link
                             to={menu.path}
-                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background ' : '')}`}
+                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background  hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background ' : '')}`}
                             onClick={() => handleToggleMenu(index)}
                         >
                             <span className={`${collapsed ? 'pl-3' : ''}`}>

@@ -33,6 +33,7 @@ const TrainerLayout = React.lazy(() => import('./trainer/navigation/Layout'));
 const TrainerDashboard = React.lazy(() => import('./trainer/pages/Dashboard'));
 const TrainerPlans = React.lazy(() => import('./trainer/pages/Plans'));
 const TrainerWorkout = React.lazy(() => import('./trainer/pages/Workout'));
+const TrainerSignUp = React.lazy(()=> import('./authentication/TrainerSignUp'))
 function AppRoutes() {
     const routesList = [
         {
@@ -92,6 +93,7 @@ function AppRoutes() {
 
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
+        { path: "trainersignup", element: <TrainerSignUp /> },
         { path: 'loader', element: <Loader /> },
         { path: 'test', element: <Test /> },
     ];

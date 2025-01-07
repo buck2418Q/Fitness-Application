@@ -53,6 +53,10 @@ function Signup() {
   const logInClick = () => {
     navigate('/login');
   }
+
+  const trainerclick = () => {
+    navigate('/trainersignup')
+  }
   const prevStep = () => {
     setStep(step - 1);
   };
@@ -306,10 +310,15 @@ function Signup() {
           <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
             {/* Step 1: Email */}
             {step === 1 && (
-              <NextButton color="primary" size="md" className="w-full" type="submit" onClick={nextStep}>
-                Continue with email
-              </NextButton>
+              <>
+                <NextButton color="primary" size="md" className="w-full" type="submit" onClick={nextStep}>
+                  Continue with email
+                </NextButton>
+                <NextButton color="background" size="md" className="w-full dark:bg-light dark:text-background" onClick={trainerclick}>
+                  Create A Trainer Account
+                </NextButton>
 
+              </>
             )}
 
             {/* Step 2: First Name, Last Name, Gender, Age */}

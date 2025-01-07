@@ -3,10 +3,12 @@
   --light-color: #ffffff;
   --primary-color: #109340;
   --font-size: 16px;
-  --primary-btn: linear-gradient(198deg,
-      rgba(16, 147, 64, 1) 0%,
-      rgba(22, 182, 80, 1) 50%,
-      rgba(16, 147, 64, 1) 100%);
+  --primary-btn: linear-gradient(
+    198deg,
+    rgba(16, 147, 64, 1) 0%,
+    rgba(22, 182, 80, 1) 50%,
+    rgba(16, 147, 64, 1) 100%
+  );
   --gray-color: #999999;
   --ag-list-item-height: 30px;
 }
@@ -39,6 +41,7 @@
 
 html {
   height: 100%;
+  width: 100%;
 }
 
 .marquee-container {
