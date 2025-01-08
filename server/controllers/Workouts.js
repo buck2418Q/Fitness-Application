@@ -48,7 +48,6 @@ export const GetWorkouts = async (req, res) => {
 export const GetWorkoutsByCategory = async (req, res) => {
     try {
         const { page, pageSize, category } = req.query;
-        console.log(page, pageSize, category)
         const { validatedPage, validatedPageSize } = validatePagination(page, pageSize)
         const workoutData = await getWorkoutsByCategory(validatedPage, validatedPageSize, category);
         res.status(200).send({ workoutData });
