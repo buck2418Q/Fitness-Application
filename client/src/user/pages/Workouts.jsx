@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getWorkoutData } from "../../services/adminService/Workout";
+import { getWorkoutByCategoryData, getWorkoutData } from "../../services/adminService/Workout";
 import { NextButton } from "../../components/NextButton";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 function Workouts() {
@@ -8,14 +8,19 @@ function Workouts() {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [pagev, setPagev] = useState(1)
+    const pageC = 1
+    const pageSizeC = 9
     useEffect(() => {
         const workoutValue = sessionStorage.getItem('workoutValue');
-
-        if (workoutValue) {
+        if (workoutValue && workoutValue.length > 0) {
             setworkOut(workoutValue);
             sessionStorage.removeItem('workoutValue');
+            getWorkoutByCategory(pageC, pageSizeC, workoutValue)
+        } else {
+            getWorkout('', currentPage)
         }
-        getWorkout('', currentPage)
+
     }, [])
 
 
@@ -23,8 +28,21 @@ function Workouts() {
         try {
             setLoading(true);
             const result = await getWorkoutData(trainerId, page, pageSize);
-            console.log('result', result)
             setWorkout(result.workoutData.workoutData);
+            setTotalPages(result.workoutData.totalPages);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getWorkoutByCategory = async (page = 1, pageSize = 9, category) => {
+        try {
+            setLoading(true);
+            const result = await getWorkoutByCategoryData(page, pageSize, category);
+            setWorkout(result.workoutData.workoutData);
+            console.log(result)
             setTotalPages(result.workoutData.totalPages);
         } catch (error) {
             console.log(error);
@@ -52,7 +70,7 @@ function Workouts() {
                             />
                         </CardBody>
                         <CardFooter className="text-small justify-between">
-                            <b>{data.title}</b>
+                            <b>{data.title}</b>  <p className="font-thin text-xs">Category: <span className="capitalize text-sm font-normal"> {data.category}</span></p>
                         </CardFooter>
                     </Card>
                 ))

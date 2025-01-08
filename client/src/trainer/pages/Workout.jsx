@@ -13,7 +13,9 @@ import {
     ModalBody,
     ModalFooter,
     CardFooter,
-    useDisclosure, Textarea
+    useDisclosure, Textarea, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,
+    Select,
+    SelectItem
 } from "@nextui-org/react";
 import { Form } from "@nextui-org/form";
 import { NextButton } from '../../components/NextButton';
@@ -36,6 +38,7 @@ function Workout() {
     const [selectedWorkout, setSelectedWorkout] = useState(null);
     const [trainer, setTrainer] = useState(null)
     const [deleteConfirm, setDeleteConfirm] = useState(false)
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
         const token = sessionStorage.getItem('token') || localStorage.getItem('token');
@@ -49,8 +52,6 @@ function Workout() {
     const handleEdit = (data) => {
         console.log('edit', data)
     }
-
-
 
     // delete work
     const handleDelete = (data) => {
@@ -88,9 +89,6 @@ function Workout() {
         toast.info('Data is safe')
     }
 
-
-
-
     const getWorkout = async (trainerId, page = 1, pageSize = 9) => {
         try {
             setLoading(true)
@@ -109,18 +107,19 @@ function Workout() {
         setSelectedWorkout(data);
     }
 
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         formData.append("trainerId", trainer)
         if (videoFile) formData.append("video", videoFile);
         if (imageFile) formData.append("image", imageFile);
+        if (categoryList) formData.append("category", selectedCategory)
         try {
             const response = await saveWorkout(formData);
             console.log('response', response)
             if (response.statusCode === 200) {
                 toast.success(response.message)
+                getWorkout(trainerId, currentPage)
             }
             else if (response.statusCode === 204) {
                 toast.error(response.message)
@@ -136,6 +135,31 @@ function Workout() {
             setAction("Failed to save workout.");
         }
     };
+
+    const categoryList = [
+        {
+            key: "cardio",
+            label: "Cardio",
+        },
+        {
+            key: "core",
+            label: "Core Exercise",
+        },
+        {
+            key: "cross_Fit",
+            label: "Cross Fit",
+        },
+        {
+            key: "abs",
+            label: "Abs",
+        },
+    ];
+
+    const handleCategoryChange = (value) => {
+        console.log('Selected category:', value.target.value);
+        setSelectedCategory(value.target.value);
+    };
+
     return (
         <>
             <Toaster className="z-50" richColors position="top-right" />
@@ -250,6 +274,25 @@ function Workout() {
                                         accept="video/*"
                                         onChange={(e) => setVideoFile(e.target.files[0])}
                                     />
+                                    <Select
+                                        radius="none"
+                                        classNames={{
+                                            base: "mb-[2px] h-[52px] rounded-t-none dark:border-red-500",
+                                            inputWraper: "rounded-lg "
+                                        }}
+                                        variant="bordered"
+                                        items={categoryList}
+                                        label="Category"
+                                        placeholder="Select Category"
+                                        value={selectedCategory}
+                                        onChange={handleCategoryChange}
+                                    >
+                                        {(item) => (
+                                            <SelectItem key={item.value} value={item.value}>
+                                                {item.label}
+                                            </SelectItem>
+                                        )}
+                                    </Select>
 
                                     <div className="flex gap-2">
                                         <Button color="primary" type="submit">

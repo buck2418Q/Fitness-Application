@@ -47,6 +47,35 @@ export const getWorkouts = async (page, pageSize, trainerId) => {
     }
 };
 
+export const getWorkoutsByCategory = async (page, pageSize, category) => {
+    const skip = (page - 1) * pageSize;
+
+    let workoutData;
+    if (category && category.length > 0) {
+        workoutData = await WorkoutModel.find({ category: category })
+            .skip(skip)
+            .limit(pageSize);
+    } else {
+        workoutData = await WorkoutModel.find({})
+            .skip(skip)
+            .limit(pageSize);
+    }
+    const totalWorkout = category && category.length > 0
+        ? await WorkoutModel.countDocuments({ category: category })
+        : await WorkoutModel.countDocuments();
+
+    const totalPages = Math.ceil(totalWorkout / pageSize);
+
+    if (workoutData) {
+        return {
+            workoutData,
+            totalPages
+        };
+    } else {
+        return createResponse(404, "No workout data", null);
+    }
+};
+
 export const getWorkoutCount = async () => {
     const count = WorkoutModel.countDocuments();
     return count;

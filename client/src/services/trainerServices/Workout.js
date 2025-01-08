@@ -24,7 +24,7 @@ export const deleteWorkout = async (id) => {
 
 export const saveWorkout = async (workoutData) => {
     try {
-        console.log('workout ', workoutData)
+        console.log('workout servoce : --  ', workoutData)
         const response = await axios.post(workout, workoutData, {
             headers: {
                 "Content-Type": "multipart/form-data",

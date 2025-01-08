@@ -62,7 +62,7 @@ function Category() {
                 whileInView="show"
                 initial="hidden"
                 viewport={{ once: false, amount: 0.2 }}
-                variants={fadeIn("up", "", 0.6, 0.5)} className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] ">
+                variants={fadeIn("up", "", 0.1, 0.5)} className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] ">
 
                 {categoryData.map((trainer, index) => (
                     <motion.div

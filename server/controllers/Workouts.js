@@ -1,8 +1,9 @@
-import { createWorkout, deleteWorkout, getWorkoutCount, getWorkouts } from "../services/Workout.js";
+import { createWorkout, deleteWorkout, getWorkoutCount, getWorkouts, getWorkoutsByCategory } from "../services/Workout.js";
 import { createResponse, validatePagination } from "../utils/utilityFunctions.js";
 
 
 export const CreateWorkout = async (req, res) => {
+    console.log(req.body);
     try {
         const workoutData = req.body;
         if (!workoutData.title || !workoutData.trainerId) {
@@ -42,10 +43,27 @@ export const GetWorkouts = async (req, res) => {
         });
     }
 }
+
+
+export const GetWorkoutsByCategory = async (req, res) => {
+    try {
+        const { page, pageSize, category } = req.query;
+        console.log(page, pageSize, category)
+        const { validatedPage, validatedPageSize } = validatePagination(page, pageSize)
+        const workoutData = await getWorkoutsByCategory(validatedPage, validatedPageSize, category);
+        res.status(200).send({ workoutData });
+    } catch (e) {
+        res.status(404).send({
+            error: e?.message
+        });
+    }
+}
+
+
 export const GetWorkoutCount = async (req, res) => {
     try {
         const count = await getWorkoutCount();
-        res.status(200).send({count})
+        res.status(200).send({ count })
     } catch (e) {
         res.status(400).send({
             error: e?.message
