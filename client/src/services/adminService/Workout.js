@@ -12,6 +12,7 @@ export const getWorkoutData = async (trainerId, page, pageSize) => {
 }
 
 export const getWorkoutByCategoryData = async (page, pageSize, category) => {
+    console.log('page', page, 'pagesize', pageSize, 'category', category)
     try {
         const response = await axios.get(`${workoutbyCategory}?page=${page}&pageSize=${pageSize}&category=${category}`)
         return response.data;

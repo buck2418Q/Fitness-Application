@@ -272,7 +272,7 @@ function Trainers() {
                         >
                             Previous
                         </NextButton>
-                        <span className="mx-[2px] border-1 border-background dark:border-light rounded-lg px-2 pt-[8px]">
+                        <span className="mx-[2px] border-1 border-background dark:border-light rounded-lg px-2 pt-[8px]  text-background dark:text-light">
                             Page {currentPage} of {totalPages}
                         </span>
                         <NextButton

@@ -87,11 +87,28 @@ function About() {
   return (
     <>
       {/* shudhanshu start here */}
-
+      <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-light text-background  dark:bg-background dark:text-light flex flex-col justify-center items-center gap-6 sm:gap-8">
+        <motion.h2
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("up", "", 0.2, 0.5)}
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide fade_appear text-center">
+          About Fitness360
+        </motion.h2>
+        <motion.p
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("up", "", 0.3, 0.5)}
+          className="text-base sm:text-lg lg:text-xl text-center sm:m-5 lg:m-10 text-secondary dark:text-secondlight">
+          Fitness360 is a results-driven fitness organization offering tailored training programs, expert coaching, and community support. We prioritize health, strength, and mental well-being, helping members achieve their fitness goals with dedication.
+        </motion.p>
+      </section>
 
 
       {/* marquee  */}
-      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondlight dark:bg-secondary overflow-hidden ">
+      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondlight dark:bg-secondary overflow-hidden">
         <motion.div
           whileInView="show"
           initial="hidden"

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getWorkoutByCategoryData, getWorkoutData } from "../../services/adminService/Workout";
 import { NextButton } from "../../components/NextButton";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Image } from "@nextui-org/react";
+
+
 function Workouts() {
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [workOut, setworkOut] = useState('');
     const [workout, setWorkout] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -11,17 +14,21 @@ function Workouts() {
     const [pagev, setPagev] = useState(1)
     const pageC = 1
     const pageSizeC = 9
+    // const [workoutValue, setWorkoutValue] = useState('')
     useEffect(() => {
-        const workoutValue = sessionStorage.getItem('workoutValue');
+        debugger
+        const workoutValue = (sessionStorage.getItem('workoutValue'))
         if (workoutValue && workoutValue.length > 0) {
-            setworkOut(workoutValue);
+            setworkOut(selectedCategory);
             sessionStorage.removeItem('workoutValue');
             getWorkoutByCategory(pageC, pageSizeC, workoutValue)
-        } else {
+        } else if (selectedCategory && selectedCategory.length > 0) {
+            getWorkoutByCategory(pageC, pageSizeC, selectedCategory)
+        }
+        else {
             getWorkout('', currentPage)
         }
-
-    }, [])
+    }, [selectedCategory])
 
 
     const getWorkout = async (trainerId, page = 1, pageSize = 9) => {
@@ -36,13 +43,47 @@ function Workouts() {
             setLoading(false);
         }
     };
+    const categoryData = [
+        {
+            workOut: 'Cardio',
+            workoutValue: 'cardio'
+        },
+        {
+            workOut: 'Cross Fit',
+            workoutValue: 'crossfit'
+        },
+        {
+            workOut: 'Build Muscle',
+            workoutValue: 'buildmuscle'
+        },
+        {
+            workOut: 'Core Strength',
+            workoutValue: 'corestrength'
+        },
+        {
+            workOut: 'Abs Workout',
+            workoutValue: 'abs'
+        },
+        {
+            workOut: 'Upper Body',
+            workoutValue: 'upperbody'
+        },
+        {
+            workOut: 'Aerobics',
+            workoutValue: 'aerobics'
+        },
+        {
+            workOut: 'Lower Body',
+            workoutValue: 'lowerbody'
+        },
+    ];
 
     const getWorkoutByCategory = async (page = 1, pageSize = 9, category) => {
         try {
             setLoading(true);
             const result = await getWorkoutByCategoryData(page, pageSize, category);
             setWorkout(result.workoutData.workoutData);
-            console.log(result)
+            console.log('------------', result.workoutData.workoutData)
             setTotalPages(result.workoutData.totalPages);
         } catch (error) {
             console.log(error);
@@ -53,7 +94,26 @@ function Workouts() {
     return (
         <>
             <div>the workout is : {workOut}</div>
-
+            <Dropdown>
+                <DropdownTrigger>
+                    <Button className="capitalize" variant="bordered">
+                        {selectedCategory ? selectedCategory : 'Select Workout'}
+                    </Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                    aria-label="Select Workout"
+                    selectedKeys={selectedCategory}
+                    selectionMode="single"
+                    variant="flat"
+                    onSelectionChange={setSelectedCategory}
+                >
+                    {categoryData.map((category, index) => (
+                        <DropdownItem key={index} textValue={category.workoutValue} onClick={() => setSelectedCategory(category.workoutValue)}>
+                            {category.workOut}
+                        </DropdownItem>
+                    ))}
+                </DropdownMenu>
+            </Dropdown>
             <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(450px,1fr))] ">
 
                 {workout.map((data, index) => (

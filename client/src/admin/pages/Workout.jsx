@@ -97,7 +97,9 @@ function Workout() {
                         >
                             <DropdownItem onClick={() => onTrainerChange('', 'Trainer')}>Trainer</DropdownItem>
                             {selectedTrainer.map((data, index) => (
-                                <DropdownItem key={index} textValue={data.firstName} onClick={() => onTrainerChange(data._id, data.firstName + ' ' + data.lastName)}>{data.firstName} {data.lastName}</DropdownItem>
+                                <DropdownItem key={index} textValue={data.firstName} onClick={() => onTrainerChange(data._id, data.firstName + ' ' + data.lastName)}>
+                                    {data.firstName} {data.lastName}
+                                </DropdownItem>
                             ))
                             }
                         </DropdownMenu>
