@@ -12,7 +12,6 @@ export const getWorkoutData = async (trainerId, page, pageSize) => {
 
 export const deleteWorkout = async (id) => {
     try {
-        console.log('lll', id)
         const response = await axios.delete(workout, {
             data: { id }
         })

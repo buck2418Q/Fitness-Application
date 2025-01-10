@@ -3,7 +3,6 @@ import { createResponse, validatePagination } from "../utils/utilityFunctions.js
 
 
 export const CreateWorkout = async (req, res) => {
-    console.log(req.body);
     try {
         const workoutData = req.body;
         if (!workoutData.title || !workoutData.trainerId) {

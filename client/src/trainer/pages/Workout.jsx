@@ -39,6 +39,7 @@ function Workout() {
     const [trainer, setTrainer] = useState(null)
     const [deleteConfirm, setDeleteConfirm] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [getData, setGetData] = useState('')
 
     useEffect(() => {
         const token = sessionStorage.getItem('token') || localStorage.getItem('token');
@@ -48,18 +49,18 @@ function Workout() {
             setTrainer(trainerId)
             getWorkout(trainerId, currentPage)
         }
-    }, [currentPage]);
+    }, [currentPage, getData]);
+
     const handleEdit = (data) => {
         console.log('edit', data)
     }
 
-    // delete work
     const handleDelete = (data) => {
-        console.log('Delete : ', data);
         setSlectedWorkoutId(data)
         setDeleteConfirm(true)
         console.log(deleteConfirm)
     }
+
     const deleteCofirm = async () => {
         setDeleteConfirm(false)
         try {
@@ -77,13 +78,14 @@ function Workout() {
             } else if (result.statusCode === 203) {
                 toast.success(result.message)
             }
-
+            setGetData('2')
         } catch (error) {
             console.log(error)
         } finally {
             getWorkout(trainerId, currentPage)
         }
     }
+
     const deleteCancel = async () => {
         setDeleteConfirm(false)
         toast.info('Data is safe')
@@ -110,32 +112,96 @@ function Workout() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        formData.append("trainerId", trainer)
+
+        // Append additional data
+        formData.append("trainerId", trainer);
         if (videoFile) formData.append("video", videoFile);
         if (imageFile) formData.append("image", imageFile);
-        if (categoryList) formData.append("category", selectedCategory)
+        if (selectedCategory) formData.append("category", selectedCategory);
+
+        // Validation for title
+        const title = formData.get("title");
+        if (!title || title.trim() === "") {
+            toast.error("Workout title is required");
+            return;
+        } else if (title.trim().length < 3) {
+            toast.error("Workout title must be at least 3 characters long");
+            return;
+        }
+
+        // Validation for description
+        const description = formData.get("description");
+        if (!description || description.trim() === "") {
+            toast.error("Workout description is required");
+            return;
+        } else if (description.trim().length < 10) {
+            toast.error("Workout description must be at least 10 characters long");
+            return;
+        }
+
+        // Validation for image file
+        if (!imageFile) {
+            toast.error("Workout image is required");
+            return;
+        } else if (!imageFile.type.startsWith("image/")) {
+            toast.error("Invalid file type for image. Please upload a valid image.");
+            return;
+        } else if (imageFile.size > 5 * 1024 * 1024) {
+            toast.error("Image file size must not exceed 5MB.");
+            return;
+        }
+
+        // Validation for video file
+        if (!videoFile) {
+            toast.error("Workout video is required");
+            return;
+        } else if (!videoFile.type.startsWith("video/")) {
+            toast.error("Invalid file type for video. Please upload a valid video.");
+            return;
+        } else if (videoFile.size > 50 * 1024 * 1024) {
+            toast.error("Video file size must not exceed 50MB.");
+            return;
+        }
+        if (!selectedCategory || selectedCategory.trim() === "") {
+            toast.error("Please select a category");
+            return;
+        }
+
         try {
+            console.log("-----API HITTED-----");
             const response = await saveWorkout(formData);
-            console.log('response', response)
+            console.log("response", response);
             if (response.statusCode === 200) {
-                toast.success(response.message)
-                getWorkout(trainerId, currentPage)
-            }
-            else if (response.statusCode === 204) {
-                toast.error(response.message)
+                toast.success(response.message);
+                const closeBtn = document.getElementById("closeBtn");
+                if (closeBtn) {
+                    closeBtn.click();
+                }
+            } else if (response.statusCode === 204) {
+                toast.error(response.message || "No Content");
             } else if (response.statusCode === 203) {
-                toast.error(response.message)
+                toast.error(response.message || "Invalid Data");
+            } else {
+                toast.error("Unexpected error occurred.");
             }
-            const closeBtn = document.getElementById('closeBtn')
-            if (closeBtn) {
-                closeBtn.click()
-            }
+
+            // Trigger data refresh
+            setGetData("1");
         } catch (error) {
             console.error("Error saving workout:", error.response?.data || error.message);
+            toast.error(
+                error.response?.data?.message ||
+                "An error occurred while saving the workout. Please try again."
+            );
             setAction("Failed to save workout.");
         }
     };
 
+
+    const handleCategoryChange = (value) => {
+        console.log('Selected category:', value.target.value);
+        setSelectedCategory(value.target.value);
+    };
     const categoryList = [
         {
             key: "cardio",
@@ -153,13 +219,23 @@ function Workout() {
             key: "abs",
             label: "Abs",
         },
+        {
+            key: 'buildmuscle',
+            label: 'Build Muscle'
+        },
+        {
+            key: 'upperbody',
+            label: 'Upper Body'
+        },
+        {
+            key: 'aerobics',
+            value: 'Aerobics'
+        },
+        {
+            key: 'lowerbody',
+            label: 'Lower Body'
+        },
     ];
-
-    const handleCategoryChange = (value) => {
-        console.log('Selected category:', value.target.value);
-        setSelectedCategory(value.target.value);
-    };
-
     return (
         <>
             <Toaster className="z-50" richColors position="top-right" />
@@ -224,6 +300,7 @@ function Workout() {
                 </div>
             </section >
 
+            {/* add workout  */}
             <Modal
                 isDismissable={false}
                 isKeyboardDismissDisabled={true}
@@ -234,6 +311,8 @@ function Workout() {
                     {(onClose) => (
                         <>
                             <ModalHeader className="flex flex-col gap-1">Add A new Workout</ModalHeader>
+                            <Toaster className="z-50" richColors position="top-right" />
+
                             <ModalBody>
                                 <Form
                                     className="w-full flex flex-col gap-4"
@@ -317,6 +396,8 @@ function Workout() {
                 selectedWorkout && (
                     <Modal size="5xl" isOpen={Boolean(selectedWorkout)} onOpenChange={() => setSelectedWorkout(null)} className='w-[90%]'>
                         <ModalContent>
+                            <Toaster className="z-50" richColors position="top-right" />
+
                             <ModalHeader>{selectedWorkout.title}</ModalHeader>
                             <ModalBody>
                                 <div className='flex flex-col gap-2'>
@@ -340,7 +421,7 @@ function Workout() {
                                 {deleteConfirm &&
                                     <div className='h-screen w-screen bg-secondary/50  fixed top-0 left-0 flex items-center justify-center '>
                                         <div className=' bg-light p-2 rounded-md'>
-                                            <div className='text-center text-xl font-semibold mb-2'> Want to Delete?</div>
+                                            <div className='text-center text-xl font-semibold mb-2 dark:text-background'> Want to Delete?</div>
                                             <div className='flex justify-between gap-24'>
                                                 <NextButton className="border-1 bg-green-200 border-green-600 text-background rounded h-9 px-[14px] text-center" onClick={deleteCancel}>
                                                     No, Don't Delete
