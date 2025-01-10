@@ -229,7 +229,7 @@ function Workout() {
         },
         {
             key: 'aerobics',
-            value: 'Aerobics'
+            label: 'Aerobics'
         },
         {
             key: 'lowerbody',
@@ -356,10 +356,10 @@ function Workout() {
                                     <Select
                                         radius="none"
                                         classNames={{
-                                            base: "mb-[2px] h-[52px] rounded-t-none dark:border-red-500",
+                                            base: "mb-[2px] h-[52px] rounded-lg dark:border-red-500",
                                             inputWraper: "rounded-lg "
                                         }}
-                                        variant="bordered"
+                                        variant="flat"
                                         items={categoryList}
                                         label="Category"
                                         placeholder="Select Category"
@@ -367,7 +367,7 @@ function Workout() {
                                         onChange={handleCategoryChange}
                                     >
                                         {(item) => (
-                                            <SelectItem key={item.value} value={item.value}>
+                                            <SelectItem key={item.value} value={item.value} className='rounded-lg' variant='flat'>
                                                 {item.label}
                                             </SelectItem>
                                         )}
