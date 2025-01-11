@@ -31,13 +31,13 @@ export const login = async (userData) => {
 export const openAuthentication = async (data) => {
     try {
         if (data.provider === 'Google') {
-            console.log('data', data);
             const token = data.token.credential;
             const ticket = await client.verifyIdToken({
                 idToken: token,
                 audience: clientId,
             });
             const payload = ticket.getPayload();
+            console.log('payload', payload);
             const isEmailExists = await getUserByEmail(payload.email);
 
             if (isEmailExists) {

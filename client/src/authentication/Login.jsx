@@ -85,6 +85,7 @@ function Login() {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
+      console.log('google frontend :   ', credentialResponse)
       setLoading(true);
       oAuthProvider.provider = 'Google';
       oAuthProvider.token = credentialResponse;

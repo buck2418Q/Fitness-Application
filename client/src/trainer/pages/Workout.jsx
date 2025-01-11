@@ -275,7 +275,7 @@ function Workout() {
                     }
 
                 </div>
-                <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte absolute right-4 bottom-4">
+                <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte fixed right-4 bottom-4 z-10">
                     <div className="border-1 dark:border-secondlight border-background rounded-lg p-[1px] flex justify-center">
                         <NextButton
                             disabled={currentPage === 1}

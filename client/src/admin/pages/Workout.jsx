@@ -40,6 +40,7 @@ function Workout() {
     }
     const handleDelete = (data) => {
         console.log('Delete : ', data)
+        toast.info('Contact Trainer')
     }
 
     const getTrainersName = async () => {
@@ -135,7 +136,7 @@ function Workout() {
                     }
 
                 </div>
-                <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte absolute right-4 bottom-4">
+                <div className="m-2 border-none rounded-xl flex justify-end items-center w-fit-conte fixed right-4 bottom-4 z-10">
                     <div className="border-1 dark:border-secondlight border-background rounded-lg p-[1px] flex justify-center">
                         <NextButton
                             disabled={currentPage === 1}
@@ -232,6 +233,7 @@ function Workout() {
             {/* Modal for displaying workout details */}
             {selectedWorkout && (
                 <Modal size="5xl" isOpen={Boolean(selectedWorkout)} onOpenChange={() => setSelectedWorkout(null)} className='w-[90%]'>
+
                     <ModalContent>
                         <ModalHeader>{selectedWorkout.title}</ModalHeader>
                         <ModalBody>
@@ -246,10 +248,11 @@ function Workout() {
                         </ModalBody>
                         <ModalFooter className='flex justify-between'>
                             <div className='flex gap-2'>
-                                <NextButton className="border-1 bg-sky-200 border-sky-600 text-background rounded h-9 px-[14px] text-center" onClick={() => handleEdit(data._id)}>
+                                <Toaster className="z-50 absolute" richColors position="top-right" closeButton />
+                                <NextButton className="border-1 bg-sky-200 border-sky-600 text-background rounded h-9 px-[14px] text-center" onClick={() => handleEdit(selectedWorkout._id)}>
                                     Edit
                                 </NextButton>
-                                <NextButton className="border-1 bg-red-200 border-red-500 text-background rounded rounded-br-lg h-9 px-[14px] text-center" onClick={() => handleDelete(data._id)}>
+                                <NextButton className="border-1 bg-red-200 border-red-500 text-background rounded rounded-br-lg h-9 px-[14px] text-center" onClick={() => handleDelete(selectedWorkout._id)}>
                                     Delete
                                 </NextButton>
                             </div>

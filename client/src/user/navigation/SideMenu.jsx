@@ -48,7 +48,7 @@ const SideMenu = () => {
     };
 
     return (
-        <div className={`h-full border-r-1 border-r-secondlight text-light dark:text-light ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
+        <div className={`h-screen border-r-1 border-r-secondlight text-light dark:text-light ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
             <div className='flex justify-between items-center'>
                 <h2 className="flex mb-4 mt-2 items-center justify-center ">
                     <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
@@ -62,21 +62,21 @@ const SideMenu = () => {
                 </button>
             </div>
             <div className="p-2 text-background dark:text-light">
-                {!collapsed &&
+                {!collapsed && user &&
                     <div>
                         <div className="px-2 mb-1 rounded-md bg-background/10 dark:bg-light/10 py-1">
-                            <span className="capitalize">{user.gender} &nbsp;</span>
-                            <span>{user.age} year</span>
+                            <span className="capitalize">{user?.gender} &nbsp;</span>
+                            <span>{user?.age} year</span>
                         </div>
                         <div className="flex justify-between px-2 mb-1 rounded-md bg-background/10 dark:bg-light/10  py-1">
                             <p className="flex flex-col  justify-center w-full text-xl font-semibold">Height
                                 <span className="text-sm font-normal">
-                                    {user.height} cm
+                                    {user?.height} cm
                                 </span>
                             </p>
                             <p className="flex flex-col py-1 px-4 justify-center w-full text-xl font-semibold">Wight
                                 <span className="text-sm font-normal">
-                                    {user.weight} kg
+                                    {user?.weight} kg
                                 </span>
                             </p>
                         </div>

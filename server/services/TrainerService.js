@@ -33,7 +33,6 @@ export const createTrainer = async (trainerData) => {
     }
     else {
         try {
-            console.log('fjkabdjbfa', trainerData)
             const hashedPassword = await passwordHash(trainerData.password);
             trainerData.password = hashedPassword;
             const newTrainer = await TrainerModel.create(trainerData);
