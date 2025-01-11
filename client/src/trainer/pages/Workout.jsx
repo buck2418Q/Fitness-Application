@@ -168,6 +168,7 @@ function Workout() {
         }
 
         try {
+            setLoading(true)
             console.log("-----API HITTED-----");
             const response = await saveWorkout(formData);
             console.log("response", response);
@@ -194,6 +195,8 @@ function Workout() {
                 "An error occurred while saving the workout. Please try again."
             );
             setAction("Failed to save workout.");
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -260,7 +263,7 @@ function Workout() {
                             <CardBody className="overflow-visible p-0">
                                 <Image
                                     alt={data.title}
-                                    className="w-full object-cover h-[140px]"
+                                    className="w-full object-cover h-[240px]"
                                     radius="lg"
                                     shadow="sm"
                                     src={data.imagePath}

@@ -1,4 +1,3 @@
-
 import { Outlet } from 'react-router-dom';
 import SideMenu from './SideMenu';
 import TopMenu from './TopMenu';

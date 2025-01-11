@@ -121,7 +121,7 @@ function Workout() {
                             <CardBody className="overflow-visible p-0">
                                 <Image
                                     alt={data.title}
-                                    className="w-full object-cover h-[140px]"
+                                    className="w-full object-cover h-[240px]"
                                     radius="lg"
                                     shadow="sm"
                                     src={data.imagePath}

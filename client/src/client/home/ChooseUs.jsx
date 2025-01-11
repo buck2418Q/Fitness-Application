@@ -63,7 +63,7 @@ function ChooseUs() {
                                 variants={fadeIn("right", "", index * 0.15, 0.4)}
                                 key={index}
                                 className="m-4 flex ltr_appear">
-                                <div className="mx-4 my-2 p-2 rounded-full c-bg-black h-fit ">
+                                <div className="mx-4 my-2 p-2 rounded-full h-fit ">
                                     <img src={card.imgSrc} alt={card.title} className="w-12 aspect-square" />
                                 </div>
                                 <div className="h-fit">

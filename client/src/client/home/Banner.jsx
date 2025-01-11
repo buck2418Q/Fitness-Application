@@ -14,7 +14,7 @@ function Banner() {
                     autoPlay
                     loop
                     muted
-                    className='backdrop-sepia bg-black/90 absolute top-0 left-0 w-full h-full object-cover '
+                    className='backdrop-sepia bg-background/90 absolute top-0 left-0 w-full h-full object-cover '
                     style={{ zIndex: -1, objectFit: 'cover' }}
                 >
                     <source src={bannerBg} type="video/mp4" />

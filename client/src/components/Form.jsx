@@ -74,7 +74,7 @@ const Form = ({ fields, onSubmit, initialValues }) => {
                 ))}
             </div>
 
-            <button type="submit" className='transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black'>Submit</button>
+            <button type="submit" className='transition ease-in-out duration-300 bg-background px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-background hover:border hover:border-background'>Submit</button>
 
         </form>
     );

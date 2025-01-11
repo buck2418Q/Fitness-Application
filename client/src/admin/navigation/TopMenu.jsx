@@ -78,7 +78,7 @@ const TopMenu = () => {
 
             {isOpen && (
                 <div
-                    className={`fixed inset-0 flex items-start justify-end bg-black bg-opacity-5 z-50 transition ease-in-out duration-700 `}
+                    className={`fixed inset-0 flex items-start justify-end bg-background bg-opacity-5 z-50 transition ease-in-out duration-700 `}
                     onClick={handleOverlayClick}
                 >
                     <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-light dark:bg-background rounded-lg shadow-lg w-1/6 border  top-20 absolute right-8 h-[350px] border-background/50 dark:border-light/50" onClick={(e) => e.stopPropagation()}>

@@ -57,7 +57,7 @@ function JoinToday() {
 
                             <span className={isMonth === false ? 'absolute right-3 top-[-2px] z-10 transition-all duration-300 ease-linear m-2 text-light dark:text-background' : 'absolute right-3 top-[-2px] z-10 transition-all duration-300 ease-linear m-2 text-background dark:text-light'}>Year</span>
 
-                            <div className={`${isMonth ? 'absolute left-0 top-1 w-20 h-[28px] bg-black rounded-xl transition-all duration-300 ease-linear dark:bg-light' : 'absolute left-[76px] top-1 w-16 h-[28px] bg-background dark:bg-light rounded-xl transition-all duration-300 ease-linear'}`}></div>
+                            <div className={`${isMonth ? 'absolute left-0 top-1 w-20 h-[28px] bg-background rounded-xl transition-all duration-300 ease-linear dark:bg-light' : 'absolute left-[76px] top-1 w-16 h-[28px] bg-background dark:bg-light rounded-xl transition-all duration-300 ease-linear'}`}></div>
                         </div>
                     </div>
                 </div>

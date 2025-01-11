@@ -106,7 +106,7 @@ function Trainers() {
                   </p>
 
                   <p
-                    className="text-tiny text-white bg-black/40 flex gap-1 p-1 rounded-full"
+                    className="text-tiny text-white bg-background/40 flex gap-1 p-1 rounded-full"
                     color="default"
                     radius="lg"
                     size="sm"

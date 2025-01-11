@@ -243,12 +243,12 @@ function Trainers() {
                 animate="show"
                 variants={fadeIn('', 'spring', .2, 0.75)} className="flex justify-between h-10 mb-8">
                 <h2 className="text-2xl">Application Trainers List</h2>
-                <button type="submit" className={`transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black ${openForm === true ? 'hidden' : ''}`} onClick={toggleOpenForm}>Add Trainer</button>
+                <button type="submit" className={`transition ease-in-out duration-300 bg-background px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black ${openForm === true ? 'hidden' : ''}`} onClick={toggleOpenForm}>Add Trainer</button>
             </motion.div>
             <div className={`z-40 transition ease-in-out duration-900 w-6/12 border-2 shadow-lg border-black bg-white p-8 rounded-3xl absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 ${openForm ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
                 <div className="flex justify-between mb-4">
                     <p className="text-xl">  {editData ? 'Edit Trainer' : 'Add New Trainer'}</p>
-                    <button type="submit" className='transition ease-in-out duration-300 bg-black px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black' onClick={toggleOpenForm}>Close</button>
+                    <button type="submit" className='transition ease-in-out duration-300 bg-background px-4 py-2 rounded-lg border text-white hover:bg-white hover:text-black hover:border hover:border-black' onClick={toggleOpenForm}>Close</button>
                 </div>
                 <MyForm fields={fields} onSubmit={editData ? handleUpdateTrainer : handleSubmit} initialValues={formData} />
             </div>
