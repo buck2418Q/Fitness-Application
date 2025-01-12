@@ -2,7 +2,8 @@ import e from "cors";
 import WorkoutModel from "../models/Workout.js";
 import { createResponse } from "../utils/utilityFunctions.js";
 import UserModel from "../models/User.js";
-
+import fs from "fs";
+import path from "path";
 
 export const createWorkout = async (workoutData) => {
     try {
@@ -90,17 +91,84 @@ export const getWorkoutCount = async () => {
 //     }
 // }
 
-export const deleteWorkout = async (id) => {
-    const isWorkoutExists = await WorkoutModel.findById(id);
-    if (!isWorkoutExists) {
-        return createResponse(204, "Workout does not exist", null);
-    } else {
-        try {
-            const workout = await WorkoutModel.deleteOne({ _id: id });
-            if (workout.deletedCount === 1) return createResponse(200, "Workout Deleted", null);
-            else return createResponse(404, "Workout not deleted", null);
-        } catch (error) {
-            throw new Error(error.message || "DB error");
+// export const deleteWorkout = async (id) => {
+//     const isWorkoutExists = await WorkoutModel.findById(id);
+//     if (!isWorkoutExists) {
+//         return createResponse(204, "Workout does not exist", null);
+//     } else {
+//         try {
+//             const workout = await WorkoutModel.deleteOne({ _id: id });
+//             if (workout.deletedCount === 1) return createResponse(200, "Workout Deleted", null);
+//             else return createResponse(404, "Workout not deleted", null);
+//         } catch (error) {
+//             throw new Error(error.message || "DB error");
+//         }
+//     }
+// }
+export const deleteFile = (fileUrl) => {
+    try {
+        if (!fileUrl) {
+            console.warn("File URL is empty or undefined.");
+            return;
         }
+
+        // Check if the BASE_URL is part of the fileUrl
+        if (!fileUrl.startsWith(process.env.BASE_URL)) {
+            console.warn(`File URL does not match the BASE_URL: ${fileUrl}`);
+            return;
+        }
+
+        // Remove the BASE_URL part to get the relative path
+        const relativePath = fileUrl.replace(process.env.BASE_URL, "");
+
+        // Resolve the absolute file path
+        const filePath = path.join(process.env.UPLOADS_DIR, relativePath);
+
+        console.log(`Resolved file path: ${filePath}`);
+
+        // Ensure the resolved path is valid and delete the file
+        if (fs.existsSync(filePath)) {
+            fs.unlink(filePath, (err) => {
+                if (err) {
+                    console.error(`Error deleting file ${filePath}:`, err.message);
+                } else {
+                    console.log(`File successfully deleted: ${filePath}`);
+                }
+            });
+        } else {
+            console.warn(`File does not exist at path: ${filePath}`);
+        }
+    } catch (error) {
+        console.error(`Failed to resolve or delete file: ${fileUrl}`, error.message);
     }
-}
+};
+
+
+export const deleteWorkout = async (id) => {
+    try {
+        // Check if the workout exists
+        const workout = await WorkoutModel.findById(id);
+        if (!workout) {
+            return createResponse(204, "Workout does not exist", null);
+        }
+
+        // Delete associated files
+        if (workout.imagePath) {
+            deleteFile(workout.imagePath); // Delete the image file
+        }
+        if (workout.videoPath) {
+            deleteFile(workout.videoPath); // Delete the video file
+        }
+
+        // Delete the workout record from the database
+        const result = await WorkoutModel.deleteOne({ _id: id });
+        if (result.deletedCount === 1) {
+            return createResponse(200, "Workout Deleted", null);
+        } else {
+            return createResponse(404, "Failed to delete workout", null);
+        }
+    } catch (error) {
+        console.error("Error deleting workout:", error.message);
+        throw new Error(error.message || "Server Error");
+    }
+};

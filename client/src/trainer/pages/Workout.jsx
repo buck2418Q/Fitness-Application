@@ -341,6 +341,13 @@ function Workout() {
                                         placeholder="Enter a description"
                                     />
                                     <Input
+                                        label="Price"
+                                        labelPlacement='outside'
+                                        name='price'
+                                        placeholder='Enter Price'
+                                        type='number'
+                                    />
+                                    <Input
                                         isRequired
                                         label="Workout Image"
                                         labelPlacement="outside"
@@ -404,11 +411,14 @@ function Workout() {
                             <ModalHeader>{selectedWorkout.title}</ModalHeader>
                             <ModalBody>
                                 <div className='flex flex-col gap-2'>
-                                    <div className='flex gap-2 justify-between text-sm bg-secondlight/40 py-1 px-2  rounded-md'>
+                                    <div className='flex gap-2 justify-between text-sm bg-secondlight/40 py-1 px-2 rounded-md'>
                                         <p><strong>Date Created:</strong> {new Date(selectedWorkout.dateCreated).toLocaleDateString()}</p>
                                         <p><strong>Time Created:</strong> {new Date(selectedWorkout.dateCreated).toLocaleTimeString()}</p>
                                     </div>
-                                    <p className='bg-secondlight/40 py-1 px-2  rounded-md'><strong>Description:</strong> {selectedWorkout.description}</p>
+                                    <div className='bg-secondlight/40 py-1 px-2  rounded-md flex'>
+                                        <p className='w-10/12'><strong>Description:</strong> {selectedWorkout.description}</p>
+                                        <p className='w-2/12'>Price: {selectedWorkout.price}</p>
+                                    </div>
                                 </div>
                                 <video src={selectedWorkout.videoPath} controls></video>
                             </ModalBody>
