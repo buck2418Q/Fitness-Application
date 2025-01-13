@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getWorkoutByCategoryData, getWorkoutData } from "../../services/adminService/Workout";
 import { NextButton } from "../../components/NextButton";
 import { Button, Card, CardBody, CardFooter, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Image } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
 
 
 function Workouts() {
@@ -119,6 +120,14 @@ function Workouts() {
 
                     <Card key={index} isPressable shadow="sm" onPress={() => workoutDetails(daresultta)}>
                         <CardBody className="overflow-visible p-0">
+                            {data?.price != 0 &&
+                                <Tooltip content='Premium' color='success'>
+                                <Icon
+                                    className="pointer-events-none text-2xl text-default-400 absolute z-40 right-[1px] top-[1px] h-8 w-8 p-1 shadow-inner bg-gradient-to-bl from-light to-secondlight rounded-xl"
+                                    icon="solar:crown-bold"
+                                    color="green"
+                                />
+                                </Tooltip>}
                             <Image
                                 alt={data.title}
                                 className="w-full object-cover h-[200px]"
@@ -129,6 +138,8 @@ function Workouts() {
                             />
                         </CardBody>
                         <CardFooter className="text-small justify-between">
+                            {/* import {Icon} from "@iconify/react"; */}
+
                             <b>{data.title}</b>  <p className="font-thin text-xs">Category: <span className="capitalize text-sm font-normal"> {data.category}</span></p>
                         </CardFooter>
                     </Card>

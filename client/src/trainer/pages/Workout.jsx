@@ -15,12 +15,13 @@ import {
     CardFooter,
     useDisclosure, Textarea, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,
     Select,
-    SelectItem
+    SelectItem, Tooltip
 } from "@nextui-org/react";
 import { Form } from "@nextui-org/form";
 import { NextButton } from '../../components/NextButton';
 import { jwtDecode } from 'jwt-decode';
 import { toast, Toaster } from "sonner";
+import { Icon } from "@iconify/react";
 
 
 function Workout() {
@@ -261,6 +262,16 @@ function Workout() {
                         <Card key={index} isPressable shadow="sm" onPress={() => workoutDetails(data)}>
 
                             <CardBody className="overflow-visible p-0">
+                                {data?.price != 0 &&
+                                    <Tooltip content='Premium' color='success'>
+                                        <Icon
+                                            aria-label='Premium'
+                                            className=" text-2xl text-default-400 absolute z-40 right-[1px] top-[1px] h-8 w-8 p-1 shadow-inner bg-gradient-to-bl from-light to-secondlight rounded-xl"
+                                            icon="solar:crown-bold"
+                                            color="green"
+                                        />
+                                    </Tooltip>
+                                }
                                 <Image
                                     alt={data.title}
                                     className="w-full object-cover h-[240px]"
