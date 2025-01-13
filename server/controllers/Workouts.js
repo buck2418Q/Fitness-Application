@@ -18,6 +18,10 @@ export const CreateWorkout = async (req, res) => {
             const videoBaseUrl = process.env.BASE_URL_MEDIA;
             workoutData.videoPath = `${videoBaseUrl}/${req.files["video"][0].path.replace(/\\/g, "/")}`;
         }
+        if (workoutData.price === 0 || workoutData.price === '') {
+            workoutData.price = 0;
+            console.log('workoutData.price ', workoutData.price )
+        }
         const workoutResponse = await createWorkout(workoutData);
         return res.status(workoutResponse.statusCode).send(workoutResponse);
     } catch (error) {

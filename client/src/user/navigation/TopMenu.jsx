@@ -54,22 +54,21 @@ const TopMenu = () => {
 
     return (
         <>
-            <div className=" h-16 flex items-center justify-between px-8 pt-2 m-2 ">
-                <h3 className="text-2xl font-bold">
-                    Welcome {userName}
-                </h3>
-                <div className="flex gap-6 items-center">
-                    <label className="relative block">
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-2" onClick={searchClick}>
-                            <img src={searchIcon} alt="" className='w-5 opacity-55' />
-                        </span>
-                        <input
-                            className="placeholder:italic placeholder:text-slate-400 block border border-slate-300 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-gray-300 focus:ring-gray-300 focus:ring-1 sm:text-sm shadow-sm w-72 transition-width duration-300 ease-in-out focus:w-[300px] "
-                            placeholder="Search..." type="text" name="search"
-                        />
-                    </label>
+            <div className="h-16 flex items-center justify-between px-[2px] sm:px-1 md:px-2 lg:px-4 xl:px-8 pt-2 m-[1px] sm:m-1">
+                {/* <span className="bg-red-400 relative"></span> */}
+                <label className="relative block">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-2" onClick={searchClick}>
+                        <img src={searchIcon} alt="" className='w-5 opacity-55' />
+                    </span>
+                    <input
+                        className=" placeholder:italic placeholder:text-slate-400 block border border-slate-300 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-gray-300 focus:ring-gray-300 focus:ring-1 sm:text-sm shadow-sm w-72 transition-width duration-300 ease-in-out focus:w-[300px] "
+                        placeholder="Search..." type="search" name="search"
+                    />
+                </label>
+                <div className="flex gap-1 sm:gap-3 md:gap-4 lg:gap-6 items-center">
+
                     <ThemeToggle />
-                    <span >
+                    <span className="h-5 w-5">
                         <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
                     <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center hover:shadow-xl">
@@ -83,7 +82,7 @@ const TopMenu = () => {
                     className={`fixed inset-0 flex items-start justify-end bg-background bg-opacity-5 z-50 transition ease-in-out duration-700 `}
                     onClick={handleOverlayClick}
                 >
-                    <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-light dark:bg-background rounded-lg shadow-lg w-1/6 border  top-20 absolute right-8 h-[350px] border-background/50 dark:border-light/50" onClick={(e) => e.stopPropagation()}>
+                    <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-light dark:bg-background rounded-lg shadow-lg w-72 border  top-20 absolute right-8 h-[350px] border-background/50 dark:border-light/50" onClick={(e) => e.stopPropagation()}>
 
                         <div className='p-1 flex flex-col items-center justify-center '>
                             <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
