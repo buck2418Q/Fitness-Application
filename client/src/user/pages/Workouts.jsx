@@ -11,7 +11,9 @@ import {
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import { useApplicationUser } from "../../utils/ApplicationUserContext";
-
+import { toast, Toaster } from "sonner";
+import { enrollWorkoutData } from "../../services/userServices/EnrollWorkout";
+import { useNavigate } from 'react-router-dom'
 
 function Workouts() {
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -24,11 +26,11 @@ function Workouts() {
     const { isOpen: isOpenQuestion, onOpen: onOpenQuestion, onClose: onCloesQuestion, onOpenChange: onOpenChangeQuestion } = useDisclosure();
     const { isOpen: isOpenWorkout, onOpen: onOpenWorkout, onClose: onCloesWorkout, onOpenChange: onOpenChangeWorkout } = useDisclosure();
     const [selectedWorkout, setSelectedWorkout] = useState(null);
-
     const { appUserId } = useApplicationUser();
     const pageC = 1
-    const pageSizeC = 9
-    // const [workoutValue, setWorkoutValue] = useState('')
+    const pageSizeC = 9;
+    const navigate = useNavigate()
+
     useEffect(() => {
         const workoutValue = (sessionStorage.getItem('workoutValue'))
         if (workoutValue && workoutValue.length > 0) {
@@ -98,18 +100,44 @@ function Workouts() {
     }
     const cancelEnrollment = () => {
         onCloesQuestion()
+        toast.info('You Missed Your Enrollment')
     }
     const handleEnrollment = async () => {
         onCloesQuestion()
         // onOpenWorkout()
-        console.log('applicaiton User', appUserId)
-        console.log('selectedWorkout: ', selectedWorkout._id)
+        // console.log('appUserId', appUserId)
+        // console.log('selectedWorkout: ', selectedWorkout._id)
+
+        const enrollment = {
+            userId: appUserId,
+            workoutId: selectedWorkout._id,
+            paymentStatus: 'paid',
+        };
+
+        await enrollWorkout(enrollment);
+    }
+
+    const enrollWorkout = async (enrollment) => {
+        try {
+            const result = await enrollWorkoutData(enrollment)
+            if (result.enrollment.statusCode === 201) {
+                toast.success(result.enrollment.message)
+                navigate('/user/dashboard')
+            } else if (result.enrollment.statusCode === 202) {
+                toast.info(result.enrollment.message)
+                navigate('/user/dashboard')
+            } else if (result.enrollment.statusCode === 205) {
+                toast.error(result.enrollment.message)
+            }
+        } catch (e) {
+            console.log('error', e)
+            toast.error('Unable to enroll')
+        }
     }
 
     return (
         <>
             <div className="mb-2">
-                <div className="bg-red-300 h-5 w-20">{appUserId}</div>
                 <Dropdown>
                     <DropdownTrigger>
                         <Button className="capitalize" variant="bordered">
@@ -236,6 +264,7 @@ function Workouts() {
                     )}
                 </ModalContent >
             </Modal >
+            <Toaster className="z-40" richColors position="top-right" />
         </>
     )
 }

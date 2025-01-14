@@ -9,7 +9,7 @@ export const EnrollWorkout = async (req, res) => {
         }
 
         const enrollment = await enrollWorkout(userId, workoutId, paymentStatus);
-        res.status(201).json({ message: "Workout enrolled successfully.", enrollment });
+        res.status(201).send({ enrollment });
     } catch (error) {
         console.error("Error in enrollWorkout:", error);
         res.status(500).json({ message: "Internal Server Error." });
@@ -17,15 +17,13 @@ export const EnrollWorkout = async (req, res) => {
 };
 
 export const GetEnrolledWorkout = async (req, res) => {
-    console.log(req.query)
     try {
         const { userId } = req.query;
         if (!userId) {
             return res.status(400).json({ message: "UserId is required." });
         }
-
         const workouts = await getEnrolledWorkouts(userId);
-        res.status(200).json({ workouts });
+        res.status(200).send({ data: workouts });
     } catch (error) {
         console.error("Error in getEnrolledWorkouts:", error);
         res.status(500).json({ message: "Internal Server Error." });
