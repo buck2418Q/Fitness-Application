@@ -9,7 +9,7 @@ const Layout = () => {
             <SideMenu RoutesData={RoutesData} />
             <div className="flex-1 flex flex-col">
                 <TopMenu RoutesData={RoutesData} />
-                <div className="flex-1 p-4">
+                <div className="flex-1 py-4 px-6">
                     <Outlet />
                 </div>
             </div>

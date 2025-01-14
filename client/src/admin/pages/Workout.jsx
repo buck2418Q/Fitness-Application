@@ -14,7 +14,7 @@ import {
     ModalBody,
     ModalFooter,
     CardFooter,
-    useDisclosure, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem
+    useDisclosure, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Tooltip
 } from "@nextui-org/react";
 import { Form } from "@nextui-org/form";
 import { NextButton } from '../../components/NextButton';
@@ -124,11 +124,11 @@ function Workout() {
                             <CardBody className="overflow-visible p-0">
                                 {data?.price != 0 &&
                                     <Tooltip content='Premium' color='success'>
-                                    <Icon
-                                        className="pointer-events-none text-2xl text-default-400 absolute z-40 right-[1px] top-[1px] h-8 w-8 p-1 shadow-inner bg-gradient-to-bl from-light to-secondlight rounded-xl"
-                                        icon="solar:crown-bold"
-                                        color="green"
-                                    />
+                                        <Icon
+                                            className="pointer-events-none text-2xl text-default-400 absolute z-40 right-[1px] top-[1px] h-8 w-8 p-1 shadow-inner bg-gradient-to-bl from-light to-secondlight rounded-xl"
+                                            icon="solar:crown-bold"
+                                            color="green"
+                                        />
                                     </Tooltip>}
                                 <Image
                                     alt={data.title}

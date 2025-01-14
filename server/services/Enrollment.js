@@ -29,7 +29,7 @@ export const enrollWorkout = async (userId, workoutId, paymentStatus = "pending"
 
 export const getEnrolledWorkouts = async (userId) => {
     const enrollments = await EnrollmentModal.find({ userId })
-        .populate("workoutId", "title description imagePath videoPath category")
+        .populate("workoutId", "title description imagePath videoPath category price")
         .exec();
     const data = enrollments.map((enrollment) => ({
         ...enrollment.workoutId.toObject(),

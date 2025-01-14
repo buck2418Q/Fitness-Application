@@ -24,7 +24,6 @@ function Workouts() {
     const [totalPages, setTotalPages] = useState(1);
     const [pagev, setPagev] = useState(1)
     const { isOpen: isOpenQuestion, onOpen: onOpenQuestion, onClose: onCloesQuestion, onOpenChange: onOpenChangeQuestion } = useDisclosure();
-    const { isOpen: isOpenWorkout, onOpen: onOpenWorkout, onClose: onCloesWorkout, onOpenChange: onOpenChangeWorkout } = useDisclosure();
     const [selectedWorkout, setSelectedWorkout] = useState(null);
     const { appUserId } = useApplicationUser();
     const pageC = 1
@@ -137,37 +136,36 @@ function Workouts() {
 
     return (
         <>
-            <div className="mb-2">
-                <Dropdown>
-                    <DropdownTrigger>
-                        <Button className="capitalize" variant="bordered">
-                            {selectedCategory ? selectedCategory : 'Select Workout'}
-                        </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu
-                        aria-label="Select Workout"
-                        selectedKeys={selectedCategory}
-                        selectionMode="single"
-                        variant="flat"
-                        onSelectionChange={setSelectedCategory}
-                    >
-                        <DropdownItem textValue="All Workout" onClick={() => setSelectedCategory('')}>
-                            All Workout
+            <h2 className="font-semibold text-xl mb-2">Start you Workout</h2>
+            <Dropdown>
+                <DropdownTrigger>
+                    <Button className="capitalize mb-8" variant="bordered">
+                        {selectedCategory ? selectedCategory : 'Select Workout'}
+                    </Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                    aria-label="Select Workout"
+                    selectedKeys={selectedCategory}
+                    selectionMode="single"
+                    variant="flat"
+                    onSelectionChange={setSelectedCategory}
+                >
+                    <DropdownItem textValue="All Workout" onClick={() => setSelectedCategory('')}>
+                        All Workout
+                    </DropdownItem>
+                    {categoryData.map((category, index) => (
+                        <DropdownItem key={index} textValue={category.workoutValue} onClick={() => setSelectedCategory(category.workoutValue)}>
+                            {category.workOut}
                         </DropdownItem>
-                        {categoryData.map((category, index) => (
-                            <DropdownItem key={index} textValue={category.workoutValue} onClick={() => setSelectedCategory(category.workoutValue)}>
-                                {category.workOut}
-                            </DropdownItem>
-                        ))}
-                    </DropdownMenu>
-                </Dropdown>
-            </div>
+                    ))}
+                </DropdownMenu>
+            </Dropdown>
 
             <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(450px,1fr))] ">
 
                 {workout.map((data, index) => (
 
-                    <Card key={index} isPressable shadow="sm" onPress={() => workoutDetails(data)}>
+                    <Card key={index} isPressable shadow="sm" onPress={() => workoutDetails(data)} className="hover:scale-[.98]">
                         <CardBody className="overflow-visible p-0">
                             {data?.price != 0 &&
                                 <Tooltip content='Premium' color='success'>
@@ -240,30 +238,6 @@ function Workouts() {
             </Modal>
 
 
-            {/* workout detail  */}
-            <Modal isOpen={isOpenWorkout} onOpenChange={onOpenChangeWorkout} size="full" scrollBehavior="inside" >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">{selectedWorkout.title}</ModalHeader>
-                            <ModalBody>
-                                <div className="bg-secondlight dark:bg-background border-1 border-background/20 p-2 flex flex-col md:flex-row gap-4 h-full rounded-xl">
-                                    <div className="flex flex-col gap-2 w-full md:w-9/12">
-                                        <video src={selectedWorkout.videoPath} controls className="rounded-xl w-full"></video>
-                                        <p className="bg-light dark:bg-secondary border-1 border-background/20 rounded-xl px-4 py-2">
-                                            <strong>Description:</strong> {selectedWorkout.description}
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-col w-full md:w-3/12 h-full bg-light dark:bg-secondary/50 border-1 border-background/20 rounded-xl p-2">
-                                        chat section
-                                    </div>
-                                </div>
-
-                            </ModalBody>
-                        </>
-                    )}
-                </ModalContent >
-            </Modal >
             <Toaster className="z-40" richColors position="top-right" />
         </>
     )
