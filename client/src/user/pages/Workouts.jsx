@@ -10,6 +10,7 @@ import {
     useDisclosure,
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
+import { useApplicationUser } from "../../utils/ApplicationUserContext";
 
 
 function Workouts() {
@@ -24,6 +25,7 @@ function Workouts() {
     const { isOpen: isOpenWorkout, onOpen: onOpenWorkout, onClose: onCloesWorkout, onOpenChange: onOpenChangeWorkout } = useDisclosure();
     const [selectedWorkout, setSelectedWorkout] = useState(null);
 
+    const { appUserId } = useApplicationUser();
     const pageC = 1
     const pageSizeC = 9
     // const [workoutValue, setWorkoutValue] = useState('')
@@ -37,24 +39,10 @@ function Workouts() {
             getWorkoutByCategory(pageC, pageSizeC, selectedCategory)
         }
         else {
-            getWorkout('', currentPage)
+            getWorkoutByCategory(pageC, pageSizeC, '')
         }
     }, [selectedCategory])
 
-
-    const getWorkout = async (trainerId, page = 1, pageSize = 9) => {
-        try {
-            setLoading(true);
-            const result = await getWorkoutData(trainerId, page, pageSize);
-            console.log(result)
-            setWorkout(result.workoutData.workoutData);
-            setTotalPages(result.workoutData.totalPages);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    };
     const categoryData = [
         {
             workOut: 'Cardio',
@@ -95,7 +83,6 @@ function Workouts() {
             setLoading(true);
             const result = await getWorkoutByCategoryData(page, pageSize, category);
             setWorkout(result.workoutData.workoutData);
-            console.log('------------', result.workoutData.workoutData)
             setTotalPages(result.workoutData.totalPages);
         } catch (error) {
             console.log(error);
@@ -105,7 +92,7 @@ function Workouts() {
     };
 
     const workoutDetails = (data) => {
-        console.log('workout details', data)
+        // console.log('workout details', data)
         onOpenQuestion();
         setSelectedWorkout(data);
     }
@@ -114,12 +101,15 @@ function Workouts() {
     }
     const handleEnrollment = async () => {
         onCloesQuestion()
-        onOpenWorkout()
+        // onOpenWorkout()
+        console.log('applicaiton User', appUserId)
+        console.log('selectedWorkout: ', selectedWorkout._id)
     }
 
     return (
         <>
             <div className="mb-2">
+                <div className="bg-red-300 h-5 w-20">{appUserId}</div>
                 <Dropdown>
                     <DropdownTrigger>
                         <Button className="capitalize" variant="bordered">
@@ -133,6 +123,9 @@ function Workouts() {
                         variant="flat"
                         onSelectionChange={setSelectedCategory}
                     >
+                        <DropdownItem textValue="All Workout" onClick={() => setSelectedCategory('')}>
+                            All Workout
+                        </DropdownItem>
                         {categoryData.map((category, index) => (
                             <DropdownItem key={index} textValue={category.workoutValue} onClick={() => setSelectedCategory(category.workoutValue)}>
                                 {category.workOut}
@@ -239,14 +232,6 @@ function Workouts() {
                                 </div>
 
                             </ModalBody>
-                            {/* <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={onClose}>
-                                    Action
-                                </Button>
-                            </ModalFooter> */}
                         </>
                     )}
                 </ModalContent >

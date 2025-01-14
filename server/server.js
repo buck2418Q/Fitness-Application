@@ -14,6 +14,7 @@ import fs from "fs";
 import { CreateWorkout, DeleteWorkout, GetWorkoutCount, GetWorkouts, GetWorkoutsByCategory } from "./controllers/Workouts.js";
 import { createMulterConfig } from "./multerConfig/MulterConfig.js";
 import bodypars from "body-parser";
+import { EnrollWorkout, GetEnrolledWorkout } from "./controllers/Enrollment.js";
 dotenv.config();
 const appUser = process.env.APP_USER
 // file multer config for user profile picture
@@ -93,10 +94,10 @@ router.post("/oauth", oAuth);
 router.get("/knowtrainer", GetTrainerDetails)
 
 
-const folderBase = "uploads/trainer-workout"; 
+const folderBase = "uploads/trainer-workout";
 const workoutUpload = createMulterConfig(
     folderBase,
-    [".mp4", ".mkv", ".jpg", ".jpeg", ".png"], 
+    [".mp4", ".mkv", ".jpg", ".jpeg", ".png"],
     50 // Max file size in MB
 );
 // workout 
@@ -109,6 +110,9 @@ router.post("/workout", workoutUpload.fields([
 ]), CreateWorkout);
 router.delete("/workout", DeleteWorkout);
 
+
+router.post('/enrollWorkout', EnrollWorkout)
+router.get('/enrollWorkout', GetEnrolledWorkout)
 
 
 // Database connection

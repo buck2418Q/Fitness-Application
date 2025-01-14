@@ -54,10 +54,12 @@ export const getWorkoutsByCategory = async (page, pageSize, category) => {
     let workoutData;
     if (category && category.length > 0) {
         workoutData = await WorkoutModel.find({ category: category })
+            .select('imagePath price title category')
             .skip(skip)
             .limit(pageSize);
     } else {
         workoutData = await WorkoutModel.find({})
+            .select('imagePath price title category')
             .skip(skip)
             .limit(pageSize);
     }
