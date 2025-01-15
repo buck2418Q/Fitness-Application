@@ -9,13 +9,20 @@ import { fadeIn } from '../../assets/utils/motion';
 import { jwtDecode } from 'jwt-decode';
 import { NextButton } from '../../components/NextButton';
 import ThemeToggle from '../../theme/ThemeToggle';
+import { Icon } from "@iconify/react";
+
 const imgBaseUrl = '';
 
-const TopMenu = () => {
+const TopMenu = ({ RoutesData, toggleSideMenu }) => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [profilePicture, setProfilePicture] = useState(profilePic)
     const navigate = useNavigate()
+    const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsHamburgerOpen(!isHamburgerOpen);
+    };
     useEffect(() => {
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
         const decodedToken = jwtDecode(token);
@@ -52,12 +59,33 @@ const TopMenu = () => {
 
     return (
         <>
-            <div className=" h-16 flex items-center justify-between px-8 pt-2 m-2 ">
+            <div className="border-1 border-background/20 dark:border-light/10 h-fit flex bg-light dark:bg-secondary items-center justify-between px-[2px] sm:px-1 md:px-2 lg:px-3 xl:px-4 rounded-lg py-2">
+                <button
+                    onClick={toggleSideMenu}
+                    className="md:hidden text-background dark:text-light focus:outline-none"
+                >
+                    <Icon
+                        icon="solar:hamburger-menu-broken"
+                        width="24"
+                        height="24"
+                        className={`transition-all ease-in-out duration-300 ${isHamburgerOpen ? 'opacity-0 scale-75 invisible hidden' : 'opacity-100 scale-100 visible'}`}
+                        onClick={toggleMenu}
+                    />
+
+                    <Icon
+                        icon="radix-icons:cross-2"
+                        width="24"
+                        height="24"
+                        className={`transition-all ease-in-out duration-300 ${isHamburgerOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-75 invisible hidden'}`}
+                        onClick={toggleMenu}
+                    />
+                </button>
+
                 <h3 className="text-2xl font-bold">
                     Admin {userName}
                 </h3>
                 <div className="flex gap-6 items-center">
-                    <label className="relative block">
+                    <label className="relative hidden sm:block">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-2" onClick={searchClick}>
                             <img src={searchIcon} alt="" className='w-5 opacity-55' />
                         </span>
@@ -81,7 +109,7 @@ const TopMenu = () => {
                     className={`fixed inset-0 flex items-start justify-end bg-background bg-opacity-5 z-50 transition ease-in-out duration-700 `}
                     onClick={handleOverlayClick}
                 >
-                    <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-light dark:bg-background rounded-lg shadow-lg w-1/6 border  top-20 absolute right-8 h-[350px] border-background/50 dark:border-light/50" onClick={(e) => e.stopPropagation()}>
+                    <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-light dark:bg-background rounded-lg shadow-lg w-72 border  top-20 absolute right-8 h-[350px] border-background/50 dark:border-light/50" onClick={(e) => e.stopPropagation()}>
 
                         <div className='p-1 flex flex-col items-center justify-center '>
                             <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />

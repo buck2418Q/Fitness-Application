@@ -10,7 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import { NextButton } from "../../components/NextButton";
 import { fadeIn } from "../../assets/utils/motion";
 
-const SideMenu = () => {
+const SideMenu = ({ RoutesData, toggleSideMenu }) => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
     const location = useLocation();
@@ -51,19 +51,14 @@ const SideMenu = () => {
 
     const [showSide, setShowSide] = useState(false);
 
-    const showSideToggle = () => {
-        setShowSide(prevState => !prevState); // Toggle the state value
-    };
-
     return (
         <>
-            {/* <NextButton className="absolute z-30" onClick={showSideToggle}>toggle</NextButton> */}
             <motion.div
                 whileInView="show"
                 initial="hidden"
                 viewport={{ once: false, amount: 0.2 }}
-                variants={fadeIn("", "", 0.2, 0.4)}
-                className={` md:block h-screen border-r-1 border-r-secondlight text-light dark:text-light  z-20 bg-light dark:bg-secondary ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300 `}>
+                variants={fadeIn("right", "", 0, 0)}
+                className={`border-1 border-background/20 dark:border-light/10 shadow-xl sm:m-1 rounded-lg md:block  h-[calc(100vh-96px)] overflow-auto max-w-full text-light dark:text-light  z-40 bg-light dark:bg-secondary ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300 overflow-x-hidden`}>
                 {/* ${showSide ? 'block absolute' : 'hidden'}` */}
                 <div className='flex justify-between items-center'>
                     <h2 className="flex mb-4 mt-2 items-center justify-center ">
@@ -101,7 +96,7 @@ const SideMenu = () => {
                 </div>
                 <ul className={`transition-all duration-200 ease-in-out`}>
                     {RoutesData.map((menu, index) => (
-                        <li key={index} className="relative">
+                        <li key={index} className="relative" onClick={toggleSideMenu}>
                             <Link
                                 to={menu.path}
                                 className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background  hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background ' : '')}`}

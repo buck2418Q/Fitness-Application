@@ -7,7 +7,7 @@ import { RoutesData } from './AdminRoutesData';
 import logo from '../../assets/logos/logo.png';
 import { chevronUpIcon, menuIcon, xIcon } from '../../components/icons'
 
-const SideMenu = () => {
+const SideMenu = ({ RoutesData, toggleSideMenu }) => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
     const location = useLocation();
@@ -21,7 +21,7 @@ const SideMenu = () => {
     };
 
     return (
-        <div className={`h-full border-r-1 border-r-secondlight text-light dark:text-light ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
+        <div className={`border-1 border-background/20 dark:border-light/10 shadow-xl sm:m-1 rounded-lg md:block  h-[calc(100vh-96px)] overflow-auto max-w-full text-light dark:text-light  z-40 bg-light dark:bg-secondary ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300 overflow-x-hidden`}>
             <div className='flex justify-between items-center'>
                 <h2 className="flex mb-4 mt-2 items-center justify-center ">
                     <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
@@ -36,7 +36,7 @@ const SideMenu = () => {
             </div>
             <ul className={`transition-all duration-200 ease-in-out`}>
                 {RoutesData.map((menu, index) => (
-                    <li key={index} className="relative">
+                    <li key={index} className="relative" onClick={toggleSideMenu}>
                         <Link
                             to={menu.path}
                             className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background ' : '')}`}

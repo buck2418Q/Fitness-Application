@@ -8,9 +8,10 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
 import ThemeToggle from "../../theme/ThemeToggle";
+import { Icon } from "@iconify/react";
 const imgBaseUrl = '';
 
-const TopMenu = () => {
+const TopMenu = ({ RoutesData, toggleSideMenu }) => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [profilePicture, setProfilePicture] = useState(profilePic)
@@ -51,12 +52,42 @@ const TopMenu = () => {
     const searchClick = () => {
         alert('searchClick')
     }
+    const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
+    const toggleMenu = () => {
+        setIsHamburgerOpen(!isHamburgerOpen);
+    };
     return (
         <>
-            <div className="h-16 flex items-center justify-between px-[2px] sm:px-1 md:px-2 lg:px-4 xl:px-8 pt-2 m-[1px] sm:m-1">
+            <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={fadeIn("down", "", 0.1, .2)}
+                className="border-1 border-background/20 dark:border-light/10 h-fit flex bg-light dark:bg-secondary items-center justify-between px-[2px] sm:px-1 md:px-2 lg:px-3 xl:px-4 rounded-lg py-2">
                 {/* <span className="bg-red-400 relative"></span> */}
-                <label className="relative block">
+                <button
+                    onClick={toggleSideMenu}
+                    className="md:hidden text-background dark:text-light focus:outline-none"
+                >
+                    <Icon
+                        icon="solar:hamburger-menu-broken"
+                        width="24"
+                        height="24"
+                        className={`transition-all ease-in-out duration-300 ${isHamburgerOpen ? 'opacity-0 scale-75 invisible hidden' : 'opacity-100 scale-100 visible'}`}
+                        onClick={toggleMenu}
+                    />
+
+                    <Icon
+                        icon="radix-icons:cross-2"
+                        width="24"
+                        height="24"
+                        className={`transition-all ease-in-out duration-300 ${isHamburgerOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-75 invisible hidden'}`}
+                        onClick={toggleMenu}
+                    />
+
+                </button>
+                <label className="relative hidden sm:block">
                     <span className="absolute inset-y-0 left-0 flex items-center pl-2" onClick={searchClick}>
                         <img src={searchIcon} alt="" className='w-5 opacity-55' />
                     </span>
@@ -75,7 +106,7 @@ const TopMenu = () => {
                         <img src={imgBaseUrl + profilePicture} alt="User" className='object-cover w-12 h-12 border rounded-full cursor-pointer' onClick={toggleProfileModal} />
                     </span>
                 </div>
-            </div>
+            </motion.div>
 
             {isOpen && (
                 <div

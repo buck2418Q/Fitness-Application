@@ -5,7 +5,7 @@ import logo from "../../assets/logos/logo.png";
 import { chevronUpIcon, menuIcon, xIcon } from "../../components/icons";
 import { RoutesData } from "./TrainerRoutesData";
 
-const SideMenu = () => {
+const SideMenu = ({ RoutesData, toggleSideMenu }) => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
     const location = useLocation();
@@ -18,7 +18,7 @@ const SideMenu = () => {
     };
 
     return (
-        <div className={`h-full border-r-1 border-r-secondlight text-light dark:text-light ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300`}>
+        <div className={`border-1 border-background/20 dark:border-light/10 shadow-xl sm:m-1 rounded-lg md:block  h-[calc(100vh-96px)] overflow-auto max-w-full text-light dark:text-light  z-40 bg-light dark:bg-secondary ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300 overflow-x-hidden`}>
             <div className='flex justify-between items-center'>
                 <h2 className="flex mb-4 mt-2 items-center justify-center ">
                     <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
