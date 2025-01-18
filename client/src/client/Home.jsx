@@ -8,12 +8,11 @@ const Trainers = React.lazy(() => import('./Trainers.jsx'));
 const Coaches = React.lazy(() => import('./home/Coaches.jsx'));
 const JoinToday = React.lazy(() => import('./home/JoinToday.jsx'));
 const CallUs = React.lazy(() => import('./home/CallUs.jsx'));
-
-
+const Faq = React.lazy(() => import('./home/faq.jsx'));
 
 
 function Home() {
-  const components = [Banner, StatBanner, ChooseUs, Trainers, JoinToday
+  const components = [Banner, StatBanner, ChooseUs, Trainers, JoinToday, Faq
     , CallUs];
   // const components = [Banner, StatBanner, ChooseUs, Trainers, Coaches, JoinToday, CallUs];
 

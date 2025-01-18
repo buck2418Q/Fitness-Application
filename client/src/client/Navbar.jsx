@@ -39,48 +39,50 @@ function Navbar() {
     ];
 
     return (
-        <nav className="py-2 bg-gradient-to-tr from-light from-10% via-secondlight to-light  dark:from-background dark:via-secondary dark:to-background">
+        <nav className=" py-2 bg-gradient-to-tr from-light from-10% via-secondlight to-light  dark:from-background dark:via-secondary dark:to-background h-[74px] px-4">
             {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
-            <div
-                className="mx-4 rounded-xl p-2 flex justify-between "
-                style={{ backgroundColor: 'rgba(0, 0, 0, .4)' }}
-            >
-                {/* Logo */}
-                <img src={logo} alt="logo" className="h-10" />
-
-                {/* Desktop Menu */}
-                <div className={`md:flex items-center gap-6 hidden md:visible z-10 flex-col md:flex-row`}>
-                    {navbarLinks.map((link) => (
-                        <Link
-                            key={link.to}
-                            to={link.to}
-                            aria-current={location.pathname === link.to ? 'page' : undefined}
-                            className="hover:text-primary transition-colors text-light"
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-                </div>
-                {/* Sign-in Button */}
-                <div className="hidden md:flex gap-2">
-                    <ThemeToggle />
-
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <NextButton onClick={joinNowClick} type="background" className='z-50'>Sign In</NextButton>
-                    </Suspense>
-                </div>
-
-                {/* Mobile Menu Toggle */}
-                <button
-                    className="md:hidden focus:outline-none z-50"
-                    onClick={toggleMenu}
-                    aria-expanded={isMenuOpen}
-                    aria-label="Toggle menu"
+            <div className='fixed top-2 left-0 w-full px-4 z-10'>
+                <div
+                    className="rounded-xl p-2 flex justify-between  bg-background/50 dark:bg-background/90 "
+                // style={{ backgroundColor: 'rgba(0, 0, 0, .4)' }}
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+                    {/* Logo */}
+                    <img src={logo} alt="logo" className="h-10" />
+
+                    {/* Desktop Menu */}
+                    <div className={`md:flex items-center gap-6 hidden md:visible z-10 flex-col md:flex-row`}>
+                        {navbarLinks.map((link) => (
+                            <Link
+                                key={link.to}
+                                to={link.to}
+                                aria-current={location.pathname === link.to ? 'page' : undefined}
+                                className="hover:text-primary transition-colors text-light"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
+                    {/* Sign-in Button */}
+                    <div className="hidden md:flex gap-2">
+                        <ThemeToggle />
+
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <NextButton onClick={joinNowClick} type="background" className='z-50'>Sign In</NextButton>
+                        </Suspense>
+                    </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden focus:outline-none z-50"
+                        onClick={toggleMenu}
+                        aria-expanded={isMenuOpen}
+                        aria-label="Toggle menu"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}
