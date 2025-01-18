@@ -13,7 +13,7 @@ const CallUs = React.lazy(() => import('./home/CallUs.jsx'));
 
 
 function Home() {
-  const components = [Banner, StatBanner, ChooseUs, Trainers, Coaches, JoinToday
+  const components = [Banner, StatBanner, ChooseUs, Trainers, JoinToday
     , CallUs];
   // const components = [Banner, StatBanner, ChooseUs, Trainers, Coaches, JoinToday, CallUs];
 
