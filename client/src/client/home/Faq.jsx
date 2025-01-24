@@ -16,7 +16,7 @@ function faq() {
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
                         variants={fadeIn("up", "", 0.2, 0.5)}
-                        className='text-xl sm:text-2xl lg:text-3xl font-black  text-left'>Meet Out Trainers</motion.h2>
+                        className='text-xl sm:text-2xl lg:text-3xl font-black  text-left'>Frequently asked questions</motion.h2>
                     <motion.p
                         whileInView="show"
                         initial="hidden"
@@ -28,13 +28,16 @@ function faq() {
 
 
                 <Accordion variant="bordered" className='w-full md:w-8/12'>
-                    <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+                    <AccordionItem key="1" aria-label="Q 1" title="What kind of workouts are available on the app?">
                         {defaultContent}
                     </AccordionItem>
-                    <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
+                    <AccordionItem key="2" aria-label="Q 2" title="Can I track my progress and set fitness goals?">
                         {defaultContent}
                     </AccordionItem>
-                    <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
+                    <AccordionItem key="3" aria-label="Q 3" title="Is there a subscription or membership fee for using the app?">
+                        {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem key="4" aria-label="Q 4" title="Can I customize my workout plans based on my fitness level or goals?">
                         {defaultContent}
                     </AccordionItem>
                 </Accordion>

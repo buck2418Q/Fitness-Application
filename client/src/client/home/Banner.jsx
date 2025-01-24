@@ -2,8 +2,14 @@ import { motion } from "framer-motion";
 import bannerBg from '../../assets/videos/bannerBg.mp4'
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
+import { useNavigate } from 'react-router-dom'
 
 function Banner() {
+    const navigate = useNavigate()
+
+    const lognClick = () => {
+        navigate('/login')
+    }
     return (
         <>
             <section
@@ -30,9 +36,9 @@ function Banner() {
                         Scenes to take your <br /> breath away
                     </h1>
                     <div className='flex gap-6 justify-around items-center'>
-                        <NextButton color="secondary" className="w-full sm:w-1/2">Shop Trend</NextButton>
+                        <NextButton color="secondary" className="w-full sm:w-1/2" onClick={lognClick}>Shop Trend</NextButton>
 
-                        <NextButton type="background" className="w-full sm:w-1/2">Lets Start</NextButton>
+                        <NextButton type="background" className="w-full sm:w-1/2" onClick={lognClick}>Lets Start</NextButton>
                     </div>
                 </motion.div>
             </section>

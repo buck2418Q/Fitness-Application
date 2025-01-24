@@ -47,7 +47,7 @@ function ChooseUs() {
                     whileInView="show"
                     initial="hidden"
                     viewport={{ once: false, amount: 0.2 }}
-                    variants={fadeIn("up", "", 0.25, 0.5)}
+                    variants={fadeIn("", "", 0.25, 0.5)}
                     className='text-lg sm:text-xl lg:text-2xl m-5 lg:m-10 text-secondary dark:text-secondlight'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </motion.p>
@@ -60,7 +60,7 @@ function ChooseUs() {
                                 whileInView="show"
                                 initial="hidden"
                                 viewport={{ once: false, amount: 0.2 }}
-                                variants={fadeIn("right", "", index * 0.15, 0.4)}
+                                variants={fadeIn("", "", index * 0.15, 0.4)}
                                 key={index}
                                 className="m-4 flex ltr_appear">
                                 <div className="mx-4 my-2 p-2 rounded-full h-fit ">
@@ -76,20 +76,20 @@ function ChooseUs() {
 
                     {/* Images */}
                     <div
-                        className="w-full lg:w-4/12 flex flex-col">
+                        className="w-full hidden lg:w-4/12 md:flex flex-col">
                         <div className="m-4 flex flex-col sm:flex-row ">
                             <motion.div
 
                                 whileInView="show"
                                 initial="hidden"
                                 viewport={{ once: false, amount: 0.2 }}
-                                variants={fadeIn("left", "", .4, 0.4)} className="mx-0 sm:mx-4 w-full sm:w-1/2 ">
+                                variants={fadeIn("", "", .4, 0.4)} className="mx-0 sm:mx-4 w-full sm:w-1/2 ">
                                 {imageData.slice(0, 2).map((image, index) => (
                                     <LazyLoadImage
                                         key={index}
                                         src={image.src}
                                         alt={image.alt}
-                                        className={image.className}
+                                        className={`${image.className} rounded-[40px] border  border-background dark:border-light `}
                                     />
                                 ))}
                             </motion.div>
@@ -97,12 +97,12 @@ function ChooseUs() {
                                 whileInView="show"
                                 initial="hidden"
                                 viewport={{ once: false, amount: 0.2 }}
-                                variants={fadeIn("left", "", .4, 0.4)}
+                                variants={fadeIn("", "", .4, 0.4)}
                                 className="mx-0 sm:mx-4 w-full sm:w-1/2 mt-4 sm:mt-0">
-                                <img
+                                <LazyLoadImage
                                     src={imageData[2].src}
                                     alt={imageData[2].alt}
-                                    className={imageData[2].className}
+                                    className={`rounded-[40px] border border-background dark:border-light ${imageData[2].className} `}
                                 />
                             </motion.div>
                         </div>

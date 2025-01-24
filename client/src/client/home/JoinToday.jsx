@@ -34,20 +34,20 @@ function JoinToday() {
     };
 
     return (
-        <section className='py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-secondlight text-background dark:bg-background dark:text-light'>
+        <section className='py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-5 md:px-10 lg:px-20 bg-cover h-auto bg-secondlight text-background dark:bg-background dark:text-light'>
             <div className='flex flex-col sm:flex-row justify-between items-center gap-5'>
                 <div>
                     <motion.p
                         whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("left", "", 0.3, 0.5)}
+                        variants={fadeIn("", "", 0.3, 0.5)}
                         className='text-xl mx-2  '>Pricing Plan</motion.p>
                     <motion.h2
                         whileInView="show"
                         initial="hidden"
                         viewport={{ once: false, amount: 0.2 }}
-                        variants={fadeIn("left", "", 0.5, 0.5)}
+                        variants={fadeIn("", "", 0.5, 0.5)}
                         className='text-4xl md:text-6xl my-2 font-extrabold'>Join Today</motion.h2>
                 </div>
                 <div>
@@ -68,7 +68,7 @@ function JoinToday() {
                 whileInView="show"
                 initial="hidden"
                 viewport={{ once: false, amount: 0.2 }}
-                variants={fadeIn("up", "", 0.2, 0.6)}
+                variants={fadeIn("", "", 0.2, 0.6)}
                 className={`yearly-packs ${isMonth ? 'hidden' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12'}`}>
                 {Array(3).fill().map((_, index) => (
                     <motion.div
@@ -98,7 +98,7 @@ function JoinToday() {
                 whileInView="show"
                 initial="hidden"
                 viewport={{ once: false, amount: 0.2 }}
-                variants={fadeIn("up", "", 0.2, 0.6)}
+                variants={fadeIn("", "", 0.2, 0.6)}
                 className={`${isMonth ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-12' : 'hidden'}`}>
                 {Array(3).fill().map((_, index) => (
                     <motion.div

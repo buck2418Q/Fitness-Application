@@ -1,9 +1,11 @@
 import { fadeIn } from "../assets/utils/motion";
 import { motion } from "framer-motion";
-import { treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company } from "../components/images";
+import { treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company, watchVideo } from "../components/images";
 import '../styleSheets/about.css'
 import { NextButton } from "../components/NextButton";
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 function About() {
 
@@ -80,13 +82,24 @@ function About() {
     },
   ];
 
-  const seeMoreClick = () => {
-    alert('see more')
-  }
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handlePlayPause = () => {
+    const video = document.querySelector('video');
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+    } else {
+      video.play();
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <>
-      {/* shudhanshu start here */}
+
       <section className="py-16 px-4 sm:py-28 sm:px-8 lg:py-52 lg:px-32 bg-light text-background  dark:bg-background dark:text-light flex flex-col justify-center items-center gap-6 sm:gap-8">
         <motion.h2
           whileInView="show"
@@ -107,8 +120,57 @@ function About() {
       </section>
 
 
+
+
+      <section className='w-full h-full border-solid text-center px-4 sm:px-12 md:px-28 lg:px-40 xl:px-60 2xl:px-80 py-10 lg:py-20 text-secondary bg-secondlight dark:bg-secondary dark:text-light flex items-center justify-center'>
+        <div
+          className="w-full h-full flex items-center justify-center rounded-full relative xl:w-10/12"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <video
+            src={watchVideo}
+            className="w-full rounded-xl"
+            controls={false}
+            onClick={handlePlayPause}
+          />
+          {!(isPlaying) && isHovered && (
+            <button
+              className={`absolute flex items-center justify-center text-white text-6xl font-bold cursor-pointer bg-light/50 p-0 hover:p-4 rounded-full border-light/60 border-1 transition-all ease-in-out duration-300 transform hover:scale-110 `}
+              onClick={handlePlayPause}
+            >
+              <Icon
+                className="bg-light rounded-full p-3"
+                icon="solar:play-bold"
+                color="#16b650"
+              />
+            </button>
+
+          )}
+
+          {isPlaying && isHovered && (
+            <button
+              className={`absolute flex items-center justify-center text-white text-6xl font-bold cursor-pointer bg-light/50 p-0 hover:p-4 rounded-full border-light/60 border-1 transition-all ease-in-out duration-300 transform hover:scale-110 `}
+              onClick={handlePlayPause}
+            >
+              <Icon
+                className="bg-light rounded-full p-3"
+                icon="solar:pause-bold"
+                color="#16b650"
+              />
+            </button>
+          )}
+
+          {!isPlaying &&
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold absolute right-0 top-0 p-2 text-light/60">Watch Video</p>
+          }
+        </div>
+      </section>
+
+
+
       {/* marquee  */}
-      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondlight dark:bg-secondary overflow-hidden">
+      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondlight dark:bg-background overflow-hidden">
         <motion.div
           whileInView="show"
           initial="hidden"

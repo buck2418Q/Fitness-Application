@@ -12,8 +12,8 @@ const Faq = React.lazy(() => import('./home/faq.jsx'));
 
 
 function Home() {
-  const components = [Banner, StatBanner, ChooseUs, Trainers, JoinToday, Faq
-    , CallUs];
+  const components = [Banner, StatBanner, ChooseUs, Trainers, Coaches, JoinToday, CallUs, Faq
+  ];
   // const components = [Banner, StatBanner, ChooseUs, Trainers, Coaches, JoinToday, CallUs];
 
   return (

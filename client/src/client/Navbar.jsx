@@ -41,7 +41,7 @@ function Navbar() {
     return (
         <nav className=" py-2 bg-gradient-to-tr from-light from-10% via-secondlight to-light  dark:from-background dark:via-secondary dark:to-background h-[74px] px-4">
             {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
-            <div className='fixed top-2 left-0 w-full px-4 z-10'>
+            <div className=' top-2 left-0 w-full px-4 z-10'>
                 <div
                     className="rounded-xl p-2 flex justify-between  bg-background/50 dark:bg-background/90 "
                 // style={{ backgroundColor: 'rgba(0, 0, 0, .4)' }}

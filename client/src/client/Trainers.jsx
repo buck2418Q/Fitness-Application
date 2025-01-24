@@ -83,7 +83,7 @@ function Trainers() {
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("up", "", 0.6, 0.5)} className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,1fr))] ">
+          variants={fadeIn("up", "", 0.6, 0.5)} className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] auto-rows-min plcai">
 
           {trainersData.map((trainer, index) => (
             <motion.div
@@ -93,7 +93,7 @@ function Trainers() {
               variants={fadeIn("up", "", index * 0.1, 0.5)}
               key={index}
             >
-              <Card isFooterBlurred className="border-none w-80 h-56 bg-background dark:bg-secondlight/40 dark:shadow-none mb-6" radius="lg">
+              <Card isFooterBlurred className="border-none w-fit  h-56 bg-background dark:bg-secondlight/40 dark:shadow-none mb-6 " radius="lg">
                 <Image
                   alt="Woman listing to music"
                   className="object-cover w-full "
