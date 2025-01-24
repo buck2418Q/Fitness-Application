@@ -34,6 +34,7 @@ function Dashboard() {
     const newVolume = e.target.value;
     setVolume(newVolume);
     videoRef.current.volume = newVolume;
+    console.log('new volume', newVolume)
   };
 
 
@@ -82,7 +83,16 @@ function Dashboard() {
     onOpenWorkout()
   }
 
-
+  const handleMuteClick = () => {
+    const video = videoRef.current;
+    if (video.volume == 0) {
+      video.volume = 0.4;
+      setVolume(0.4);
+    } else {
+      video.volume = 0;
+      setVolume(0)
+    }
+  }
   return (
     <>
       <h2 className="mb-1">Welcome {appUserName}</h2>
@@ -161,35 +171,7 @@ function Dashboard() {
                       )}
 
                       {isHovered && (
-                        <div className="absolute bottom-4 w-[98%] bg-light/80 text-background p-3 rounded-lg">
-
-
-                          <div className="flex items-center justify-between">
-
-                            <div className="flex items-center space-x-2">
-                              <Icon icon="solar:volume-bold" className="text-xl" />
-                              <input
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.1"
-                                value={volume}
-                                onChange={handleVolumeChange}
-                                className="w-24 appearance-none bg-gray-700 rounded-lg rotate-270"
-                              />
-                            </div>
-
-                            <div className=" flex items-center gap-2">
-                              <button
-                                className="text-white bg-gray-700 p-1 rounded-md hover:bg-gray-600"
-                                onClick={handleFullscreen}
-                              >
-
-                                <Icon icon="bx:fullscreen" className="text-xl" />
-                              </button>
-
-                            </div>
-                          </div>
+                        <div className="absolute bottom-4 w-[98%] backdrop-blur-lg bg-secondary/20 border-1 border-light/30 text-light p-3 rounded-lg flex flex-col gap-2">
 
 
                           {/* Seek Bar */}
@@ -201,10 +183,71 @@ function Dashboard() {
                               max={duration}
                               value={currentTime}
                               onChange={handleSeek}
-                              className="w-full appearance-none bg-gray-700 rounded-lg"
+                              className="w-full bg-light rounded-lg transition ease-in-out duration-500 cursor-pointer"
                             />
                             <span>{formatTime(duration)}</span>
                           </div>
+
+
+
+
+                          <div className="flex items-center justify-between">
+
+
+
+                            <div className="flex items-center">
+
+                              <button
+                                className={`pr-2 rounded-md`}
+                                onClick={handlePlayPause}
+                              >
+                                <Icon
+                                  className=""
+                                  icon={isPlaying ? 'solar:pause-bold' : 'solar:play-bold'}
+                                // color="#16b650"
+                                />
+                              </button>
+
+
+                              <div className="transition-all duration-500 w-[15%] hover:w-full flex items-center overflow-hidden">
+                                <span className="w-6 m-1 text-xl right-0 cursor-pointer" onClick={handleMuteClick}>
+                                  <Icon icon={
+                                    volume == 0 && 'mage:volume-mute-fill' ||
+                                    volume > 0 && volume <= 0.2 && 'mage:volume-zero-fill' ||
+                                    volume >= 0.3 && volume <= 0.7 && 'mage:volume-down-fill' ||
+                                    volume >= 0.8 && 'mage:volume-up-fill'
+                                  } />
+                                </span>
+
+                                <input
+                                  type="range"
+                                  min="0"
+                                  max="1"
+                                  step="0.1"
+                                  value={volume}
+                                  onChange={handleVolumeChange}
+                                  className="appearance-auto bg-background rounded-lg cursor-pointer h-[6px] "
+                                />
+                              </div>
+                              {/* 
+                                className="appearance-auto bg-background rounded-lg cursor-pointer h-[6px] transition-all duration-500 w-[10%] hover:w-full"
+                              /> */}
+
+                            </div>
+
+                            <div className=" flex items-center gap-2">
+                              <button
+                                className="p-1 rounded-md"
+                                onClick={handleFullscreen}
+                              >
+
+                                <Icon icon="bx:fullscreen" className="text-xl text-light hover:scale-125 transition ease-in-out duration-300" />
+                              </button>
+
+                            </div>
+                          </div>
+
+
 
 
                         </div>

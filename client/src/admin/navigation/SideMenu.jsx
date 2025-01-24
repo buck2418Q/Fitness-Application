@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { RoutesData } from './AdminRoutesData';
 import logo from '../../assets/logos/logo.png';
 import { chevronUpIcon, menuIcon, xIcon } from '../../components/icons'
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 const SideMenu = ({ RoutesData, toggleSideMenu }) => {
     const [openMenu, setOpenMenu] = useState(null);
@@ -39,11 +40,12 @@ const SideMenu = ({ RoutesData, toggleSideMenu }) => {
                     <li key={index} className="relative" onClick={toggleSideMenu}>
                         <Link
                             to={menu.path}
-                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 text-background ' : '')}`}
+                            className={`flex items-center p-2 m-2 rounded-lg hover:bg-gray-200 text-background hover:text-background hover:dark:text-background dark:text-light transition duration-200 ease-in-out ${menu.children ? '' : (location.pathname === menu.path ? 'bg-gray-300 dark:bg-gray-600 text-background ' : '')}`}
                             onClick={() => handleToggleMenu(index)}
                         >
                             <span className={`${collapsed ? 'pl-3' : ''}`}>
-                                {menu.icon}
+                                <Icon icon={menu.icon} width="24" height="24" />
+
                             </span>
                             <span className={`transition-opacity duration-200 ${collapsed ? 'opacity-0' : 'opacity-100 ml-2'}`}>
                                 {menu.title}
@@ -70,7 +72,7 @@ const SideMenu = ({ RoutesData, toggleSideMenu }) => {
                                                 to={child.path}
                                                 className={`flex items-center hover:bg-gray-200 rounded-lg transition duration-200 ease-in-out my-1 ${collapsed ? 'ml-2 pl-4 w-12' : 'p-2 mr-2'} ${location.pathname === child.path ? 'bg-gray-300' : ''}`}
                                             >
-                                                {child.icon}
+                                                <Icon icon={child.icon} width="24" height="24" />
                                                 <span className={`ml-2 transition-opacity duration-200 ${collapsed ? 'opacity-0' : 'opacity-100'}`}>
                                                     {child.title}
                                                 </span>

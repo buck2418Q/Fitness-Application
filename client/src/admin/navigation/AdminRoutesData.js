@@ -2,36 +2,36 @@
 export const RoutesData = [
     {
         title: "Dashboard",
-        icon: "🏠",
+        icon: "material-symbols:home-rounded",
         path: "/admin/dashboard",
     },
     {
         title: "Users",
-        icon: "👨‍💼",
+        icon: "mdi:clipboard-user",
         path: "/admin/user",
     },
     {
         title: "Trainer",
-        icon: "🧘‍♀️",
+        icon: "mdi:folder-user",
         path: "/admin/trainer",
     },
     {
         title: "Workout",
-        icon: "⛹️",
+        icon: "material-symbols-light:exercise",
         path: "/admin/workout",
     },
     {
         title: "Plans",
-        icon: "🤝",
+        icon: "ic:baseline-discount",
         path: "/admin/plans",
         children: [
-            { title: "Yoga Plans", path: "/admin/plans", icon: "🤝", },
-            { title: "XYZ Plans", path: "/admin/dashboard", icon: "🙌", },
+            { title: "Yoga Plans", path: "/admin/plans", icon: "mdi:cart-discount", },
+            { title: "XYZ Plans", path: "/admin/dashboard", icon: "mdi:cloud-discount", },
         ],
     },
     {
         title: "Settings",
-        icon: "⚙️",
+        icon: "material-symbols:settings-rounded",
         path: "/settings",
     },
 ];
