@@ -176,41 +176,36 @@ function Dashboard() {
 
                           {/* Seek Bar */}
                           <div className="flex justify-between gap-2 text-sm mt-1">
-                            <span>{formatTime(currentTime)}</span>
                             <input
                               type="range"
                               min="0"
                               max={duration}
                               value={currentTime}
                               onChange={handleSeek}
-                              className="w-full bg-light rounded-lg transition ease-in-out duration-500 cursor-pointer"
+                              className="w-full bg-light h-1 rounded-lg transition ease-in-out duration-500 cursor-pointer"
                             />
-                            <span>{formatTime(duration)}</span>
                           </div>
 
 
 
 
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between gap-0">
 
-
-
-                            <div className="flex items-center">
+                            <div className="flex items-center gap-2">
 
                               <button
-                                className={`pr-2 rounded-md`}
+                                className={`pl-0 p-2 rounded-md`}
                                 onClick={handlePlayPause}
                               >
                                 <Icon
                                   className=""
                                   icon={isPlaying ? 'solar:pause-bold' : 'solar:play-bold'}
-                                // color="#16b650"
                                 />
                               </button>
 
 
-                              <div className="transition-all duration-500 w-[15%] hover:w-full flex items-center overflow-hidden">
-                                <span className="w-6 m-1 text-xl right-0 cursor-pointer" onClick={handleMuteClick}>
+                              <div className="transition-all duration-500 h-10 w-[7%] hover:w-[150px] flex items-center overflow-hidden">
+                                <span className="w-6 text-xl right-0 cursor-pointer " onClick={handleMuteClick}>
                                   <Icon icon={
                                     volume == 0 && 'mage:volume-mute-fill' ||
                                     volume > 0 && volume <= 0.2 && 'mage:volume-zero-fill' ||
@@ -229,9 +224,10 @@ function Dashboard() {
                                   className="appearance-auto bg-background rounded-lg cursor-pointer h-[6px] "
                                 />
                               </div>
-                              {/* 
-                                className="appearance-auto bg-background rounded-lg cursor-pointer h-[6px] transition-all duration-500 w-[10%] hover:w-full"
-                              /> */}
+                              <div className="ml-1 w-20">
+                                <span>{formatTime(currentTime)}</span>&nbsp;&#47;&nbsp;
+                                <span>{formatTime(duration)}</span>
+                              </div>
 
                             </div>
 
@@ -246,8 +242,6 @@ function Dashboard() {
 
                             </div>
                           </div>
-
-
 
 
                         </div>
