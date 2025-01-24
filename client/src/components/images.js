@@ -25,33 +25,22 @@ import categoryimg6 from '../assets/images/category/category6.png';
 import categoryimg7 from '../assets/images/category/category7.png';
 import categoryimg8 from '../assets/images/category/category8.png';
 import profilePic from '../assets/images/profilePic.jpg'
+import banner from '../assets/images/banner.png'
+import review1 from '../assets/images/review1.jpg'
+import review2 from '../assets/images/review2.jpg'
+import review3 from '../assets/images/review3.jpg'
+import review4 from '../assets/images/review4.jpg'
+import watchVideo from '../assets/videos/bannerBg.mp4'
 export {
-    trainerLoader,
-    traineeLoader,
-    treeCompany,
-    cocoCompany,
-    leafCompany,
-    coffeeCompany,
-    mixlrCompany,
-    gym1Company,
-    gym2Company,
+    trainerLoader, traineeLoader,
+    treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company,
     aboutUs,
     athelete1,
     fitnessblog,
-    trainer4,
-    trainer5,
-    trainer6,
-    trainer7,
-    serviceBg1,
-    serviceBg2,
-    categoryimg1,
-    categoryimg2,
-    categoryimg3,
-    categoryimg4,
-    categoryimg5,
-    categoryimg6,
-    categoryimg7,
-    categoryimg8,
-    profilePic
-
+    trainer4, trainer5, trainer6, trainer7,
+    serviceBg1, serviceBg2,
+    categoryimg1, categoryimg2, categoryimg3, categoryimg4, categoryimg5, categoryimg6, categoryimg7, categoryimg8,
+    profilePic, banner,
+    review1, review2, review3, review4,
+    watchVideo
 }

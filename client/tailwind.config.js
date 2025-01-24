@@ -20,7 +20,7 @@ export default {
         secondlight: "#dddddd", //second light
         primary: "#16b650",    // Green 
         "hover-primary": "#13a048", // Slightly darker green for hover effects
-        blue:"#0064d7"
+        blue: "#0064d7"
       },
       backgroundImage: {
         'callbanner': "url('./src/assets/images/call-banner.png')",
@@ -34,7 +34,17 @@ export default {
           '0 45px 65px rgba(0, 0, 0, 0.15)'
         ],
         'myshadow': '0 45px 65px rgba(0,0,0,0.5)'
-      }
+      },
+      animation: {
+        'revolve': 'revolvingBackground 5s linear infinite',
+      },
+      keyframes: {
+        revolvingBackground: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+      },
     },
   },
   darkMode: "class",

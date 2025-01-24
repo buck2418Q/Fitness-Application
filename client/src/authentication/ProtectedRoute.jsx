@@ -21,7 +21,12 @@ function ProtectedRoute({ component: Component, role: role }) {
     }
     const user = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (!user) {
+        navigate('/login');
         return null;
+
+    }
+    if (user === null) {
+        navigate('/login');
 
     }
 
