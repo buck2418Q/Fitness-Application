@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Accordion, AccordionItem } from '@nextui-org/react'
 import { fadeIn } from '../../assets/utils/motion';
 
-function faq() {
+function Faq() {
     const defaultContent =
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
@@ -51,4 +51,4 @@ function faq() {
     )
 }
 
-export default faq
+export default Faq

@@ -8,7 +8,7 @@ const Trainers = React.lazy(() => import('./Trainers.jsx'));
 const Coaches = React.lazy(() => import('./home/Coaches.jsx'));
 const JoinToday = React.lazy(() => import('./home/JoinToday.jsx'));
 const CallUs = React.lazy(() => import('./home/CallUs.jsx'));
-const Faq = React.lazy(() => import('./home/faq.jsx'));
+const Faq = React.lazy(() => import('./home/Faq.jsx'));
 
 
 function Home() {
