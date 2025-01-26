@@ -95,6 +95,23 @@ function About() {
     }
   };
 
+  const stepsData = [
+    {
+      stepImage: step1, // Image source
+      stepHeading: "Gym Movement",
+      stepData: "Many gyms offer tools and resources to track progress, such as fitness apps, workout logs, or integrated gym software.",
+    },
+    {
+      stepImage: step2,
+      stepHeading: "Fitness Practice",
+      stepData: "Gyms are adaptable to various fitness levels and preferences, catering to beginners and advanced individuals alike.",
+    },
+    {
+      stepImage: step3,
+      stepHeading: "Achievement",
+      stepData: "Group fitness classes led by instructors offer structured workouts in a motivating group setting for development.",
+    },
+  ];
 
   const serviceData = [
     {
@@ -132,87 +149,57 @@ function About() {
         <img src={aboutUsBanner} alt="" className="w-full" />
       </section>
 
-      <section className="py-8  sm:py-16 lg:py-20px-4 sm:px-8 lg:px-32 bg-light text-background  dark:bg-background dark:text-light flex flex-col justify-center items-center gap-2 sm:gap-4">
+      <section className="py-8 sm:py-16 lg:py-20px-4 sm:px-8 lg:px-32 bg-light text-background dark:bg-background dark:text-light flex flex-col justify-center items-center gap-2 sm:gap-4">
         <motion.p
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("", "", 0.3, 0.5)}
-          className="text-base sm:text-md lg:text-lg text-center justify-center items-center flex gap-2 text-secondary dark:text-secondlight">
-          <span className="bg-primary h-[2px] rounded-md w-10 inline-block"></span> Work Process <span className="bg-primary h-[2px] rounded-md w-10 inline-block"></span>
+          className="text-base sm:text-md lg:text-lg text-center justify-center items-center flex gap-2 text-secondary dark:text-secondlight"
+        >
+          <span className="bg-primary h-[2px] rounded-md w-10 inline-block"></span> Work Process{" "}
+          <span className="bg-primary h-[2px] rounded-md w-10 inline-block"></span>
         </motion.p>
+
         <motion.h2
           whileInView="show"
           initial="hidden"
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("", "", 0.2, 0.5)}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide fade_appear text-center">
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide fade_appear text-center"
+        >
           Easy Step To Achieve Your Goals.
         </motion.h2>
 
-        {/* <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-8 lg:gap-12 xl:gap-16 mt-4 sm:mt-8 lg:mt-12"> */}
         <div className="w-full md:flex flex-row justify-between items-center gap-4 mt-2 sm:mt-4 lg:mt-6 xl:mt-8">
-
-
-
-          <div className="w-full md:w-4/12 lg:w-4/12 xl:w-3/12 flex flex-row md:flex-col gap-4 items-center justify-center my-4">
-            <div className="bg-fitnessRed w-[40%] md:w-[70%] rounded-full aspect-square flex items-start justify-center">
-              <img src={step1} alt="Logo of Coco Company" className="w-[95%] top-[-4px] relative rounded-full" />
+          {stepsData.map((step, index) => (
+            <div
+              key={index}
+              className="w-full md:w-4/12 lg:w-4/12 xl:w-3/12 flex flex-row md:flex-col gap-4 items-center justify-center my-4"
+            >
+              <div className="bg-fitnessRed w-[40%] md:w-[70%] rounded-full aspect-square flex items-start justify-center">
+                <img
+                  src={step.stepImage}
+                  alt={step.stepHeading}
+                  className="w-[95%] top-[-4px] relative rounded-full"
+                />
+              </div>
+              <div className="md:text-center">
+                <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold">{step.stepHeading}</h3>
+                <p className="text-xs md:text-sm lg:text-base xl:text-lg font-medium text-secondary/80 dark:text-secondlight/80">{step.stepData}</p>
+              </div>
             </div>
-            <div className="md:text-center">
-              <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl">Gym Movement</h3>
-              <p className="text-xs md:text-sm lg:text-base xl:text-lg">Many gyms offer tools and resources to track progress, such as fitness apps, workout logs, or integrated gym software.</p>
-            </div>
-          </div>
-
-          <div className="w-full md:w-4/12 lg:w-4/12 xl:w-3/12 flex flex-row md:flex-col gap-4 items-center justify-center my-4">
-            <div className="bg-fitnessRed w-[40%] md:w-[70%] rounded-full aspect-square flex items-start justify-center">
-              <img src={step2} alt="Logo of Coco Company" className="w-[95%] top-[-4px] relative rounded-full" />
-            </div>
-            <div className="md:text-center">
-              <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl">Fitness Practice</h3>
-              <p className="text-xs md:text-sm lg:text-base xl:text-lg">Gyms are adaptable to various fitness levels and preferences, catering to beginners and advanced individuals alike.</p>
-            </div>
-          </div>
-
-          <div className="w-full md:w-4/12 lg:w-4/12 xl:w-3/12 flex flex-row md:flex-col gap-4 items-center justify-center my-4">
-            <div className="bg-fitnessRed w-[40%] md:w-[70%] rounded-full aspect-square flex items-start justify-center">
-              <img src={step3} alt="Logo of Coco Company" className="w-[95%] top-[-4px] relative rounded-full" />
-            </div>
-            <div className="md:text-center">
-              <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl">Achievement</h3>
-              <p className="text-xs md:text-sm lg:text-base xl:text-lg">Group fitness classes led by instructors offer structured workouts in a motivating group setting for development.</p>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-          {/* <div className="w-4/12 md:w-3/12 lg:w-2/12">
-            <div className="bg-yellow-200  rounded-full aspect-square flex items-start justify-center ">
-              <img src={cocoCompany} alt="" className="w-[95%] top-[-4px] relative" />
-            </div>
-            <div>
-              <h3>heading</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a perspiciatis eaque soluta architecto id inventore assumenda adipisci.</p>
-            </div>
-          </div> */}
+          ))}
         </div>
-
-
       </section>
 
 
       <section className='w-full h-full border-solid text-center px-4 sm:px-12 md:px-28 lg:px-40 xl:px-60 2xl:px-80 py-10 lg:py-20 text-secondary bg-secondlight dark:bg-secondary dark:text-light flex items-center justify-center'>
-        <div
+        <motion.div
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeIn("", "", 0.2, 0.2)}
           className="w-full h-full flex items-center justify-center rounded-full relative xl:w-10/12"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -251,9 +238,14 @@ function About() {
           )}
 
           {!isPlaying &&
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold absolute right-0 top-0 p-2 text-light/60">Watch Video</p>
+            <motion.p
+              whileInView="show"
+              initial="hidden"
+              viewport={{ once: false, amount: 0.2 }}
+              variants={fadeIn("", "", 0.2, 0.2)}
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold absolute right-0 top-0 p-2 text-light/60">Watch Video</motion.p>
           }
-        </div>
+        </motion.div>
       </section>
 
 
@@ -276,22 +268,32 @@ function About() {
         </motion.h2>
 
 
-        <div className="container mx-auto p-4 mt-8">
+        <div className="container mx-auto p-4 mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-8 lg:gap-16 xl:gap-20">
             {serviceData.map((item, index) => (
-              <div
+              <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeIn("", "", 0.1, 0.2)}
                 key={index}
-                className={`group hover:bg-fitnessRed hover:text-light bg-secondlight dark:bg-secondary p-6 rounded-3xl flex flex-col gap-3 h-fit transition text ease-in-out duration-300 dark:hover:bg-fitnessRed`}
+                className={`group hover:bg-fitnessRed hover:text-light bg-secondlight dark:bg-secondary p-6 rounded-3xl flex flex-col gap-3 h-fit transition text ease-in-out duration-300 dark:hover:bg-fitnessRed mt-4`}
               >
-                <div className="group-hover:bg-background dark:group-hover:bg-light dark:group-hover:text-fitnessRed bg-fitnessRed dark:bg-light dark:text-background w-16 h-16 rounded-full relative -top-[56px] left-1 -mb-[60px] flex items-center justify-center border-[6px] text-light  border-light  dark:border-background transition ease-in-out duration-300">
+                <motion.div
+                  whileInView="show"
+                  initial="hidden"
+                  viewport={{ once: false, amount: 0.2 }}
+                  variants={fadeIn("", "", 0.2, 0.4)}
+                  className="group-hover:bg-background dark:group-hover:bg-light dark:group-hover:text-fitnessRed bg-fitnessRed dark:bg-light dark:text-background w-16 h-16 rounded-full relative -top-[56px] left-1 -mb-[60px] flex items-center justify-center border-[6px] text-light  border-light  dark:border-background transition ease-in-out duration-300">
                   <Icon icon={item.serviceIcon} width="28" />
-                </div>
+                </motion.div>
                 <h2 className="text-2xl font-bold">{item.serviceHeading}</h2>
-                <p>{item.servicePara}</p>
+                <p className="text-background/80 font-medium group-hover:text-light dark:text-light/80">{item.servicePara}</p>
                 <p className="inline-block border-b-1  border-current w-fit cursor-pointer hover:scale-105 text-sm hover:transition hover:ease-in-out hover:duration-300">
-                  {item.serviceLink} <Icon icon="si:arrow-right-fill" width="24" height="24" className="inline" />
+                  {item.serviceLink}
+                  <Icon icon="si:arrow-right-fill" width="24" height="24" className="inline" />
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
