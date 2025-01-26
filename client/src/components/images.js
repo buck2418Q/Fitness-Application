@@ -14,8 +14,8 @@ import trainer4 from '../assets/images/trainer-4.jpg';
 import trainer5 from '../assets/images/trainer-5.jpg';
 import trainer6 from '../assets/images/trainer-6.jpg';
 import trainer7 from '../assets/images/trainer-7.jpg';
-import serviceBg1 from '../assets/images/serviceBg1.png'
-import serviceBg2 from '../assets/images/serviceBg2.png'
+import serviceBg1 from '../assets/images/serviceBg1.png';
+import serviceBg2 from '../assets/images/serviceBg2.png';
 import categoryimg1 from '../assets/images/category/category1.png';
 import categoryimg2 from '../assets/images/category/category2.png';
 import categoryimg3 from '../assets/images/category/category3.png';
@@ -24,13 +24,18 @@ import categoryimg5 from '../assets/images/category/category5.png';
 import categoryimg6 from '../assets/images/category/category6.png';
 import categoryimg7 from '../assets/images/category/category7.png';
 import categoryimg8 from '../assets/images/category/category8.png';
-import profilePic from '../assets/images/profilePic.jpg'
-import banner from '../assets/images/banner.png'
-import review1 from '../assets/images/review1.jpg'
-import review2 from '../assets/images/review2.jpg'
-import review3 from '../assets/images/review3.jpg'
-import review4 from '../assets/images/review4.jpg'
-import watchVideo from '../assets/videos/bannerBg.mp4'
+import profilePic from '../assets/images/profilePic.jpg';
+import banner from '../assets/images/banner.png';
+import review1 from '../assets/images/review1.jpg';
+import review2 from '../assets/images/review2.jpg';
+import review3 from '../assets/images/review3.jpg';
+import review4 from '../assets/images/review4.jpg';
+import watchVideo from '../assets/videos/bannerBg.mp4';
+import aboutUsBanner from '../assets/images/AboutUsBanner.jpg';
+import step1 from '../assets/images/steps/step1.png';
+import step2 from '../assets/images/steps/step2.png';
+import step3 from '../assets/images/steps/step3.png';
+//client\src\assets\images\steps\step1.png
 export {
     trainerLoader, traineeLoader,
     treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company,
@@ -42,5 +47,7 @@ export {
     categoryimg1, categoryimg2, categoryimg3, categoryimg4, categoryimg5, categoryimg6, categoryimg7, categoryimg8,
     profilePic, banner,
     review1, review2, review3, review4,
-    watchVideo
+    watchVideo,
+    aboutUsBanner,
+    step1, step2, step3,
 }
