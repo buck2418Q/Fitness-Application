@@ -191,8 +191,12 @@ import zoomOutIcon from '../assets/icons/zoom-out.svg';
 import trainerLoader from '../assets/images/trainer-loader.png';
 import traineeLoader from '../assets/images/trainee-loader.png';
 
+
+import trainerCard from '../assets/svgs/trainreCard.svg'
+import trainerCorner from '../assets/svgs/trainerCorner.svg'
 //client\src\assets\images\trainee-loader.png
 export {
+    trainerCard, trainerCorner,
     mapPinIcon,
     archiveIcon,
     arrowDownIcon,

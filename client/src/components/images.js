@@ -35,9 +35,9 @@ import aboutUsBanner from '../assets/images/AboutUsBanner.jpg';
 import step1 from '../assets/images/steps/step1.png';
 import step2 from '../assets/images/steps/step2.png';
 import step3 from '../assets/images/steps/step3.png';
-//client\src\assets\images\steps\step1.png
+import gymTrainer from '../assets/images/gymTrainer.png'
 export {
-    trainerLoader, traineeLoader,
+    trainerLoader, traineeLoader, gymTrainer,
     treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company,
     aboutUs,
     athelete1,

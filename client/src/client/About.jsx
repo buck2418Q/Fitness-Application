@@ -6,6 +6,8 @@ import { NextButton } from "../components/NextButton";
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { gymTrainer } from '../components/images'
+import { trainerCard, trainerCorner } from '../components/icons'
 
 function About() {
 
@@ -140,15 +142,49 @@ function About() {
     }
   ];
 
+  const trainerData = [
+    {
+      TrainerName: "John Doe",
+      TrainerDescription: "Workout Trainer",
+      TrainerImage: gymTrainer,
+      socialMediaLink1: "",
+      socialMediaLink2: "",
+      socialMediaLink3: "",
+    },
+    {
+      TrainerName: "Jane Smith",
+      TrainerDescription: "Yoga Instructor",
+      TrainerImage: gymTrainer,
+      socialMediaLink1: "",
+      socialMediaLink2: "",
+      socialMediaLink3: "",
+    },
+    {
+      TrainerName: "Mike Johnson",
+      TrainerDescription: "Strength Coach",
+      TrainerImage: gymTrainer,
+      socialMediaLink1: "",
+      socialMediaLink2: "",
+      socialMediaLink3: "",
+    },
+    {
+      TrainerName: "Emily Davis",
+      TrainerDescription: "Pilates Expert",
+      TrainerImage: gymTrainer,
+      socialMediaLink1: "",
+      socialMediaLink2: "",
+      socialMediaLink3: "",
+    }
+  ]
+
   return (
     <>
-      {/* <section style={background: aboutUsBanner}>
-        
-</section> */}
+      {/* banner  */}
       <section className="bg-cover bg-center" >
         <img src={aboutUsBanner} alt="" className="w-full" />
       </section>
 
+      {/* Work Process steps  */}
       <section className="py-8 sm:py-16 lg:py-20px-4 sm:px-8 lg:px-32 bg-light text-background dark:bg-background dark:text-light flex flex-col justify-center items-center gap-2 sm:gap-4">
         <motion.p
           whileInView="show"
@@ -157,8 +193,8 @@ function About() {
           variants={fadeIn("", "", 0.3, 0.5)}
           className="text-base sm:text-md lg:text-lg text-center justify-center items-center flex gap-2 text-secondary dark:text-secondlight"
         >
-          <span className="bg-primary h-[2px] rounded-md w-10 inline-block"></span> Work Process{" "}
-          <span className="bg-primary h-[2px] rounded-md w-10 inline-block"></span>
+          <span className="bg-fitnessRed h-[2px] rounded-md w-10 inline-block"></span> Work Process{" "}
+          <span className="bg-fitnessRed h-[2px] rounded-md w-10 inline-block"></span>
         </motion.p>
 
         <motion.h2
@@ -193,7 +229,7 @@ function About() {
         </div>
       </section>
 
-
+      {/* video section  */}
       <section className='w-full h-full border-solid text-center px-4 sm:px-12 md:px-28 lg:px-40 xl:px-60 2xl:px-80 py-10 lg:py-20 text-secondary bg-secondlight dark:bg-secondary dark:text-light flex items-center justify-center'>
         <motion.div
           whileInView="show"
@@ -248,7 +284,7 @@ function About() {
         </motion.div>
       </section>
 
-
+      {/* service  */}
       <section className="py-8  sm:py-16 lg:py-20px-4 sm:px-8 lg:px-32 bg-light text-background  dark:bg-background dark:text-light flex flex-col justify-center items-center gap-2 sm:gap-4">
         <motion.p
           whileInView="show"
@@ -277,19 +313,21 @@ function About() {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeIn("", "", 0.1, 0.2)}
                 key={index}
-                className={`group hover:bg-fitnessRed hover:text-light bg-secondlight dark:bg-secondary p-6 rounded-3xl flex flex-col gap-3 h-fit transition text ease-in-out duration-300 dark:hover:bg-fitnessRed mt-4`}
+                className={`group hover:bg-fitnessRed hover:text-light bg-secondlight dark:bg-secondary  rounded-3xl flex flex-col gap-3 h-fit transition text ease-in-out duration-300 dark:hover:bg-fitnessRed mt-4`}
               >
                 <motion.div
                   whileInView="show"
                   initial="hidden"
                   viewport={{ once: false, amount: 0.2 }}
                   variants={fadeIn("", "", 0.2, 0.4)}
-                  className="group-hover:bg-background dark:group-hover:bg-light dark:group-hover:text-fitnessRed bg-fitnessRed dark:bg-light dark:text-background w-16 h-16 rounded-full relative -top-[56px] left-1 -mb-[60px] flex items-center justify-center border-[6px] text-light  border-light  dark:border-background transition ease-in-out duration-300">
+                  className="group-hover:bg-background dark:group-hover:bg-light dark:group-hover:text-fitnessRed bg-fitnessRed dark:bg-light dark:text-background w-16 h-16 rounded-full relative -top-[36px] left-7 -mb-[60px] flex items-center justify-center border-[6px] text-light z-20 border-light  dark:border-background transition ease-in-out duration-300">
                   <Icon icon={item.serviceIcon} width="28" />
                 </motion.div>
-                <h2 className="text-2xl font-bold">{item.serviceHeading}</h2>
-                <p className="text-background/80 font-medium group-hover:text-light dark:text-light/80">{item.servicePara}</p>
-                <p className="inline-block border-b-1  border-current w-fit cursor-pointer hover:scale-105 text-sm hover:transition hover:ease-in-out hover:duration-300">
+                <img src={trainerCorner} alt="" className="w-20 relative -top-4 -mb-14" />
+
+                <h2 className="mx-8 text-2xl font-bold">{item.serviceHeading}</h2>
+                <p className="mx-8 text-background/80 font-medium group-hover:text-light dark:text-light/80">{item.servicePara}</p>
+                <p className="mx-8 mb-8 inline-block border-b-1  border-current w-fit cursor-pointer hover:scale-105 text-sm hover:transition hover:ease-in-out hover:duration-300">
                   {item.serviceLink}
                   <Icon icon="si:arrow-right-fill" width="24" height="24" className="inline" />
                 </p>
@@ -299,6 +337,108 @@ function About() {
         </div>
 
       </section>
+
+
+
+
+      {/* trainers  */}
+      <section className="py-8  sm:py-16 lg:py-20px-4 sm:px-8 lg:px-32 bg-light text-background  dark:bg-background dark:text-light flex flex-col justify-center items-center">
+        <motion.p
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("", "", 0.3, 0.5)}
+          className="text-base sm:text-md lg:text-lg text-left w-full justify-start items-center flex gap-2 text-secondary dark:text-secondlight uppercase ">
+          our trainers <span className="bg-fitnessRed h-[2px] rounded-md w-10 inline-block"></span>
+        </motion.p>
+        <motion.h2
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("", "", 0.2, 0.5)}
+          className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide fade_appear text-left w-full ">
+          Meet Our Skilled Trainer
+        </motion.h2>
+
+
+        <div className="container mx-auto p-4 -mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-8 lg:gap-16 xl:gap-20 ">
+            {trainerData.map((trainer, index) => (
+              <motion.div
+                whileInView="show"
+                initial="hidden"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeIn("", "", 0.1, 0.2)}
+                key={index}
+                className={`bg-transparent dark:bg-transparent p-1 rounded-3xl flex flex-col  h-fit transition text ease-in-out duration-300 mt-4`}
+              >
+                <div className="relative top-12 flex flex-col items-center">
+                  <motion.img
+                    whileInView="show"
+                    initial="hidden"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={fadeIn("", "", 0.1, 0.2)}
+                    src={trainer.TrainerImage} alt=""
+                    className="w-64 relative top-[226px] -mt-[256px] z-10" />
+                  <div className="relative w-full h-72 px-6">
+                    <div className="h-full w-full bg-background dark:bg-light rounded-t-full  "></div>
+                  </div>
+                </div>
+                <img src={trainerCard} alt="sc" className="w-fit h-fit relative -top-16 -mb-20 z-20" />
+                <div className="bg-secondlight text-center pb-8 rounded-br-xl  rounded-bl-xl borde-0 z-20">
+                  <h2 className="text-2xl font-bold dark:text-background relative -top-6 ">{trainer.TrainerName}</h2>
+                  <p className="text-background/80 font-medium text-sm relative -top-6 -mb-6">{trainer.TrainerDescription}</p>
+                  <div className=" flex gap-1 w-full items-center justify-center">
+                    <motion.div
+                      whileInView="show"
+                      initial="hidden"
+                      viewport={{ once: false, amount: 0.2 }}
+                      variants={fadeIn("", "", 0.2, 0.4)}
+                      className="dark:hover:bg-light bg-secondary dark:bg-light dark:text-background dark:hover:text-light w-12 h-12 rounded-full relative bottom-1 -mb-[70px] flex items-center justify-center border-[4px] text-light border-light dark:border-background transition ease-in-out duration-400
+    hover:bg-gradient-to-tr hover:from-purple-500 hover:via-pink-500 hover:to-red-500 cursor-pointer"
+                    >
+                      <Icon icon="line-md:instagram" width="20" className="hover:scale-125 transition ease-in-out duration-300" />
+                    </motion.div>
+
+                    <motion.div
+                      whileInView="show"
+                      initial="hidden"
+                      viewport={{ once: false, amount: 0.2 }}
+                      variants={fadeIn("", "", 0.2, 0.4)}
+                      className="bg-secondary dark:bg-light dark:text-background dark:hover:text-light w-12 h-12 rounded-full relative bottom-1 -mb-[70px] flex items-center justify-center border-[4px] text-light border-light dark:border-background transition ease-in-out duration-300
+    hover:bg-gradient-to-tr hover:from-blue hover:via-indigo-500 hover:to-purple-500 cursor-pointer"
+                    >
+                      <Icon icon="line-md:facebook" width="20" className="hover:scale-125 transition ease-in-out duration-300" />
+                    </motion.div>
+
+                    <motion.div
+                      whileInView="show"
+                      initial="hidden"
+                      viewport={{ once: false, amount: 0.2 }}
+                      variants={fadeIn("", "", 0.2, 0.4)}
+                      className="bg-secondary dark:bg-light dark:text-background dark:hover:text-light w-12 h-12 rounded-full relative bottom-1 -mb-[70px] flex items-center justify-center border-[4px] text-light border-light dark:border-background transition ease-in-out duration-300
+    hover:bg-gradient-to-tr hover:from-blue hover:via-cyan-600 hover:to-cyan-600 cursor-pointer "
+                    >
+                      <Icon icon="line-md:twitter" width="20" className="hover:scale-125 transition ease-in-out duration-300" />
+                    </motion.div>
+
+
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+      </section>
+
+      
+
+
+
+{/* tertimonial  */}
+
+
 
 
       {/* marquee  */}
