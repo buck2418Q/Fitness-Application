@@ -339,6 +339,28 @@ function About() {
       </section>
 
 
+      {/* marquee  */}
+      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondlight dark:bg-secondary overflow-hidden">
+        <motion.div
+          whileInView="show"
+          initial="hidden"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={fadeIn("left", "", 0.4, 1)}
+          className="marquee-container relative ">
+          <div className="marquee-content flex gap-16 animate-marquee">
+
+            {companies.map((company, index) => (
+              <div
+                key={index}
+                className="w-auto h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 flex-shrink-0 cursor-pointer flex items-center justify-center gap-4 hover:grayscale-0 grayscale transition ease-in-out duration-300"
+              >
+                <img src={company.image} alt="" className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20" />
+                <p className="text-lg sm: md:text-xl lg:text-2xl xl:text-3xl text-background dark:text-light">{company.CompanyName}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
 
 
       {/* trainers  */}
@@ -362,7 +384,7 @@ function About() {
 
 
         <div className="container mx-auto p-4 -mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-8 lg:gap-16 xl:gap-20 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-8 lg:gap-16 xl:gap-20">
             {trainerData.map((trainer, index) => (
               <motion.div
                 whileInView="show"
@@ -370,7 +392,7 @@ function About() {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeIn("", "", 0.1, 0.2)}
                 key={index}
-                className={`bg-transparent dark:bg-transparent p-1 rounded-3xl flex flex-col  h-fit transition text ease-in-out duration-300 mt-4`}
+                className={`group bg-transparent dark:bg-transparent p-1 rounded-3xl flex flex-col h-fit transition text ease-in-out duration-300 mt-4 w-full max-w-[300px]`} // fixed width here
               >
                 <div className="relative top-12 flex flex-col items-center">
                   <motion.img
@@ -379,23 +401,24 @@ function About() {
                     viewport={{ once: true, amount: 0.2 }}
                     variants={fadeIn("", "", 0.1, 0.2)}
                     src={trainer.TrainerImage} alt=""
-                    className="w-64 relative top-[226px] -mt-[256px] z-10" />
-                  <div className="relative w-full h-72 px-6">
-                    <div className="h-full w-full bg-background dark:bg-light rounded-t-full  "></div>
+                    className="w-64 relative top-[276px] -mt-[256px] z-10" />
+                  <div className="relative w-full h-80 px-6">
+                    <div className="group-hover:bg-fitnessRed h-full w-full bg-background dark:bg-light rounded-t-full transition ease-in-out duration-300"></div>
                   </div>
                 </div>
                 <img src={trainerCard} alt="sc" className="w-fit h-fit relative -top-16 -mb-20 z-20" />
-                <div className="bg-secondlight text-center pb-8 rounded-br-xl  rounded-bl-xl borde-0 z-20">
-                  <h2 className="text-2xl font-bold dark:text-background relative -top-6 ">{trainer.TrainerName}</h2>
+                <div className="bg-secondlight text-center pb-8 rounded-br-xl rounded-bl-xl borde-0 z-20">
+                  <h2 className="text-2xl font-bold dark:text-background relative -top-6">{trainer.TrainerName}</h2>
                   <p className="text-background/80 font-medium text-sm relative -top-6 -mb-6">{trainer.TrainerDescription}</p>
-                  <div className=" flex gap-1 w-full items-center justify-center">
+                  <div className="flex gap-1 w-full items-center justify-center">
+                    {/* Social icons */}
                     <motion.div
                       whileInView="show"
                       initial="hidden"
                       viewport={{ once: false, amount: 0.2 }}
                       variants={fadeIn("", "", 0.2, 0.4)}
                       className="dark:hover:bg-light bg-secondary dark:bg-light dark:text-background dark:hover:text-light w-12 h-12 rounded-full relative bottom-1 -mb-[70px] flex items-center justify-center border-[4px] text-light border-light dark:border-background transition ease-in-out duration-400
-    hover:bg-gradient-to-tr hover:from-purple-500 hover:via-pink-500 hover:to-red-500 cursor-pointer"
+            hover:bg-gradient-to-tr hover:from-purple-500 hover:via-pink-500 hover:to-red-500 cursor-pointer"
                     >
                       <Icon icon="line-md:instagram" width="20" className="hover:scale-125 transition ease-in-out duration-300" />
                     </motion.div>
@@ -406,7 +429,7 @@ function About() {
                       viewport={{ once: false, amount: 0.2 }}
                       variants={fadeIn("", "", 0.2, 0.4)}
                       className="bg-secondary dark:bg-light dark:text-background dark:hover:text-light w-12 h-12 rounded-full relative bottom-1 -mb-[70px] flex items-center justify-center border-[4px] text-light border-light dark:border-background transition ease-in-out duration-300
-    hover:bg-gradient-to-tr hover:from-blue hover:via-indigo-500 hover:to-purple-500 cursor-pointer"
+            hover:bg-gradient-to-tr hover:from-blue hover:via-indigo-500 hover:to-purple-500 cursor-pointer"
                     >
                       <Icon icon="line-md:facebook" width="20" className="hover:scale-125 transition ease-in-out duration-300" />
                     </motion.div>
@@ -417,52 +440,31 @@ function About() {
                       viewport={{ once: false, amount: 0.2 }}
                       variants={fadeIn("", "", 0.2, 0.4)}
                       className="bg-secondary dark:bg-light dark:text-background dark:hover:text-light w-12 h-12 rounded-full relative bottom-1 -mb-[70px] flex items-center justify-center border-[4px] text-light border-light dark:border-background transition ease-in-out duration-300
-    hover:bg-gradient-to-tr hover:from-blue hover:via-cyan-600 hover:to-cyan-600 cursor-pointer "
+            hover:bg-gradient-to-tr hover:from-blue hover:via-cyan-600 hover:to-cyan-600 cursor-pointer"
                     >
                       <Icon icon="line-md:twitter" width="20" className="hover:scale-125 transition ease-in-out duration-300" />
                     </motion.div>
-
-
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
 
       </section>
 
-      
-
-
-
-{/* tertimonial  */}
 
 
 
 
-      {/* marquee  */}
-      <section className="py-1 sm:py-2 md:py-2 lg:py-4 xl:py-6 px-2 sm:px-10 md:px-18 lg:px-24 xl:px-32 bg-secondlight dark:bg-background overflow-hidden">
-        <motion.div
-          whileInView="show"
-          initial="hidden"
-          viewport={{ once: false, amount: 0.2 }}
-          variants={fadeIn("left", "", 0.4, 1)}
-          className="marquee-container relative ">
-          <div className="marquee-content flex gap-16 animate-marquee">
 
-            {companies.map((company, index) => (
-              <div
-                key={index}
-                className="w-auto h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 flex-shrink-0 cursor-pointer flex items-center justify-center gap-4 hover:grayscale-0 grayscale transition ease-in-out duration-300"
-              >
-                <img src={company.image} alt="" className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20" />
-                <p className="text-lg sm: md:text-xl lg:text-2xl xl:text-3xl text-background dark:text-light">{company.CompanyName}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
+      {/* tertimonials  */}
+
+
+
+
+
 
     </>
   )

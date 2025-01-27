@@ -35,7 +35,7 @@ function Navbar() {
         { to: 'about', label: 'About' },
         { to: 'trainers', label: 'Trainers' },
         { to: 'service', label: 'Service' },
-        { to: 'plans', label: 'Plans' },
+        { to: 'shop', label: 'Shop' },
     ];
 
     return (

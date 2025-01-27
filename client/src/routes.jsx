@@ -6,7 +6,7 @@ import ProtectedRoute from './authentication/ProtectedRoute';
 const Home = React.lazy(() => import('./client/Home'));
 const Trainers = React.lazy(() => import('./client/Trainers'));
 const Service = React.lazy(() => import('./client/Service'));
-const Plans = React.lazy(() => import('./client/Plans'));
+const Shop = React.lazy(() => import('./client/Shop'));
 const About = React.lazy(() => import('./client/About'));
 const Loader = React.lazy(() => import('./components/Loader')); // Check if Loader works fine
 const Login = React.lazy(() => import('./authentication/Login'));
@@ -46,7 +46,7 @@ function AppRoutes() {
                 { path: "about", element: <About /> },
                 { path: "trainers", element: <Trainers /> },
                 { path: "service", element: <Service /> },
-                { path: "plans", element: <Plans /> },
+                { path: "shop", element: <Shop /> },
                 // { path: "signup", element: <Signup /> },
             ]
         },

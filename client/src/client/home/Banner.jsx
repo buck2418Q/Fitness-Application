@@ -8,7 +8,7 @@ function Banner() {
     const navigate = useNavigate()
 
     const lognClick = () => {
-        navigate('/login')
+        navigate('/shop')
     }
     return (
         <>

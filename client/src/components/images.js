@@ -35,8 +35,13 @@ import aboutUsBanner from '../assets/images/AboutUsBanner.jpg';
 import step1 from '../assets/images/steps/step1.png';
 import step2 from '../assets/images/steps/step2.png';
 import step3 from '../assets/images/steps/step3.png';
-import gymTrainer from '../assets/images/gymTrainer.png'
+import gymTrainer from '../assets/images/gymTrainer.png';
+import product1 from '../assets/images/products/product1.png';
+import product2 from '../assets/images/products/product2.png';
+import product3 from '../assets/images/products/product3.png';
+import product4 from '../assets/images/products/product4.png';
 export {
+    product1, product2, product3, product4,
     trainerLoader, traineeLoader, gymTrainer,
     treeCompany, cocoCompany, leafCompany, coffeeCompany, mixlrCompany, gym1Company, gym2Company,
     aboutUs,
