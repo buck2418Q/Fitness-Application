@@ -45,11 +45,7 @@ function Shop() {
 
 
       {/* Product Cards */}
-      <motion.div
-        whileInView="show"
-        initial="hidden"
-        viewport={{ once: false, amount: 0.2 }}
-        variants={fadeIn("", "", 0.2, 0.4)}
+      <div
         className="px-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 w-full ">
         {products.map((product, index) => (
           <div
@@ -80,7 +76,7 @@ function Shop() {
             </div>
           </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }
