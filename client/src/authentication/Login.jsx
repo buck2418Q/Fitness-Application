@@ -14,6 +14,7 @@ import { NextButton } from "../components/NextButton";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { Divider, } from "@nextui-org/react";
 import FacebookLogin from "./FacebookLogin";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Login() {
@@ -211,7 +212,7 @@ function Login() {
                   onChange={handleChange}
                 />
                 <button type="button" onClick={toggleEye} className="absolute right-3 top-4">
-                  <img
+                  <LazyLoadImage
                     src={viewType === 'password' ? eyeIcon : eyeOffIcon}
                     alt={viewType === 'password' ? 'Show Password' : 'Hide Password'}
                     className={`transition-opacity duration-900 ease-in-out ${viewType === 'password' ? 'opacity-100' : 'opacity-0'} ${viewType === 'text' ? 'opacity-100' : 'opacity-0'}`}

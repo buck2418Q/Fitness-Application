@@ -5,7 +5,7 @@ import logo from "../../assets/logos/logo.png";
 import { chevronUpIcon, menuIcon, xIcon } from "../../components/icons";
 import { RoutesData } from "./TrainerRoutesData";
 import { Icon } from "@iconify/react/dist/iconify.js";
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 const SideMenu = ({ RoutesData, toggleSideMenu }) => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
@@ -22,14 +22,14 @@ const SideMenu = ({ RoutesData, toggleSideMenu }) => {
         <div className={`border-1 border-background/20 dark:border-light/10 shadow-xl sm:m-1 rounded-lg md:block  h-[calc(100vh-96px)] overflow-auto max-w-full text-light dark:text-light  z-40 bg-light dark:bg-secondary ${collapsed ? 'w-20' : 'w-64'} transition-all duration-300 overflow-x-hidden`}>
             <div className='flex justify-between items-center'>
                 <h2 className="flex mb-4 mt-2 items-center justify-center ">
-                    <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
+                    <LazyLoadImage src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
                 </h2>
                 <button
                     className={`text-background py-4 ${collapsed ? 'pr-0' : 'pr-4'}`}
                     onClick={toggleCollapse}
                 >
                     {collapsed ?
-                        <img src={xIcon} alt="" /> : <img src={menuIcon} alt="" />}
+                        <LazyLoadImage src={xIcon} alt="" /> : <LazyLoadImage src={menuIcon} alt="" />}
                 </button>
             </div>
             <ul className={`transition-all duration-200 ease-in-out`}>
@@ -48,7 +48,7 @@ const SideMenu = ({ RoutesData, toggleSideMenu }) => {
                             </span>
                             {menu.children && (
                                 <span className={`${openMenu === index ? 'rotate-180' : ''} ${collapsed ? 'hidden' : 'ml-auto transition-transform duration-200'}`}>
-                                    <img src={chevronUpIcon} alt="" className='opacity-50' />
+                                    <LazyLoadImage src={chevronUpIcon} alt="" className='opacity-50' />
                                 </span>
                             )}
                         </Link>

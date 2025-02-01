@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from '../../assets/utils/motion.js';
 import { useEffect, useState } from 'react';
 import { NextButton } from '../../components/NextButton.jsx';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 function JoinToday() {
     const [isMonth, setIsMonth] = useState(false);
     const [inView, setInView] = useState(false);
@@ -84,7 +84,7 @@ function JoinToday() {
                         <ul className='  mt-8 mb-12'>
                             {Array(7).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
                                 <li key={i} className='flex items-center my-2'>
-                                    <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
+                                    <LazyLoadImage src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
                                 </li>
                             ))}
                         </ul>
@@ -114,7 +114,7 @@ function JoinToday() {
                         <ul className='  mt-8 mb-12'>
                             {Array(5).fill('Lorem ipsum dolor sit amet,').map((text, i) => (
                                 <li key={i} className='flex items-center my-2'>
-                                    <img src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
+                                    <LazyLoadImage src={check} alt="check icon" className='mr-2 w-4 h-4' /> {text}
                                 </li>
                             ))}
                         </ul>

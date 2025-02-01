@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import profilePic from '../assets/images/profilePic.jpg'
 import profileBanner from '../assets/images/profileBanner.jpg'
 import { useState } from "react";
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 function Profile() {
   const userName = localStorage.getItem('userName');
@@ -67,8 +67,8 @@ function Profile() {
         <motion.div initial='hidden' animate='show' variants={fadeIn("right", "spring", .1, 0.5)} className="bg-light dark:bg-secondary text-secondary dark:text-light rounded-lg shadow-lg w-1/4 border border-gray-200 " onClick={(e) => e.stopPropagation()}>
 
           <div className='p-1 flex flex-col items-center justify-center '>
-            <img src={profileBanner} alt="" className='rounded-lg w-full h-44 object-cover' />
-            <img src={profilePic} alt="" className='rounded-full w-32 top-[-60px]  relative shadow-black border-white border-3' />
+            <LazyLoadImage src={profileBanner} alt="" className='rounded-lg w-full h-44 object-cover' />
+            <LazyLoadImage src={profilePic} alt="" className='rounded-full w-32 top-[-60px]  relative shadow-black border-white border-3' />
 
           </div>
 

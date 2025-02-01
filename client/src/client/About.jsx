@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { gymTrainer } from '../components/images'
 import { trainerCard, trainerCorner } from '../components/icons'
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 function About() {
 
   const companies = [
@@ -181,7 +181,7 @@ function About() {
     <>
       {/* banner  */}
       <section className="bg-cover bg-center" >
-        <img src={aboutUsBanner} alt="" className="w-full" />
+        <LazyLoadImage src={aboutUsBanner} alt="" className="w-full" />
       </section>
 
       {/* Work Process steps  */}
@@ -214,7 +214,7 @@ function About() {
               className="w-full md:w-4/12 lg:w-4/12 xl:w-3/12 flex flex-row md:flex-col gap-4 items-center justify-center my-4"
             >
               <div className="bg-fitnessRed w-[40%] md:w-[70%] rounded-full aspect-square flex items-start justify-center">
-                <img
+                <LazyLoadImage
                   src={step.stepImage}
                   alt={step.stepHeading}
                   className="w-[95%] top-[-4px] relative rounded-full"
@@ -230,7 +230,7 @@ function About() {
       </section>
 
       {/* video section  */}
-      <section className='w-full h-full border-solid text-center px-4 sm:px-12 md:px-28 lg:px-40 xl:px-60 2xl:px-80 py-10 lg:py-20 text-secondary bg-secondlight dark:bg-secondary dark:text-light flex items-center justify-center'>
+      <section className='w-full h-full border-solid text-center px-4 sm:px-12 md:px-28 lg:px-40 xl:px-60 2xl:px-80 py-4 lg:py-8 text-secondary bg-light dark:bg-background dark:text-light flex items-center justify-center'>
         <motion.div
           whileInView="show"
           initial="hidden"
@@ -323,7 +323,7 @@ function About() {
                   className="group-hover:bg-background dark:group-hover:bg-light dark:group-hover:text-fitnessRed bg-fitnessRed dark:bg-light dark:text-background w-16 h-16 rounded-full relative -top-[36px] left-7 -mb-[60px] flex items-center justify-center border-[6px] text-light z-20 border-light  dark:border-background transition ease-in-out duration-300">
                   <Icon icon={item.serviceIcon} width="28" />
                 </motion.div>
-                <img src={trainerCorner} alt="" className="w-20 relative -top-4 -mb-14" />
+                <LazyLoadImage src={trainerCorner} alt="" className="w-20 relative -top-4 -mb-14" />
 
                 <h2 className="mx-8 text-2xl font-bold">{item.serviceHeading}</h2>
                 <p className="mx-8 text-background/80 font-medium group-hover:text-light dark:text-light/80">{item.servicePara}</p>
@@ -354,7 +354,7 @@ function About() {
                 key={index}
                 className="w-auto h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 flex-shrink-0 cursor-pointer flex items-center justify-center gap-4 hover:grayscale-0 grayscale transition ease-in-out duration-300"
               >
-                <img src={company.image} alt="" className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20" />
+                <LazyLoadImage src={company.image} alt="" className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-20" />
                 <p className="text-lg sm: md:text-xl lg:text-2xl xl:text-3xl text-background dark:text-light">{company.CompanyName}</p>
               </div>
             ))}
@@ -406,7 +406,7 @@ function About() {
                     <div className="group-hover:bg-fitnessRed h-full w-full bg-background dark:bg-light rounded-t-full transition ease-in-out duration-300"></div>
                   </div>
                 </div>
-                <img src={trainerCard} alt="sc" className="w-fit h-fit relative -top-16 -mb-20 z-20" />
+                <LazyLoadImage src={trainerCard} alt="sc" className="w-fit h-fit relative -top-16 -mb-20 z-20" />
                 <div className="bg-secondlight text-center pb-8 rounded-br-xl rounded-bl-xl borde-0 z-20">
                   <h2 className="text-2xl font-bold dark:text-background relative -top-6">{trainer.TrainerName}</h2>
                   <p className="text-background/80 font-medium text-sm relative -top-6 -mb-6">{trainer.TrainerDescription}</p>

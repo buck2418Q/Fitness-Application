@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import { NextButton } from "../../components/NextButton";
 import { fadeIn } from "../../assets/utils/motion";
 import { Icon } from "@iconify/react";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 const SideMenu = ({ RoutesData, toggleSideMenu }) => {
     const [openMenu, setOpenMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
@@ -62,14 +63,14 @@ const SideMenu = ({ RoutesData, toggleSideMenu }) => {
                 {/* ${showSide ? 'block absolute' : 'hidden'}` */}
                 <div className='flex justify-between items-center'>
                     <h2 className="flex mb-4 mt-2 items-center justify-center ">
-                        <img src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
+                        <LazyLoadImage src={logo} alt="logo" className={`${collapsed ? 'h-8 w-24' : 'h-16'}`} />
                     </h2>
                     <button
                         className={`text-background py-4 ${collapsed ? 'pr-0' : 'pr-4'}`}
                         onClick={toggleCollapse}
                     >
                         {collapsed ?
-                            <img src={xIcon} alt="" /> : <img src={menuIcon} alt="" />}
+                            <LazyLoadImage src={xIcon} alt="" /> : <LazyLoadImage src={menuIcon} alt="" />}
                     </button>
                 </div>
                 <div className="p-2 text-background dark:text-light">
@@ -110,7 +111,7 @@ const SideMenu = ({ RoutesData, toggleSideMenu }) => {
                                 </span>
                                 {menu.children && (
                                     <span className={`${openMenu === index ? 'rotate-180' : ''} ${collapsed ? 'hidden' : 'ml-auto transition-transform duration-200'}`}>
-                                        <img src={chevronUpIcon} alt="" className='opacity-50' />
+                                        <LazyLoadImage src={chevronUpIcon} alt="" className='opacity-50' />
                                     </span>
                                 )}
                             </Link>

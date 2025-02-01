@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { NextButton } from '../components/NextButton'
 import { serviceBg1, serviceBg2 } from "../components/images";
 import { useNavigate } from 'react-router-dom'
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 function Service() {
   const navigate = useNavigate()
   const shopClick = () => {
@@ -44,7 +44,7 @@ function Service() {
           variants={fadeIn("", "", 0.3, 0.5)}
           className=" text-secondlight w-full lg:w-[55%] h-[90%] hidden md:block"
         >
-          <img src={serviceBg1} alt="Background Image" className="w-full h-full object-cover hidden md:block" />
+          <LazyLoadImage src={serviceBg1} alt="Background Image" className="w-full h-full object-cover hidden md:block" />
         </motion.div>
       </section>
 
@@ -59,7 +59,7 @@ function Service() {
           variants={fadeIn("", "", 0.3, 0.5)}
           className="text-base sm:text-lg lg:text-xl text-right text-secondlight w-full md:w-[60%] h-[90%]"
         >
-          <img src={serviceBg2} alt="Cardio Equipment Image" className="h-full object-cover hidden md:block" />
+          <LazyLoadImage src={serviceBg2} alt="Cardio Equipment Image" className="h-full object-cover hidden md:block" />
         </motion.div>
 
         {/* Right Column (Text + CTA) */}

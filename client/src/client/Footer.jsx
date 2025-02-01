@@ -1,6 +1,6 @@
 //"client\src\components\icons.js"
 import { phoneIcon, mailIcon, mapPinIcon } from '../../src/components/icons'
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 function Footer() {
   return (
     <>
@@ -47,19 +47,19 @@ function Footer() {
             <h3 className="font-bold mb-2 ">Get in touch</h3>
             <ul className="list-none p-0">
               <li className="hover:text-light dark:hover:text-light cursor-pointer">
-                <img src={phoneIcon} className='inline w-5 mr-2 text-sm' />
+                <LazyLoadImage src={phoneIcon} className='inline w-5 mr-2 text-sm' />
                 1234564578
               </li>
               <li className="hover:text-background dark:hover:text-light cursor-pointer">
-                <img src={mailIcon} className='inline w-5 mr-2 text-sm' />
+                <LazyLoadImage src={mailIcon} className='inline w-5 mr-2 text-sm' />
                 mail@fitness360
               </li>
               <li className="hover:text-background dark:hover:text-light cursor-pointer">
-                <img src={phoneIcon} className='inline w-5 mr-2 text-sm' />
+                <LazyLoadImage src={phoneIcon} className='inline w-5 mr-2 text-sm' />
                 Book Demo
               </li>
               <li className="hover:text-background dark:hover:text-light cursor-pointer">
-                <img src={mapPinIcon} className='inline w-5 mr-2 text-sm' />
+                <LazyLoadImage src={mapPinIcon} className='inline w-5 mr-2 text-sm' />
                 Chandigarh
               </li>
             </ul>

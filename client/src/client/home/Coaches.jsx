@@ -9,6 +9,7 @@ import { ScrollShadow } from '@nextui-org/react';
 import { review1, review2, review3, review4 } from '../../components/images'
 import { Icon } from "@iconify/react";
 import { banner } from '../../components/images'
+
 const reviews = [
     { id: 2, userName: 'John Smith', image: review2, stars: 4, reviewTitle: 'Amazing Experience', reviewContent: 'The best personal training experience had! The trainer really focused on my goals and I saw great results in just a few weeks. Highly recommend!' },
     { id: 3, userName: 'Emily Clark', image: review3, stars: 3, reviewTitle: 'Decent but Room for Improvement', reviewContent: 'The training sessions were good, but there was not much variety in the workouts. A bit more creativity would have made it more enjoyable.' },
@@ -46,7 +47,7 @@ const ReviewListItem = ({ userName, image, stars, reviewTitle, reviewContent }) 
                 <div className='flex justify-between items-center w-80'>
                     <div className=''>
                         <span className='flex gap-2 '>
-                            <img src={image} alt={userName} className="w-[52px] rounded-full aspect-square object-cover cursor-pointer" />
+                            <LazyLoadImage src={image} alt={userName} className="w-[52px] rounded-full aspect-square object-cover cursor-pointer" />
                             <span className='flex flex-col gap-1'>
                                 <p className="">{userName}</p>
                                 <p className='text-xs'>20, Jan 2025</p>

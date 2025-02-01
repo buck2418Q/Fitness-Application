@@ -9,6 +9,7 @@ import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
 import ThemeToggle from "../../theme/ThemeToggle";
 import { Icon } from "@iconify/react";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 const imgBaseUrl = '';
 
 const TopMenu = ({ RoutesData, toggleSideMenu }) => {
@@ -89,7 +90,7 @@ const TopMenu = ({ RoutesData, toggleSideMenu }) => {
                 </button>
                 <label className="relative hidden sm:block">
                     <span className="absolute inset-y-0 left-0 flex items-center pl-2" onClick={searchClick}>
-                        <img src={searchIcon} alt="" className='w-5 opacity-55' />
+                        <LazyLoadImage src={searchIcon} alt="" className='w-5 opacity-55' />
                     </span>
                     <input
                         className=" placeholder:italic placeholder:text-slate-400 block border border-slate-300 rounded-md py-2 pl-9 pr-3 focus:outline-none focus:border-gray-300 focus:ring-gray-300 focus:ring-1 sm:text-sm shadow-sm w-72 transition-width duration-300 ease-in-out focus:w-[300px] "
@@ -100,10 +101,10 @@ const TopMenu = ({ RoutesData, toggleSideMenu }) => {
 
                     <ThemeToggle />
                     <span className="h-5 w-5">
-                        <img src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
+                        <LazyLoadImage src={bellIcon} className='shadow-2xl h-5 w-5 hover:shadow-2xl relative ' />
                     </span>
                     <span className="w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center hover:shadow-xl">
-                        <img src={imgBaseUrl + profilePicture} alt="User" className='object-cover w-12 h-12 border rounded-full cursor-pointer' onClick={toggleProfileModal} />
+                        <LazyLoadImage src={imgBaseUrl + profilePicture} alt="User" className='object-cover w-12 h-12 border rounded-full cursor-pointer' onClick={toggleProfileModal} />
                     </span>
                 </div>
             </motion.div>
@@ -116,8 +117,8 @@ const TopMenu = ({ RoutesData, toggleSideMenu }) => {
                     <motion.div initial='hidden' animate='show' variants={fadeIn("left", "spring", .1, 0.5)} className="bg-light dark:bg-background rounded-lg shadow-lg w-72 border  top-20 absolute right-8 h-[350px] border-background/50 dark:border-light/50" onClick={(e) => e.stopPropagation()}>
 
                         <div className='p-1 flex flex-col items-center justify-center '>
-                            <img src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
-                            <img src={imgBaseUrl + profilePicture} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover bg-gradient-to-tr from-background to-secondary relative shadow-black border-white border-3' />
+                            <LazyLoadImage src={profileBanner} alt="" className='rounded-lg w-full h-40 object-cover' />
+                            <LazyLoadImage src={imgBaseUrl + profilePicture} alt="" className='rounded-full w-24 h-24 top-[-48px] object-cover bg-gradient-to-tr from-background to-secondary relative shadow-black border-white border-3' />
 
                         </div>
 

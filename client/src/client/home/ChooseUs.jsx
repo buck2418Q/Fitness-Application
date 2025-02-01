@@ -9,7 +9,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { motion } from "framer-motion";
 import { fadeIn } from "../../assets/utils/motion";
 
-
 const cardData = [
     {
         imgSrc: glove,
@@ -64,7 +63,7 @@ function ChooseUs() {
                                 key={index}
                                 className="m-4 flex ltr_appear">
                                 <div className="mx-4 my-2 p-2 rounded-full h-fit ">
-                                    <img src={card.imgSrc} alt={card.title} className="w-12 aspect-square" />
+                                    <LazyLoadImage src={card.imgSrc} alt={card.title} className="w-12 aspect-square" />
                                 </div>
                                 <div className="h-fit">
                                     <h6 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">{card.title}</h6>

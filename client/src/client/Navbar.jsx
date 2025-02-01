@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { fadeIn } from '../assets/utils/motion.js';
 import { NextButton } from '../components/NextButton';
 import ThemeToggle from '../theme/ThemeToggle.jsx';
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
@@ -39,15 +40,15 @@ function Navbar() {
     ];
 
     return (
-        <nav className=" py-2 bg-gradient-to-tr from-light from-10% via-secondlight to-light  dark:from-background dark:via-secondary dark:to-background h-[74px]">
+        <nav className="z-50 sticky top-0 py-1 md:py-2 bg-gradient-to-tr from-light from-10% via-secondlight to-light  dark:from-background dark:via-secondary dark:to-background md:h-[74px]">
             {/* <nav className="py-2 bg-gradient-to-t from-secondary to-background"> */}
-            <div className=' top-2 left-0 w-full px-4 z-10'>
+            <div className=' top-2 left-0 w-full px-1 md:px-4 z-10'>
                 <div
-                    className="rounded-xl p-2 flex justify-between  bg-background/50 dark:bg-background/90 "
+                    className="rounded-xl p-2 flex justify-between  bg-background/50 dark:bg-background/90 border border-background/20 dark:border-light/10"
                 // style={{ backgroundColor: 'rgba(0, 0, 0, .4)' }}
                 >
                     {/* Logo */}
-                    <img src={logo} alt="logo" className="h-10" />
+                    <LazyLoadImage src={logo} alt="logo" className="h-10" />
 
                     {/* Desktop Menu */}
                     <div className={`md:flex items-center gap-6 hidden md:visible z-10 flex-col md:flex-row`}>

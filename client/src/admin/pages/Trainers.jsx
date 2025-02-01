@@ -10,6 +10,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { motion } from 'framer-motion';
 import { fadeIn } from "../../assets/utils/motion";
 import { NextButton } from "../../components/NextButton";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 const imgBaseUrl = '';
 function Trainers() {
 
@@ -44,7 +45,7 @@ function Trainers() {
         {
             field: "profilePicture", headerName: "Profile Picture",
             cellRenderer: (params) => (
-                <img
+                <LazyLoadImage
                     src={imgBaseUrl + params.value}
                     alt="Profile"
                     style={{ width: '50px', borderRadius: '50%' }}

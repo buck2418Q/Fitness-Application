@@ -2,6 +2,7 @@ import { fadeIn } from "../assets/utils/motion";
 import { motion } from "framer-motion";
 import { product1, product2, product3, product4 } from '../components/images'
 import { NextButton } from "../components/NextButton";
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 function Shop() {
 
   const products = [
@@ -52,7 +53,7 @@ function Shop() {
             key={index}
             className="bg-secondlight dark:bg-black/60 dark:border-secondlight/5 border-1 border-secondary/5  rounded-xl p-4 flex flex-col items-center">
             <div className="bg-light dark:bg-secondary/80 border-1 border-background/10 dark:border-secondlight/5 rounded-xl p-2 h-52 overflow-hidden flex items-center justify-center">
-              <img
+              <LazyLoadImage
                 src={product.image}
                 alt={product.name}
                 className="w-full hover:scale-110 object-cover rounded-md mb-4 transition ease-in-out duration-300"

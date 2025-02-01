@@ -8,7 +8,7 @@ import { trainer4, } from "../components/images";
 import { useEffect, useState } from "react";
 import { knowAllTrainers } from "../services/homeService/HomeService";
 import Loader from "../components/Loader";
-
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 function Trainers() {
 
@@ -111,17 +111,17 @@ function Trainers() {
                     radius="lg"
                     size="sm"
                   >
-                    <img src={instagramIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                    <LazyLoadImage src={instagramIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
                       color="default"
                       radius="lg"
                       size="sm"
                       onClick={() => onSmClick(trainer.instaId)} />
-                    <img src={twitterIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                    <LazyLoadImage src={twitterIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
                       color="default"
                       radius="lg"
                       size="sm"
                       onClick={() => onSmClick(trainer.twitter)} />
-                    <img src={facebookIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
+                    <LazyLoadImage src={facebookIcon} className="text-tiny text-white hover:cursor-pointer bg-secondary hover:bg-primary p-1 rounded-full transition ease-in-out duration-800"
                       color="default"
                       radius="lg"
                       size="sm"
