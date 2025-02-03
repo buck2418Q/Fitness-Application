@@ -15,6 +15,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { Divider, } from "@nextui-org/react";
 import FacebookLogin from "./FacebookLogin";
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import AnimatedBackground from "../components/AnimatedBackground";
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Login() {
@@ -170,7 +171,7 @@ function Login() {
       <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
         <Loader />
       </div>
-
+      {/* <AnimatedBackground /> */}
       <div className="flex items-center justify-center min-h-screen  bg-gradient-to-br from-light to-secondlight  dark:from-background dark:to-secondary">
         <motion.div
           whileInView="show"
@@ -178,7 +179,7 @@ function Login() {
           viewport={{ once: false, amount: 0.2 }}
           variants={fadeIn("", "", 0.2, 0.4)}
 
-          className="flex w-full max-w-sm flex-col gap-4 rounded-large border-background border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20  text-background dark:text-light dark:border-light bg-gradient-to-tl from-light to-secondlight dark:from-secondary dark:via-background dark:to-background ">
+          className="flex w-full max-w-sm flex-col gap-4 rounded-large border-background/40 border-[1px] p-2 shadow-2xl opacity-35  shadow-gray-500/20  text-background dark:text-light dark:border-light/30 bg-gradient-to-tl from-light to-secondlight dark:from-secondary dark:via-background dark:to-background z-30">
 
           <div className="flex flex-col items-center pb-4">
             {/* <AcmeIcon size={60} /> */}
