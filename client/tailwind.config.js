@@ -21,7 +21,7 @@ export default {
         primary: "#16b650",    // Green 
         "hover-primary": "#13a048", // Slightly darker green for hover effects
         blue: "#0064d7",
-        fitnessRed:"#f41e1e"
+        fitnessRed: "#f41e1e" //red
       },
       backgroundImage: {
         'callbanner': "url('./src/assets/images/call-banner.png')",
@@ -45,6 +45,13 @@ export default {
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
+        orbit: {
+          '0%': { transform: 'rotate(0deg) translateX(200px) rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg) translateX(200px) rotate(-360deg)' },
+        },
+      },
+      animation: {
+        orbit: 'orbit linear infinite',
       },
     },
   },
