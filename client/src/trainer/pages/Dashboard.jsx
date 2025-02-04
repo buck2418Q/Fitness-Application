@@ -28,7 +28,7 @@ function Dashboard() {
                 </div>
               </CardBody>
             </Card>
-            <p className="dark:text-background">Total Trainers: 50</p>
+            <p className="dark:text-background">Total Workouts: 50</p>
           </div>
           <motion.img
             initial='hidden'

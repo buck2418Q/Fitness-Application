@@ -246,10 +246,10 @@ function Workout() {
             <section>
                 <div className='flex justify-between mb-4'>
                     <div className='text-xl font-semibold'>Workout List</div>
-                    <NextButton color='secondary' onPress={onOpen}>Add Workout</NextButton>
+                    <NextButton color='secondary' className='border-1 dark:border-light/50 dark:bg-background dark:text-light bg-light border-background/50 text-background ' onPress={onOpen}>Add Workout</NextButton>
                 </div>
 
-                <div className={`absolute z-20 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
+                <div className={`absolute z-50 rounded-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-svh w-svw ${loading === true ? "" : "hidden"}`}>
                     <Loader />
                 </div>
 
