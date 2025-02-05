@@ -327,7 +327,7 @@ function Signup() {
                 <div className="flex flex-col mb-4">
                   <Input
                     required
-                    classNames={{ base: "-mb-[2px] h-[52px]", inputWrapper: "rounded-b-none" }}
+                    classNames={{ base: "-mb-[2px] h-[52px] border-1 border-background/30 rounded-lg", inputWrapper: "rounded-b-none" }}
                     label="First Name"
                     name="firstName"
                     type="text"

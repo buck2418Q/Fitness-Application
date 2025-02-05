@@ -384,7 +384,7 @@ function About() {
 
 
         <div className="container mx-auto p-4 -mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-8 lg:gap-16 xl:gap-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20">
             {trainerData.map((trainer, index) => (
               <motion.div
                 whileInView="show"
@@ -402,9 +402,17 @@ function About() {
                     variants={fadeIn("", "", 0.1, 0.2)}
                     src={trainer.TrainerImage} alt=""
                     className="w-64 relative top-[276px] -mt-[256px] z-10" />
-                  <div className="relative w-full h-80 px-6">
+                  {/* <div className="relative w-full h-80 px-6">
                     <div className="group-hover:bg-fitnessRed h-full w-full bg-background dark:bg-light rounded-t-full transition ease-in-out duration-300"></div>
+                    <div className="group-hover:h-full h-0 w-full bg-background dark:bg-light rounded-t-full transition-all ease-in-out duration-300 absolute bottom-0 "></div>
+                  </div> */}
+                  <div className="relative w-full h-80 px-6">
+                    <div className=" h-full w-full bg-background dark:bg-light rounded-t-full transition ease-in-out duration-300 "></div>
+
+                    <div className="group-hover:h-full h-0 w-[calc(100%-48px)] bg-fitnessRed dark:bg-light rounded-t-full transition-all ease-in-out duration-300 absolute bottom-0"></div>
                   </div>
+
+
                 </div>
                 <LazyLoadImage src={trainerCard} alt="sc" className="w-fit h-fit relative -top-16 -mb-20 z-20" />
                 <div className="bg-secondlight text-center pb-8 rounded-br-xl rounded-bl-xl borde-0 z-20">

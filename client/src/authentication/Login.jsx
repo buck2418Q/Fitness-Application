@@ -193,7 +193,7 @@ function Login() {
               <Input
                 name="email"
                 label="Email"
-                className="w-full mb-4 text-background h-12"
+                className="w-full mb-4 text-background h-12 border-1 border-background/10 rounded-lg"
                 // color="background"
                 type="email"
                 required
@@ -205,7 +205,7 @@ function Login() {
                 <Input
                   label="Password"
                   name="password"
-                  className="w-full mb-2 h-12"
+                  className="w-full mb-2 h-12 border-1 border-background/10 rounded-lg"
                   type={viewType}
                   required
                   radius='sm'
