@@ -5,7 +5,6 @@ function Loader() {
         <>
             <div className='bg-transparent flex items-center justify-center w-full h-svh'>
                 <Spinner label="Loading..." color="success" />
-
             </div>
         </>
     )
